@@ -4,6 +4,11 @@ import data from '../../data/plate_reader.json'
 
 describe('PlateReader.js', () => {
 
+  it('returns unique ids', () => {
+      let arr = [{'id': '1'}, {'id': '2'}, {'id': '3'}, {'id': ''}, {'id': '2'}, {'id': '1'}]
+      expect(PlateReader.uniqueIds(arr)).toEqual(['1','2','3'])
+  })
+
   describe('Well', () => {
 
     let well
@@ -55,57 +60,134 @@ describe('PlateReader.js', () => {
       well1 = new PlateReader.Well('A','1','Sample X1','A1','3.014')
       well2 = new PlateReader.Well('A','2','Sample X1','A1','3.163')
       well3 = new PlateReader.Well('B','1','Sample X1','A1','2.836')
-      triplicate = new PlateReader.Triplicate(well1, well2, well3)
     })
 
-    it ('will have three wells', () => {
-      expect(triplicate.wells).toEqual([well1, well2, well3])
+    describe('creating all wells up front', () => {
+
+      beforeEach(() => {
+        triplicate = new PlateReader.Triplicate([well1, well2, well3])
+      })
+
+      it ('will have three wells', () => {
+        expect(triplicate.wells).toEqual([well1, well2, well3])
+      })
+
+      it('will set an average', () => {
+        expect(triplicate.average).toEqual('3.004')
+      })
+
+      it('will set a standard deviation', () => {
+        // average = 3.004
+        // (3.014 - 3.004)squared = 0.0001
+        // (3.163 - 3.004)squared = 0.025281
+        // (2.836 - 3.004)squared = 0.028224
+        // (0.0001 + 0.025281 + 0.028224) / 3 = 0.018
+        // sqrt (0.018) = 0.134164078649987
+
+        expect(triplicate.standardDeviation).toEqual('0.134')
+      })
+
+      it('will set a cv', () => {
+        // (0.134/3.004) * 100 = 4.46
+        expect(triplicate.cv).toEqual('4.461')
+
+      })
+
+      it('can retrieve active wells', () => {
+        well3.active = false
+        expect(triplicate.activeWells()).toHaveLength(2)
+      })
+
+      it('will recalculate statistics correctly if a well is rendered inactive', () => {
+        well3.active = false
+
+        // average = 3.088
+        // (3.014 - 3.088)squared = 0.005
+        // (3.163 - 3.088)squared = 0.006
+        // (0.005 + 0.006) / 2 = 0.006
+        // std = sqrt (0.006) = 0.077
+        // cv = (0.077/3.088 * 100) = 2.494
+        expect(triplicate.average).toEqual('3.088')
+        expect(triplicate.standardDeviation).toEqual('0.077')
+        expect(triplicate.cv).toEqual('2.494')
+
+      })
+
     })
 
-    it('will set an average', () => {
-      expect(triplicate.average).toEqual('3.004')
+    describe('adding wells individually', () => {
+      beforeEach(() => {
+        triplicate = new PlateReader.Triplicate()
+        triplicate.add(well1)
+        triplicate.add(well2)
+        triplicate.add(well3)
+      })
+
+      it ('will have three wells', () => {
+        expect(triplicate.wells).toHaveLength(3)
+      })
+
+      it ('will create stats', () => {
+        expect(triplicate.average).toEqual('3.004')
+        expect(triplicate.standardDeviation).toEqual('0.134')
+        expect(triplicate.cv).toEqual('4.461')
+      })
     })
 
-    it('will set a standard deviation', () => {
-      // average = 3.004
-      // (3.014 - 3.004)squared = 0.0001
-      // (3.163 - 3.004)squared = 0.025281
-      // (2.836 - 3.004)squared = 0.028224
-      // (0.0001 + 0.025281 + 0.028224) / 3 = 0.018
-      // sqrt (0.018) = 0.134164078649987
+    describe('when it is empty', () => {
+      beforeEach(() => {
+        triplicate = new PlateReader.Triplicate()
+      })
 
-      expect(triplicate.standardDeviation).toEqual('0.134')
+      it('will indicate it is empty', () => {
+        expect(triplicate.empty()).toBeTruthy()
+      })
+
+      it('will produce stats without error', () => {
+        expect(triplicate.average).toEqual('0')
+        expect(triplicate.standardDeviation).toEqual('0')
+        expect(triplicate.cv).toEqual('0')
+      })
+    })
+  })
+
+  describe('Triplicates', () => {
+
+    let well1, well2, well3
+    let well4, well5, well6
+    let triplicate1, triplicate2, triplicates
+
+    beforeEach(() => {
+      well1 = new PlateReader.Well('A','1','Sample X1','A1','3.014')
+      well2 = new PlateReader.Well('A','2','Sample X1','A1','3.163')
+      well3 = new PlateReader.Well('B','1','Sample X1','A1','2.836')
+      triplicate1 = new PlateReader.Triplicate([well1, well2, well3])
+
+      well4 = new PlateReader.Well('A','3','Sample X9','A2','5.616')
+      well5 = new PlateReader.Well('A','4','Sample X9','A2','5.341')
+      well6 = new PlateReader.Well('B','3','Sample X9','A2','5.054')
+
+      triplicate2 = new PlateReader.Triplicate([well4, well5, well6])
+
+      triplicates = new PlateReader.Triplicates()
+      triplicates.add(well1).add(well2).add(well3).add(well4).add(well5).add(well6)
+
     })
 
-    it('will set a cv', () => {
-      // (0.134/3.004) * 100 = 4.46
-      expect(triplicate.cv).toEqual('4.461')
-
+    it('will have the correct number of triplicates', () => {
+      expect(triplicates.keys()).toEqual(['A1', 'A2'])
     })
 
-    it('can retrieve active wells', () => {
-      well3.active = false
-      expect(triplicate.activeWells()).toHaveLength(2)
-    })
-
-    it('will recalculate statistics correctly if a well is rendered inactive', () => {
-      well3.active = false
-
-      // average = 3.088
-      // (3.014 - 3.088)squared = 0.005
-      // (3.163 - 3.088)squared = 0.006
-      // (0.005 + 0.006) / 2 = 0.006
-      // std = sqrt (0.006) = 0.077
-      // cv = (0.077/3.088 * 100) = 2.494
-      expect(triplicate.average).toEqual('3.088')
-      expect(triplicate.standardDeviation).toEqual('0.077')
-      expect(triplicate.cv).toEqual('2.494')
-
+    it('each triplicate will have correct stats', () => {
+      let firstTriplicate = triplicates.find('A1')
+      expect(firstTriplicate.average).toEqual(triplicate1.average)
+      expect(firstTriplicate.standardDeviation).toEqual(triplicate1.standardDeviation)
+      expect(firstTriplicate.cv).toEqual(triplicate1.cv)
     })
 
   })
 
-  describe('PlateReader', () => {
+  describe('Plate', () => {
 
     let plate
 
@@ -119,35 +201,19 @@ describe('PlateReader.js', () => {
       expect(plate.wells[data.wells.length - 1].content).toEqual(data.wells[data.wells.length - 1].content)
     })
 
-    it('returns unique ids', () => {
-      data = [{'id': '1'}, {'id': '2'}, {'id': '3'}, {'id': ''}, {'id': '2'}, {'id': '1'}]
-      expect(PlateReader.plate.uniqueIds(data)).toHaveLength(3)
+    it('creates the triplicates', () => {
+      expect(plate.triplicates.keys()).toHaveLength(PlateReader.uniqueIds(data.wells).length)
     })
 
-    // it('creates the correct number of triplicates', () => {
-    //   // let triplicate_ids = data.wells.map(function(well) { 
-    //   //   if (typeof well.id != undefined && well.id.length > 0) {
-    //   //   // if (well.id.length > 0) {
-    //   //     return well.id
-    //   //   }
-    //   //   // if (well.id != undefined || well.id.length > 0) {
-    //   //   //   return well.id
-    //   // })
+    it('triplicate will have some statistics', () => {
+      let triplicate = plate.triplicates.first()
+      expect(triplicate.average).toBeDefined()
+      expect(triplicate.standardDeviation).toBeDefined()
+      expect(triplicate.cv).toBeDefined()
+    })
 
-    //   let triplicate_ids = data.wells.filter( function(well) {
-    //     return well.id.length > 0
-    //   }).map(function(well) {
-    //     return well.id
-    //   }).filter( function(value, index, self) { return self.indexOf(value) === index })
+    // it('creates the rows', () => {
       
-    //   console.log(triplicate_ids)
-
-    //   // for (var well of data.wells) {
-    //   //   console.log(typeof well.id)
-    //   // }
-
-    //   //.filter( function(value, index, self) { return self.indexOf(value) === index })
-    //   // console.log(triplicate_ids)
     // })
 
   })

@@ -4,10 +4,10 @@
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
-          <th >&nbsp;</th>
-          <th v-for="column in columns">{{ column }}</th>
+          <th class="heading">&nbsp;</th>
+          <th class="heading" v-for="column in columns">{{ column }}</th>
           <tr v-for="row in rows">
-            <td>{{ row }}</td>
+            <td class="heading">{{ row }}</td>
             <well v-for="column in columns" v-bind:row="row" v-bind:column="column" :key="row.concat(column)"></well>
           </tr>
         </thead>
@@ -52,5 +52,9 @@ li {
 }
 a {
   color: #42b983;
+}
+.heading {
+  background-color: gray;
+  color: white;
 }
 </style>
