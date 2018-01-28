@@ -1,25 +1,37 @@
 import Vue from 'vue'
 import Plate from '@/components/Plate'
+import plateReader from '../../data/plate_reader'
 
 describe('Plate.vue', () => {
 
-  let cmp, vm
+  let cmp, wells, plate, rowSize
 
   beforeEach(() => {
-    cmp = Vue.extend(Plate) // Create a copy of the original component
-    vm = new cmp({
-    }).$mount() // Instances and mounts the component
+    rowSize = 5
+    cmp = Vue.extend(Plate)
+    plate = new cmp({propsData: {rowSize: rowSize, wells: plateReader.wells}}).$mount()
   })
 
-
-  it('should render correct contents', () => {
-    expect(vm.$el.querySelector('.plate h1').textContent)
-      .toEqual('Plate')
+  it('must have number of columns', () => {
+   expect(plate.rowSize).toEqual(rowSize)
   })
 
-  it('should create a 384 well plate', () => {
-    expect(vm.$el.querySelector('table').querySelectorAll('th')).toHaveLength(25)
-    expect(vm.$el.querySelector('table').querySelectorAll('tr')).toHaveLength(16)
-    expect(vm.$el.querySelector('table').querySelector('tr').querySelectorAll('td')).toHaveLength(25)
+  it('must have some wells', () => {
+    expect(plate.wells).toEqual(plateReader.wells)
+  })
+
+  it('will have have some columns', () => {
+    let columns = plate.$el.querySelector('table').querySelectorAll('th')
+    expect(columns).toHaveLength(6)
+    expect(columns[1].textContent).toEqual('1')
+    expect(columns[5].textContent).toEqual('5')
+  })
+
+  it('will have the correct number of rowws', () => {
+    let numberOfWells = plateReader.wells.length
+    let numberOfRows = (Math.floor(numberOfWells/rowSize) + (numberOfWells%rowSize > 0 ? 1 : 0))
+    expect(plate.rows).toHaveLength(numberOfRows)
+    expect(plate.$el.querySelector('table').querySelectorAll('.plate-row')).toHaveLength(numberOfRows)
   })
 })
+

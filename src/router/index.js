@@ -17,6 +17,5 @@ export default new Router({
       name: 'Plate',
       component: Plate
     }
-
   ]
 })

@@ -1,38 +1,55 @@
 <template>
   <div class="plate">
-    <h1>{{ msg }}</h1>
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
           <th class="heading">&nbsp;</th>
-          <th class="heading" v-for="column in columns">{{ column }}</th>
-          <tr v-for="row in rows">
-            <td class="heading">{{ row }}</td>
-            <well v-for="column in columns" v-bind:row="row" v-bind:column="column" :key="row.concat(column)"></well>
-          </tr>
+          <th class="heading" v-for="column in columns" v-bind:key="column">{{ column }}</th>
         </thead>
         <tbody>
+           <row v-for="(row, index) in rows" v-bind:id="index" v-bind:wells="row" v-bind:key="index"></row>
         </tbody>
       </table>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
 
-import Well from '../components/Well.vue'
+import Row from '@/components/Row.vue'
+import data from '@/data/plate_reader'
 
 export default {
   name: 'Plate',
+  props: {
+    rowSize: {
+      type: Number,
+      default: 24
+    },
+    wells: {
+      type: Array,
+      default: () => data.wells
+    }
+  },
   data () {
     return {
-      msg: 'Plate',
-      columns: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
-      rows: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P']
+      msg: 'Plate'
+    }
+  },
+  computed: {
+    columns () {
+      return Array.from(Array(this.rowSize), (e, i) => i + 1)
+    },
+    rows () {
+      let rows = []
+      for (let i = 0; i < this.wells.length; i += this.rowSize) {
+        rows.push(this.wells.slice(i, i + this.rowSize))
+      }
+      return rows
     }
   },
   components: {
-    Well
+    Row
   }
 }
 </script>
@@ -52,9 +69,5 @@ li {
 }
 a {
   color: #42b983;
-}
-.heading {
-  background-color: gray;
-  color: white;
 }
 </style>

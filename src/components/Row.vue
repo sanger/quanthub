@@ -1,26 +1,24 @@
 <template>
-  <td class="well">
-    {{ location }}
-    {{ concentration }}
-  </td>
+  <tr class="plate-row">
+    <td>{{ heading }}</td>
+    <well v-for="(well, index) in wells" v-bind="well" :key="index"></well>
+  </tr>
 </template>
 
 <script>
+
+import Well from '@/components/Well.vue'
+
 export default {
-  name: 'Well',
+  name: 'Row',
   props: {
-    row: {},
-    column: {},
-    content: {},
-    id: {},
-    concentration: {},
-    active: {
-      default: true,
-      type: Boolean
+    id: {
+      type: Number,
+      default: 0
     },
-    triplicate: {
-      default: () => {},
-      type: Object
+    wells: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
@@ -29,12 +27,12 @@ export default {
     }
   },
   computed: {
-    type () {
-      return this.content.split(' ')[0]
-    },
-    location () {
-      return this.row.concat(this.column)
+    heading () {
+      return String.fromCharCode(65 + this.id)
     }
+  },
+  components: {
+    Well
   }
 }
 </script>
