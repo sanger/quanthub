@@ -1,6 +1,6 @@
 <template>
   <tr class="plate-row">
-    <td>{{ heading }}</td>
+    <th>{{ heading }}</th>
     <well v-for="(well, index) in wells" v-bind="well" :key="index"></well>
   </tr>
 </template>
@@ -52,5 +52,8 @@ li {
 }
 a {
   color: #42b983;
+}
+th {
+  background-color: #e1e0df;
 }
 </style>

@@ -15,7 +15,7 @@ describe('Row.vue', () => {
 
   it('must have a heading', () => {
     expect(row.heading).toEqual('A')
-    expect(row.$el.querySelector('td').textContent).toEqual('A')
+    expect(row.$el.querySelector('th').textContent).toEqual('A')
   })
 
   it('must have some wells', () => {

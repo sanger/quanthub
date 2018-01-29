@@ -3,8 +3,8 @@
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
-          <th class="heading">&nbsp;</th>
-          <th class="heading" v-for="column in columns" v-bind:key="column">{{ column }}</th>
+          <th>&nbsp;</th>
+          <th v-for="column in columns" v-bind:key="column">{{ column }}</th>
         </thead>
         <tbody>
            <row v-for="(row, index) in rows" v-bind:id="index" v-bind:wells="row" v-bind:key="index"></row>
@@ -69,5 +69,8 @@ li {
 }
 a {
   color: #42b983;
+}
+th {
+  background-color: #e1e0df;
 }
 </style>

@@ -21,7 +21,7 @@ describe('Plate.vue', () => {
   })
 
   it('will have have some columns', () => {
-    let columns = plate.$el.querySelector('table').querySelectorAll('th')
+    let columns = plate.$el.querySelector('thead').querySelectorAll('th')
     expect(columns).toHaveLength(6)
     expect(columns[1].textContent).toEqual('1')
     expect(columns[5].textContent).toEqual('5')
