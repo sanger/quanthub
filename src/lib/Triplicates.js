@@ -1,19 +1,19 @@
 class Triplicate {
-  constructor(wells = []) {
+  constructor (wells = []) {
     this.wells = wells
   }
 
-  get activeWells() {
+  get activeWells () {
     return this.wells.filter(well => well.active)
   }
 
-  get average() {
-    if(this.empty()) return '0'
+  get average () {
+    if (this.empty()) return '0'
     return this.calculateAverage(this.activeWells.map(well => parseFloat(well.concentration)))
   }
 
-  get standardDeviation() {
-    if(this.empty()) return '0'
+  get standardDeviation () {
+    if (this.empty()) return '0'
     let average = this.average
 
     let squareDiffs = this.activeWells.map(function (well) {
@@ -26,36 +26,35 @@ class Triplicate {
     return stdDev.toFixed(3)
   }
 
-  get cv() {
-    if(this.empty()) return '0'
+  get cv () {
+    if (this.empty()) return '0'
     return ((this.standardDeviation / this.average) * 100).toFixed(3)
   }
 
-  calculateAverage(values) {
+  calculateAverage (values) {
     let sum = values.reduce(function (a, b) { return a + b })
     return (sum / values.length).toFixed(3)
   }
 
-  add(well) {
+  add (well) {
     this.wells.push(well)
   }
 
-  empty() {
-    return (this.wells.length == 0)
+  empty () {
+    return (this.wells.length === 0)
   }
-
 }
 
 class List {
-  constructor() {
+  constructor () {
     this.items = {}
   }
 
-  get keys() {
+  get keys () {
     return Object.keys(this.items)
   }
 
-  add(well) {
+  add (well) {
     let triplicate
     triplicate = this.find(well.id)
     if (triplicate === undefined) {
@@ -68,11 +67,11 @@ class List {
     return this
   }
 
-  find(key) {
+  find (key) {
     return this.items[key]
   }
 
-  first() {
+  first () {
     return this.items[this.keys[0]]
   }
 }

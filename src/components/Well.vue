@@ -3,11 +3,13 @@
     {{ id }}
     <br/>
     {{ concentration }}
-    {{ active }}
   </td>
 </template>
 
 <script>
+
+import { store } from '@/lib/Store'
+
 export default {
   name: 'Well',
   props: {
@@ -25,15 +27,13 @@ export default {
     active: {
       default: true,
       type: Boolean
-    },
-    triplicate: {
-      default: () => {},
-      type: Object
     }
   },
   data () {
     return {
-      msg: 'Well'
+      msg: 'Well',
+      store: store,
+      triplicate: {}
     }
   },
   computed: {
@@ -41,11 +41,39 @@ export default {
       return this.row.concat(this.column)
     },
     classObject () {
-      if (!this.active) {
+      if (!this.active && this.hasConcentration() && this.isSample()) {
         return {
           inactive: true
         }
+      } else {
+        return {
+          standard: this.isStandard(),
+          control: this.isControl(),
+          inspect: this.needsInspection()
+        }
       }
+    }
+  },
+  methods: {
+    isStandard () {
+      return this.type === 'Standard'
+    },
+    isSample () {
+      return this.type === 'Sample'
+    },
+    isControl () {
+      return this.type === 'Control'
+    },
+    hasConcentration () {
+      return this.concentration !== ''
+    },
+    needsInspection () {
+      return parseFloat(this.triplicate.cv) > 20
+    }
+  },
+  created () {
+    if (this.isSample()) {
+      store.triplicates.add(this)
     }
   }
 }
@@ -74,6 +102,18 @@ a {
 }
 .inactive {
   background-color: gray;
+  color: white;
+}
+.standard {
+  background-color: blue;
+  color: white;
+}
+.control {
+  background-color: green;
+  color: white;
+}
+.inspect {
+  background-color: red;
   color: white;
 }
 </style>
