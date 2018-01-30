@@ -8,8 +8,6 @@
 
 <script>
 
-import { store } from '@/lib/Store'
-
 export default {
   name: 'Well',
   props: {
@@ -32,7 +30,7 @@ export default {
   data () {
     return {
       msg: 'Well',
-      store: store,
+      store: this.$Store,
       triplicate: {}
     }
   },
@@ -73,7 +71,7 @@ export default {
   },
   created () {
     if (this.isSample()) {
-      store.triplicates.add(this)
+      this.store.triplicates.add(this)
     }
   }
 }

@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Plate from '@/components/Plate'
 import plateReader from '../../data/plate_reader'
+import Store from '@/lib/Store'
+import { mount } from '@vue/test-utils'
 
 describe('Plate.vue', () => {
 
-  let cmp, wells, plate, rowSize
+  let cmp, vm, wells, plate, rowSize, $Store
 
   beforeEach(() => {
+    $Store = Store
     rowSize = 5
-    cmp = Vue.extend(Plate)
-    plate = new cmp({propsData: {rowSize: rowSize, wells: plateReader.wells}}).$mount()
+    cmp = mount(Plate, {mocks: { $Store }, propsData: {rowSize: rowSize, wells: plateReader.wells}})
+    plate = cmp.vm
   })
 
   it('must have number of columns', () => {

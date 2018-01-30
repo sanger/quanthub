@@ -1,7 +1,10 @@
 import {List as Triplicates} from '@/lib/Triplicates'
 
-var store = {
-  triplicates: new Triplicates()
+class Store {
+  constructor () {
+    this.triplicates = new Triplicates()
+  }
 }
 
-export { store }
+export { Store }
+export default new Store()
