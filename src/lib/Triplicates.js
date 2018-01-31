@@ -1,8 +1,18 @@
+/*  Triplicates.js
+    A library to manage the statistics for a triplicate of wells.
+    The ultimate aim is to calculate the coefficient of variation (CV), 
+    a standardized measure of dispersion of a probability distribution or frequency distribution.
+    In this case if a concentration in the triplicate is above a certain threshold e.g. 20% it is
+    considered an outlier and can be removed from the triplicate.
+*/
+
 class Triplicate {
   constructor (wells = []) {
     this.wells = wells
   }
 
+  // If a well is not active it should not be considered as part of the 
+  // statistical calculation
   get activeWells () {
     return this.wells.filter(well => well.active)
   }
@@ -45,6 +55,9 @@ class Triplicate {
   }
 }
 
+// A JSON object to store the list of triplicates
+// The key is the well location
+
 class List {
   constructor () {
     this.items = {}
@@ -54,6 +67,9 @@ class List {
     return Object.keys(this.items)
   }
 
+  // Try and find the well id in the list.
+  // If it found add the well as a new triplicate
+  // If not create a new key.
   add (well) {
     let triplicate
     triplicate = this.find(well.id)
