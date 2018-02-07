@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Usage: ./archive-assets.sh <archive_name> <relative_path_to_folder>
+
 set -ev
 
 # Building assets
