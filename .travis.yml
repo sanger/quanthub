@@ -2,13 +2,22 @@ dist: trusty
 sudo: required
 language: node_js
 node_js:
-  - "9.5.0"
+  - 9.5.0
+
 addons:
   chrome: stable
 
 before_script:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-
 script:
   - npm test
   - npm run build
+
+before_deploy: "./archive-assets.sh"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: fJO0/yDoDmfle+yRfavXC7f+4CoqiNFWDk8frkNZAbqyCiIRTJiMxNJFqM1/8/oSc0nUfdS+Qcj6URtfqpqPfwszCO784V6nEl8ljTyVkAKxKBRhpJCikbdmhWE2oecbpaKmh8H7/joZa59AVHzLLqpyo52tWkBjZIjcSLxoggJyrolo4y8RKJ+5ikeTzAMd5u4CpbsAAcc9BE1L9IjYsbzx71w645/cZKiCkVbbdlrKZHwNIHXR17xJlKQHdMvIyXyrwrTo3SE+LImESjm0tppdbSX0S+1SQhyN0HOrY3lNj6NhQfbnacBUShPFO5nNDrRY6GnYCPVok+kn5272ZC2y3lPjpY01Woh6tCkl+Skr8a1Yt5S+Tiu8936kcH0tQqHgPg97AGeTuKS6QWouDS8zZlWTRz8djw4cTBHH0qUQVJemPq0wLv21aCajwf8BQapHELRFWNhiDwp0shNVVLoKrBVeuoBFhFVdY4mc3JR4yU+Y0Wgzjhh69hpYNhrbMzqBRx5kacEwf4CY9bYV4peZrS4hbY8U5v1Xg/KXjQUOCqZlO2zGxunzUQy5d8ze8JW6SbQkly+FOW8DEeOsBkHHc7ERykfQHorhbvkAx7K9WAmAXqdlJ6+i+qtQBvaHdFD5jmlfjoPpKegZdtMweocJzrFfVClxpDSbK33X3sc=
+
+
