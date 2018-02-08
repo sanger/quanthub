@@ -1,6 +1,6 @@
 /*  Triplicates.js
     A library to manage the statistics for a triplicate of wells.
-    The ultimate aim is to calculate the coefficient of variation (CV), 
+    The ultimate aim is to calculate the coefficient of variation (CV),
     a standardized measure of dispersion of a probability distribution or frequency distribution.
     In this case if a concentration in the triplicate is above a certain threshold e.g. 20% it is
     considered an outlier and can be removed from the triplicate.
@@ -11,7 +11,7 @@ class Triplicate {
     this.wells = wells
   }
 
-  // If a well is not active it should not be considered as part of the 
+  // If a well is not active it should not be considered as part of the
   // statistical calculation
   get activeWells () {
     return this.wells.filter(well => well.active)
