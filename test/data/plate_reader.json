@@ -5,263 +5,263 @@
       "column": "1",
       "id": "A1",
       "concentration": "3.014",
-      "type": "Sample"
+      "content": "Sample X1"
     },
     {
       "row": "A",
       "column": "2",
       "id": "A1",
       "concentration": "3.163",
-      "type": "Sample"
+      "content": "Sample X1"
     },
     {
       "row": "A",
       "column": "3",
       "id": "A2",
       "concentration": "1.815",
-      "type": "Sample"
+      "content": "Sample X9"
     },
     {
       "row": "A",
       "column": "4",
       "id": "A2",
       "concentration": "1.764",
-      "type": "Sample"
+      "content": "Sample X9"
     },
     {
       "row": "A",
       "column": "5",
       "id": "A3",
       "concentration": "1.658",
-      "type": "Sample"
+      "content": "Sample X17"
     },
     {
       "row": "A",
       "column": "6",
       "id": "A3",
       "concentration": "1.887",
-      "type": "Sample"
+      "content": "Sample X17"
     },
     {
       "row": "A",
       "column": "7",
       "id": "A4",
       "concentration": "0.518",
-      "type": "Sample"
+      "content": "Sample X25"
     },
     {
       "row": "A",
       "column": "8",
       "id": "A4",
       "concentration": "0.493",
-      "type": "Sample"
+      "content": "Sample X25"
     },
     {
       "row": "A",
       "column": "9",
       "id": "A5",
       "concentration": "0.66",
-      "type": "Sample"
+      "content": "Sample X33"
     },
     {
       "row": "A",
       "column": "10",
       "id": "A5",
       "concentration": "0.62",
-      "type": "Sample"
+      "content": "Sample X33"
     },
     {
       "row": "A",
       "column": "11",
       "id": "A6",
       "concentration": "0.944",
-      "type": "Sample"
+      "content": "Sample X41"
     },
     {
       "row": "A",
       "column": "12",
       "id": "A6",
       "concentration": "0.836",
-      "type": "Sample"
+      "content": "Sample X41"
     },
     {
       "row": "A",
       "column": "13",
       "id": "A7",
       "concentration": "0.69",
-      "type": "Sample"
+      "content": "Sample X49"
     },
     {
       "row": "A",
       "column": "14",
       "id": "A7",
       "concentration": "2.677",
-      "type": "Sample"
+      "content": "Sample X49"
     },
     {
       "row": "A",
       "column": "15",
       "id": "A8",
       "concentration": "4.989",
-      "type": "Sample"
+      "content": "Sample X57"
     },
     {
       "row": "A",
       "column": "16",
       "id": "A8",
       "concentration": "5.189",
-      "type": "Sample"
+      "content": "Sample X57"
     },
     {
       "row": "A",
       "column": "17",
       "id": "A9",
       "concentration": "3.259",
-      "type": "Sample"
+      "content": "Sample X65"
     },
     {
       "row": "A",
       "column": "18",
       "id": "A9",
       "concentration": "3.501",
-      "type": "Sample"
+      "content": "Sample X65"
     },
     {
       "row": "A",
       "column": "19",
       "id": "A10",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X73"
     },
     {
       "row": "A",
       "column": "20",
       "id": "A10",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X73"
     },
     {
       "row": "A",
       "column": "21",
       "id": "A11",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X81"
     },
     {
       "row": "A",
       "column": "22",
       "id": "A11",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X81"
     },
     {
       "row": "A",
       "column": "23",
       "id": "A12",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X89"
     },
     {
       "row": "A",
       "column": "24",
       "id": "A12",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X89"
     },
     {
       "row": "B",
       "column": "1",
       "id": "A1",
       "concentration": "2.836",
-      "type": "Sample"
+      "content": "Sample X1"
     },
     {
       "row": "B",
       "column": "2",
       "id": "Std 1",
       "concentration": "24.967",
-      "type": "Standard"
+      "content": "Standard S1"
     },
     {
       "row": "B",
       "column": "3",
       "id": "A2",
       "concentration": "1.562",
-      "type": "Sample"
+      "content": "Sample X9"
     },
     {
       "row": "B",
       "column": "4",
       "id": "Std 1",
       "concentration": "26.101",
-      "type": "Standard"
+      "content": "Sample X9"
     },
     {
       "row": "B",
       "column": "5",
       "id": "A3",
       "concentration": "2.18",
-      "type": "Sample"
+      "content": "Sample X17"
     },
     {
       "row": "B",
       "column": "6",
       "id": "Std 1",
       "concentration": "27.155",
-      "type": "Standard"
+      "content": "Standard S1"
     },
     {
       "row": "B",
       "column": "7",
       "id": "A4",
       "concentration": "0.414",
-      "type": "Sample"
+      "content": "Sample X25"
     },
     {
       "row": "B",
       "column": "8",
       "id": "Ctrl 1",
       "concentration": "25.12",
-      "type": "Control"
+      "content": "Control C1"
     },
     {
       "row": "B",
       "column": "9",
       "id": "A5",
       "concentration": "0.583",
-      "type": "Sample"
+      "content": "Sample X33"
     },
     {
       "row": "B",
       "column": "10",
       "id": "Ctrl 1",
       "concentration": "25.341",
-      "type": "Control"
+      "content": "Control C1"
     },
     {
       "row": "B",
       "column": "11",
       "id": "A6",
       "concentration": "0.784",
-      "type": "Sample"
+      "content": "Sample X41"
     },
     {
       "row": "B",
       "column": "12",
       "id": "Ctrl 1",
       "concentration": "24.019",
-      "type": "Control"
+      "content": "Control C1"
     },
     {
       "row": "B",
       "column": "13",
       "id": "A7",
       "concentration": "0.665",
-      "type": "Sample"
+      "content": "Sample X49"
     },
     {
       "id": "",
-      "type": "",
+      "content": "",
       "concentration": ""
     },
     {
@@ -269,11 +269,11 @@
       "column": "15",
       "id": "A8",
       "concentration": "5.002",
-      "type": "Sample"
+      "content": "Sample X57"
     },
     {
       "id": "",
-      "type": "",
+      "content": "",
       "concentration": ""
     },
     {
@@ -281,11 +281,11 @@
       "column": "17",
       "id": "A9",
       "concentration": "3.174",
-      "type": "Sample"
+      "content": "Sample X65"
     },
     {
       "id": "",
-      "type": "",
+      "content": "",
       "concentration": ""
     },
     {
@@ -293,29 +293,30 @@
       "column": "19",
       "id": "A10",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X73"
     },
     {
       "id": "",
-      "type": "",
+      "content": "",
       "concentration": ""
     },
     {
       "row": "B",
       "column": "21",
       "id": "A11",
-      "concentration": ""
+      "concentration": "",
+      "content": "Sample X81"
     },
     {
       "id": "",
-      "type": ""
+      "content": ""
     },
     {
       "row": "B",
       "column": "23",
       "id": "A12",
       "concentration": "",
-      "type": "Sample"
+      "content": "Sample X89"
     }
   ]
 }

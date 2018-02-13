@@ -17,7 +17,6 @@ export default {
     column: {
       default: ''
     },
-    type: {},
     id: {},
     concentration: {
       default: ''
@@ -25,6 +24,9 @@ export default {
     active: {
       default: true,
       type: Boolean
+    },
+    content: {
+      default: ''
     }
   },
   data () {
@@ -35,9 +37,6 @@ export default {
     }
   },
   computed: {
-    location () {
-      return this.row.concat(this.column)
-    },
     classObject () {
       if (!this.active && this.hasConcentration() && this.isSample()) {
         return {
@@ -45,11 +44,18 @@ export default {
         }
       } else {
         return {
+          sample: this.isSample(),
           standard: this.isStandard(),
           control: this.isControl(),
           inspect: this.needsInspection()
         }
       }
+    },
+    type () {
+      return this.content.split(' ')[0]
+    },
+    location () {
+      return this.row.concat(this.column)
     }
   },
   methods: {
@@ -67,11 +73,40 @@ export default {
     },
     needsInspection () {
       return parseFloat(this.triplicate.cv) > 20
+    },
+    compare (that) {
+      if (this.row > that.row) {
+        return 1
+      } else if (this.row < that.row) {
+        return -1
+      } else {
+        if (parseInt(this.column) > parseInt(that.column)) {
+          return 1
+        } else if (parseInt(this.column) < parseInt(that.column)) {
+          return -1
+        }
+        else {
+          return 0
+        }
+      }
+    },
+    toJson () {
+      return {
+        row: this.row,
+        column: this.column,
+        content: this.content,
+        id: this.id,
+        concentration: this.concentration,
+        active: this.active
+      }
     }
   },
   created () {
-    if (this.isSample()) {
-      this.store.triplicates.add(this)
+    // prevents errors if store is not defined. Is there a better way ...
+    if (this.store !== undefined) {
+      if (this.isSample()) {
+        this.store.triplicates.add(this)
+      }
     }
   }
 }

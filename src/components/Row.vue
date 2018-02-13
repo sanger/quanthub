@@ -1,7 +1,7 @@
 <template>
   <tr class="plate-row">
     <th>{{ heading }}</th>
-    <well v-for="(well, index) in wells" v-bind="well" :key="index"></well>
+    <well v-for="(well, index) in wells" v-bind="well" :key="idToString.concat(index)"></well>
   </tr>
 </template>
 
@@ -29,6 +29,9 @@ export default {
   computed: {
     heading () {
       return String.fromCharCode(65 + this.id)
+    },
+    idToString () {
+      return this.id.toString()
     }
   },
   components: {

@@ -6,13 +6,12 @@ import { Store as newStore } from '@/lib/Store'
 
 describe('Well.vue', () => {
 
-  let cmp, vm, well, data, $Store
+  let cmp, well, data, $Store
 
-  describe('Sample', () => {
+  describe('Basic', () => {
     beforeEach(() => {
-      $Store = Store
-      data = {row: 'A',column: '1',type: 'Sample', id: 'A1',concentration:'3.014'}
-      cmp = mount(Well, { mocks: { $Store }, propsData: data})
+      data = {row: 'A',column: '1', content: 'Basic X4', id: 'A1', concentration:'3.014'}
+      cmp = mount(Well, { propsData: data })
       well = cmp.vm
     })
 
@@ -31,7 +30,7 @@ describe('Well.vue', () => {
     })
 
     it ('has a type', () => {
-      expect(well.type).toEqual(data.type)
+      expect(well.type).toEqual("Basic")
     })
 
     it('has a location', () => {
@@ -44,6 +43,27 @@ describe('Well.vue', () => {
 
     it('outputs location', () => {
       expect(well.$el.textContent).toMatch(well.location)
+    })
+
+    it('produces json', () => {
+      expect(well.toJson()).toEqual({row: 'A', column: '1', content: 'Basic X4', id: 'A1', concentration: '3.014', active: true})
+    })
+  })
+
+  describe('Sample', () => {
+    beforeEach(() => {
+      $Store = Store
+      data = {row: 'A',column: '1', content: 'Sample X1', id: 'A1', concentration:'3.014'}
+      cmp = mount(Well, { mocks: { $Store }, propsData: data})
+      well = cmp.vm
+    })
+
+    it ('has the correct class', () => {
+      expect(well.$el.className).toMatch('sample')
+    })
+
+    it('has a location', () => {
+      expect(well.location).toEqual('A1')
     })
 
     it('on clicking renders it inactive', () => {
@@ -62,7 +82,7 @@ describe('Well.vue', () => {
   describe('Standard', () => {
     beforeEach(() => {
       $Store = Store
-      data = { row: 'B', column: '4', id: 'Std 1', concentration: '26.101', type: 'Standard' }
+      data = { row: 'B', column: '4', id: 'Std 1', concentration: '26.101', content: 'Standard S1' }
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })
@@ -84,9 +104,9 @@ describe('Well.vue', () => {
 
     beforeEach(() => {
       $Store = new newStore
-      well1 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', type: 'Sample' }})
-      well2 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', type: 'Sample' }})
-      well3 = mount(Well, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', type: 'Sample' }})
+      well1 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', content: 'Sample X1' }})
+      well2 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', content: 'Sample X1' }})
+      well3 = mount(Well, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', content: 'Sample X1' }})
     })
 
     // this would be better to check class but this is brittle
@@ -109,7 +129,7 @@ describe('Well.vue', () => {
   describe('Control', () => {
     beforeEach(() => {
       $Store = Store
-      data = { row: 'B', column: '8', id: 'Ctrl 1', concentration: '25.12', type: 'Control' }
+      data = { row: 'B', column: '8', id: 'Ctrl 1', concentration: '25.12', content: 'Control C1' }
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })
@@ -136,6 +156,38 @@ describe('Well.vue', () => {
     it('has the correct class', () => {
       cmp.trigger('click')
       expect(well.$el.className).not.toMatch('inactive')
+    })
+  })
+
+  describe('Compare', () => {
+
+    let well1, well2, well3
+
+    beforeEach(() => {
+      let well = Vue.extend(Well)
+      well1 = new well({propsData: {row: 'A',column: '1', content: 'Sample X1', id: 'A1', concentration:'3.014'}})
+      well2 = new well({propsData: {row: 'A',column: '14', content: 'Sample X1', id: 'A1', concentration:'3.014'}})
+      well3 = new well({propsData: {row: 'B',column: '2', content: 'Sample X1', id: 'A1', concentration:'3.014'}})
+    })
+
+    it('well with higher row should be higher', () => {
+      expect(well3.compare(well1)).toEqual(1)
+    })
+
+    it('well with lower row should be lower', () => {
+      expect(well1.compare(well3)).toEqual(-1)
+    })
+
+    it('well with same row and higher column should be higher', () => {
+      expect(well2.compare(well1)).toEqual(1)
+    })
+
+    it('well with same row and lower column should be lower', () => {
+      expect(well1.compare(well2)).toEqual(-1)
+    })
+
+    it('well with same row and column should be equal', () => {
+      expect(well1.compare(well1)).toEqual(0)
     })
   })
 })
