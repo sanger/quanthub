@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Upload from '@/components/Upload'
 import csv from '../../data/plate1'
 import { mount } from '@vue/test-utils'
+import fs from 'fs'
 
 describe('Upload.vue', () => {
 
@@ -73,6 +74,17 @@ describe('Upload.vue', () => {
       let metadata = upload.metadata
       expect(metadata.User).toEqual('DNAP OPS TEAM')
       expect(metadata.ID1).toEqual('QNTE_A_2411')
+    })
+
+    it('has a path', () => {
+      expect(upload.path).toMatch(upload.metadata.ID1)
+    })
+
+    it('creates a file', () => {
+      upload.parseData()
+      upload.toFile()
+      expect(fs.existsSync(upload.path)).toBeTruthy()
+      fs.unlinkSync(upload.path) 
     })
   })
 })

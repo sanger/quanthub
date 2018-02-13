@@ -22,7 +22,8 @@
     "geckodriver": "^1.10.0",
     "raw-loader": "^0.5.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "write-json-file": "^2.3.0"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.11",

@@ -8,6 +8,7 @@
 import parse from 'csv-parse/lib/sync'
 import Well from '@/components/Well.vue'
 import Vue from 'vue'
+import writeJsonFile from 'write-json-file'
 
 export default {
   name: 'Upload',
@@ -34,7 +35,8 @@ export default {
         metadataRows: 7, 
         columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']
       },
-      cmp: Vue.extend(Well)
+      cmp: Vue.extend(Well),
+      dir: 'static/'
     }
   },
   computed: {
@@ -51,6 +53,9 @@ export default {
         metadata[split[0]] = split[1]
       }
       return metadata
+    },
+    path () {
+      return this.dir.concat(this.metadata.ID1 + '.json')
     }
   },
   components: {
@@ -65,6 +70,11 @@ export default {
     },
     toJson () {
       return { wells: this.sort().map( well => well.toJson()) }
+    },
+    toFile () {
+      // console.log(this.path)
+      // writeJsonFile.sync(this.metadata.ID1 + '.json', this.toJson())
+      writeJsonFile.sync(this.path, this.toJson())
     }
   }
 }
