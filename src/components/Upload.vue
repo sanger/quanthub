@@ -1,5 +1,6 @@
 <template>
   <div class="upload">
+    <input name="myFile" type="file">
   </div>
 </template>
 
@@ -8,7 +9,7 @@
 import parse from 'csv-parse/lib/sync'
 import Well from '@/components/Well.vue'
 import Vue from 'vue'
-import writeJsonFile from 'write-json-file'
+import fs from 'fs'
 
 export default {
   name: 'Upload',
@@ -30,12 +31,12 @@ export default {
     return {
       msg: 'Upload',
       defaultOptions: {
-        rowDelimiter: '\n', 
-        from: 12, 
-        metadataRows: 7, 
+        rowDelimiter: '\n',
+        from: 12,
+        metadataRows: 7,
         columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']
       },
-      cmp: Vue.extend(Well),
+      Cmp: Vue.extend(Well),
       dir: 'static/'
     }
   },
@@ -44,7 +45,7 @@ export default {
       return Object.assign(this.defaultOptions, this.opts)
     },
     metadata () {
-      let rows =  this.csv.split('\n').slice(0, this.options.metadataRows)
+      let rows = this.csv.split('\n').slice(0, this.options.metadataRows)
       let metadata = {}
       let split
 
@@ -63,18 +64,17 @@ export default {
   },
   methods: {
     parseData () {
-      this.wells = parse(this.csv, this.options).map(well => new this.cmp({propsData: well}))
+      this.wells = parse(this.csv, this.options).map(well => new this.Cmp({propsData: well}))
     },
     sort () {
-      return this.wells.sort( function (a, b) { return a.compare(b) } )
+      return this.wells.sort(function (a, b) { return a.compare(b) })
     },
     toJson () {
-      return { wells: this.sort().map( well => well.toJson()) }
+      return { wells: this.sort().map(well => well.toJson()) }
     },
     toFile () {
-      // console.log(this.path)
-      // writeJsonFile.sync(this.metadata.ID1 + '.json', this.toJson())
-      writeJsonFile.sync(this.path, this.toJson())
+      // TODO: needs to be asynchronous
+      fs.writeFileSync(this.path, JSON.stringify(this.toJson()))
     }
   }
 }

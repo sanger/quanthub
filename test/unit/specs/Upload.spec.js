@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Upload from '@/components/Upload'
-import csv from '../../data/plate1'
+// import csv from '../../data/plate1'
 import { mount } from '@vue/test-utils'
 import fs from 'fs'
+import config from '../jest.conf'
 
 describe('Upload.vue', () => {
 
-  let cmp, upload, options
+  let cmp, csv, upload, options
 
   describe('blank', () => {
 
@@ -25,6 +26,7 @@ describe('Upload.vue', () => {
 
   describe('filled', () => {
     beforeEach(() => {
+      csv = fs.readFileSync(config.rootDir + '/test/data/plate1.csv', 'ascii')
       options = {rowDelimiter: '\n', from: 12, metadataRows: 7, columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']}
       cmp = mount(Upload, { propsData: { csv: csv, opts: options } })
       upload = cmp.vm
@@ -86,5 +88,10 @@ describe('Upload.vue', () => {
       expect(fs.existsSync(upload.path)).toBeTruthy()
       fs.unlinkSync(upload.path) 
     })
+
+    // it('uploads a file', () => {
+    //   console.log(config.rootDir)
+    //   console.log(fs.readFileSync(config.rootDir + '/test/data/plate1.csv', 'ascii'))
+    // })
   })
 })

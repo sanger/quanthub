@@ -84,8 +84,7 @@ export default {
           return 1
         } else if (parseInt(this.column) < parseInt(that.column)) {
           return -1
-        }
-        else {
+        } else {
           return 0
         }
       }
