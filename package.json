@@ -19,11 +19,12 @@
     "bootstrap": "4.0.0",
     "bootstrap-vue": "^1.4.1",
     "csv-parse": "^2.0.0",
+    "flush-promises": "^1.0.0",
     "geckodriver": "^1.10.0",
     "raw-loader": "^0.5.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "write-json-file": "^2.3.0"
+    "vue-resource": "^1.5.0",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.11",

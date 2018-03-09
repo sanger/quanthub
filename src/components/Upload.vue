@@ -1,6 +1,11 @@
 <template>
   <div class="upload">
-    <input name="myFile" type="file">
+    <h3 v-html='notice'></h3>
+    <div>{{ message }}</div>
+    <form enctype="multipart/form-data" method="post" action="#" v-on:submit="upload">
+      <input id="plateReader" name="plateReader" type="file" >
+      <button name="submit" type="submit">Upload</button>
+    </form>
   </div>
 </template>
 
@@ -9,21 +14,13 @@
 import parse from 'csv-parse/lib/sync'
 import Well from '@/components/Well.vue'
 import Vue from 'vue'
-import fs from 'fs'
 
 export default {
   name: 'Upload',
   props: {
-    csv: {
-      default: ''
-    },
     opts: {
       type: Object,
       default: () => {}
-    },
-    wells: {
-      type: Array,
-      default: () => []
     }
   },
 
@@ -37,7 +34,9 @@ export default {
         columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']
       },
       Cmp: Vue.extend(Well),
-      dir: 'static/'
+      csv: '',
+      wells: [],
+      file: {}
     }
   },
   computed: {
@@ -54,9 +53,6 @@ export default {
         metadata[split[0]] = split[1]
       }
       return metadata
-    },
-    path () {
-      return this.dir.concat(this.metadata.ID1 + '.json')
     }
   },
   components: {
@@ -72,9 +68,29 @@ export default {
     toJson () {
       return { wells: this.sort().map(well => well.toJson()) }
     },
-    toFile () {
-      // TODO: needs to be asynchronous
-      fs.writeFileSync(this.path, JSON.stringify(this.toJson()))
+    upload (event) {
+      event.preventDefault()
+      this.notice = 'File successfully uploaded.'
+    },
+    uploadFile () {
+      this.getFile()
+        .then((result) => {
+          this.csv = result
+          this.parseData()
+        })
+        .catch((error) => {
+          console.log('rejected:', error)
+        })
+    },
+    getFile () {
+      return new Promise((resolve, reject) => {
+        // const file = document.getElementById('plateReader').files[0]
+        const reader = new FileReader()
+        reader.onload = () => {
+          resolve(reader.result)
+        }
+        reader.readAsText(this.file)
+      })
     }
   }
 }
