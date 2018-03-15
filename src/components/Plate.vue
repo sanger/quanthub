@@ -21,7 +21,6 @@
 <script>
 
 import Row from '@/components/Row.vue'
-// import data from '@/data/plate_reader'
 
 export default {
   name: 'Plate',
@@ -29,14 +28,15 @@ export default {
     rowSize: {
       type: Number,
       default: 24
+    },
+    id: {
+      type: String
     }
   },
   data () {
     return {
       msg: 'Plate',
-      id: '',
       wells: []
-      // wells: data.wells
     }
   },
   computed: {
@@ -55,7 +55,6 @@ export default {
     Row
   },
   created () {
-    // TODO: Is there a better way? route and params do not always exist
     try {
       this.fetchData()
     } catch (error) {
@@ -64,7 +63,6 @@ export default {
   },
   methods: {
     fetchData () {
-      this.id = this.$route.params.id
       let json = localStorage.getItem(this.id)
       if (json !== null) {
         this.wells = JSON.parse(json).wells

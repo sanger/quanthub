@@ -15,7 +15,7 @@ module.exports = {
   },
 
   csv: function () {
-    return fs.readFileSync(config.rootDir + '/test/data/plate1.csv', 'ascii')
+    return fs.readFileSync(config.rootDir + '/test/data/plate1.csv', 'ascii').split('\n')
   },
 
   'upload page': function (browser) {
@@ -37,8 +37,9 @@ module.exports = {
       .setValue('input[type="file"]', this.filePath())
       .click('button[name=submit]')
       .pause(1000)
-      .assert.containsText('h3', 'Plate: QNTE_A_2411')
-      .assert.elementCount('td', this.csv().split('\n').length - 11)
+      // TODO: It would be better to use CsvFile component but can't seem to use es6 in Nightwatch tests.
+      .assert.containsText('h3', this.csv()[6].split(',')[0].split(': ')[1])
+      .assert.elementCount('td', this.csv().length - 11)
       .end()
   }
 

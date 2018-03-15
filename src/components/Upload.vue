@@ -41,7 +41,8 @@ export default {
         .then((result) => {
           localStorage.setItem(csvFile.metadata.ID1, JSON.stringify(csvFile.json))
           this.notice = result
-          router.push({name: 'Plate', params: {id: csvFile.metadata.ID1}})
+          router.push({ path: `/plate/${csvFile.metadata.ID1}` })
+          // router.push({name: 'Plate', params: {id: csvFile.metadata.ID1}})
         })
         .catch((error) => {
           console.log('rejected:', error)

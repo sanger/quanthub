@@ -18,6 +18,10 @@ export default new Router({
       component: Plate,
       props: {id: true}
     },
+    { path: '/plate/:id',
+      component: Plate,
+      props: true
+    },
     {
       path: '/upload',
       name: 'Upload',

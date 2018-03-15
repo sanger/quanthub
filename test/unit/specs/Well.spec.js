@@ -47,6 +47,8 @@ describe('Well.vue', () => {
 
     it('produces json', () => {
       expect(well.toJson()).toEqual({row: 'A', column: '1', content: 'Basic X4', id: 'A1', concentration: '3.014', active: true})
+      well.isActive = false
+      expect(well.toJson()).toEqual({row: 'A', column: '1', content: 'Basic X4', id: 'A1', concentration: '3.014', active: false})
     })
   })
 
