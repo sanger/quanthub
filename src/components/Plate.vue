@@ -3,7 +3,7 @@
 
 <template>
   <div class="plate">
-    <div>{{ msg }}</div>
+    <h3>{{ msg }}: {{ id }}</h3>
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
@@ -21,7 +21,7 @@
 <script>
 
 import Row from '@/components/Row.vue'
-import data from '@/data/plate_reader'
+// import data from '@/data/plate_reader'
 
 export default {
   name: 'Plate',
@@ -29,15 +29,14 @@ export default {
     rowSize: {
       type: Number,
       default: 24
-    },
-    wells: {
-      type: Array,
-      default: () => data.wells
     }
   },
   data () {
     return {
-      msg: 'Plate'
+      msg: 'Plate',
+      id: '',
+      wells: []
+      // wells: data.wells
     }
   },
   computed: {
@@ -45,6 +44,7 @@ export default {
       return Array.from(Array(this.rowSize), (e, i) => i + 1)
     },
     rows () {
+      console.log(this.wells)
       let rows = []
       for (let i = 0; i < this.wells.length; i += this.rowSize) {
         rows.push(this.wells.slice(i, i + this.rowSize))
@@ -54,6 +54,23 @@ export default {
   },
   components: {
     Row
+  },
+  created () {
+    // TODO: Is there a better way? route and params do not always exist
+    try {
+      this.fetchData()
+    } catch (error) {
+      console.log(error.name)
+    }
+  },
+  methods: {
+    fetchData () {
+      this.id = this.$route.params.id
+      let json = localStorage.getItem(this.id)
+      if (json !== null) {
+        this.wells = JSON.parse(json)
+      }
+    }
   }
 }
 </script>

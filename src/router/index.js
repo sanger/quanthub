@@ -15,7 +15,8 @@ export default new Router({
     {
       path: '/plate',
       name: 'Plate',
-      component: Plate
+      component: Plate,
+      props: {id: true}
     },
     {
       path: '/upload',

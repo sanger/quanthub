@@ -1,7 +1,7 @@
 <template>
   <div class="upload">
     <h3 v-html='notice'></h3>
-    <div>{{ message }}</div>
+    <div>{{ msg }}</div>
     <form enctype="multipart/form-data" method="post" action="#" v-on:submit="upload">
       <input id="plateReader" name="plateReader" type="file" >
       <button name="submit" type="submit">Upload</button>
@@ -11,86 +11,41 @@
 
 <script>
 
-import parse from 'csv-parse/lib/sync'
-import Well from '@/components/Well.vue'
+import router from '@/router'
 import Vue from 'vue'
+import CsvFile from '@/components/CsvFile'
 
 export default {
   name: 'Upload',
   props: {
-    opts: {
-      type: Object,
-      default: () => {}
-    }
   },
 
   data () {
     return {
       msg: 'Upload',
-      defaultOptions: {
-        rowDelimiter: '\n',
-        from: 12,
-        metadataRows: 7,
-        columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']
-      },
-      Cmp: Vue.extend(Well),
-      csv: '',
-      wells: [],
-      file: {}
+      notice: '',
+      Cmp: Vue.extend(CsvFile)
     }
   },
   computed: {
-    options () {
-      return Object.assign(this.defaultOptions, this.opts)
-    },
-    metadata () {
-      let rows = this.csv.split('\n').slice(0, this.options.metadataRows)
-      let metadata = {}
-      let split
-
-      for (let row of rows) {
-        split = row.split(',')[0].split(': ')
-        metadata[split[0]] = split[1]
-      }
-      return metadata
-    }
   },
   components: {
-    Well
+    CsvFile
   },
   methods: {
-    parseData () {
-      this.wells = parse(this.csv, this.options).map(well => new this.Cmp({propsData: well}))
-    },
-    sort () {
-      return this.wells.sort(function (a, b) { return a.compare(b) })
-    },
-    toJson () {
-      return { wells: this.sort().map(well => well.toJson()) }
-    },
     upload (event) {
       event.preventDefault()
-      this.notice = 'File successfully uploaded.'
-    },
-    uploadFile () {
-      this.getFile()
+      const file = document.getElementById('plateReader').files[0]
+      let csvFile = new this.Cmp()
+      csvFile.upload(file)
         .then((result) => {
-          this.csv = result
-          this.parseData()
+          localStorage.setItem(csvFile.metadata.ID1, JSON.stringify(csvFile.json))
+          this.notice = result
+          router.push({name: 'Plate', params: {id: csvFile.metadata.ID1}})
         })
         .catch((error) => {
           console.log('rejected:', error)
         })
-    },
-    getFile () {
-      return new Promise((resolve, reject) => {
-        // const file = document.getElementById('plateReader').files[0]
-        const reader = new FileReader()
-        reader.onload = () => {
-          resolve(reader.result)
-        }
-        reader.readAsText(this.file)
-      })
     }
   }
 }
