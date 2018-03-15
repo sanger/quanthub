@@ -37,7 +37,7 @@ export default {
       return this.wells.slice(0).sort(function (a, b) { return a.compare(b) })
     },
     json () {
-      return this.sorted.map(well => well.toJson())
+      return { wells: this.sorted.map(well => well.toJson()) }
     },
     metadata () {
       let rows = this.csv.split('\n').slice(0, this.options.metadataRows)

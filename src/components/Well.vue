@@ -1,5 +1,5 @@
 <template>
-  <td class="well" v-bind:class="classObject" v-on:click="active = !active">
+  <td class="well" v-bind:class="classObject" v-on:click="isActive = !isActive">
     {{ id }}
     <br/>
     {{ concentration }}
@@ -33,12 +33,13 @@ export default {
     return {
       msg: 'Well',
       store: this.$Store,
-      triplicate: {}
+      triplicate: {},
+      isActive: this.active
     }
   },
   computed: {
     classObject () {
-      if (!this.active && this.hasConcentration() && this.isSample()) {
+      if (!this.isActive && this.hasConcentration() && this.isSample()) {
         return {
           inactive: true
         }
@@ -96,11 +97,11 @@ export default {
         content: this.content,
         id: this.id,
         concentration: this.concentration,
-        active: this.active
+        active: this.isActive
       }
     }
   },
-  created () {
+  mounted () {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
       if (this.isSample()) {

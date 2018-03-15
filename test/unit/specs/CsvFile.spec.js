@@ -68,10 +68,10 @@ describe('CsvFile.vue', () => {
 
       it('produces some json', () => {
         let json = csvFile.json
-        expect(json[0].row).toEqual('A')
-        expect(json[0].column).toEqual('1')
-        expect(json[csvFile.wells.length - 1].row).toEqual('P')
-        expect(json[csvFile.wells.length - 1].column).toEqual('23')
+        expect(json['wells'][0].row).toEqual('A')
+        expect(json['wells'][0].column).toEqual('1')
+        expect(json['wells'][csvFile.wells.length - 1].row).toEqual('P')
+        expect(json['wells'][csvFile.wells.length - 1].column).toEqual('23')
       })
 
       it('creates some metadata', () => {

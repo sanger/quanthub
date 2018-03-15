@@ -44,7 +44,6 @@ export default {
       return Array.from(Array(this.rowSize), (e, i) => i + 1)
     },
     rows () {
-      console.log(this.wells)
       let rows = []
       for (let i = 0; i < this.wells.length; i += this.rowSize) {
         rows.push(this.wells.slice(i, i + this.rowSize))
@@ -68,7 +67,7 @@ export default {
       this.id = this.$route.params.id
       let json = localStorage.getItem(this.id)
       if (json !== null) {
-        this.wells = JSON.parse(json)
+        this.wells = JSON.parse(json).wells
       }
     }
   }

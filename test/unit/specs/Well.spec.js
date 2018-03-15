@@ -24,9 +24,9 @@ describe('Well.vue', () => {
     })
 
     it('can be active or inactive', () => {
-      expect(well.active).toBeTruthy()
-      well.active = false
-      expect(well.active).toBeFalsy()
+      expect(well.isActive).toBeTruthy()
+      well.isActive = false
+      expect(well.isActive).toBeFalsy()
     })
 
     it ('has a type', () => {
@@ -68,7 +68,7 @@ describe('Well.vue', () => {
 
     it('on clicking renders it inactive', () => {
       cmp.trigger('click')
-      expect(well.active).toBeFalsy()
+      expect(well.isActive).toBeFalsy()
       expect(well.$el.className).toMatch('inactive')
     })
 
