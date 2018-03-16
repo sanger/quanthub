@@ -11,7 +11,7 @@
           <th v-for="column in columns" v-bind:key="column">{{ column }}</th>
         </thead>
         <tbody>
-           <row v-for="(row, index) in rows" v-bind:id="index" v-bind:wells="row" v-bind:key="index"></row>
+           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:key="key.concat(index)"></row>
         </tbody>
       </table>
     </div>
@@ -36,19 +36,15 @@ export default {
   data () {
     return {
       msg: 'Plate',
-      wells: []
+      grid: {}
     }
   },
   computed: {
     columns () {
-      return Array.from(Array(this.rowSize), (e, i) => i + 1)
+      return this.grid.columns
     },
     rows () {
-      let rows = []
-      for (let i = 0; i < this.wells.length; i += this.rowSize) {
-        rows.push(this.wells.slice(i, i + this.rowSize))
-      }
-      return rows
+      return this.grid.rows
     }
   },
   components: {
@@ -65,7 +61,7 @@ export default {
     fetchData () {
       let json = localStorage.getItem(this.id)
       if (json !== null) {
-        this.wells = JSON.parse(json).wells
+        this.grid = JSON.parse(json)
       }
     }
   }

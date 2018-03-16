@@ -36,8 +36,12 @@ describe('CsvFile.vue', () => {
     })
 
     describe('successful', () => {
+
+      let rows
+
       beforeEach(async () => {
         csvFile.upload(file)
+        rows = csv.split('\n')
         await flushPromises()
         await flushPromises()
       })
@@ -51,27 +55,33 @@ describe('CsvFile.vue', () => {
       })
 
       it('transforms wells into correct format', () => {
-        let well = csvFile.wells[0]
-        expect(well.type).toBeDefined()
-        expect(well.location).toBeDefined()
+        let row = rows[12].split(',')
+        let well = csvFile.grid.rows[row[0]][row[1]]
 
-        well = csvFile.wells[csvFile.wells.length - (csvFile.options.from - 1)]
-        expect(well.type).toBeDefined()
-        expect(well.location).toBeDefined()
-      })
+        expect(well.row).toBeDefined()
+        expect(well.column).toBeDefined()
+        expect(well.content).toBeDefined()
+        expect(well.id).toBeDefined()
+        expect(well.concentration).toBeDefined()
 
-      it('sorts the wells', () => {
-        let sorted = csvFile.sorted
-        expect(sorted[0].location).toEqual('A1')
-        expect(sorted[csvFile.wells.length - 1].location).toEqual('P23')
+        row = rows[rows.length - (csvFile.options.from - 1)].split(',')
+        well = csvFile.grid.rows[row[0]][row[1]]
+        expect(well.row).toBeDefined()
+        expect(well.column).toBeDefined()
+        expect(well.content).toBeDefined()
+        expect(well.id).toBeDefined()
+        expect(well.concentration).toBeDefined()
       })
 
       it('produces some json', () => {
-        let json = csvFile.json
-        expect(json['wells'][0].row).toEqual('A')
-        expect(json['wells'][0].column).toEqual('1')
-        expect(json['wells'][csvFile.wells.length - 1].row).toEqual('P')
-        expect(json['wells'][csvFile.wells.length - 1].column).toEqual('23')
+        let json = csvFile.json['rows']
+        let row = rows[12].split(',')
+        expect(json[row[0]][row[1]].row).toEqual(row[0])
+        expect(json[row[0]][row[1]].column).toEqual(row[1])
+
+        row = rows[rows.length - (csvFile.options.from - 1)].split(',')
+        expect(json[row[0]][row[1]].row).toEqual(row[0])
+        expect(json[row[0]][row[1]].column).toEqual(row[1])
       })
 
       it('creates some metadata', () => {

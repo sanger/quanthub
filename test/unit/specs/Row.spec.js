@@ -9,15 +9,14 @@ describe('Row.vue', () => {
 
   beforeEach(() => {
     $Store = Store
-    wells = [ {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014'},
-              {row:'A',column:'2',content:'Sample X1',id:'A1',concentration:'3.163'},
-              {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.432'} ]
-    cmp = mount(Row, { mocks: { $Store }, propsData: {id: 0, wells: wells}})
+    wells = { '1': {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014'},
+              '2': {row:'A',column:'2',content:'Sample X1',id:'A1',concentration:'3.163'},
+              '3': {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.432'} }
+    cmp = mount(Row, { mocks: { $Store }, propsData: {id: 'A', wells: wells}})
     row = cmp.vm
   })
 
   it('must have a heading', () => {
-    expect(row.heading).toEqual('A')
     expect(row.$el.querySelector('th').textContent).toEqual('A')
   })
 
@@ -26,8 +25,5 @@ describe('Row.vue', () => {
       .toHaveLength(3)
   })
 
-  it('converts id to string', () => {
-    expect(row.idToString).toEqual('0')
-  })
 })
 

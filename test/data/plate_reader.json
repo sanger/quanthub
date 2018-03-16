@@ -260,21 +260,11 @@
       "content": "Sample X49"
     },
     {
-      "id": "",
-      "content": "",
-      "concentration": ""
-    },
-    {
       "row": "B",
       "column": "15",
       "id": "A8",
       "concentration": "5.002",
       "content": "Sample X57"
-    },
-    {
-      "id": "",
-      "content": "",
-      "concentration": ""
     },
     {
       "row": "B",
@@ -284,11 +274,6 @@
       "content": "Sample X65"
     },
     {
-      "id": "",
-      "content": "",
-      "concentration": ""
-    },
-    {
       "row": "B",
       "column": "19",
       "id": "A10",
@@ -296,20 +281,11 @@
       "content": "Sample X73"
     },
     {
-      "id": "",
-      "content": "",
-      "concentration": ""
-    },
-    {
       "row": "B",
       "column": "21",
       "id": "A11",
       "concentration": "",
       "content": "Sample X81"
-    },
-    {
-      "id": "",
-      "content": ""
     },
     {
       "row": "B",

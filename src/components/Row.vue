@@ -1,7 +1,7 @@
 <template>
   <tr class="plate-row">
-    <th>{{ heading }}</th>
-    <well v-for="(well, index) in wells" v-bind="well" :key="idToString.concat(index)"></well>
+    <th>{{ id }}</th>
+    <well v-for="(well, key, index) in wells" v-bind="well" :key="key.concat(index)"></well>
   </tr>
 </template>
 
@@ -13,12 +13,12 @@ export default {
   name: 'Row',
   props: {
     id: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     },
     wells: {
-      type: Array,
-      default: () => []
+      type: Object,
+      default: () => {}
     }
   },
   data () {
@@ -27,12 +27,6 @@ export default {
     }
   },
   computed: {
-    heading () {
-      return String.fromCharCode(65 + this.id)
-    },
-    idToString () {
-      return this.id.toString()
-    }
   },
   components: {
     Well

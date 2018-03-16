@@ -1,7 +1,7 @@
 <script>
 
 import parse from 'csv-parse/lib/sync'
-import Well from '@/components/Well.vue'
+import Grid from '@/components/Grid.vue'
 import Vue from 'vue'
 
 export default {
@@ -22,22 +22,19 @@ export default {
         columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']
       },
       csv: '',
-      wells: [],
-      Cmp: Vue.extend(Well)
+      Cmp: Vue.extend(Grid),
+      grid: {}
     }
   },
   components: {
-    Well
+    Grid
   },
   computed: {
     options () {
       return Object.assign(this.defaultOptions, this.opts)
     },
-    sorted () {
-      return this.wells.slice(0).sort(function (a, b) { return a.compare(b) })
-    },
     json () {
-      return { wells: this.sorted.map(well => well.toJson()) }
+      return this.grid.json
     },
     metadata () {
       let rows = this.csv.split('\n').slice(0, this.options.metadataRows)
@@ -57,7 +54,8 @@ export default {
         const reader = new FileReader()
         reader.onload = () => {
           this.csv = reader.result
-          this.wells = parse(this.csv, this.options).map(well => new this.Cmp({propsData: well}))
+          this.grid = new this.Cmp()
+          this.grid.addAll(parse(this.csv, this.options))
           resolve('File successfully uploaded')
         }
         reader.readAsText(file)
