@@ -1,6 +1,3 @@
-<!-- TODO:  It seems that empty wells do not appear so the plate is compacted
-            which is not the correct behaviour. -->
-
 <template>
   <div class="plate">
     <h3>{{ msg }}: {{ id }}</h3>
