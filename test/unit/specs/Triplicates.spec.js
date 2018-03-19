@@ -31,6 +31,13 @@ describe('Triplicates.vue', () => {
         expect(triplicate.average).toEqual('3.004')
       })
 
+      it('will convert to nM', () => {
+        // Cc nM = (Cc ng/ul)*((1000000/660)*(1/Av. lib. Size bp))
+        // PCR WGS Av. lib. size bp = 585 bp
+        // 3.004 *((1000000/660)*(1/585)) = 7.780
+        expect(triplicate.nM).toEqual('7.780')
+      })
+
       it('will set a standard deviation', () => {
         // average = 3.004
         // (3.014 - 3.004)squared = 0.0001
@@ -41,7 +48,7 @@ describe('Triplicates.vue', () => {
 
         expect(triplicate.standardDeviation).toEqual('0.134')
       })
-
+      
       it('will set a cv', () => {
         // (0.134/3.004) * 100 = 4.46
         expect(triplicate.cv).toEqual('4.461')
@@ -57,12 +64,14 @@ describe('Triplicates.vue', () => {
         well3.isActive = false
 
         // average = 3.088
+        // nM = 7.998
         // (3.014 - 3.088)squared = 0.005
         // (3.163 - 3.088)squared = 0.006
         // (0.005 + 0.006) / 2 = 0.006
         // std = sqrt (0.006) = 0.077
         // cv = (0.077/3.088 * 100) = 2.494
         expect(triplicate.average).toEqual('3.088')
+        expect(triplicate.nM).toEqual('7.998')
         expect(triplicate.standardDeviation).toEqual('0.077')
         expect(triplicate.cv).toEqual('2.494')
 
@@ -99,6 +108,7 @@ describe('Triplicates.vue', () => {
 
       it('will produce stats without error', () => {
         expect(triplicate.average).toEqual('0')
+        expect(triplicate.nM).toEqual('0')
         expect(triplicate.standardDeviation).toEqual('0')
         expect(triplicate.cv).toEqual('0')
       })
