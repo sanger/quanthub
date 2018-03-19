@@ -1,6 +1,6 @@
 <template>
   <div class="plate">
-    <div>{{ msg }}</div>
+    <h3>{{ msg }}: {{ id }}</h3>
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
@@ -8,7 +8,7 @@
           <th v-for="column in columns" v-bind:key="column">{{ column }}</th>
         </thead>
         <tbody>
-           <row v-for="(row, index) in rows" v-bind:id="index" v-bind:wells="row" v-bind:key="index"></row>
+           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:key="key.concat(index)"></row>
         </tbody>
       </table>
     </div>
@@ -18,7 +18,6 @@
 <script>
 
 import Row from '@/components/Row.vue'
-import data from '@/data/plate_reader'
 
 export default {
   name: 'Plate',
@@ -27,30 +26,41 @@ export default {
       type: Number,
       default: 24
     },
-    wells: {
-      type: Array,
-      default: () => data.wells
+    id: {
+      type: String
     }
   },
   data () {
     return {
-      msg: 'Plate'
+      msg: 'Plate',
+      grid: {}
     }
   },
   computed: {
     columns () {
-      return Array.from(Array(this.rowSize), (e, i) => i + 1)
+      return this.grid.columns
     },
     rows () {
-      let rows = []
-      for (let i = 0; i < this.wells.length; i += this.rowSize) {
-        rows.push(this.wells.slice(i, i + this.rowSize))
-      }
-      return rows
+      return this.grid.rows
     }
   },
   components: {
     Row
+  },
+  created () {
+    try {
+      this.fetchData()
+    } catch (error) {
+      console.log(error.name)
+    }
+  },
+  methods: {
+    fetchData () {
+      let json = localStorage.getItem(this.id)
+      if (json !== null) {
+        this.grid = JSON.parse(json)
+      }
+    }
   }
 }
 </script>

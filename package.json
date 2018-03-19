@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "unit": "jest --config test/unit/jest.conf.js --coverage",
+    "_unit": "jest --config test/unit/jest.conf.js --coverage",
+    "unit": "jest --config test/unit/jest.conf.js",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
@@ -17,9 +18,12 @@
   "dependencies": {
     "bootstrap": "4.0.0",
     "bootstrap-vue": "^1.4.1",
+    "csv-parse": "^2.0.0",
+    "flush-promises": "^1.0.0",
     "geckodriver": "^1.10.0",
-    "phantomjs-prebuilt": "^2.1.16",
+    "raw-loader": "^0.5.1",
     "vue": "^2.5.2",
+    "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

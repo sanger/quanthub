@@ -1,5 +1,5 @@
 <template>
-  <td class="well" v-bind:class="classObject" v-on:click="active = !active">
+  <td class="well" v-bind:class="classObject" v-on:click="isActive = !isActive">
     {{ id }}
     <br/>
     {{ concentration }}
@@ -17,7 +17,6 @@ export default {
     column: {
       default: ''
     },
-    type: {},
     id: {},
     concentration: {
       default: ''
@@ -25,31 +24,39 @@ export default {
     active: {
       default: true,
       type: Boolean
+    },
+    content: {
+      default: ''
     }
   },
   data () {
     return {
       msg: 'Well',
       store: this.$Store,
-      triplicate: {}
+      triplicate: {},
+      isActive: this.active
     }
   },
   computed: {
-    location () {
-      return this.row.concat(this.column)
-    },
     classObject () {
-      if (!this.active && this.hasConcentration() && this.isSample()) {
+      if (!this.isActive && this.hasConcentration() && this.isSample()) {
         return {
           inactive: true
         }
       } else {
         return {
+          sample: this.isSample(),
           standard: this.isStandard(),
           control: this.isControl(),
           inspect: this.needsInspection()
         }
       }
+    },
+    type () {
+      return this.content.split(' ')[0]
+    },
+    location () {
+      return this.row.concat(this.column)
     }
   },
   methods: {
@@ -67,11 +74,39 @@ export default {
     },
     needsInspection () {
       return parseFloat(this.triplicate.cv) > 20
+    },
+    compare (that) {
+      if (this.row > that.row) {
+        return 1
+      } else if (this.row < that.row) {
+        return -1
+      } else {
+        if (parseInt(this.column) > parseInt(that.column)) {
+          return 1
+        } else if (parseInt(this.column) < parseInt(that.column)) {
+          return -1
+        } else {
+          return 0
+        }
+      }
+    },
+    toJson () {
+      return {
+        row: this.row,
+        column: this.column,
+        content: this.content,
+        id: this.id,
+        concentration: this.concentration,
+        active: this.isActive
+      }
     }
   },
-  created () {
-    if (this.isSample()) {
-      this.store.triplicates.add(this)
+  mounted () {
+    // prevents errors if store is not defined. Is there a better way ...
+    if (this.store !== undefined) {
+      if (this.isSample()) {
+        this.store.triplicates.add(this)
+      }
     }
   }
 }

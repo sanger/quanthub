@@ -14,7 +14,7 @@ class Triplicate {
   // If a well is not active it should not be considered as part of the
   // statistical calculation
   get activeWells () {
-    return this.wells.filter(well => well.active)
+    return this.wells.filter(well => well.isActive)
   }
 
   get average () {

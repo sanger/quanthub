@@ -1,20 +1,22 @@
 import Vue from 'vue'
 import Row from '@/components/Row'
+import Store from '@/lib/Store'
+import { mount } from '@vue/test-utils'
 
 describe('Row.vue', () => {
 
-  let cmp, wells, row
+  let cmp, wells, row, $Store
 
   beforeEach(() => {
-    wells = [ {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014'},
-              {row:'A',column:'2',content:'Sample X1',id:'A1',concentration:'3.163'},
-              {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.432'} ]
-    cmp = Vue.extend(Row)
-    row = new cmp({ propsData: {id: 0, wells: wells}}).$mount()
+    $Store = Store
+    wells = { '1': {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014'},
+              '2': {row:'A',column:'2',content:'Sample X1',id:'A1',concentration:'3.163'},
+              '3': {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.432'} }
+    cmp = mount(Row, { mocks: { $Store }, propsData: {id: 'A', wells: wells}})
+    row = cmp.vm
   })
 
   it('must have a heading', () => {
-    expect(row.heading).toEqual('A')
     expect(row.$el.querySelector('th').textContent).toEqual('A')
   })
 
@@ -22,5 +24,6 @@ describe('Row.vue', () => {
     expect(row.$el.querySelectorAll('.well'))
       .toHaveLength(3)
   })
+
 })
 

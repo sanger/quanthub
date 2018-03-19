@@ -49,12 +49,12 @@ describe('Triplicates.vue', () => {
       })
 
       it('can retrieve active wells', () => {
-        well3.active = false
+        well3.isActive = false
         expect(triplicate.activeWells).toHaveLength(2)
       })
 
       it('will recalculate statistics correctly if a well is rendered inactive', () => {
-        well3.active = false
+        well3.isActive = false
 
         // average = 3.088
         // (3.014 - 3.088)squared = 0.005
