@@ -13,7 +13,7 @@ describe('Plate.vue', () => {
     $Store = Store
     id = 'plate1'
     grid = new(Vue.extend(Grid))
-    grid.addAll(plateReader.wells)
+    grid.addAll(Object.values(plateReader.wells))
     cmp = mount(Plate, {mocks: { $Store }})
     cmp.setData({id: id, grid: grid})
     plate = cmp.vm

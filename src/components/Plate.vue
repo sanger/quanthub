@@ -22,10 +22,6 @@ import Row from '@/components/Row.vue'
 export default {
   name: 'Plate',
   props: {
-    rowSize: {
-      type: Number,
-      default: 24
-    },
     id: {
       type: String
     }

@@ -11,8 +11,8 @@ module.exports = {
     browser
       .url(devServer)
       .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.plate')
-      .assert.containsText('div', 'Plate')
+      .assert.elementPresent('.plates')
+      .assert.containsText('div', 'Plates')
       .end()
   }
 }

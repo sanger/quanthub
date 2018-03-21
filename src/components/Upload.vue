@@ -11,7 +11,6 @@
 
 <script>
 
-import router from '@/router'
 import Vue from 'vue'
 import CsvFile from '@/components/CsvFile'
 
@@ -41,7 +40,8 @@ export default {
         .then((result) => {
           localStorage.setItem(csvFile.metadata.ID1, JSON.stringify(csvFile.json))
           this.notice = result
-          router.push({ path: `/plate/${csvFile.metadata.ID1}` })
+          // router.push({ path: `/plate/${csvFile.metadata.ID1}` })
+          this.$router.push({ path: `/plate/${csvFile.metadata.ID1}` })
         })
         .catch((error) => {
           console.log('rejected:', error)

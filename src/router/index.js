@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Plate from '@/components/Plate'
 import Upload from '@/components/Upload'
+import Plates from '@/components/Plates'
 
 Vue.use(Router)
 
@@ -9,8 +10,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Plate',
+      redirect: {name: 'Plates'},
       component: Plate
+    },
+    {
+      path: '/plates',
+      name: 'Plates',
+      component: Plates
     },
     {
       path: '/plate',

@@ -25,7 +25,7 @@ class Triplicate {
   // PCR WGS Av. lib. size bp = 585 bp
   get nM () {
     if (this.empty()) return '0'
-    return ((this.average) * ((1000000/660) * (1/585))).toFixed(3)
+    return ((this.average) * ((1000000 / 660) * (1 / 585))).toFixed(3)
   }
 
   get standardDeviation () {
