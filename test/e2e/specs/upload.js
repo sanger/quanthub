@@ -49,7 +49,6 @@ module.exports = {
       .setValue('input[type="file"]', filePath(config.rootDir))
       .click('button[name=submit]')
       .pause(1000)
-      // .assert.containsText('h3', getId(csv(filePath(config.rootDir))))
       .assert.containsText('h3', id)
       .assert.elementCount('td', 384)
       .url(this.url(browser, 'plates'))

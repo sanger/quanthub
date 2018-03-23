@@ -14,8 +14,8 @@ describe('Plate.vue', () => {
     id = 'plate1'
     grid = new(Vue.extend(Grid))
     grid.addAll(Object.values(plateReader.wells))
-    cmp = mount(Plate, {mocks: { $Store }})
-    cmp.setData({id: id, grid: grid})
+    cmp = mount(Plate, {propsData: { id: id }, mocks: { $Store }})
+    cmp.setData({grid: grid})
     plate = cmp.vm
   })
 
@@ -36,5 +36,9 @@ describe('Plate.vue', () => {
 
   it('can have an id', () => {
     expect(plate.$el.querySelector('h3').textContent).toEqual('Plate: ' + id)
+  })
+
+  it('will create a sequencescape plate in the store', () => {
+    expect($Store.sequencescapePlates.find('plate1').id).toEqual('plate1')
   })
 })

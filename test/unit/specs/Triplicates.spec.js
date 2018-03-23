@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Well from '@/components/Well'
-import {List as Triplicates, Triplicate} from '@/lib/Triplicates'
+import {TriplicateList as Triplicates, Triplicate} from '@/lib/Triplicates'
 
 describe('Triplicates.vue', () => {
 
