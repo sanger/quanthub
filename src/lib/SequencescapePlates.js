@@ -1,5 +1,5 @@
 
-import { TriplicateList as Triplicates } from '@/lib/triplicates'
+import { TriplicateList as Triplicates } from '@/lib/Triplicates'
 import axios from 'axios'
 
 class Plate {
