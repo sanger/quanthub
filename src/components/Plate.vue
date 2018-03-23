@@ -18,6 +18,8 @@
 <script>
 
 import Row from '@/components/Row.vue'
+import Grid from '@/components/Grid.vue'
+import Vue from 'vue'
 
 export default {
   name: 'Plate',
@@ -42,7 +44,8 @@ export default {
     }
   },
   components: {
-    Row
+    Row,
+    Grid
   },
   created () {
     this.store.sequencescapePlates.add(this.id)
@@ -58,6 +61,16 @@ export default {
       if (json !== null) {
         this.grid = JSON.parse(json)
       }
+    },
+    // This may seem counter intuitive but is necessary to update local storage
+    // The wells could be totally different if it is a new plate
+    toGrid () {
+      let cmp = Vue.extend(Grid)
+      let grid = new cmp()
+      for (let row of this.$children) {
+        grid.addAll(row.json)
+      }
+      return grid.json
     }
   }
 }

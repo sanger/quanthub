@@ -31,10 +31,20 @@ export default {
     }
   },
   computed: {
+    json () {
+      return this.$children.map(well => well.json)
+    }
   },
   components: {
     Well
   }
+  // ,
+  // mounted () {
+  //   console.log(this.$children.map(well => well.toJson()))
+  //   // for (let child of this.$children) {
+  //   //   console.log(child.toJson())
+  //   // }
+  // }
 }
 </script>
 
