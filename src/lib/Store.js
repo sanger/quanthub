@@ -1,8 +1,8 @@
-import {List as Triplicates} from '@/lib/Triplicates'
+import {SequencescapePlateList} from '@/lib/SequencescapePlates'
 
 class Store {
   constructor () {
-    this.triplicates = new Triplicates()
+    this.sequencescapePlates = new SequencescapePlateList()
   }
 }
 

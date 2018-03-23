@@ -16,6 +16,7 @@
     "e2e-setup": "selenium-standalone install"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "4.0.0",
     "bootstrap-vue": "^1.4.1",
     "csv-parse": "^2.0.0",
@@ -60,7 +61,7 @@
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
-    "jest": "^22.0.4",
+    "jest": "^22.4.3",
     "jest-localstorage-mock": "^2.2.0",
     "jest-serializer-vue": "^0.3.0",
     "nightwatch": "^0.9.12",

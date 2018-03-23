@@ -1,7 +1,7 @@
 <template>
   <tr class="plate-row">
     <th>{{ id }}</th>
-    <well v-for="(well, key, index) in wells" v-bind="well" :key="key.concat(index)"></well>
+    <well v-for="(well, key, index) in wells" v-bind="well" v-bind:plateId="plateId" :key="key.concat(index)"></well>
   </tr>
 </template>
 
@@ -19,6 +19,10 @@ export default {
     wells: {
       type: Object,
       default: () => {}
+    },
+    plateId: {
+      type: String,
+      default: ''
     }
   },
   data () {

@@ -64,7 +64,7 @@ class Triplicate {
 // A JSON object to store the list of triplicates
 // The key is the well location
 
-class List {
+class TriplicateList {
   constructor () {
     this.items = {}
   }
@@ -73,8 +73,12 @@ class List {
     return Object.keys(this.items)
   }
 
+  get length () {
+    return this.keys.length
+  }
+
   // Try and find the well id in the list.
-  // If it found add the well as a new triplicate
+  // If it is found add the well as a new triplicate
   // If not create a new key.
   add (well) {
     let triplicate
@@ -98,4 +102,4 @@ class List {
   }
 }
 
-export { List, Triplicate }
+export { TriplicateList, Triplicate }

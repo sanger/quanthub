@@ -8,7 +8,7 @@
           <th v-for="column in columns" v-bind:key="column">{{ column }}</th>
         </thead>
         <tbody>
-           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:key="key.concat(index)"></row>
+           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:plateId="id" v-bind:key="key.concat(index)"></row>
         </tbody>
       </table>
     </div>
@@ -29,7 +29,8 @@ export default {
   data () {
     return {
       msg: 'Plate',
-      grid: {}
+      grid: {},
+      store: this.$Store
     }
   },
   computed: {
@@ -44,6 +45,7 @@ export default {
     Row
   },
   created () {
+    this.store.sequencescapePlates.add(this.id)
     try {
       this.fetchData()
     } catch (error) {
