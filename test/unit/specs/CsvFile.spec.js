@@ -11,9 +11,9 @@ describe('CsvFile.vue', () => {
 
   beforeEach(() => {
     
-    options = {rowDelimiter: '\n', from: 12, metadataRows: 7, columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']}
+    options = {rowDelimiter: '\n', from: 12, metadataRows: 7, columns: ['row', 'column', 'content', 'id', 'concentration']}
     cmp = Vue.extend(CsvFile)
-    csvFile = new cmp({})
+    csvFile = new cmp({propsData: { opts: options}})
   })
 
   it('has some default options', () => {

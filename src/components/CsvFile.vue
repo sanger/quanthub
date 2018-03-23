@@ -19,7 +19,7 @@ export default {
         rowDelimiter: '\n',
         from: 12,
         metadataRows: 7,
-        columns: ['row', 'column', 'content', 'id', 'concentration', 'inspect']
+        columns: ['row', 'column', 'content', 'id', 'concentration']
       },
       csv: '',
       Cmp: Vue.extend(Grid),
