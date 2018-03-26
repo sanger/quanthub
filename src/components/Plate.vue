@@ -1,6 +1,7 @@
 <template>
   <div class="plate">
     <h3>{{ msg }}: {{ id }}</h3>
+    <div><button name="save" id="save" v-on:click.prevent="save">Save</button></div>
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
@@ -65,12 +66,15 @@ export default {
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
     toGrid () {
-      let cmp = Vue.extend(Grid)
-      let grid = new cmp()
+      let Cmp = Vue.extend(Grid)
+      let grid = new Cmp()
       for (let row of this.$children) {
         grid.addAll(row.json)
       }
       return grid.json
+    },
+    save (event) {
+      localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
     }
   }
 }

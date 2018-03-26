@@ -72,7 +72,7 @@ export default {
         concentration: this.concentration,
         active: this.isActive
       }
-    },
+    }
   },
   methods: {
     isStandard () {

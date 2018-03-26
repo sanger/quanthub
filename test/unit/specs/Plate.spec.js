@@ -42,21 +42,23 @@ describe('Plate.vue', () => {
     expect($Store.sequencescapePlates.find('plate1').id).toEqual('plate1')
   })
 
-  it.skip('will create a new grid for saving', () => {
-    expect(plate.toGrid()).toEqual(grid.json)
+  it('will create a new grid for saving', () => {
+    let newGrid = plate.toGrid()
+    expect(newGrid.columns).toEqual(grid.json.columns)
+    expect(Object.keys(newGrid.rows)).toHaveLength(Object.keys(newGrid.rows).length)
   })
 
-  describe.skip('saving', () => {
+  describe('saving', () => {
     beforeEach(() => {
       localStorage.clear()
-      localStorage.setItem(id, JSON.stringify(grid.json))
     })
 
-    it('will update local storage', () => {
-      let well = plate.$el.querySelector('td')
-      console.log(well.textContent)
-      well.click()
-      console.log(plate.grid.find('A','1'))
+    it('will update local storage with updated data', () => {
+      let well = plateReader.wells[0]
+      plate.$el.querySelector('td').click()
+      cmp.find('#save').trigger('click')
+      let json = JSON.parse(localStorage.getItem(id))
+      expect(json.rows[well.row][well.column].active).toBeFalsy()
     })
 
     afterEach(() => {
