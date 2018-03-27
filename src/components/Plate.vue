@@ -1,7 +1,11 @@
 <template>
   <div class="plate">
-    <h3>{{ msg }}: {{ id }}</h3>
-    <div><button name="save" id="save" v-on:click.prevent="save">Save</button></div>
+    <div class="container-fluid">
+      <div class="row">
+        <h3>{{ msg }}: {{ id }}</h3>
+        <div><button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">Save</button></div>
+      </div>
+    </div>
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
@@ -98,5 +102,8 @@ a {
 }
 th {
   background-color: #e1e0df;
+}
+h3 {
+  margin-right: 20px;
 }
 </style>

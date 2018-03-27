@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <upload></upload>
     <div class="plates">
       <h3>{{ msg }}</h3>
-      <ul>
-         <router-link v-for="plate in plates" :to="`/plate/${plate}`" :key="plate" tag="li">
+      <ul class="list-group list-group-flush">
+         <router-link v-for="plate in plates" :to="`/plate/${plate}`" :key="plate" tag="li" class="list-group-item">
            <a>{{ plate }}</a>
          </router-link>
       </ul>
@@ -45,14 +45,5 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
