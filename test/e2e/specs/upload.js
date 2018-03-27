@@ -40,12 +40,14 @@ module.exports = {
       .end()
   },
  
+  // TODO: add page elements.
   'upload file and check plate is stored in local storage': function (browser) {
 
     browser
       .url(this.url(browser, 'upload'))
       .waitForElementVisible('#app', 5000)
       .waitForElementVisible('input[type="file"]', 1000)
+      // .waitForElementVisible('@inputFile', 1000)
       .setValue('input[type="file"]', filePath(config.rootDir))
       .click('button[name=submit]')
       .pause(1000)

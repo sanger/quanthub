@@ -1,5 +1,5 @@
 <template>
-  <td class="well" v-bind:class="classObject" v-on:click="isActive = !isActive">
+  <td class="well" v-bind:class="classObject" v-on:click="setActive">
     {{ id }}
     <br/>
     {{ concentration }}
@@ -17,7 +17,9 @@ export default {
     column: {
       default: ''
     },
-    id: {},
+    id: {
+      default: ''
+    },
     concentration: {
       default: ''
     },
@@ -60,6 +62,16 @@ export default {
     },
     location () {
       return this.row.concat(this.column)
+    },
+    json () {
+      return {
+        row: this.row,
+        column: this.column,
+        content: this.content,
+        id: this.id,
+        concentration: this.concentration,
+        active: this.isActive
+      }
     }
   },
   methods: {
@@ -93,15 +105,8 @@ export default {
         }
       }
     },
-    toJson () {
-      return {
-        row: this.row,
-        column: this.column,
-        content: this.content,
-        id: this.id,
-        concentration: this.concentration,
-        active: this.isActive
-      }
+    setActive () {
+      this.isActive = !this.isActive
     }
   },
   mounted () {

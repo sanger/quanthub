@@ -1,10 +1,10 @@
 <template>
-  <div class="upload">
+  <div class="upload row">
     <h3 v-html='notice'></h3>
-    <div>{{ msg }}</div>
     <form enctype="multipart/form-data" method="post" action="#" v-on:submit="upload">
-      <input id="plateReader" name="plateReader" type="file" >
-      <button name="submit" type="submit">Upload</button>
+      <label for="plate-reader">Upload a plate:</label>
+      <input id="plate-reader" name="plate-reader" type="file" >
+      <button name="submit" class="btn btn-primary" type="submit">Upload</button>
     </form>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
   methods: {
     upload (event) {
       event.preventDefault()
-      const file = document.getElementById('plateReader').files[0]
+      const file = document.getElementById('plate-reader').files[0]
       let csvFile = new this.Cmp()
       csvFile.upload(file)
         .then((result) => {

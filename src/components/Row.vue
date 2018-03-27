@@ -31,6 +31,9 @@ export default {
     }
   },
   computed: {
+    json () {
+      return this.$children.map(well => well.json)
+    }
   },
   components: {
     Well

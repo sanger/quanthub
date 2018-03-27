@@ -16,7 +16,7 @@ export default {
     return {
       msg: 'CsvFile',
       defaultOptions: {
-        rowDelimiter: '\n',
+        rowDelimiter: ['\r\n', '\r', '\n'],
         from: 12,
         metadataRows: 7,
         columns: ['row', 'column', 'content', 'id', 'concentration']
@@ -37,7 +37,7 @@ export default {
       return this.grid.json
     },
     metadata () {
-      let rows = this.csv.split('\n').slice(0, this.options.metadataRows)
+      let rows = this.csv.split(/\r?\n/).slice(0, this.options.metadataRows)
       let metadata = {}
       let split
 

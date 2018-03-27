@@ -1,6 +1,11 @@
 <template>
   <div class="plate">
-    <h3>{{ msg }}: {{ id }}</h3>
+    <div class="container-fluid">
+      <div class="row">
+        <h3>{{ msg }}: {{ id }}</h3>
+        <div><button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">Save</button></div>
+      </div>
+    </div>
     <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
@@ -18,6 +23,8 @@
 <script>
 
 import Row from '@/components/Row.vue'
+import Grid from '@/components/Grid.vue'
+import Vue from 'vue'
 
 export default {
   name: 'Plate',
@@ -42,7 +49,8 @@ export default {
     }
   },
   components: {
-    Row
+    Row,
+    Grid
   },
   created () {
     this.store.sequencescapePlates.add(this.id)
@@ -58,6 +66,19 @@ export default {
       if (json !== null) {
         this.grid = JSON.parse(json)
       }
+    },
+    // This may seem counter intuitive but is necessary to update local storage
+    // The wells could be totally different if it is a new plate
+    toGrid () {
+      let Cmp = Vue.extend(Grid)
+      let grid = new Cmp()
+      for (let row of this.$children) {
+        grid.addAll(row.json)
+      }
+      return grid.json
+    },
+    save (event) {
+      localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
     }
   }
 }
@@ -81,5 +102,8 @@ a {
 }
 th {
   background-color: #e1e0df;
+}
+h3 {
+  margin-right: 20px;
 }
 </style>
