@@ -14,15 +14,11 @@ describe('Plate.vue', () => {
     id = 'plate1'
     grid = new(Vue.extend(Grid))
     grid.addAll(Object.values(plateReader.wells))
+    localStorage.setItem(id, JSON.stringify(grid.json))
     cmp = mount(Plate, {propsData: { id: id }, mocks: { $Store }})
-    cmp.setData({grid: grid})
     plate = cmp.vm
   })
-
-  it('will have a grid', () => {
-    expect(plate.grid).toEqual(grid)
-  })
-
+  
   it('will have have some columns', () => {
     let columns = plate.$el.querySelector('thead').querySelectorAll('th')
     expect(columns).toHaveLength(grid.numberOfColumns + 1)
