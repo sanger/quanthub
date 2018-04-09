@@ -17,8 +17,8 @@ export default {
       msg: 'CsvFile',
       defaultOptions: {
         rowDelimiter: ['\r\n', '\r', '\n'],
-        from: 12,
-        metadataRows: 7,
+        from: 16,
+        metadataRows: 3,
         columns: ['row', 'column', 'content', 'id', 'concentration']
       },
       csv: '',
@@ -42,8 +42,12 @@ export default {
       let split
 
       for (let row of rows) {
-        split = row.split(',')[0].split(': ')
-        metadata[split[0]] = split[1]
+        for (let cell of row.split(',')) {
+          if (cell !== '') {
+            split = cell.split(': ')
+            metadata[split[0]] = split[1]
+          }
+        }
       }
       return metadata
     }
