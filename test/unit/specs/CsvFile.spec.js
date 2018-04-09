@@ -11,7 +11,7 @@ describe('CsvFile.vue', () => {
 
   beforeEach(() => {
     
-    options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 12, metadataRows: 7, columns: ['row', 'column', 'content', 'id', 'concentration']}
+    options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 16, metadataRows: 3, columns: ['row', 'column', 'content', 'id', 'concentration']}
     cmp = Vue.extend(CsvFile)
     csvFile = new cmp({propsData: { opts: options}})
   })
@@ -55,7 +55,7 @@ describe('CsvFile.vue', () => {
       })
 
       it('transforms wells into correct format', () => {
-        let row = rows[12].split(',')
+        let row = rows[options.from].split(',')
         let well = csvFile.grid.rows[row[0]][row[1]]
 
         expect(well.row).toBeDefined()
@@ -75,7 +75,7 @@ describe('CsvFile.vue', () => {
 
       it('produces some json', () => {
         let json = csvFile.json['rows']
-        let row = rows[12].split(',')
+        let row = rows[options.from].split(',')
         expect(json[row[0]][row[1]].row).toEqual(row[0])
         expect(json[row[0]][row[1]].column).toEqual(row[1])
 
@@ -86,8 +86,8 @@ describe('CsvFile.vue', () => {
 
       it('creates some metadata', () => {
         let metadata = csvFile.metadata
-        expect(metadata.User).toEqual('DNAP OPS TEAM')
-        expect(metadata.ID1).toEqual('QNTE_A_2411')
+        expect(metadata.User).toEqual('SANGER')
+        expect(metadata.ID1).toEqual('test_RaD')
       })
 
     })

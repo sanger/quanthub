@@ -6,7 +6,7 @@ var config = require('../../unit/jest.conf')
 var fs = require('fs')
 
 var getId = function (csv) {
-  return csv[6].split(',')[0].split(': ')[1]
+  return csv[2].split(',')[0].split(': ')[1]
 }
 
 var filePath = function (dir) {
@@ -47,7 +47,6 @@ module.exports = {
       .url(this.url(browser, 'upload'))
       .waitForElementVisible('#app', 5000)
       .waitForElementVisible('input[type="file"]', 1000)
-      // .waitForElementVisible('@inputFile', 1000)
       .setValue('input[type="file"]', filePath(config.rootDir))
       .click('button[name=submit]')
       .pause(1000)
