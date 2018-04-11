@@ -8,6 +8,7 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import storePlugin from './storePlugin'
+import './assets/stylesheets/layout.scss'
 
 Vue.use(VueResource)
 Vue.use(BootstrapVue)
