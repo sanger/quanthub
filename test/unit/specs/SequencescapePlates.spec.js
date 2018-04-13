@@ -57,20 +57,25 @@ describe('Plates.vue', () => {
       plate.triplicates.add(well1).add(well2)
     })
 
+    it('produces data in the correct format', () => {
+      expect(plate.jsonApiData).toEqual({data: {attributes: plate.json}})
+    })
+
+    it('produces the correct request options and data', () => {
+      expect(plate.requestOptions).toEqual({url: '/qc_results', method: 'post', headers: {'content-type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL})
+    })
+
     it('success', async() => {
-      axios.mockResolvedValue('QC Results for plate successfully exported to Sequencescape')
+      axios.mockResolvedValue('QC Results for plate has been successfully exported to Sequencescape')
       let result = await plate.export()
-      expect(result).toEqual('QC Results for plate successfully exported to Sequencescape')
-      expect(axios).toBeCalledWith({
-        url: '/qc_results',
-        method: 'post',
-        headers: {'content-type': 'application/vnd.api+json'},
-        data: {
-          data: {
-            attributes: plate.json
-          }
-        }
-      })
+      expect(result).toEqual('QC Results for plate has been successfully exported to Sequencescape')
+      expect(axios).toBeCalledWith(plate.request)
+    })
+
+    it('failure', async() => {
+      axios.mockRejectedValue('QC Results for plate could not be exported')
+      let result = await plate.export()
+      expect(result).toEqual('QC Results for plate could not be exported')
     })
   })
 

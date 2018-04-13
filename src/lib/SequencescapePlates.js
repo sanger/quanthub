@@ -8,9 +8,14 @@ class Plate {
     this.triplicates = new Triplicates()
   }
 
-  // TODO: I can't seem to get this to work with catching errors and I don't know why!!!!
   get uuid () {
-    return axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`).then(response => response.data)
+    return axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
+        return error
+      })
   }
 
   get metadata () {
@@ -21,17 +26,27 @@ class Plate {
     return this.triplicates.keys.map(key => Object.assign(this.triplicates.find(key).json, this.metadata))
   }
 
+  get jsonApiData () {
+    return {data: {attributes: this.json}}
+  }
+
+  get requestOptions () {
+    return {url: '/qc_results', method: 'post', headers: {'content-type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
+  }
+
+  get request () {
+    return Object.assign(this.requestOptions, this.jsonApiData)
+  }
+
   export () {
-    return axios({
-      url: '/qc_results',
-      method: 'post',
-      headers: {'content-type': 'application/vnd.api+json'},
-      data: {
-        data: {
-          attributes: this.json
-        }
-      }
-    }).then(response => response)
+    return axios(this.request)
+      .then(response => {
+        return 'QC Results for plate has been successfully exported to Sequencescape'
+      })
+      .catch(error => {
+        console.log(error)
+        return 'QC Results for plate could not be exported'
+      })
   }
 }
 

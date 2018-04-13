@@ -1,12 +1,15 @@
 'use strict'
 module.exports = {
   dev: {
-    QUANTESSENTIAL_BASE_URL: '"http://dev.quantessential"'
+    QUANTESSENTIAL_BASE_URL: '"http://dev.quantessential"',
+    SEQUENCESCAPE_BASE_URL: '"http://dev.sequencescape/api/v2"'
   },
   test: {
-    QUANTESSENTIAL_BASE_URL: '"http://test.quantessential"'
+    QUANTESSENTIAL_BASE_URL: '"http://test.quantessential"',
+    SEQUENCESCAPE_BASE_URL: '"http://test.sequencescape/api/v2"'
   },
   prod: {
-    QUANTESSENTIAL_BASE_URL: '"http://production.quantessential"'
+    QUANTESSENTIAL_BASE_URL: '"http://production.quantessential"',
+    SEQUENCESCAPE_BASE_URL: '"http://production.sequencescape/api/v2"'
   }
 }
