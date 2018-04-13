@@ -1,0 +1,12 @@
+'use strict'
+module.exports = {
+  dev: {
+    QUANTESSENTIAL_BASE_URL: '"http://dev.quantessential"'
+  },
+  test: {
+    QUANTESSENTIAL_BASE_URL: '"http://test.quantessential"'
+  },
+  prod: {
+    QUANTESSENTIAL_BASE_URL: '"http://production.quantessential"'
+  }
+}

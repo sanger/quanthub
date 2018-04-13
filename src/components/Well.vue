@@ -113,8 +113,7 @@ export default {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
       if (this.isSample()) {
-        // TODO: Reduce the amount of chaining
-        this.store.sequencescapePlates.find(this.plateId).triplicates.add(this)
+        this.store.sequencescapePlates.addTriplicate(this)
       }
     }
   }

@@ -36,6 +36,9 @@ export default {
     Upload
   },
   methods: {
+  },
+  mounted () {
+    console.log(process.env.QUANTESSENTIAL_BASE_URL)
   }
 }
 </script>

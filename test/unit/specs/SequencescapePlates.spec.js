@@ -4,36 +4,73 @@ import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Well from '@/components/Well'
 import { mount } from '@vue/test-utils'
 import axios from 'axios'
+import flushPromises from 'flush-promises'
 
 jest.mock('axios')
 
 describe('Plates.vue', () => {
 
-  let plate, well, cmp
+  let plate, well1, well2, cmp
 
   beforeEach(() => {
     plate = new Plate('plate1')
     cmp = Vue.extend(Well)
-    well = new cmp({propsData: {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014'}})
-    
+    well1 = new cmp({propsData: {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014'}})
+    well2 = new cmp({propsData: {row:'B',column:'1',content:'Sample X1',id:'B1',concentration:'3.014'}})
   })
 
   describe('Plate', () => {
 
-    it ('will have an id', () => {
+    let response
+
+    beforeEach(() => {
+      response = {data: '409a47b6-b407-11e7-abfd-68b599768938'}
+      axios.get.mockResolvedValue(response)
+      plate.triplicates.add(well1).add(well2)
+    })
+
+    it('will have an id', () => {
       expect(plate.id).toEqual('plate1')
     })
 
-    it ('will return a uuid', () => {
-      const resp = {data: '409a47b6-b407-11e7-abfd-68b599768938'}
-      axios.get.mockResolvedValue(resp)
-      return plate.uuid.then(uuid => expect(uuid).toEqual(resp.data))
+    it('will return a uuid', () => {
+      return plate.uuid.then(uuid => expect(uuid).toEqual(response.data))
     })
 
-    it ('will have some triplicates', () =>{
+    it('will have some triplicates', () =>{
       expect(plate.triplicates).toBeDefined()
-      plate.triplicates.add(well)
-      expect(plate.triplicates).toHaveLength(1)
+      expect(plate.triplicates).toHaveLength(2)
+    })
+
+    it('returns some json for export', () => {
+      expect(plate.json).toHaveLength(2)
+      let json = plate.json[0]
+      json.uuid.then(uuid => expect(uuid).toEqual(response.data))
+      expect(json.assay_type).toEqual('Plate Reader')
+      expect(json.assay_version).toEqual('v1.0')
+    })
+  })
+
+  describe('Export to Sequencescape', () => {
+
+    beforeEach(() => {
+      plate.triplicates.add(well1).add(well2)
+    })
+
+    it('success', async() => {
+      axios.mockResolvedValue('QC Results for plate successfully exported to Sequencescape')
+      let result = await plate.export()
+      expect(result).toEqual('QC Results for plate successfully exported to Sequencescape')
+      expect(axios).toBeCalledWith({
+        url: '/qc_results',
+        method: 'post',
+        headers: {'content-type': 'application/vnd.api+json'},
+        data: {
+          data: {
+            attributes: plate.json
+          }
+        }
+      })
     })
   })
 
@@ -46,13 +83,13 @@ describe('Plates.vue', () => {
       plates.add('plate1')
     })
 
-    it('will find a existing plate', () => {
+    it('will find an existing plate', () => {
       expect(plates).toHaveLength(1)
       expect(plates.find(plate.id)).toEqual(plate)
     })
 
     it('adding an existing plate will reset it', () => {
-      plates.find('plate1').triplicates.add(well)
+      plates.find('plate1').triplicates.add(well1)
       plates.add('plate1')
       expect(plates).toHaveLength(1)
       expect(plates.find('plate1').triplicates).toHaveLength(0)

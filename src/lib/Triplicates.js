@@ -11,6 +11,11 @@ class Triplicate {
     this.wells = wells
   }
 
+  get id () {
+    if (this.empty()) return ''
+    return this.wells[0].id
+  }
+
   // If a well is not active it should not be considered as part of the
   // statistical calculation
   get activeWells () {
@@ -45,6 +50,10 @@ class Triplicate {
   get cv () {
     if (this.empty()) return '0'
     return ((this.standardDeviation / this.average) * 100).toFixed(3)
+  }
+
+  get json () {
+    return { well_location: this.id, key: 'Concentration', value: this.nM, units: 'nM', cv: this.cv }
   }
 
   calculateAverage (values) {
