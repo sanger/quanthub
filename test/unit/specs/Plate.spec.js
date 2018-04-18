@@ -31,7 +31,7 @@ describe('Plate.vue', () => {
   })
 
   it('can have an id', () => {
-    expect(plate.$el.querySelector('h3').textContent).toEqual('Plate: ' + id)
+    expect(plate.$el.querySelector('.row').querySelector('h3').textContent).toEqual('Plate: ' + id)
   })
 
   it('will create a sequencescape plate in the store', () => {
@@ -60,6 +60,12 @@ describe('Plate.vue', () => {
     afterEach(() => {
       localStorage.clear()
     })
+  })
+
+  it('will export the qc results to Sequencescape', () => {
+    jest.spyOn($Store.sequencescapePlates.find('plate1'), 'export').mockImplementation(() => 'QC Results for plate has been successfully exported to Sequencescape')
+    cmp.find('#export').trigger('click')
+    expect(plate.notice).toEqual('QC Results for plate has been successfully exported to Sequencescape')
   })
 
 })

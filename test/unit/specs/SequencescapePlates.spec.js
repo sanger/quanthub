@@ -4,7 +4,6 @@ import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Well from '@/components/Well'
 import { mount } from '@vue/test-utils'
 import axios from 'axios'
-import flushPromises from 'flush-promises'
 
 jest.mock('axios')
 
@@ -110,7 +109,6 @@ describe('Plates.vue', () => {
         expect(plate.id).toEqual('empty')
       })
     })
-
 
   })
 

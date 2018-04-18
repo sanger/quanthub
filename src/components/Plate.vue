@@ -1,9 +1,19 @@
 <template>
   <div class="plate">
     <div class="container-fluid">
+      <h3 v-html='notice'></h3>
       <div class="row">
         <h3>{{ msg }}: {{ id }}</h3>
-        <div><button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">Save</button></div>
+        <div>
+          <button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">
+            Save
+          </button>
+        </div>
+        <div>
+          <button name="export" id="export" class="btn btn-primary" v-on:click.prevent="exportToSs">
+            Save
+          </button>
+        </div>
       </div>
     </div>
     <div class="col-md-12">
@@ -37,7 +47,8 @@ export default {
     return {
       msg: 'Plate',
       grid: {},
-      store: this.$Store
+      store: this.$Store,
+      notice: ''
     }
   },
   computed: {
@@ -79,6 +90,9 @@ export default {
     },
     save (event) {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
+    },
+    exportToSs () {
+      this.notice = this.store.sequencescapePlates.find(this.id).export()
     }
   }
 }
