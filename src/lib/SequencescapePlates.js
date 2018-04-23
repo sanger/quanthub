@@ -1,21 +1,19 @@
 
 import { TriplicateList as Triplicates } from '@/lib/Triplicates'
-import axios from 'axios'
 
 class Plate {
   constructor (id) {
     this.id = id
+    this._uuid = ''
     this.triplicates = new Triplicates()
   }
 
   get uuid () {
-    return axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
-      .then(response => {
-        return response.data
-      })
-      .catch(error => {
-        return error
-      })
+    return this._uuid
+  }
+
+  set uuid (uuid) {
+    this._uuid = uuid
   }
 
   get metadata () {
@@ -31,22 +29,11 @@ class Plate {
   }
 
   get requestOptions () {
-    return {url: '/qc_results', method: 'post', headers: {'content-type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
+    return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
   }
 
   get request () {
     return Object.assign(this.requestOptions, this.jsonApiData)
-  }
-
-  export () {
-    return axios(this.request)
-      .then(response => {
-        return 'QC Results for plate has been successfully exported to Sequencescape'
-      })
-      .catch(error => {
-        console.log(error)
-        return 'QC Results for plate could not be exported'
-      })
   }
 }
 
@@ -66,6 +53,7 @@ class SequencescapePlateList {
   add (id) {
     let plate = new Plate(id)
     this.items[id] = plate
+    return this
   }
 
   addTriplicate (well) {

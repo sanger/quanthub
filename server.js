@@ -15,8 +15,7 @@ server.get( '/quants/:id/input.txt', ( req, res ) => {
 })
 
 server.post('/api/v2/qc_results', (req, res) => {
-  console.log(req.body.data.attributes)
-  if (req.body.data.attributes.uuid === undefined) {
+  if (req.body.attributes[0].uuid === undefined) {
     res.sendStatus(422)
   }
   else {

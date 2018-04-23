@@ -10,8 +10,8 @@
           </button>
         </div>
         <div>
-          <button name="export" id="export" class="btn btn-primary" v-on:click.prevent="exportToSs">
-            Save
+          <button name="export" id="export" class="btn btn-primary" v-on:click.prevent="exportToSequencescape">
+            Export
           </button>
         </div>
       </div>
@@ -35,6 +35,7 @@
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
 import Vue from 'vue'
+import axios from 'axios'
 
 export default {
   name: 'Plate',
@@ -48,7 +49,8 @@ export default {
       msg: 'Plate',
       grid: {},
       store: this.$Store,
-      notice: ''
+      notice: '',
+      uuid: ''
     }
   },
   computed: {
@@ -64,11 +66,11 @@ export default {
     Grid
   },
   created () {
-    this.store.sequencescapePlates.add(this.id)
     try {
       this.fetchData()
+      this.store.sequencescapePlates.add(this.id)
     } catch (error) {
-      console.log(error.name)
+      console.log(error)
     }
   },
   methods: {
@@ -91,8 +93,20 @@ export default {
     save (event) {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
     },
-    exportToSs () {
-      this.notice = this.store.sequencescapePlates.find(this.id).export()
+    exportToSequencescape (event) {
+      axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
+        .then(response => {
+          let sequencescapePlate = this.store.sequencescapePlates.find(this.id)
+          sequencescapePlate.uuid = response.data
+          return axios(sequencescapePlate.request)
+        })
+        .then(response => {
+          this.notice = 'QC Results for plate has been successfully exported to Sequencescape'
+        })
+        .catch(error => {
+          this.notice = 'QC Results for plate could not be exported'
+          console.log(error)
+        })
     }
   }
 }

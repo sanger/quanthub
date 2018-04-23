@@ -4,12 +4,18 @@ import Grid from '@/components/Grid'
 import plateReader from '../../data/plate_reader'
 import Store from '@/lib/Store'
 import { mount } from '@vue/test-utils'
+import axios from 'axios'
+import flushPromises from 'flush-promises'
+
+jest.mock('axios')
 
 describe('Plate.vue', () => {
 
-  let cmp, vm, grid, plate, $Store, id
+  let cmp, vm, grid, plate, $Store, id, response
 
   beforeEach(() => {
+    response = {data: '409a47b6-b407-11e7-abfd-68b599768938'}
+    axios.get.mockResolvedValue(response)
     $Store = Store
     id = 'plate1'
     grid = new(Vue.extend(Grid))
@@ -62,10 +68,26 @@ describe('Plate.vue', () => {
     })
   })
 
-  it('will export the qc results to Sequencescape', () => {
-    jest.spyOn($Store.sequencescapePlates.find('plate1'), 'export').mockImplementation(() => 'QC Results for plate has been successfully exported to Sequencescape')
-    cmp.find('#export').trigger('click')
-    expect(plate.notice).toEqual('QC Results for plate has been successfully exported to Sequencescape')
+  describe('exporting', () => {
+
+    beforeEach(() => {
+      response = {data: '409a47b6-b407-11e7-abfd-68b599768938'}
+      axios.get.mockResolvedValue(response)
+    })
+
+    it('success', async() => {
+      axios.mockResolvedValue({ data: {status: 201}})
+      cmp.find('#export').trigger('click')
+      await flushPromises()
+      expect(plate.notice).toEqual('QC Results for plate has been successfully exported to Sequencescape')
+    })
+
+    it('failure', async() => {
+      axios.mockRejectedValue({ data: { status: 422}})
+      cmp.find('#export').trigger('click')
+      await flushPromises()
+      expect(plate.notice).toEqual('QC Results for plate could not be exported')
+    })
   })
 
 })
