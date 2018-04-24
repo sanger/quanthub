@@ -11,7 +11,7 @@ jest.mock('axios')
 
 describe('Plate.vue', () => {
 
-  let cmp, vm, grid, plate, $Store, id, response
+  let cmp, grid, plate, $Store, id, response
 
   beforeEach(() => {
     response = {data: '409a47b6-b407-11e7-abfd-68b599768938'}
@@ -70,9 +70,25 @@ describe('Plate.vue', () => {
 
   describe('exporting', () => {
 
+    let uuid
+
     beforeEach(() => {
-      response = {data: '409a47b6-b407-11e7-abfd-68b599768938'}
+      response = {data: uuid}
       axios.get.mockResolvedValue(response)
+    })
+
+    it('has some json', () => {
+      plate.uuid = uuid
+      expect(plate.json).toHaveLength(plate.triplicates.keys.length)
+      let json = plate.json[0]
+      expect(json.uuid).toEqual(uuid)
+      expect(json.assay_type).toEqual('Plate Reader')
+      expect(json.assay_version).toEqual('v1.0')
+    })
+
+    it('returns some request options for export', () => {
+      expect(plate.jsonApiData).toEqual({data: {attributes: plate.json}})
+      expect(plate.requestOptions).toEqual({url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL})
     })
 
     it('success', async() => {
@@ -80,6 +96,8 @@ describe('Plate.vue', () => {
       cmp.find('#export').trigger('click')
       await flushPromises()
       expect(plate.notice).toEqual('QC Results for plate has been successfully exported to Sequencescape')
+      expect(plate.uuid).toEqual(uuid)
+      expect(axios).toBeCalledWith(plate.request)
     })
 
     it('failure', async() => {

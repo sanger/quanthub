@@ -34,6 +34,7 @@
 
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
+import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
 
@@ -50,7 +51,8 @@ export default {
       grid: {},
       store: this.$Store,
       notice: '',
-      uuid: ''
+      uuid: '',
+      triplicates: new Triplicates()
     }
   },
   computed: {
@@ -59,6 +61,21 @@ export default {
     },
     rows () {
       return this.grid.rows
+    },
+    metadata () {
+      return {uuid: this.uuid, assay_type: 'Plate Reader', assay_version: 'v1.0'}
+    },
+    json () {
+      return this.triplicates.keys.map(key => Object.assign(this.triplicates.find(key).json, this.metadata))
+    },
+    jsonApiData () {
+      return {data: {attributes: this.json}}
+    },
+    requestOptions () {
+      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
+    },
+    request () {
+      return Object.assign(this.requestOptions, this.jsonApiData)
     }
   },
   components: {
@@ -68,7 +85,9 @@ export default {
   created () {
     try {
       this.fetchData()
-      this.store.sequencescapePlates.add(this.id)
+      if (this.store !== undefined) {
+        this.store.sequencescapePlates.add(this)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -96,9 +115,8 @@ export default {
     exportToSequencescape (event) {
       axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
         .then(response => {
-          let sequencescapePlate = this.store.sequencescapePlates.find(this.id)
-          sequencescapePlate.uuid = response.data
-          return axios(sequencescapePlate.request)
+          this.uuid = response.data
+          return axios(this.request)
         })
         .then(response => {
           this.notice = 'QC Results for plate has been successfully exported to Sequencescape'

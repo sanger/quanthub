@@ -3,13 +3,16 @@ import { mount } from '@vue/test-utils'
 import Well from '@/components/Well'
 import Store from '@/lib/Store'
 import { Store as newStore } from '@/lib/Store'
+import Plate from '@/components/Plate'
 
 describe('Well.vue', () => {
 
-  let cmp, well, data, $Store, plateId
+  let cmp, well, data, $Store, plateId, plate, cmpPlate
 
   beforeEach(() => {
     plateId = 'plate1'
+    cmpPlate = Vue.extend(Plate)
+    plate = new cmpPlate({propsData: { id: plateId}})
   })
 
   describe('Basic', () => {
@@ -63,7 +66,7 @@ describe('Well.vue', () => {
   describe('Sample', () => {
     beforeEach(() => {
       $Store = Store
-      $Store.sequencescapePlates.add(plateId)
+      $Store.sequencescapePlates.add(plate)
       data = {row: 'A',column: '1', content: 'Sample X1', id: 'A1', concentration:'3.014', plateId: plateId}
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
@@ -115,7 +118,7 @@ describe('Well.vue', () => {
 
     beforeEach(() => {
       $Store = new newStore
-      $Store.sequencescapePlates.add(plateId)
+      $Store.sequencescapePlates.add(plate)
       well1 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', content: 'Sample X1', plateId: plateId}})
       well2 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', content: 'Sample X1', plateId: plateId }})
       well3 = mount(Well, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', content: 'Sample X1', plateId: plateId }})

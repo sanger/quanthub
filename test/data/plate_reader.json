@@ -194,7 +194,7 @@
       "column": "4",
       "id": "Std 1",
       "concentration": "26.101",
-      "content": "Sample X9"
+      "content": "Standard S1"
     },
     {
       "row": "B",
@@ -520,7 +520,7 @@
           "column": "4",
           "id": "Std 1",
           "concentration": "26.101",
-          "content": "Sample X9"
+          "content": "Standard S1"
         },
         "5": {
           "row": "B",
