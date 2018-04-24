@@ -50,7 +50,7 @@ module.exports = {
       .setValue('input[type="file"]', filePath(config.rootDir))
       .click('button[name=submit]')
       .pause(1000)
-      .assert.containsText('h3', id)
+      .assert.containsText('.row > h3', id)
       .assert.elementCount('td', 384)
       .url(this.url(browser, 'plates'))
       .assert.elementCount('a', 1)
@@ -59,7 +59,7 @@ module.exports = {
       .click("//a[text()='" + id + "']")
       .useCss()
       .pause(1000)
-      .assert.containsText('h3', id)
+      .assert.containsText('.row > h3', id)
       .end()
   }
 

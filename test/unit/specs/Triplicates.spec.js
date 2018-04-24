@@ -48,6 +48,10 @@ describe('Triplicates.vue', () => {
 
         expect(triplicate.standardDeviation).toEqual('0.134')
       })
+
+      it('will have an id', () => {
+        expect(triplicate.id).toEqual(well1.id)
+      })
       
       it('will set a cv', () => {
         // (0.134/3.004) * 100 = 4.46
@@ -75,6 +79,10 @@ describe('Triplicates.vue', () => {
         expect(triplicate.standardDeviation).toEqual('0.077')
         expect(triplicate.cv).toEqual('2.494')
 
+      })
+
+      it('will return some json for exporting purposes', () => {
+        expect(triplicate.json).toEqual({well_location: triplicate.id, key: 'Concentration', value: triplicate.nM, units: 'nM', cv: triplicate.cv})
       })
     })
 

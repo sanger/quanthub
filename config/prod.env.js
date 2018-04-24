@@ -1,5 +1,7 @@
 'use strict'
-module.exports = {
-  NODE_ENV: '"production"',
-  QUANTESSENTIAL_BASE_URL: '"http://production.psd.sanger.ac.uk:7300"'
-}
+const merge = require('webpack-merge')
+const privateConf = require('./private.conf.js')
+
+module.exports = merge(privateConf.dev, {
+  NODE_ENV: '"production"'
+})

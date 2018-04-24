@@ -1,9 +1,19 @@
 <template>
   <div class="plate">
     <div class="container-fluid">
+      <h3 v-html='notice'></h3>
       <div class="row">
         <h3>{{ msg }}: {{ id }}</h3>
-        <div><button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">Save</button></div>
+        <div>
+          <button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">
+            Save
+          </button>
+        </div>
+        <div>
+          <button name="export" id="export" class="btn btn-primary" v-on:click.prevent="exportToSequencescape">
+            Export
+          </button>
+        </div>
       </div>
     </div>
     <div class="col-md-12">
@@ -24,7 +34,9 @@
 
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
+import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Vue from 'vue'
+import axios from 'axios'
 
 export default {
   name: 'Plate',
@@ -37,7 +49,10 @@ export default {
     return {
       msg: 'Plate',
       grid: {},
-      store: this.$Store
+      store: this.$Store,
+      notice: '',
+      uuid: '',
+      triplicates: new Triplicates()
     }
   },
   computed: {
@@ -46,6 +61,21 @@ export default {
     },
     rows () {
       return this.grid.rows
+    },
+    metadata () {
+      return {uuid: this.uuid, assay_type: 'Plate Reader', assay_version: 'v1.0'}
+    },
+    json () {
+      return this.triplicates.keys.map(key => Object.assign(this.triplicates.find(key).json, this.metadata))
+    },
+    jsonApiData () {
+      return {data: {attributes: this.json}}
+    },
+    requestOptions () {
+      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
+    },
+    request () {
+      return Object.assign(this.requestOptions, this.jsonApiData)
     }
   },
   components: {
@@ -53,11 +83,13 @@ export default {
     Grid
   },
   created () {
-    this.store.sequencescapePlates.add(this.id)
     try {
       this.fetchData()
+      if (this.store !== undefined) {
+        this.store.sequencescapePlates.add(this)
+      }
     } catch (error) {
-      console.log(error.name)
+      console.log(error)
     }
   },
   methods: {
@@ -79,6 +111,20 @@ export default {
     },
     save (event) {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
+    },
+    exportToSequencescape (event) {
+      axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
+        .then(response => {
+          this.uuid = response.data
+          return axios(this.request)
+        })
+        .then(response => {
+          this.notice = 'QC Results for plate has been successfully exported to Sequencescape'
+        })
+        .catch(error => {
+          this.notice = 'QC Results for plate could not be exported'
+          console.log(error)
+        })
     }
   }
 }
