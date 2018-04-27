@@ -5,7 +5,7 @@
 set -ev
 
 # Building assets
-npm run build
+NODE_ENV=production npm run build
 
 # Storing revision hash
 git rev-parse HEAD > $2/REVISION
