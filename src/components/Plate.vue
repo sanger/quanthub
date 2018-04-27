@@ -69,7 +69,7 @@ export default {
       return this.triplicates.keys.map(key => Object.assign(this.triplicates.find(key).json, this.metadata))
     },
     jsonApiData () {
-      return {data: {attributes: this.json}}
+      return {data: {data: {attributes: this.json}}}
     },
     requestOptions () {
       return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
