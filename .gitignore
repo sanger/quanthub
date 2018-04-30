@@ -11,6 +11,9 @@ selenium-debug.log
 # private config
 config/private.conf.js
 
+# local asset build
+release.tar.gz
+
 # Editor directories and files
 .idea
 .vscode
