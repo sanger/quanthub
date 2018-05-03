@@ -46,7 +46,6 @@ module.exports = {
     browser
       .url(this.url(browser, 'upload'))
       .waitForElementVisible('#app', 5000)
-      .waitForElementVisible('input[type="file"]', 1000)
       .setValue('input[type="file"]', filePath(config.rootDir))
       .click('button[name=submit]')
       .pause(1000)

@@ -1,10 +1,17 @@
 <template>
-  <div class="upload row">
+  <div class="upload">
     <h3 v-html='notice'></h3>
     <form enctype="multipart/form-data" method="post" action="#" v-on:submit.prevent="upload">
-      <label for="plate-reader">Upload a plate:</label>
-      <input id="plate-reader" name="plate-reader" type="file" >
-      <button name="submit" class="btn btn-primary" type="submit">Upload</button>
+      <div class="form-group">
+        <input type="file" name="file-input" id="file-input" ref="fileInput" class="file" v-on:change.prevent="addFilenames">
+        <div class="input-group">
+        <input class="form-control" type="text" disabled placeholder="Upload File..." ref="browseFiles">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" v-on:click.prevent="browseFiles" type="button">Browse</button>
+          <button name="submit" class="btn btn-primary" type="submit">Upload</button>
+        </span>
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -33,7 +40,7 @@ export default {
   },
   methods: {
     upload (event) {
-      const file = document.getElementById('plate-reader').files[0]
+      const file = document.getElementById('file-input').files[0]
       let csvFile = new this.Cmp()
       csvFile.upload(file)
         .then((result) => {
@@ -44,6 +51,13 @@ export default {
         .catch((error) => {
           console.log('rejected:', error)
         })
+    },
+    browseFiles (event) {
+      this.$refs.fileInput.click()
+    },
+    addFilenames (event) {
+      console.log(this.$refs.fileInput.value.replace(/^.*[\\]/, ''))
+      this.$refs.browseFiles.value = this.$refs.fileInput.value.replace(/^.*[\\]/, '')
     }
   }
 }

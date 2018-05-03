@@ -1,14 +1,22 @@
 <template>
-  <div class="plate">
-    <div class="container-fluid">
-      <h3 v-html='notice'></h3>
-      <div class="row">
-        <h3>{{ msg }}: {{ id }}</h3>
+  <div class="plate container-fluid">
+    <div>
+      <b-alert  :show="dismissCountDown"
+                dismissible
+                :dismiss-after-seconds="5"
+                :variant="alertType"
+                @dismissed="dismissCountdown=0"
+                @dismiss-count-down="countDownChanged">
+        {{alert}}
+      </b-alert>
+      <div class="container-fluid row">
+        <h3 >{{ msg }}: {{ id }}</h3>
         <div>
           <button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">
             Save
           </button>
         </div>
+        <div>&nbsp;</div>
         <div>
           <button name="export" id="export" class="btn btn-primary" v-on:click.prevent="exportToSequencescape">
             Export
@@ -52,7 +60,11 @@ export default {
       store: this.$Store,
       notice: '',
       uuid: '',
-      triplicates: new Triplicates()
+      triplicates: new Triplicates(),
+      alert: '',
+      alertType: '',
+      dismissSecs: 10,
+      dismissCountDown: 0
     }
   },
   computed: {
@@ -119,12 +131,20 @@ export default {
           return axios(this.request)
         })
         .then(response => {
-          this.notice = 'QC Results for plate has been successfully exported to Sequencescape'
+          this.showAlert('QC Results for plate has been successfully exported to Sequencescape', 'success')
         })
         .catch(error => {
-          this.notice = 'QC Results for plate could not be exported'
+          this.showAlert('QC Results for plate could not be exported', 'danger')
           console.log(error)
         })
+    },
+    countDownChanged (dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
+    showAlert (alert, alertType) {
+      this.alert = alert
+      this.alertType = alertType
+      this.dismissCountDown = this.dismissSecs
     }
   }
 }

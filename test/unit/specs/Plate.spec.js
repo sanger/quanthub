@@ -95,7 +95,7 @@ describe('Plate.vue', () => {
       axios.mockResolvedValue({ data: {status: 201}})
       cmp.find('#export').trigger('click')
       await flushPromises()
-      expect(plate.notice).toEqual('QC Results for plate has been successfully exported to Sequencescape')
+      expect(plate.alert).toEqual('QC Results for plate has been successfully exported to Sequencescape')
       expect(plate.uuid).toEqual(uuid)
       expect(axios).toBeCalledWith(plate.request)
     })
@@ -104,7 +104,7 @@ describe('Plate.vue', () => {
       axios.mockRejectedValue({ data: { status: 422}})
       cmp.find('#export').trigger('click')
       await flushPromises()
-      expect(plate.notice).toEqual('QC Results for plate could not be exported')
+      expect(plate.alert).toEqual('QC Results for plate could not be exported')
     })
   })
 
