@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "src/assets/stylesheets/custom.scss";
+  @import "src/assets/stylesheets/colors.scss";
   @import "~bootstrap/scss/bootstrap";
 
   #app {

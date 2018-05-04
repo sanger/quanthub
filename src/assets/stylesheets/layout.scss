@@ -1,3 +1,5 @@
+@import "src/assets/stylesheets/colors.scss";
+
 .file {
   visibility: hidden;
   position: absolute;
@@ -11,4 +13,8 @@ nav {
   height: 30px;
   width: 100%;
   margin-bottom: 10px;
+}
+
+th {
+  background-color: $brown;
 }
