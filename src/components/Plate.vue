@@ -7,7 +7,7 @@
                 :variant="alertType"
                 @dismissed="dismissCountdown=0"
                 @dismiss-count-down="countDownChanged">
-        {{alert}}
+        <h4 class="text-center">{{alert}}</h4>
       </b-alert>
       <div class="container-fluid row">
         <h3 >{{ msg }}: {{ id }}</h3>
@@ -91,8 +91,7 @@ export default {
     }
   },
   components: {
-    Row,
-    Grid
+    Row
   },
   created () {
     try {
@@ -116,13 +115,20 @@ export default {
     toGrid () {
       let Cmp = Vue.extend(Grid)
       let grid = new Cmp()
-      for (let row of this.$children) {
-        grid.addAll(row.json)
+      for (let child of this.$children) {
+        // because we now have a b-alert it also exists as a child
+        // we need to exclude it as it will throw an error as it
+        // does not respond to json
+        // TODO: should we be using _componentTag
+        if (child.$options._componentTag === 'row') {
+          grid.addAll(child.json)
+        }
       }
       return grid.json
     },
     save (event) {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
+      this.showAlert('Plate saved to local storage', 'success')
     },
     exportToSequencescape (event) {
       axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)

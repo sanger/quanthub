@@ -27,7 +27,6 @@ export default {
     }
   },
   components: {
-    Grid
   },
   computed: {
     options () {
