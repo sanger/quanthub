@@ -1,6 +1,5 @@
 <template>
-  <div class="upload">
-    <h3 v-html='notice'></h3>
+  <div class="upload container-fluid">
     <form enctype="multipart/form-data" method="post" action="#" v-on:submit.prevent="upload">
       <div class="form-group">
         <input type="file" name="file-input" id="file-input" ref="fileInput" class="file" v-on:change.prevent="addFilenames">
@@ -45,7 +44,6 @@ export default {
       csvFile.upload(file)
         .then((result) => {
           localStorage.setItem(csvFile.metadata.ID1, JSON.stringify(csvFile.json))
-          this.notice = result
           this.$router.push({ path: `/plate/${csvFile.metadata.ID1}` })
         })
         .catch((error) => {

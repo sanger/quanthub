@@ -154,7 +154,7 @@ a {
   color: white;
 }
 .inspect {
-  background-color: red;
+  background-color: #a5191e;
   color: white;
 }
 </style>

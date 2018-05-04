@@ -1,5 +1,5 @@
 <template>
-  <div class="plate container-fluid">
+  <div class="plate">
     <div>
       <b-alert  :show="dismissCountDown"
                 dismissible
