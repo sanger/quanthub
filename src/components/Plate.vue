@@ -1,16 +1,27 @@
 <template>
   <div class="plate">
-    <div class="container-fluid">
-      <h3 v-html='notice'></h3>
-      <div class="row">
-        <h3>{{ msg }}: {{ id }}</h3>
+    <div>
+      <b-alert  :show="dismissCountDown"
+                dismissible
+                :dismiss-after-seconds="5"
+                :variant="alertType"
+                @dismissed="dismissCountdown=0"
+                @dismiss-count-down="countDownChanged">
+        <h4 class="text-center">{{alert}}</h4>
+      </b-alert>
+      <div class="container-fluid row">
+        <b-modal v-model="exporting" hide-footer=true hide-header=true no-close-on-backdrop=true>
+          <spinner size="huge" message="Exporting..."></spinner>
+        </b-modal>
+        <h3 >{{ msg }}: {{ id }}</h3>
         <div>
-          <button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">
+          <button name="save" id="save" class="btn btn-success" v-on:click.prevent="save">
             Save
           </button>
         </div>
+        <div>&nbsp;</div>
         <div>
-          <button name="export" id="export" class="btn btn-primary" v-on:click.prevent="exportToSequencescape">
+          <button name="export" id="export" class="btn btn-success" v-on:click.prevent="exportToSequencescape" :disabled="exporting">
             Export
           </button>
         </div>
@@ -37,6 +48,7 @@ import Grid from '@/components/Grid.vue'
 import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
+import Spinner from 'vue-simple-spinner'
 
 export default {
   name: 'Plate',
@@ -52,7 +64,12 @@ export default {
       store: this.$Store,
       notice: '',
       uuid: '',
-      triplicates: new Triplicates()
+      triplicates: new Triplicates(),
+      alert: '',
+      alertType: '',
+      dismissSecs: 10,
+      dismissCountDown: 0,
+      exporting: false
     }
   },
   computed: {
@@ -80,7 +97,7 @@ export default {
   },
   components: {
     Row,
-    Grid
+    Spinner
   },
   created () {
     try {
@@ -104,52 +121,50 @@ export default {
     toGrid () {
       let Cmp = Vue.extend(Grid)
       let grid = new Cmp()
-      for (let row of this.$children) {
-        grid.addAll(row.json)
+      for (let child of this.$children) {
+        // because we now have a b-alert it also exists as a child
+        // we need to exclude it as it will throw an error as it
+        // does not respond to json
+        // TODO: should we be using _componentTag
+        if (child.$options._componentTag === 'row') {
+          grid.addAll(child.json)
+        }
       }
       return grid.json
     },
     save (event) {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
+      this.showAlert('Plate saved to local storage', 'success')
     },
     exportToSequencescape (event) {
+      this.exporting = true
       axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
         .then(response => {
           this.uuid = response.data
           return axios(this.request)
         })
         .then(response => {
-          this.notice = 'QC Results for plate has been successfully exported to Sequencescape'
+          this.exporting = false
+          this.showAlert('QC Results for plate has been successfully exported to Sequencescape', 'success')
         })
         .catch(error => {
-          this.notice = 'QC Results for plate could not be exported'
+          this.exporting = false
+          this.showAlert('QC Results for plate could not be exported', 'danger')
           console.log(error)
         })
+    },
+    countDownChanged (dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
+    showAlert (alert, alertType) {
+      this.alert = alert
+      this.alertType = alertType
+      this.dismissCountDown = this.dismissSecs
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-th {
-  background-color: #e1e0df;
-}
-h3 {
-  margin-right: 20px;
-}
+<style lang="scss" scoped>
 </style>

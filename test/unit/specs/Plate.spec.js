@@ -9,6 +9,8 @@ import flushPromises from 'flush-promises'
 
 jest.mock('axios')
 
+// TODO: we need to test outputs rather than implementation e.g. checking alert prop
+// rather than element
 describe('Plate.vue', () => {
 
   let cmp, grid, plate, $Store, id, response
@@ -21,7 +23,8 @@ describe('Plate.vue', () => {
     grid = new(Vue.extend(Grid))
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(id, JSON.stringify(grid.json))
-    cmp = mount(Plate, {propsData: { id: id }, mocks: { $Store }})
+    // we need to stub b-alert as it is not loaded on a mount.
+    cmp = mount(Plate, {propsData: { id: id }, mocks: { $Store }, stubs: ['b-alert']})
     plate = cmp.vm
   })
   
@@ -60,7 +63,9 @@ describe('Plate.vue', () => {
       plate.$el.querySelector('td').click()
       cmp.find('#save').trigger('click')
       let json = JSON.parse(localStorage.getItem(id))
+      expect(Object.keys(json.rows)).toHaveLength(grid.numberOfRows)
       expect(json.rows[well.row][well.column].active).toBeFalsy()
+      expect(plate.alert).toEqual('Plate saved to local storage')
     })
 
     afterEach(() => {
@@ -95,7 +100,7 @@ describe('Plate.vue', () => {
       axios.mockResolvedValue({ data: {status: 201}})
       cmp.find('#export').trigger('click')
       await flushPromises()
-      expect(plate.notice).toEqual('QC Results for plate has been successfully exported to Sequencescape')
+      expect(plate.alert).toEqual('QC Results for plate has been successfully exported to Sequencescape')
       expect(plate.uuid).toEqual(uuid)
       expect(axios).toBeCalledWith(plate.request)
     })
@@ -104,7 +109,7 @@ describe('Plate.vue', () => {
       axios.mockRejectedValue({ data: { status: 422}})
       cmp.find('#export').trigger('click')
       await flushPromises()
-      expect(plate.notice).toEqual('QC Results for plate could not be exported')
+      expect(plate.alert).toEqual('QC Results for plate could not be exported')
     })
   })
 

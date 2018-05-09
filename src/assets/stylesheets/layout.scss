@@ -1,0 +1,38 @@
+@import "src/assets/stylesheets/colors.scss";
+
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
+.text-center {
+  text-align: center;
+}
+
+nav {
+  height: 30px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+th {
+  background-color: $brown;
+}
+
+.alert {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white !important;
+}
+
+.plate {
+  h3 {
+    margin: {
+      left: 20px;
+      right: 10px;
+    }
+  }
+}

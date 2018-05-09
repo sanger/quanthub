@@ -121,40 +121,36 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.table td, .table th {
-  min-width: 75px;
-  min-height: 50px;
-  font-size: 12px;
-}
-.inactive {
-  background-color: gray;
-  color: white;
-}
-.standard {
-  background-color: blue;
-  color: white;
-}
-.control {
-  background-color: green;
-  color: white;
-}
-.inspect {
-  background-color: red;
-  color: white;
-}
+<style lang="scss" scoped>
+
+  @import "src/assets/stylesheets/colors.scss";
+
+  .table {
+    td, th {
+      min-width: 75px;
+      min-height: 50px;
+      font-size: 12px;
+    }
+  }
+
+  .inactive {
+    background-color: gray;
+    color: white;
+  }
+
+  .standard, .control, .inspect {
+    color: white;
+  }
+
+  .standard {
+    background-color: $well-blue;
+  }
+
+  .control {
+    background-color: $well-green;
+  }
+
+  .inspect {
+    background-color: $well-red;
+  }
 </style>

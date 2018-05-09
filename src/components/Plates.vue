@@ -3,11 +3,11 @@
     <upload></upload>
     <div class="plates">
       <h3>{{ msg }}</h3>
-      <ul class="list-group list-group-flush">
-         <router-link v-for="plate in plates" :to="`/plate/${plate}`" :key="plate" tag="li" class="list-group-item">
-           <a>{{ plate }}</a>
-         </router-link>
-      </ul>
+      <div>
+        <router-link v-for="plate in plates" :to="`/plate/${plate}`" :key="plate" class="plate" tag="div">
+          <a>{{ plate }}</a>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -42,8 +42,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
 </style>
