@@ -1,4 +1,4 @@
-# library-qc
+#QuantHub
 
 > A Vue.js project
 
