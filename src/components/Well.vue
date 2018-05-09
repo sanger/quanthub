@@ -143,14 +143,14 @@ export default {
   }
 
   .standard {
-    background-color: $blue;
+    background-color: $well-blue;
   }
 
   .control {
-    background-color: $green;
+    background-color: $well-green;
   }
 
   .inspect {
-    background-color: $red;
+    background-color: $well-red;
   }
 </style>

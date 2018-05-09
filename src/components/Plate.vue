@@ -10,15 +10,18 @@
         <h4 class="text-center">{{alert}}</h4>
       </b-alert>
       <div class="container-fluid row">
+        <b-modal v-model="exporting" hide-footer=true hide-header=true no-close-on-backdrop=true>
+          <spinner size="huge" message="Exporting..."></spinner>
+        </b-modal>
         <h3 >{{ msg }}: {{ id }}</h3>
         <div>
-          <button name="save" id="save" class="btn btn-primary" v-on:click.prevent="save">
+          <button name="save" id="save" class="btn btn-success" v-on:click.prevent="save">
             Save
           </button>
         </div>
         <div>&nbsp;</div>
         <div>
-          <button name="export" id="export" class="btn btn-primary" v-on:click.prevent="exportToSequencescape">
+          <button name="export" id="export" class="btn btn-success" v-on:click.prevent="exportToSequencescape" :disabled="exporting">
             Export
           </button>
         </div>
@@ -45,6 +48,7 @@ import Grid from '@/components/Grid.vue'
 import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
+import Spinner from 'vue-simple-spinner'
 
 export default {
   name: 'Plate',
@@ -64,7 +68,8 @@ export default {
       alert: '',
       alertType: '',
       dismissSecs: 10,
-      dismissCountDown: 0
+      dismissCountDown: 0,
+      exporting: false
     }
   },
   computed: {
@@ -91,7 +96,8 @@ export default {
     }
   },
   components: {
-    Row
+    Row,
+    Spinner
   },
   created () {
     try {
@@ -131,15 +137,18 @@ export default {
       this.showAlert('Plate saved to local storage', 'success')
     },
     exportToSequencescape (event) {
+      this.exporting = true
       axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
         .then(response => {
           this.uuid = response.data
           return axios(this.request)
         })
         .then(response => {
+          this.exporting = false
           this.showAlert('QC Results for plate has been successfully exported to Sequencescape', 'success')
         })
         .catch(error => {
+          this.exporting = false
           this.showAlert('QC Results for plate could not be exported', 'danger')
           console.log(error)
         })

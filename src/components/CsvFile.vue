@@ -53,6 +53,8 @@ export default {
   },
   methods: {
     upload (file) {
+      // TODO: need to handle errors.
+      // can't seem to get onerror to work.
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.onload = () => {

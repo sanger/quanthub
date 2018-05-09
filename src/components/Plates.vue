@@ -4,7 +4,7 @@
     <div class="plates">
       <h3>{{ msg }}</h3>
       <div>
-        <router-link v-for="plate in plates" :to="`/plate/${plate}`" :key="plate" tag="div">
+        <router-link v-for="plate in plates" :to="`/plate/${plate}`" :key="plate" class="plate" tag="div">
           <a>{{ plate }}</a>
         </router-link>
       </div>

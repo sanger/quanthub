@@ -6,8 +6,8 @@
         <div class="input-group">
           <input class="form-control" type="text" disabled placeholder="Upload File..." ref="browseFiles">
           <span class="input-group-btn">
-            <button class="btn btn-primary" v-on:click.prevent="browseFiles" type="button">Browse</button>
-            <button name="submit" class="btn btn-primary" type="submit">Upload</button>
+            <button class="btn btn-success" v-on:click.prevent="browseFiles" type="button">Browse</button>
+            <button name="submit" class="btn btn-success" type="submit">Upload</button>
           </span>
         </div>
       </div>
@@ -24,7 +24,6 @@ export default {
   name: 'Upload',
   props: {
   },
-
   data () {
     return {
       msg: 'Upload',
@@ -55,6 +54,14 @@ export default {
     },
     addFilenames (event) {
       this.$refs.browseFiles.value = this.$refs.fileInput.value.replace(/^.*[\\]/, '')
+    },
+    countDownChanged (dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
+    showAlert (alert, alertType) {
+      this.alert = alert
+      this.alertType = alertType
+      this.dismissCountDown = this.dismissSecs
     }
   }
 }
