@@ -10,7 +10,7 @@
         <h4 class="text-center">{{alert}}</h4>
       </b-alert>
       <div class="container-fluid row">
-        <b-modal v-model="exporting" hide-footer=true hide-header=true no-close-on-backdrop=true>
+        <b-modal v-model="exporting" :hide-footer=true :hide-header=true :no-close-on-backdrop=true>
           <spinner size="huge" message="Exporting..."></spinner>
         </b-modal>
         <h3 >{{ msg }}: {{ id }}</h3>
