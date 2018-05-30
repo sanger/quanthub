@@ -82,7 +82,7 @@ describe('Triplicates.vue', () => {
       })
 
       it('will return some json for exporting purposes', () => {
-        expect(triplicate.json).toEqual({well_location: triplicate.id, key: 'Concentration', value: triplicate.nM, units: 'nM', cv: triplicate.cv})
+        expect(triplicate.json).toEqual({well_location: triplicate.id, key: 'Molarity', value: triplicate.nM, units: 'nM', cv: triplicate.cv})
       })
     })
 

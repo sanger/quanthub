@@ -53,7 +53,7 @@ class Triplicate {
   }
 
   get json () {
-    return { well_location: this.id, key: 'Concentration', value: this.nM, units: 'nM', cv: this.cv }
+    return { well_location: this.id, key: 'Molarity', value: this.nM, units: 'nM', cv: this.cv }
   }
 
   calculateAverage (values) {
