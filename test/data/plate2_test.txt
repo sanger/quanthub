@@ -1,0 +1,20 @@
+Experiment: LA_384qPCR_PCR_Libs_Lesley  Selected Filter: SYBR Green I / HRM Dye (465-510)							
+Include	Color	Pos	Name	Cp	Concentration	Standard	Status
+TRUE	128	N1	0.0002pM	24.21	2.66E-04	0.0002	
+FALSE	128	N3	0.0002pM			0.0002	
+TRUE	128	N5	0.0002pM	24.5	1.48E-04	0.0002	
+TRUE	128	L1	0.002pM	22.64	2.01E-03	0.002	
+FALSE	128	L3	0.002pM			0.002	
+TRUE	128	L5	0.002pM	22.65	1.99E-03	0.002	
+TRUE	128	J1	0.02pM	19.01	2.16E-02	0.02	
+TRUE	128	J3	0.02pM	19.07	2.07E-02	0.02	
+TRUE	128	J5	0.02pM	19.08	2.06E-02	0.02	
+TRUE	128	H1	0.2pM	15.64	1.96E-01	0.2	
+FALSE	128	H3	0.2pM			0.2	
+TRUE	128	H5	0.2pM	15.68	1.91E-01	0.2	
+TRUE	128	B1	200pM	5	2.08E+02	200	< - Early Cp call (first five cycles) has higher uncertainty
+TRUE	128	B3	200pM	5	2.08E+02	200	< - Early Cp call (first five cycles) has higher uncertainty
+TRUE	128	B5	200pM	5	2.08E+02	200	< - Early Cp call (first five cycles) has higher uncertainty
+FALSE	128	D1	20pM			20	
+TRUE	128	D3	20pM	8.64	1.91E+01	20	
+TRUE	128	D5	20pM	8.67	1.88E+01	20	

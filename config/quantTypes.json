@@ -1,0 +1,74 @@
+{
+  "plateReader": {
+    "name": "Plate Reader",
+    "fileType": "csv",
+    "metadataRows": 3,
+    "idColumn": "ID1",
+    "startRow": 16,
+    "conversion": {
+      "factors": {
+        "dilution": 500,
+        "standardInsertSize": 452,
+        "libraryInsertSize": 573,
+      },
+      "expression": "(dilution*standardInsertSize)/libraryInsertSize"
+    },
+    "columns": {
+      "originalHeadings": [
+        "Well Row", 
+        "Well Col", 
+        "Content", 
+        "Sample IDs", 
+        "Linear regression fit based on blank corrected (485-12/EM520)"
+      ],
+      "parserHeadings": [
+        "row", 
+        "column", 
+        "content", 
+        "id", 
+        "concentration"
+      ],
+      "well": [0,1],
+      "location": 3
+    },
+  },
+  "qPCR": {
+    "name": "qPCR",
+    "fileType": "txt",
+    "metadataRows": 1,
+    "idColumn": "Experiment",
+    "startRow": 3,
+    "units": "ng/ul",
+    "conversion": {
+      "factors": {
+        "averageLibrarySize": 585,
+      },
+      "factor": "(1515.151*(1/averageLibrarySize))"
+    },
+    "columns": {
+      "originalHeadings": [
+        "Include",
+        "Color",
+        "Pos",
+        "Name",
+        "Cp",
+        "Concentration",
+        "Standard",
+        "Status"
+      ],
+      "parserHeadings": [
+        "include",
+        "color",
+        "pos",
+        "name",
+        "cp",
+        "concentration",
+        "standard",
+        "status"
+      ],
+      "well": 2,
+      "location": 3
+    },
+    "units": "nM",
+  }
+}

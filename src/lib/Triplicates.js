@@ -7,8 +7,10 @@
 */
 
 class Triplicate {
-  constructor (wells = []) {
+  constructor (wells = [], options = {}) {
     this.wells = wells
+    this.options = Object.assign({key: 'Standard', units: 'standard', conversionFactor: 1}, options)
+    this.decimalPlaces = 3
   }
 
   get id () {
@@ -27,10 +29,15 @@ class Triplicate {
     return this.calculateAverage(this.activeWells.map(well => parseFloat(well.concentration)))
   }
 
+  get adjustedAverage () {
+    if (this.empty()) return '0'
+    return (this.average * this.options.conversionFactor).toFixed(this.decimalPlaces)
+  }
+
   // PCR WGS Av. lib. size bp = 585 bp
   get nM () {
     if (this.empty()) return '0'
-    return ((this.average) * ((1000000 / 660) * (1 / 585))).toFixed(3)
+    return ((this.average) * ((1000000 / 660) * (1 / 585))).toFixed(this.decimalPlaces)
   }
 
   get standardDeviation () {
@@ -44,16 +51,16 @@ class Triplicate {
     })
     let avgSquareDiff = this.calculateAverage(squareDiffs)
     let stdDev = Math.sqrt(avgSquareDiff)
-    return stdDev.toFixed(3)
+    return stdDev.toFixed(this.decimalPlaces)
   }
 
   get cv () {
     if (this.empty()) return '0'
-    return ((this.standardDeviation / this.average) * 100).toFixed(3)
+    return ((this.standardDeviation / this.average) * 100).toFixed(this.decimalPlaces)
   }
 
   get json () {
-    return { well_location: this.id, key: 'Concentration', value: this.nM, units: 'nM', cv: this.cv }
+    return { well_location: this.id, key: this.options.key, value: this.adjustedAverage, units: this.options.units, cv: this.cv }
   }
 
   calculateAverage (values) {
@@ -74,8 +81,9 @@ class Triplicate {
 // The key is the well location
 
 class TriplicateList {
-  constructor () {
+  constructor (options = {}) {
     this.items = {}
+    this.options = options
   }
 
   get keys () {
@@ -93,7 +101,7 @@ class TriplicateList {
     let triplicate
     triplicate = this.find(well.id)
     if (triplicate === undefined) {
-      triplicate = new Triplicate([well])
+      triplicate = new Triplicate([well], this.options)
       this.items[well.id] = triplicate
     } else {
       triplicate.add(well)

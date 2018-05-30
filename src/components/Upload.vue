@@ -18,7 +18,7 @@
 <script>
 
 import Vue from 'vue'
-import CsvFile from '@/components/CsvFile'
+import QuantFile from '@/components/QuantFile'
 
 export default {
   name: 'Upload',
@@ -28,22 +28,22 @@ export default {
     return {
       msg: 'Upload',
       notice: '',
-      Cmp: Vue.extend(CsvFile)
+      Cmp: Vue.extend(QuantFile)
     }
   },
   computed: {
   },
   components: {
-    CsvFile
+    QuantFile
   },
   methods: {
     upload (event) {
       const file = document.getElementById('file-input').files[0]
-      let csvFile = new this.Cmp()
-      csvFile.upload(file)
+      let quantFile = new this.Cmp()
+      quantFile.upload(file)
         .then((result) => {
-          localStorage.setItem(csvFile.metadata.ID1, JSON.stringify(csvFile.json))
-          this.$router.push({ path: `/plate/${csvFile.metadata.ID1}` })
+          localStorage.setItem(quantFile.metadata.ID1, JSON.stringify(quantFile.json))
+          this.$router.push({ path: `/plate/${quantFile.metadata.ID1}` })
         })
         .catch((error) => {
           console.log('rejected:', error)

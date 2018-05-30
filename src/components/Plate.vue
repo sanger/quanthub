@@ -64,7 +64,8 @@ export default {
       store: this.$Store,
       notice: '',
       uuid: '',
-      triplicates: new Triplicates(),
+      //Plate Reader only
+      triplicates: new Triplicates({key: 'Concentration', units: 'nM', conversionFactor: ((1000000 / 660) * (1 / 585))}),
       alert: '',
       alertType: '',
       dismissSecs: 10,

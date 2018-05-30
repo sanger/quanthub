@@ -23,12 +23,18 @@ describe('Triplicates.vue', () => {
         triplicate = new Triplicate([well1, well2, well3])
       })
 
-      it ('will have three wells', () => {
+      it('will have three wells', () => {
         expect(triplicate.wells).toEqual([well1, well2, well3])
       })
 
       it('will set an average', () => {
         expect(triplicate.average).toEqual('3.004')
+      })
+
+      it('must have some options', () => {
+        expect(triplicate.options.key).toBeDefined()
+        expect(triplicate.options.units).toBeDefined()
+        expect(triplicate.options.conversionFactor).toBeDefined()
       })
 
       it('will convert to nM', () => {
@@ -82,7 +88,28 @@ describe('Triplicates.vue', () => {
       })
 
       it('will return some json for exporting purposes', () => {
-        expect(triplicate.json).toEqual({well_location: triplicate.id, key: 'Concentration', value: triplicate.nM, units: 'nM', cv: triplicate.cv})
+        expect(triplicate.json).toEqual({well_location: triplicate.id, key: triplicate.options.key, value: triplicate.adjustedAverage, units: triplicate.options.units, cv: triplicate.cv})
+      })
+
+    })
+
+    describe('conversion', () => {
+
+      let triplicate
+
+      it('just works with no options added', () => {
+        triplicate = new Triplicate([well1, well2, well3])
+        expect(triplicate.adjustedAverage).toEqual(triplicate.average)
+      })
+
+      it('works with option as a number', () => {
+        triplicate = new Triplicate([well1, well2, well3], {conversionFactor: 2.590})
+        expect(triplicate.adjustedAverage).toEqual('7.780')
+      })
+
+      it('works with option as an expression', () => {
+        triplicate = new Triplicate([well1, well2, well3], {conversionFactor: ((1000000 / 660) * (1 / 585))})
+        expect(triplicate.adjustedAverage).toEqual('7.780')
       })
     })
 
@@ -126,18 +153,19 @@ describe('Triplicates.vue', () => {
   describe('Triplicates', () => {
 
     let well4, well5, well6
-    let triplicate1, triplicate2, triplicates
+    let triplicate1, triplicate2, triplicates, options
 
     beforeEach(() => {
-      triplicate1 = new Triplicate([well1, well2, well3])
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity'}
+      triplicate1 = new Triplicate([well1, well2, well3], options)
 
       well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.616'}})
       well5 = new cmp({propsData: {row:'A',column:'4',content:'Sample X9',id:'A2',concentration:'5.341'}})
       well6 = new cmp({propsData: {row:'A',column:'5',content:'Sample X9',id:'A2',concentration:'5.054'}})
 
-      triplicate2 = new Triplicate([well4, well5, well6])
+      triplicate2 = new Triplicate([well4, well5, well6], options)
 
-      triplicates = new Triplicates()
+      triplicates = new Triplicates(options)
       triplicates.add(well1).add(well2).add(well3).add(well4).add(well5).add(well6)
 
     })
@@ -156,6 +184,11 @@ describe('Triplicates.vue', () => {
     it('will add the triplicate to the well', () => {
       expect(well1.triplicate).toEqual(triplicate1)
       expect(well6.triplicate).toEqual(triplicate2)
+    })
+
+    it('can pass options to each triplicate', () => {
+      let triplicate = triplicates.find('A1')
+      expect(triplicate.options).toEqual(options)
     })
 
   })

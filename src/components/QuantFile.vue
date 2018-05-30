@@ -5,7 +5,7 @@ import Grid from '@/components/Grid.vue'
 import Vue from 'vue'
 
 export default {
-  name: 'CsvFile',
+  name: 'QuantFile',
   props: {
     opts: {
       type: Object,
@@ -14,14 +14,15 @@ export default {
   },
   data () {
     return {
-      msg: 'CsvFile',
+      msg: 'QuantFile',
       defaultOptions: {
         rowDelimiter: ['\r\n', '\r', '\n'],
         from: 16,
         metadataRows: 3,
+        delimiter: ',',
         columns: ['row', 'column', 'content', 'id', 'concentration']
       },
-      csv: '',
+      raw: '',
       Cmp: Vue.extend(Grid),
       grid: {}
     }
@@ -36,7 +37,7 @@ export default {
       return this.grid.json
     },
     metadata () {
-      let rows = this.csv.split(/\r?\n/).slice(0, this.options.metadataRows)
+      let rows = this.raw.split(/\r?\n/).slice(0, this.options.metadataRows)
       let metadata = {}
       let split
 
@@ -58,9 +59,9 @@ export default {
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.onload = () => {
-          this.csv = reader.result
+          this.raw = reader.result
           this.grid = new this.Cmp()
-          this.grid.addAll(parse(this.csv, this.options))
+          this.grid.addAll(parse(this.raw, this.options))
           resolve('File successfully uploaded')
         }
         reader.readAsText(file)
