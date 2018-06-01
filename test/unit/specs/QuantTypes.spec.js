@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import { mount } from '@vue/test-utils'
-import {PlateReaderCell, QPCRCell} from '@/lib/QuantTypes'
+import * as Cells from '@/lib/QuantTypes'
 
 describe('QuantTypes.js', () => {
 
   let options, cell
 
-  describe('PlateReaderCell', () => {
+  describe('PlateReader Cell', () => {
 
     beforeEach(() => {
       options = {row: 'A', column: '1', content: 'Sample X1', id: 'A1', concentration: 1.345}
-      cell = new PlateReaderCell(options)
+      cell = new Cells.PlateReader(options)
     })
 
     it('must have a row', () => {
@@ -39,13 +39,13 @@ describe('QuantTypes.js', () => {
 
   })
 
-  describe('QPCRCell', () => {
+  describe('QPCR Cell', () => {
 
     describe('sample', () => {
 
       beforeEach(() => {
         options = {include: 'TRUE', color: '128', pos: 'N1', name: 'A1', cp: '24.21', concentration: '5.61E+01', standard: '0.0002', status: 'red'}
-        cell = new QPCRCell(options)
+        cell = new Cells.QPCR(options)
       })
 
       it('must have an include', () => {
@@ -102,7 +102,7 @@ describe('QuantTypes.js', () => {
 
       beforeEach(() => {
         options = {include: 'TRUE', color: '128', pos: 'N1', name: '0.0002pM', cp: '24.21', concentration: '2.66E-04', standard: '0.0002', status: 'red'}
-        cell = new QPCRCell(options)
+        cell = new Cells.QPCR(options)
       })
 
       it('will have a name', () => {

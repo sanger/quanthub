@@ -32,7 +32,7 @@ describe('QuantFile.vue', () => {
       beforeEach(async () => {
         options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 16, metadata: { rows: 3, idColumn: 'ID1', delimiter: ','}, columns: ['row', 'column', 'content', 'id', 'concentration'], delimiter: ','}
         quantFile = new cmp({propsData: { opts: options}})
-        plate = fs.readFileSync(config.rootDir + '/test/data/plate1.csv', 'ascii')
+        plate = fs.readFileSync(config.rootDir + '/test/data/plate_reader.csv', 'ascii')
         file = new File([plate], 'plate1.csv', { type: 'text/csv'})
       })
 
@@ -96,6 +96,10 @@ describe('QuantFile.vue', () => {
           expect(metadata.ID1).toEqual('test_RaD')
         })
 
+        it('has an id', () => {
+          expect(quantFile.id).toEqual('test_RaD')
+        })
+
       })
 
     })
@@ -106,13 +110,17 @@ describe('QuantFile.vue', () => {
         
         options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 3, metadata: {rows: 1, delimiter: ' ', idColumn: 'Experiment'}, columns: ['include','color','pos','name','cp','concentration','standard','status'], delimiter: '\t'}
         quantFile = new cmp({propsData: { opts: options}})
-        plate = fs.readFileSync(config.rootDir + '/test/data/plate2.txt', 'ascii')
+        plate = fs.readFileSync(config.rootDir + '/test/data/qPCR.txt', 'ascii')
         file = new File([plate], 'plate2.txt', { type: 'text/plain'})
       })
 
       it.skip('resolves', async () => {
         expect.assertions(1)
         await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+      })
+
+      it.skip('has an id', () => {
+        expect(quantFile.id).toEqual('LA_384qPCR_PCR_Libs_Lesley')
       })
 
     })

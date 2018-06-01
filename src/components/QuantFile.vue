@@ -54,6 +54,9 @@ export default {
         }
       }
       return metadata
+    },
+    id () {
+      return this.metadata[this.options.metadata.idColumn]
     }
   },
   methods: {

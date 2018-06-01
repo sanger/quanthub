@@ -1,4 +1,4 @@
-class PlateReaderCell {
+class PlateReader {
   constructor(cell = {}) {
     this.row = cell.row
     this.column = cell.column
@@ -13,7 +13,7 @@ class PlateReaderCell {
 
 }
 
-class QPCRCell {
+class QPCR {
   constructor(cell = {}) {
     this.include = cell.include 
     this.color = cell.color
@@ -47,4 +47,4 @@ class QPCRCell {
 
 }
 
-export { PlateReaderCell, QPCRCell }
+export { PlateReader, QPCR }

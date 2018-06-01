@@ -42,8 +42,8 @@ export default {
       let quantFile = new this.Cmp()
       quantFile.upload(file)
         .then((result) => {
-          localStorage.setItem(quantFile.metadata.ID1, JSON.stringify(quantFile.json))
-          this.$router.push({ path: `/plate/${quantFile.metadata.ID1}` })
+          localStorage.setItem(quantFile.id, JSON.stringify(quantFile.json))
+          this.$router.push({ path: `/plate/${quantFile.id}` })
         })
         .catch((error) => {
           console.log('rejected:', error)

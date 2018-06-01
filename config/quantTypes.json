@@ -1,7 +1,7 @@
 {
   "plateReader": {
     "name": "Plate Reader",
-    "_cell": "PlateReaderCell",
+    "_cell": "PlateReader",
     "parseOptions" : {
       "delimiter": ",",
       "startRow": 16,
@@ -33,7 +33,7 @@
   },
   "qPCR": {
     "name": "qPCR",
-    "_cell": "QPCRCell",
+    "_cell": "QPCR",
     "parseOptions": {
       "delimiter": "\t",
       "startRow": 3,

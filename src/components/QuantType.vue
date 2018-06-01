@@ -1,8 +1,14 @@
 <script>
 
+import * as Cells from '@/lib/QuantTypes'
+
 export default {
   name: 'QuantType',
   props: {
+    _cell: {
+      type: String,
+      required: true
+    },
     conversion: {
       type: Object,
       default () {
@@ -23,6 +29,9 @@ export default {
       return eval(Object.keys(factors).reduce((factor, key) => {
         return factor.replace(key, factors[key])
       }, this.conversion.expression)).toFixed(3)
+    },
+    cell () {
+      return eval(`Cells.${this._cell}`)
     }
   },
   methods: {
