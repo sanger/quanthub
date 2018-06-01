@@ -18,9 +18,13 @@ export default {
       defaultOptions: {
         rowDelimiter: ['\r\n', '\r', '\n'],
         from: 16,
-        metadataRows: 3,
         delimiter: ',',
-        columns: ['row', 'column', 'content', 'id', 'concentration']
+        columns: ['row', 'column', 'content', 'id', 'concentration'],
+        metadata: {
+          rows: 3,
+          delimiter: ',',
+          idColumn: 'ID1'
+        }
       },
       raw: '',
       Cmp: Vue.extend(Grid),
@@ -37,12 +41,12 @@ export default {
       return this.grid.json
     },
     metadata () {
-      let rows = this.raw.split(/\r?\n/).slice(0, this.options.metadataRows)
+      let rows = this.raw.split(/\r?\n/).slice(0, this.options.metadata.rows)
       let metadata = {}
       let split
 
       for (let row of rows) {
-        for (let cell of row.split(',')) {
+        for (let cell of row.split(this.options.metadata.delimiter)) {
           if (cell !== '') {
             split = cell.split(': ')
             metadata[split[0]] = split[1]

@@ -1,10 +1,24 @@
 {
   "plateReader": {
     "name": "Plate Reader",
-    "fileType": "csv",
-    "metadataRows": 3,
-    "idColumn": "ID1",
-    "startRow": 16,
+    "_cell": "PlateReaderCell",
+    "parseOptions" : {
+      "delimiter": ",",
+      "startRow": 16,
+      "columns": [
+        "row", 
+        "column", 
+        "content", 
+        "id", 
+        "concentration"
+      ],
+      "metadata": {
+        "rows": 3,
+        "idColumn": "ID1",
+        "delimiter": ","
+      },
+    },
+  
     "conversion": {
       "factors": {
         "dilution": 500,
@@ -13,50 +27,17 @@
       },
       "expression": "(dilution*standardInsertSize)/libraryInsertSize"
     },
-    "columns": {
-      "originalHeadings": [
-        "Well Row", 
-        "Well Col", 
-        "Content", 
-        "Sample IDs", 
-        "Linear regression fit based on blank corrected (485-12/EM520)"
-      ],
-      "parserHeadings": [
-        "row", 
-        "column", 
-        "content", 
-        "id", 
-        "concentration"
-      ],
-      "well": [0,1],
-      "location": 3
-    },
+    "key": "Molarity",
+    "units": "nM",
+    
   },
   "qPCR": {
     "name": "qPCR",
-    "fileType": "txt",
-    "metadataRows": 1,
-    "idColumn": "Experiment",
-    "startRow": 3,
-    "units": "ng/ul",
-    "conversion": {
-      "factors": {
-        "averageLibrarySize": 585,
-      },
-      "factor": "(1515.151*(1/averageLibrarySize))"
-    },
-    "columns": {
-      "originalHeadings": [
-        "Include",
-        "Color",
-        "Pos",
-        "Name",
-        "Cp",
-        "Concentration",
-        "Standard",
-        "Status"
-      ],
-      "parserHeadings": [
+    "_cell": "QPCRCell",
+    "parseOptions": {
+      "delimiter": "\t",
+      "startRow": 3,
+      "columns": [
         "include",
         "color",
         "pos",
@@ -66,9 +47,20 @@
         "standard",
         "status"
       ],
-      "well": 2,
-      "location": 3
+      "metadata": {
+        "rows": 1,
+        "idColumn": "Experiment",
+        "delimiter": " "
+      }
+
     },
-    "units": "nM",
+    "conversion": {
+      "factors": {
+        "averageLibrarySize": 585,
+      },
+      "factor": "(1515.151*(1/averageLibrarySize))"
+    },
+    "key": "Molarity",
+    "units": "nM"
   }
 }

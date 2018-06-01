@@ -18,7 +18,9 @@ describe('QuantFile.vue', () => {
     quantFile = new cmp()
     expect(quantFile.options.rowDelimiter).toBeDefined()
     expect(quantFile.options.from).toBeDefined()
-    expect(quantFile.options.metadataRows).toBeDefined()
+    expect(quantFile.options.metadata.rows).toBeDefined()
+    expect(quantFile.options.metadata.delimiter).toBeDefined()
+    expect(quantFile.options.metadata.idColumn).toBeDefined()
     expect(quantFile.options.columns).toBeDefined()
     expect(quantFile.options.delimiter).toBeDefined()
   })
@@ -28,7 +30,7 @@ describe('QuantFile.vue', () => {
     describe('csv', () => {
 
       beforeEach(async () => {
-        options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 16, metadataRows: 3, columns: ['row', 'column', 'content', 'id', 'concentration'], delimiter: ','}
+        options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 16, metadata: { rows: 3, idColumn: 'ID1', delimiter: ','}, columns: ['row', 'column', 'content', 'id', 'concentration'], delimiter: ','}
         quantFile = new cmp({propsData: { opts: options}})
         plate = fs.readFileSync(config.rootDir + '/test/data/plate1.csv', 'ascii')
         file = new File([plate], 'plate1.csv', { type: 'text/csv'})
@@ -102,7 +104,7 @@ describe('QuantFile.vue', () => {
 
       beforeEach(async () => {
         
-        options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 3, metadataRows: 1, columns: ['include','color','pos','name','cp','concentration','standard','status'], delimiter: '\t'}
+        options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 3, metadata: {rows: 1, delimiter: ' ', idColumn: 'Experiment'}, columns: ['include','color','pos','name','cp','concentration','standard','status'], delimiter: '\t'}
         quantFile = new cmp({propsData: { opts: options}})
         plate = fs.readFileSync(config.rootDir + '/test/data/plate2.txt', 'ascii')
         file = new File([plate], 'plate2.txt', { type: 'text/plain'})
