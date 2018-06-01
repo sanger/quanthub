@@ -27,7 +27,7 @@ export default {
       default: true,
       type: Boolean
     },
-    content: {
+    type: {
       default: ''
     },
     plateId: {
@@ -57,9 +57,6 @@ export default {
         }
       }
     },
-    type () {
-      return this.content.split(' ')[0]
-    },
     location () {
       return this.row.concat(this.column)
     },
@@ -67,13 +64,14 @@ export default {
       return {
         row: this.row,
         column: this.column,
-        content: this.content,
+        type: this.type,
         id: this.id,
         concentration: this.concentration,
         active: this.isActive
       }
     }
   },
+  //TODO: Constantize well types.
   methods: {
     isStandard () {
       return this.type === 'Standard'

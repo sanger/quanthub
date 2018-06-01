@@ -87,8 +87,6 @@ describe('Plate.vue', () => {
       expect(plate.json).toHaveLength(plate.triplicates.keys.length)
       let json = plate.json[0]
       expect(json.uuid).toEqual(uuid)
-      expect(json.assay_type).toEqual('Plate Reader')
-      expect(json.assay_version).toEqual('v1.0')
     })
 
     it('returns some request options for export', () => {

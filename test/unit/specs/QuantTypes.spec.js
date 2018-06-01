@@ -37,6 +37,10 @@ describe('QuantTypes.js', () => {
       expect(cell.type).toEqual('Sample')
     })
 
+    it('produces some json', () => {
+      expect(cell.json).toEqual({row: 'A', column: '1', type: 'Sample', id: 'A1', concentration: 1.345})
+    })
+
   })
 
   describe('QPCR Cell', () => {
@@ -94,6 +98,10 @@ describe('QuantTypes.js', () => {
 
       it('will have a type', () => {
         expect(cell.type).toEqual('Sample')
+      })
+
+      it('produces some json', () => {
+        expect(cell.json).toEqual({row: 'N', column: '1', type: 'Sample', id: 'A1', concentration: 56.1})
       })
 
     })

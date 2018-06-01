@@ -64,17 +64,17 @@ describe('QuantFile.vue', () => {
           let row = rows[options.from].split(',')
           let well = quantFile.grid.rows[row[0]][row[1]]
 
+
           expect(well.row).toBeDefined()
           expect(well.column).toBeDefined()
-          expect(well.content).toBeDefined()
+          expect(well.type).toBeDefined()
           expect(well.id).toBeDefined()
           expect(well.concentration).toBeDefined()
 
           row = rows[rows.length - (quantFile.options.from - 1)].split(',')
           well = quantFile.grid.rows[row[0]][row[1]]
           expect(well.row).toBeDefined()
-          expect(well.column).toBeDefined()
-          expect(well.content).toBeDefined()
+          expect(well.type).toBeDefined()
           expect(well.id).toBeDefined()
           expect(well.concentration).toBeDefined()
         })

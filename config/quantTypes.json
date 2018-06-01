@@ -1,39 +1,45 @@
 {
   "plateReader": {
+    "key": "plateReader",
     "name": "Plate Reader",
-    "_cell": "PlateReader",
-    "parseOptions" : {
+    "cellType": "PlateReader",
+    "parseOptions": {
       "delimiter": ",",
       "startRow": 16,
       "columns": [
-        "row", 
-        "column", 
-        "content", 
-        "id", 
+        "row",
+        "column",
+        "content",
+        "id",
         "concentration"
       ],
       "metadata": {
         "rows": 3,
         "idColumn": "ID1",
         "delimiter": ","
-      },
+      }
     },
-  
     "conversion": {
       "factors": {
         "dilution": 500,
         "standardInsertSize": 452,
-        "libraryInsertSize": 573,
+        "libraryInsertSize": 573
       },
       "expression": "(dilution*standardInsertSize)/libraryInsertSize"
     },
-    "key": "Molarity",
-    "units": "nM",
-    
+    "qcResults": {
+      "key": "Molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Plate Reader",
+        "version": "v1.0"
+      }
+    }
   },
   "qPCR": {
+    "key": "qPCR",
     "name": "qPCR",
-    "_cell": "QPCR",
+    "cellType": "QPCR",
     "parseOptions": {
       "delimiter": "\t",
       "startRow": 3,
@@ -52,15 +58,20 @@
         "idColumn": "Experiment",
         "delimiter": " "
       }
-
     },
     "conversion": {
       "factors": {
-        "averageLibrarySize": 585,
+        "averageLibrarySize": 585
       },
       "factor": "(1515.151*(1/averageLibrarySize))"
     },
-    "key": "Molarity",
-    "units": "nM"
+    "qcResults": {
+      "key": "Molarity",
+      "units": "nM",
+      "assay": {
+        "type": "qPCR",
+        "version": "v1.0"
+      }
+    }
   }
 }

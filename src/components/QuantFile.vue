@@ -3,10 +3,12 @@
 import parse from 'csv-parse/lib/sync'
 import Grid from '@/components/Grid.vue'
 import Vue from 'vue'
+import * as Cells from '@/lib/QuantTypes'
 
 export default {
   name: 'QuantFile',
   props: {
+    
     opts: {
       type: Object,
       default: () => {}
@@ -68,7 +70,7 @@ export default {
         reader.onload = () => {
           this.raw = reader.result
           this.grid = new this.Cmp()
-          this.grid.addAll(parse(this.raw, this.options))
+          this.grid.addAll(parse(this.raw, this.options).map(cell => new Cells.PlateReader(cell).json))
           resolve('File successfully uploaded')
         }
         reader.readAsText(file)

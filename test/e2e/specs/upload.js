@@ -10,7 +10,7 @@ var getId = function (csv) {
 }
 
 var filePath = function (dir) {
-  return dir + '/test/data/plate1.csv'
+  return dir + '/test/data/plate_reader.csv'
 }
 
 // TODO: It would be better to use CsvFile component but can't seem to use es6 in Nightwatch tests.

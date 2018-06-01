@@ -64,8 +64,16 @@ export default {
       store: this.$Store,
       notice: '',
       uuid: '',
-      //Plate Reader only
-      triplicates: new Triplicates({key: 'Concentration', units: 'nM', conversionFactor: ((1000000 / 660) * (1 / 585))}),
+      // Plate Reader only
+      triplicates: new Triplicates({
+        key: 'Concentration', 
+        units: 'nM', 
+        conversionFactor: ((1000000 / 660) * (1 / 585)),
+        assay: {
+          type: 'Plate Reader',
+          version: 'v1.0'
+        }
+      }),
       alert: '',
       alertType: '',
       dismissSecs: 10,
@@ -80,8 +88,10 @@ export default {
     rows () {
       return this.grid.rows
     },
+    // We can't assign the uuid up front because it is pulled from quantessential.
+    // This will go away once we merge quanthub and quantessential.
     metadata () {
-      return {uuid: this.uuid, assay_type: 'Plate Reader', assay_version: 'v1.0'}
+      return {uuid: this.uuid}
     },
     json () {
       return this.triplicates.keys.map(key => Object.assign(this.triplicates.find(key).json, this.metadata))

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Grid from '@/components/Grid'
+import { PlateReader } from '@/lib/QuantTypes'
 
 describe('Grid.vue', () => {
 
@@ -73,9 +74,9 @@ describe('Grid.vue', () => {
 
     beforeEach(() => {
       grid = new cmp({propsData: { numberOfColumns: 5, numberOfRows: 10}})
-      wells = [ { row: 'A', column: '1', id: 'A1', concentration: '0.69', content: 'Sample X1' },
-                { row: 'E', column: '3', id: 'E3', concentration: '2.677', content: 'Sample X1' },
-                { row: 'J', column: '5', id: 'J5', concentration: '0.665', content: 'Sample X1' }
+      wells = [ { row: 'A', column: '1', id: 'A1', concentration: '0.69', type: 'Sample' },
+                { row: 'E', column: '3', id: 'E3', concentration: '2.677', type: 'Sample' },
+                { row: 'J', column: '5', id: 'J5', concentration: '0.665', type: 'Sample' }
               ]
     })
 
@@ -90,6 +91,10 @@ describe('Grid.vue', () => {
       expect(grid.find('E', '3')).toEqual(wells[1])
       expect(grid.find('J', '5')).toEqual(wells[2])
     })
+
+    // it('ensures that well is in correct format', () => {
+    //   well = 
+    // })
 
   })
   

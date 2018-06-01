@@ -88,7 +88,15 @@ describe('Triplicates.vue', () => {
       })
 
       it('will return some json for exporting purposes', () => {
-        expect(triplicate.json).toEqual({well_location: triplicate.id, key: triplicate.options.key, value: triplicate.adjustedAverage, units: triplicate.options.units, cv: triplicate.cv})
+        expect(triplicate.json).toEqual({
+          well_location: triplicate.id, 
+          key: triplicate.options.key, 
+          value: triplicate.adjustedAverage, 
+          units: triplicate.options.units, 
+          cv: triplicate.cv, assay_type: 
+          triplicate.options.assay.type, 
+          assay_version: triplicate.options.assay.version
+        })
       })
 
     })
@@ -156,7 +164,7 @@ describe('Triplicates.vue', () => {
     let triplicate1, triplicate2, triplicates, options
 
     beforeEach(() => {
-      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity'}
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}}
       triplicate1 = new Triplicate([well1, well2, well3], options)
 
       well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.616'}})

@@ -9,9 +9,9 @@ describe('Row.vue', () => {
 
   beforeEach(() => {
     $Store = Store
-    wells = { '1': {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014', active: true},
-              '2': {row:'A',column:'2',content:'Sample X1',id:'A1',concentration:'3.163', active: true},
-              '3': {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.432', active: true} }
+    wells = { '1': {row:'A',column:'1',type:'Sample',id:'A1',concentration:'3.014', active: true},
+              '2': {row:'A',column:'2',type:'Sample',id:'A1',concentration:'3.163', active: true},
+              '3': {row:'A',column:'3',type:'Sample',id:'A2',concentration:'5.432', active: true} }
     cmp = mount(Row, { mocks: { $Store }, propsData: {id: 'A', plateId: 'plate1', wells: wells}})
     row = cmp.vm
   })
