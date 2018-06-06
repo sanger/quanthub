@@ -10,8 +10,8 @@ class Triplicate {
   constructor (wells = [], options = {}) {
     this.wells = wells
     this.options = Object.assign({
-      key: 'Standard', 
-      units: 'standard', 
+      key: 'Standard',
+      units: 'standard',
       conversionFactor: 1,
       assay: {type: 'Standard', version: '1'}}, options)
     this.decimalPlaces = 3
@@ -64,14 +64,14 @@ class Triplicate {
   }
 
   get json () {
-    return { 
-      well_location: this.id, 
-      key: this.options.key, 
-      value: this.adjustedAverage, 
-      units: this.options.units, 
+    return {
+      well_location: this.id,
+      key: this.options.key,
+      value: this.adjustedAverage,
+      units: this.options.units,
       cv: this.cv,
       assay_type: this.options.assay.type,
-      assay_version: this.options.assay.version 
+      assay_version: this.options.assay.version
     }
   }
 

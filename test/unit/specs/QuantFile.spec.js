@@ -14,24 +14,12 @@ describe('QuantFile.vue', () => {
     cmp = Vue.extend(QuantFile)
   })
 
-  it('has some default options', () => {
-    quantFile = new cmp()
-    expect(quantFile.options.rowDelimiter).toBeDefined()
-    expect(quantFile.options.from).toBeDefined()
-    expect(quantFile.options.metadata.rows).toBeDefined()
-    expect(quantFile.options.metadata.delimiter).toBeDefined()
-    expect(quantFile.options.metadata.idColumn).toBeDefined()
-    expect(quantFile.options.columns).toBeDefined()
-    expect(quantFile.options.delimiter).toBeDefined()
-  })
-
   describe('upload', () => {
 
     describe('csv', () => {
 
       beforeEach(async () => {
-        options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 16, metadata: { rows: 3, idColumn: 'ID1', delimiter: ','}, columns: ['row', 'column', 'content', 'id', 'concentration'], delimiter: ','}
-        quantFile = new cmp({propsData: { opts: options}})
+        quantFile = new cmp()
         plate = fs.readFileSync(config.rootDir + '/test/data/plate_reader.csv', 'ascii')
         file = new File([plate], 'plate1.csv', { type: 'text/csv'})
       })
@@ -56,14 +44,9 @@ describe('QuantFile.vue', () => {
           expect(quantFile.raw).toEqual(plate)
         })
 
-        it('will have some options', () => {
-          expect(quantFile.options).toEqual(options)
-        })
-
         it('transforms wells into correct format', () => {
-          let row = rows[options.from].split(',')
+          let row = rows[quantFile.quantType.parse.from].split(quantFile.quantType.parse.delimiter)
           let well = quantFile.grid.rows[row[0]][row[1]]
-
 
           expect(well.row).toBeDefined()
           expect(well.column).toBeDefined()
@@ -71,7 +54,7 @@ describe('QuantFile.vue', () => {
           expect(well.id).toBeDefined()
           expect(well.concentration).toBeDefined()
 
-          row = rows[rows.length - (quantFile.options.from - 1)].split(',')
+          row = rows[rows.length - (quantFile.quantType.parse.from - 1)].split(quantFile.quantType.parse.delimiter)
           well = quantFile.grid.rows[row[0]][row[1]]
           expect(well.row).toBeDefined()
           expect(well.type).toBeDefined()
@@ -81,11 +64,11 @@ describe('QuantFile.vue', () => {
 
         it('produces some json', () => {
           let json = quantFile.json['rows']
-          let row = rows[options.from].split(',')
+          let row = rows[quantFile.quantType.parse.from].split(quantFile.quantType.parse.delimiter)
           expect(json[row[0]][row[1]].row).toEqual(row[0])
           expect(json[row[0]][row[1]].column).toEqual(row[1])
 
-          row = rows[rows.length - (quantFile.options.from - 1)].split(',')
+          row = rows[rows.length - (quantFile.quantType.parse.from - 1)].split(quantFile.quantType.parse.delimiter)
           expect(json[row[0]][row[1]].row).toEqual(row[0])
           expect(json[row[0]][row[1]].column).toEqual(row[1])
         })
@@ -107,20 +90,34 @@ describe('QuantFile.vue', () => {
     describe('text tab delimited', () => {
 
       beforeEach(async () => {
-        
-        options = {rowDelimiter: ['\r\n', '\n', '\r'], from: 3, metadata: {rows: 1, delimiter: ' ', idColumn: 'Experiment'}, columns: ['include','color','pos','name','cp','concentration','standard','status'], delimiter: '\t'}
-        quantFile = new cmp({propsData: { opts: options}})
+        quantFile = new cmp({propsData: { quant: 'qPCR'}})
         plate = fs.readFileSync(config.rootDir + '/test/data/qPCR.txt', 'ascii')
         file = new File([plate], 'plate2.txt', { type: 'text/plain'})
       })
 
-      it.skip('resolves', async () => {
+      it('resolves', async () => {
         expect.assertions(1)
         await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
       })
 
-      it.skip('has an id', () => {
-        expect(quantFile.id).toEqual('LA_384qPCR_PCR_Libs_Lesley')
+      describe('successful', () => {
+
+        let rows
+
+        beforeEach(async () => {
+          quantFile.upload(file)
+          rows = plate.split('\r\n')
+          await flushPromises()
+          await flushPromises()
+        })
+
+        it('will have some text', () => {
+          expect(quantFile.raw).toEqual(plate)
+        })
+
+        it('has an id', () => {
+          expect(quantFile.id).toEqual('LA_384qPCR_PCR_Libs_Lesley')
+        })
       })
 
     })

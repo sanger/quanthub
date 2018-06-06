@@ -106,6 +106,22 @@ describe('QuantTypes.js', () => {
 
     })
 
+    describe('bugfix - column is 10 or above', () => {
+      beforeEach(() => {
+        options = {include: 'TRUE', color: '128', pos: 'D23', name: 'B6', cp: '24.21', concentration: '5.61E+01', standard: '0.0002', status: 'red'}
+        cell = new Cells.QPCR(options)
+      })
+
+      it('will have the correct row', () => {
+        expect(cell.row).toEqual('D')
+      })
+
+      it('will have the correct column', () => {
+        expect(cell.column).toEqual('23')
+      })
+
+    })
+
     describe('standard', () => {
 
       beforeEach(() => {

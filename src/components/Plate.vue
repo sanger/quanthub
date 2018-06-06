@@ -45,6 +45,7 @@
 
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
+import QuantType from '@/components/QuantType.vue'
 import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
@@ -61,19 +62,12 @@ export default {
     return {
       msg: 'Plate',
       grid: {},
+      quantType: {},
       store: this.$Store,
       notice: '',
       uuid: '',
       // Plate Reader only
-      triplicates: new Triplicates({
-        key: 'Concentration', 
-        units: 'nM', 
-        conversionFactor: ((1000000 / 660) * (1 / 585)),
-        assay: {
-          type: 'Plate Reader',
-          version: 'v1.0'
-        }
-      }),
+      triplicates: {},
       alert: '',
       alertType: '',
       dismissSecs: 10,
@@ -123,15 +117,21 @@ export default {
   methods: {
     fetchData () {
       let json = localStorage.getItem(this.id)
+      let Cmp = Vue.extend(QuantType)
+
       if (json !== null) {
         this.grid = JSON.parse(json)
+        this.quantType = new Cmp({propsData: { quantType: this.grid.quantType }})
+      } else {
+        this.quantType = new Cmp()
       }
+      this.triplicates = new Triplicates(this.quantType.triplicateOptions)
     },
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
     toGrid () {
       let Cmp = Vue.extend(Grid)
-      let grid = new Cmp()
+      let grid = new Cmp({propsData: {quantType: this.grid.quantType}})
       for (let child of this.$children) {
         // because we now have a b-alert it also exists as a child
         // we need to exclude it as it will throw an error as it

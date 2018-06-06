@@ -71,7 +71,7 @@ export default {
       }
     }
   },
-  //TODO: Constantize well types.
+  // TODO: Constantize well types.
   methods: {
     isStandard () {
       return this.type === 'Standard'

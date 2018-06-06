@@ -13,5 +13,6 @@ describe('Upload.vue', () => {
 
   it('has a message', () => {
     expect(upload.msg).toEqual('Upload')
-  }) 
+  })
+
 })

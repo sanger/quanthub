@@ -33,10 +33,10 @@ class QPCR {
     this.status = cell.status
   }
   get row () {
-    return this.pos[0]
+    return this.pos.match(/[a-zA-Z]+/g).toString()
   }
   get column () {
-    return this.pos[1]
+    return this.pos.match(/[0-9]+/g).toString()
   }
   get type () {
     return this.isSample() ? 'Sample' : 'Standard'

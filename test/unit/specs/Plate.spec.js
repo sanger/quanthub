@@ -20,7 +20,7 @@ describe('Plate.vue', () => {
     axios.get.mockResolvedValue(response)
     $Store = Store
     id = 'plate1'
-    grid = new(Vue.extend(Grid))
+    grid = new(Vue.extend(Grid))({ propsData: { quantType: 'myNewQuantType'}})
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(id, JSON.stringify(grid.json))
     // we need to stub b-alert as it is not loaded on a mount.
@@ -49,8 +49,15 @@ describe('Plate.vue', () => {
 
   it('will create a new grid for saving', () => {
     let newGrid = plate.toGrid()
+    expect(newGrid.quantType).toEqual(grid.quantType)
     expect(newGrid.columns).toEqual(grid.json.columns)
     expect(Object.keys(newGrid.rows)).toHaveLength(Object.keys(newGrid.rows).length)
+  })
+
+  it('will have a quantType', () => {
+    expect(plate.quantType).toBeDefined()
+    expect(plate.quantType.key).toBeDefined()
+    expect(plate.quantType.triplicateOptions).toBeDefined()
   })
 
   describe('saving', () => {

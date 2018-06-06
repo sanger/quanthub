@@ -3,6 +3,10 @@
 export default {
   name: 'Grid',
   props: {
+    quantType: {
+      type: String,
+      default: 'plateReader'
+    },
     numberOfColumns: {
       type: Number,
       default: 24
@@ -26,6 +30,7 @@ export default {
     },
     json () {
       return {
+        quantType: this.quantType,
         columns: this.columns,
         rows: this.rows
       }

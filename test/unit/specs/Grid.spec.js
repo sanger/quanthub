@@ -23,12 +23,20 @@ describe('Grid.vue', () => {
     expect(grid.numberOfRows).toBeDefined()
   })
 
+  it('has a property for quantType', () => {
+    expect(grid.quantType).toBeDefined()
+  })
+
   describe('creation', () => {
 
     let cols, rows, keys
 
     beforeEach(() => {
-      grid = new cmp({propsData: { numberOfColumns: 10, numberOfRows: 20}})
+      grid = new cmp({propsData: { numberOfColumns: 10, numberOfRows: 20, quantType: 'someQuantType'}})
+    })
+
+    it('sets the quantType property', () => {
+      expect(grid.quantType).toEqual('someQuantType')
     })
 
     it('builds some columns', () => {
@@ -62,6 +70,7 @@ describe('Grid.vue', () => {
 
     it('produces some json', () => {
       let json = grid.json
+      expect(json.quantType).toEqual(grid.quantType)
       expect(json.columns).toEqual(grid.columns)
       expect(json.rows).toEqual(grid.rows)
     })
@@ -91,10 +100,6 @@ describe('Grid.vue', () => {
       expect(grid.find('E', '3')).toEqual(wells[1])
       expect(grid.find('J', '5')).toEqual(wells[2])
     })
-
-    // it('ensures that well is in correct format', () => {
-    //   well = 
-    // })
 
   })
   

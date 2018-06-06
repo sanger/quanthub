@@ -30,7 +30,11 @@ describe('QuantType.vue', () => {
     })
 
     it('provides a cell type', () => {
-      expect(quantType.cell).toEqual(Cells.PlateReader)
+      expect(quantType.Cell).toEqual(Cells.PlateReader)
+    })
+
+    it('has the triplicate options', () => {
+      expect(Object.keys(quantType.triplicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor']);
     })
 
   })
@@ -48,7 +52,7 @@ describe('QuantType.vue', () => {
 
   })
 
-   describe('qPCR', () => {
+  describe('qPCR', () => {
 
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
