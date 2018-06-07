@@ -26,10 +26,6 @@ module.exports = {
     return browser.globals.devServerURL + '/#/' + path
   },
 
-  // beforeEach: function(browser) {
-  //   id = getId(file(filePath(config.rootDir, 'plate_reader.csv')))
-  // },
-
   'upload page': function (browser) {
 
     browser
@@ -49,7 +45,7 @@ module.exports = {
       .url(this.url(browser, 'upload'))
       .waitForElementVisible('#app', 5000)
       .setValue('input[type="file"]', filePath(config.rootDir, 'plate_reader.csv'))
-      .click('select[id="quant-type"] option[value="plateReader"]')
+      .click('select[id="quant-type"] option[value="libraryPlateReader"]')
       .click('button[name=submit]')
       .pause(1000)
       .assert.containsText('.row > h3', id)
@@ -73,7 +69,7 @@ module.exports = {
       .url(this.url(browser, 'upload'))
       .waitForElementVisible('#app', 5000)
       .setValue('input[type="file"]', filePath(config.rootDir, 'qPCR.txt'))
-      .click('select[id="quant-type"] option[value="qPCR"]')
+      .click('select[id="quant-type"] option[value="libraryQPCR"]')
       .click('button[name=submit]')
       .pause(1000)
       .assert.containsText('.row > h3', id)

@@ -179,7 +179,7 @@ describe('Triplicates.vue', () => {
     })
 
     it('will have the correct number of triplicates', () => {
-      expect(triplicates.keys).toEqual(['A1', 'A2'])
+      expect(Array.from(triplicates.keys)).toEqual(['A1', 'A2'])
     })
 
     it('each triplicate will have correct stats', () => {

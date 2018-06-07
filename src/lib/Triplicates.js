@@ -94,16 +94,20 @@ class Triplicate {
 
 class TriplicateList {
   constructor (options = {}) {
-    this.items = {}
+    this.items = new Map()
     this.options = options
   }
 
   get keys () {
-    return Object.keys(this.items)
+    return this.items.keys()
   }
 
-  get length () {
-    return this.keys.length
+  get size () {
+    return this.items.size
+  }
+
+  get values () {
+    return Array.from(this.items.values())
   }
 
   // Try and find the well id in the list.
@@ -114,7 +118,7 @@ class TriplicateList {
     triplicate = this.find(well.id)
     if (triplicate === undefined) {
       triplicate = new Triplicate([well], this.options)
-      this.items[well.id] = triplicate
+      this.items.set(well.id, triplicate)
     } else {
       triplicate.add(well)
     }
@@ -123,11 +127,11 @@ class TriplicateList {
   }
 
   find (key) {
-    return this.items[key]
+    return this.items.get(key)
   }
 
   first () {
-    return this.items[this.keys[0]]
+    return this.items.values().next().value
   }
 }
 

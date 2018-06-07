@@ -19,7 +19,7 @@ describe('QuantFile.vue', () => {
     describe('csv', () => {
 
       beforeEach(async () => {
-        quantFile = new cmp()
+        quantFile = new cmp({propsData: { quant: 'libraryPlateReader'}})
         plate = fs.readFileSync(config.rootDir + '/test/data/plate_reader.csv', 'ascii')
         file = new File([plate], 'plate1.csv', { type: 'text/csv'})
       })
@@ -90,7 +90,7 @@ describe('QuantFile.vue', () => {
     describe('text tab delimited', () => {
 
       beforeEach(async () => {
-        quantFile = new cmp({propsData: { quant: 'qPCR'}})
+        quantFile = new cmp({propsData: { quant: 'libraryQPCR'}})
         plate = fs.readFileSync(config.rootDir + '/test/data/qPCR.txt', 'ascii')
         file = new File([plate], 'plate2.txt', { type: 'text/plain'})
       })

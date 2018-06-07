@@ -1,7 +1,7 @@
 {
-  "plateReader": {
-    "key": "plateReader",
-    "name": "Plate Reader",
+  "libraryPlateReader": {
+    "key": "libraryPlateReader",
+    "name": "Library - Plate Reader",
     "cellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -37,9 +37,69 @@
       }
     }
   },
-  "qPCR": {
-    "key": "qPCR",
-    "name": "qPCR",
+  "stockPlateReader": {
+    "key": "stockPlateReader",
+    "name": "Stock - Plate Reader",
+    "cellType": "PlateReader",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "Molarity",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Plate Reader",
+        "version": "v1.0"
+      }
+    }
+  },
+  "cherryPickPlateReader": {
+    "key": "cherryPickPlateReader",
+    "name": "CherryPick - Plate Reader",
+    "cellType": "PlateReader",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "Molarity",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Plate Reader",
+        "version": "v1.0"
+      }
+    }
+  },
+  "libraryQPCR": {
+    "key": "libraryQPCR",
+    "name": "Library - qPCR",
     "cellType": "QPCR",
     "parse": {
       "delimiter": "\t",

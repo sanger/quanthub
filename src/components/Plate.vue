@@ -88,7 +88,7 @@ export default {
       return {uuid: this.uuid}
     },
     json () {
-      return this.triplicates.keys.map(key => Object.assign(this.triplicates.find(key).json, this.metadata))
+      return this.triplicates.values.map(triplicate => Object.assign(triplicate.json, this.metadata))
     },
     jsonApiData () {
       return {data: {data: {attributes: this.json}}}

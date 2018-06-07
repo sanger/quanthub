@@ -39,28 +39,62 @@ describe('QuantType.vue', () => {
 
   })
 
-  describe('PlateReader', () => {
+  describe('libraryPlateReader', () => {
 
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
-      quantType = new cmp({propsData: { quantType: 'plateReader'}})
+      quantType = new cmp({propsData: { quantType: 'libraryPlateReader'}})
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes["plateReader"])
+      expect(quantType.$data).toEqual(quantTypes["libraryPlateReader"])
     })
 
   })
 
-  describe('qPCR', () => {
+  describe('stockPlateReader', () => {
 
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
-      quantType = new cmp({propsData: { quantType: 'qPCR'}})
+      quantType = new cmp({propsData: { quantType: 'stockPlateReader'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
+  describe('cherryPickPlateReader', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'cherryPickPlateReader'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
+  describe('libraryQPCR', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'libraryQPCR'}})
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes["qPCR"])
+      expect(quantType.$data).toEqual(quantTypes["libraryQPCR"])
     })
 
   })

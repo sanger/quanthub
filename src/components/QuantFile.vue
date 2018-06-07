@@ -10,7 +10,7 @@ export default {
   props: {
     quant: {
       type: String,
-      default: 'plateReader'
+      default: 'libraryPlateReader'
     },
     opts: {
       type: Object,

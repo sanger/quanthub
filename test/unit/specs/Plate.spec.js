@@ -91,7 +91,7 @@ describe('Plate.vue', () => {
 
     it('has some json', () => {
       plate.uuid = uuid
-      expect(plate.json).toHaveLength(plate.triplicates.keys.length)
+      expect(plate.json).toHaveLength(plate.triplicates.size)
       let json = plate.json[0]
       expect(json.uuid).toEqual(uuid)
     })
