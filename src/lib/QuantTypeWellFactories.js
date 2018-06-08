@@ -1,4 +1,4 @@
-// TODO: abstract out common behaviour
+// TODO: abstract out common behaviour, maybe turn into a DSL.
 class PlateReader {
   constructor (cell = {}) {
     this.row = cell.row

@@ -2,7 +2,7 @@
   "libraryPlateReader": {
     "key": "libraryPlateReader",
     "name": "Library - Plate Reader",
-    "cellType": "PlateReader",
+    "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n"],
@@ -40,7 +40,7 @@
   "stockPlateReader": {
     "key": "stockPlateReader",
     "name": "Stock - Plate Reader",
-    "cellType": "PlateReader",
+    "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n"],
@@ -70,7 +70,7 @@
   "cherryPickPlateReader": {
     "key": "cherryPickPlateReader",
     "name": "CherryPick - Plate Reader",
-    "cellType": "PlateReader",
+    "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n"],
@@ -100,7 +100,7 @@
   "libraryQPCR": {
     "key": "libraryQPCR",
     "name": "Library - qPCR",
-    "cellType": "QPCR",
+    "wellType": "QPCR",
     "parse": {
       "delimiter": "\t",
       "rowDelimiter": ["\r\n", "\r", "\n"],

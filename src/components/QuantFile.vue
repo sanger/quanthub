@@ -5,16 +5,14 @@ import Grid from '@/components/Grid.vue'
 import QuantType from '@/components/QuantType.vue'
 import Vue from 'vue'
 
+// Handles the upload of the file - can be csv or text
+// A quant type is passed in which determines the upload options e.g. file type.
 export default {
   name: 'QuantFile',
   props: {
     quant: {
       type: String,
       default: 'libraryPlateReader'
-    },
-    opts: {
-      type: Object,
-      default: () => {}
     }
   },
   data () {
@@ -61,7 +59,7 @@ export default {
         reader.onload = () => {
           this.raw = reader.result
           this.grid = new this.GridCmp({propsData: {quantType: this.quant}})
-          this.grid.addAll(parse(this.raw, this.quantType.parse).map(cell => new this.quantType.Cell(cell).json))
+          this.grid.addAll(parse(this.raw, this.quantType.parse).map(cell => new this.quantType.WellFactory(cell).json))
           resolve('File successfully uploaded')
         }
         reader.readAsText(file)

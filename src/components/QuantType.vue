@@ -1,7 +1,7 @@
 <script>
 
 import math from 'mathjs'
-import * as Cells from '@/lib/QuantTypes'
+import * as WellFactories from '@/lib/QuantTypeWellFactories'
 import quantTypes from '../../config/quantTypes'
 
 export default {
@@ -11,7 +11,7 @@ export default {
     return {
       key: 'quantType',
       name: 'Quant Type',
-      cellType: 'QuantType',
+      wellType: 'QuantType',
       parse: {
         delimiter: ',',
         from: 16,
@@ -36,8 +36,8 @@ export default {
         return factor.replace(key, factors[key])
       }, this.conversion.expression)).toFixed(3)
     },
-    Cell () {
-      return Cells[this.cellType]
+    WellFactory () {
+      return WellFactories[this.wellType]
     },
     triplicateOptions () {
       return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor})

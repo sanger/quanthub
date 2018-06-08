@@ -38,12 +38,6 @@ class Triplicate {
     return (this.average * this.options.conversionFactor).toFixed(this.decimalPlaces)
   }
 
-  // PCR WGS Av. lib. size bp = 585 bp
-  get nM () {
-    if (this.empty()) return '0'
-    return ((this.average) * ((1000000 / 660) * (1 / 585))).toFixed(this.decimalPlaces)
-  }
-
   get standardDeviation () {
     if (this.empty()) return '0'
     let average = this.average

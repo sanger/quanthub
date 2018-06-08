@@ -43,6 +43,14 @@
 
 <script>
 
+// A plate signifies the plate on the machine that does the quanting - not the plate that is being processed.
+// The plate structure is defined by the grid
+// Plate is made up of rows which are part of the grid which contains the wells.
+// When a plate is created it is added to the store as a sequencescape plate.
+// This store plate creates a set of triplicates. The plate id is cascaded down so that the well can add a triplicate
+// The assumption is made that the data exists in local storage from when it was uploaded.
+// The QuantType is assigned from local storage and a QuantType component is created.
+
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
 import QuantType from '@/components/QuantType.vue'
@@ -66,7 +74,6 @@ export default {
       store: this.$Store,
       notice: '',
       uuid: '',
-      // Plate Reader only
       triplicates: {},
       alert: '',
       alertType: '',
@@ -143,10 +150,14 @@ export default {
       }
       return grid.json
     },
+    // save the plate to local storage by recreating the grid
     save (event) {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
       this.showAlert('Plate saved to local storage', 'success')
     },
+    // send a get request to quantessential to return the barcode.
+    // build a request based on the triplicate data
+    // A post request is the sent to sequencescape to populat the qc_results table
     exportToSequencescape (event) {
       this.exporting = true
       axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)

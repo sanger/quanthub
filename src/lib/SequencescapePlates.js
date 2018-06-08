@@ -8,6 +8,7 @@ class Plate {
   }
 }
 
+// TODO: turn into a map
 class SequencescapePlateList {
   constructor () {
     this.items = {}
@@ -40,4 +41,4 @@ class SequencescapePlateList {
   }
 }
 
-export { SequencescapePlateList, Plate }
+export { SequencescapePlateList }

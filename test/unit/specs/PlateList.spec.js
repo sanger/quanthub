@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Plates from '@/components/Plates'
+import PlateList from '@/components/PlateList'
 import { mount } from '@vue/test-utils'
 import plateReader from '../../data/plate_reader'
 import Grid from '@/components/Grid'
@@ -20,7 +20,7 @@ describe('Plates.vue', () => {
     localStorage.setItem('plate2', JSON.stringify(plate.json))
     localStorage.setItem('plate3', JSON.stringify(plate.json))
 
-    cmp = mount(Plates, {})
+    cmp = mount(PlateList, {})
     plates = cmp.vm
   })
 

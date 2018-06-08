@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { mount } from '@vue/test-utils'
 import QuantType from '@/components/QuantType'
-import * as Cells from '@/lib/QuantTypes'
+import * as WellFactories from '@/lib/QuantTypeWellFactories'
 import quantTypes from '../../../config/quantTypes'
 
 describe('QuantType.vue', () => {
@@ -12,7 +12,7 @@ describe('QuantType.vue', () => {
 
     beforeEach(() => {
       options = { 
-                  cellType: 'PlateReader',
+                  wellType: 'PlateReader',
                   conversion: { 
                     factors: { 
                       dilution: 500, standardInsertSize: 452, libraryInsertSize: 573
@@ -29,8 +29,8 @@ describe('QuantType.vue', () => {
       expect(quantType.conversionFactor).toEqual("394.415")
     })
 
-    it('provides a cell type', () => {
-      expect(quantType.Cell).toEqual(Cells.PlateReader)
+    it('provides a well type', () => {
+      expect(quantType.WellFactory).toEqual(WellFactories.PlateReader)
     })
 
     it('has the triplicate options', () => {
