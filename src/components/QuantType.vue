@@ -4,6 +4,11 @@ import math from 'mathjs'
 import * as WellFactories from '@/lib/QuantTypeWellFactories'
 import quantTypes from '../../config/quantTypes'
 
+// Related to the different QuantTypes in configuration.
+// The data structure indicates the structure of how
+// the quant types should be in the configuration file.
+// It needs to be a component as the conversion factor needs
+// be calculated.
 export default {
   name: 'QuantType',
   props: ['quantType'],
@@ -29,6 +34,11 @@ export default {
   },
   components: {
   },
+  // Take the conversion expression and then inject the value for each
+  // factor into the placeholder.
+  // This produces a string expression which can be evaluated.
+  // This conversion factor is then used to create the adjusted average
+  // in triplicates. It is evaluated upfront which increases efficiency.
   computed: {
     conversionFactor () {
       let factors = this.conversion.factors
@@ -36,6 +46,8 @@ export default {
         return factor.replace(key, factors[key])
       }, this.conversion.expression)).toFixed(3)
     },
+    // A constant which relates to a factory for conversion of well
+    // to the correct format.
     WellFactory () {
       return WellFactories[this.wellType]
     },

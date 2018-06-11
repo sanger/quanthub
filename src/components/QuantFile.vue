@@ -31,6 +31,9 @@ export default {
     json () {
       return this.grid.json
     },
+    // takes the raw file and extracts the rows where the metadata is.
+    // for each row split it and extract each row of metadata into a JSON object.
+    // only the id is used at this stage.
     metadata () {
       let rows = this.raw.split(/\r?\n/).slice(0, this.quantType.metadata.rows)
       let metadata = {}
@@ -54,6 +57,10 @@ export default {
     upload (file) {
       // TODO: need to handle errors.
       // can't seem to get onerror to work.
+      // A new file reader object gets the raw data.
+      // The file is parsed by the quant type options and
+      // a factory is used to ensure standardisation of the data
+      // for when it is added to the grid.
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.onload = () => {

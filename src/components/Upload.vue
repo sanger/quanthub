@@ -4,7 +4,7 @@
       <div class="form-group">
         <div class="form-group">
           <label for="quantType">Select a Quant Type:</label>
-          <select id="quant-type" class="form-control" v-model="quantType">
+          <select id="quant-type" class="form-control" name="quantType" v-model="quantType">
               <option v-for="(option, key) in quantTypes" v-bind:key="key" v-bind:value="key">{{option.name}}</option>
           </select>
         </div>
@@ -23,6 +23,7 @@
 
 <script>
 
+// Uploads a file. Parse options dependent on quantType
 import Vue from 'vue'
 import QuantFile from '@/components/QuantFile'
 import quantTypes from '../../config/quantTypes.json'
@@ -45,6 +46,10 @@ export default {
     QuantFile
   },
   methods: {
+    // create a quantFile based on the quantType
+    // if the upload is successful it is saved to local storage
+    // The user is then redirected to the plate page
+    // where the file is retrieved from local storage.
     upload (event) {
       const file = document.getElementById('file-input').files[0]
       let quantFile = new this.Cmp({propsData: {quant: this.quantType}})
@@ -62,14 +67,6 @@ export default {
     },
     addFilenames (event) {
       this.$refs.browseFiles.value = this.$refs.fileInput.value.replace(/^.*[\\]/, '')
-    },
-    countDownChanged (dismissCountDown) {
-      this.dismissCountDown = dismissCountDown
-    },
-    showAlert (alert, alertType) {
-      this.alert = alert
-      this.alertType = alertType
-      this.dismissCountDown = this.dismissSecs
     }
   }
 }

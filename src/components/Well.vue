@@ -7,7 +7,10 @@
 </template>
 
 <script>
-
+  
+// A well can be one of 3 different types which will determine its behaviour:
+// - Sample ~ part of a triplicate. Can be active or inactive and may need inspection
+// - Standard/Control ~ always inactive. Indentified by colours.
 export default {
   name: 'Well',
   props: {
