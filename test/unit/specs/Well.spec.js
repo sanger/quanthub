@@ -173,36 +173,4 @@ describe('Well.vue', () => {
       expect(well.$el.className).not.toMatch('inactive')
     })
   })
-
-  describe('Compare', () => {
-
-    let well1, well2, well3
-
-    beforeEach(() => {
-      let well = Vue.extend(Well)
-      well1 = new well({propsData: {row: 'A',column: '1', type: 'Sample', id: 'A1', concentration:'3.014', plateId: plateId}})
-      well2 = new well({propsData: {row: 'A',column: '14', type: 'Sample', id: 'A1', concentration:'3.014', plateId: plateId}})
-      well3 = new well({propsData: {row: 'B',column: '2', type: 'Sample', id: 'A1', concentration:'3.014', plateId: plateId}})
-    })
-
-    it('well with higher row should be higher', () => {
-      expect(well3.compare(well1)).toEqual(1)
-    })
-
-    it('well with lower row should be lower', () => {
-      expect(well1.compare(well3)).toEqual(-1)
-    })
-
-    it('well with same row and higher column should be higher', () => {
-      expect(well2.compare(well1)).toEqual(1)
-    })
-
-    it('well with same row and lower column should be lower', () => {
-      expect(well1.compare(well2)).toEqual(-1)
-    })
-
-    it('well with same row and column should be equal', () => {
-      expect(well1.compare(well1)).toEqual(0)
-    })
-  })
 })

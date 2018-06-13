@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  
+
 // A well can be one of 3 different types which will determine its behaviour:
 // - Sample ~ part of a triplicate. Can be active or inactive and may need inspection
 // - Standard/Control ~ always inactive. Indentified by colours.
@@ -46,6 +46,7 @@ export default {
     }
   },
   computed: {
+    // The class is defined by the well type
     classObject () {
       if (!this.isActive && this.hasConcentration() && this.isSample()) {
         return {
@@ -90,21 +91,6 @@ export default {
     },
     needsInspection () {
       return parseFloat(this.triplicate.cv) > 20
-    },
-    compare (that) {
-      if (this.row > that.row) {
-        return 1
-      } else if (this.row < that.row) {
-        return -1
-      } else {
-        if (parseInt(this.column) > parseInt(that.column)) {
-          return 1
-        } else if (parseInt(this.column) < parseInt(that.column)) {
-          return -1
-        } else {
-          return 0
-        }
-      }
     },
     setActive () {
       this.isActive = !this.isActive
