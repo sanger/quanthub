@@ -5,7 +5,7 @@
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
-      "rowDelimiter": ["\r\n", "\r", "\n"],
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
       "from": 16,
       "columns": [
         "row",
@@ -43,7 +43,7 @@
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
-      "rowDelimiter": ["\r\n", "\r", "\n"],
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
       "from": 16,
       "columns": [
         "row",
@@ -73,7 +73,7 @@
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
-      "rowDelimiter": ["\r\n", "\r", "\n"],
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
       "from": 16,
       "columns": [
         "row",
@@ -103,7 +103,7 @@
     "wellType": "QPCR",
     "parse": {
       "delimiter": "\t",
-      "rowDelimiter": ["\r\n", "\r", "\n"],
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
       "from": 3,
       "columns": [
         "include",
