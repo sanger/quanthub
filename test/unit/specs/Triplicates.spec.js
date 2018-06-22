@@ -43,10 +43,10 @@ describe('Triplicates.vue', () => {
         // (3.014 - 3.004)squared = 0.0001
         // (3.163 - 3.004)squared = 0.025281
         // (2.836 - 3.004)squared = 0.028224
-        // (0.0001 + 0.025281 + 0.028224) / 3 = 0.018
-        // sqrt (0.018) = 0.134164078649987
+        // (0.0001 + 0.025281 + 0.028224) / 3 = 0.027
+        // sqrt (0.018) = 0.163714690849661
 
-        expect(triplicate.standardDeviation).toEqual('0.134')
+        expect(triplicate.standardDeviation).toEqual('0.164')
       })
 
       it('will have an id', () => {
@@ -54,8 +54,8 @@ describe('Triplicates.vue', () => {
       })
       
       it('will set a cv', () => {
-        // (0.134/3.004) * 100 = 4.46
-        expect(triplicate.cv).toEqual('4.461')
+        // (0.164/3.004) * 100 = 5.459
+        expect(triplicate.cv).toEqual('5.459')
 
       })
 
@@ -71,13 +71,13 @@ describe('Triplicates.vue', () => {
         // nM = 7.998
         // (3.014 - 3.088)squared = 0.005
         // (3.163 - 3.088)squared = 0.006
-        // (0.005 + 0.006) / 2 = 0.006
-        // std = sqrt (0.006) = 0.077
-        // cv = (0.077/3.088 * 100) = 2.494
+        // (0.005 + 0.006) / 1 = 0.011
+        // std = sqrt (0.011) = 0.105
+        // cv = (0.105/3.088 * 100) = 3.400
         expect(triplicate.average).toEqual('3.088')
         expect(triplicate.nM).toEqual('7.998')
-        expect(triplicate.standardDeviation).toEqual('0.077')
-        expect(triplicate.cv).toEqual('2.494')
+        expect(triplicate.standardDeviation).toEqual('0.105')
+        expect(triplicate.cv).toEqual('3.400')
 
       })
 
@@ -100,8 +100,8 @@ describe('Triplicates.vue', () => {
 
       it ('will create stats', () => {
         expect(triplicate.average).toEqual('3.004')
-        expect(triplicate.standardDeviation).toEqual('0.134')
-        expect(triplicate.cv).toEqual('4.461')
+        expect(triplicate.standardDeviation).toEqual('0.164')
+        expect(triplicate.cv).toEqual('5.459')
       })
     })
 
