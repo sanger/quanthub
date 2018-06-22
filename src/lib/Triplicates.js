@@ -38,6 +38,8 @@ class Triplicate {
     return (this.average * this.options.conversionFactor).toFixed(this.decimalPlaces)
   }
 
+  // Should be sample standard deviation i.e. average square difference
+  // calculated as N - 1
   get standardDeviation () {
     if (this.empty()) return '0'
     let average = this.average
@@ -47,7 +49,7 @@ class Triplicate {
       let sqrDiff = diff * diff
       return sqrDiff
     })
-    let avgSquareDiff = this.calculateAverage(squareDiffs)
+    let avgSquareDiff = this.calculateAverage(squareDiffs, 1)
     let stdDev = Math.sqrt(avgSquareDiff)
     return stdDev.toFixed(this.decimalPlaces)
   }
@@ -69,9 +71,12 @@ class Triplicate {
     }
   }
 
-  calculateAverage (values) {
+  // sample represents whether the average needs to be adjusted if
+  // it is from a sample. This is important for calculating sample
+  // standard deviation
+  calculateAverage (values, sample = 0) {
     let sum = values.reduce(function (a, b) { return a + b })
-    return (sum / values.length).toFixed(3)
+    return (sum / (values.length - sample)).toFixed(3)
   }
 
   add (well) {
