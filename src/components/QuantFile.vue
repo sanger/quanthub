@@ -64,7 +64,9 @@ export default {
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.onload = () => {
-          this.raw = reader.result
+          // \r\r\n is a non standard windows line ending which causes all sorts of problems.
+          // TODO: move it out into a constant.
+          this.raw = reader.result.replace(/\r\r\n/g, '\n')
           this.grid = new this.GridCmp({propsData: {quantType: this.quant}})
           this.grid.addAll(parse(this.raw, this.quantType.parse).map(cell => new this.quantType.WellFactory(cell).json))
           resolve('File successfully uploaded')

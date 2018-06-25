@@ -102,11 +102,8 @@ describe('QuantFile.vue', () => {
 
       describe('successful', () => {
 
-        let rows
-
         beforeEach(async () => {
           quantFile.upload(file)
-          rows = plate.split('\r\n')
           await flushPromises()
           await flushPromises()
         })
@@ -118,6 +115,20 @@ describe('QuantFile.vue', () => {
         it('has an id', () => {
           expect(quantFile.id).toEqual('LA_384qPCR_PCR_Libs_Lesley')
         })
+      })
+
+      describe('file with windows line feeds i.e \r\n\n', () => {
+
+        beforeEach(async () => {
+          plate = fs.readFileSync(config.rootDir + '/test/data/qPCR_blank_lines.txt', 'ascii')
+          file = new File([plate], 'plate2.txt', { type: 'text/plain'})
+        })
+
+        it('resolves', async () => {
+          expect.assertions(1)
+          await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+        })
+        
       })
 
     })
