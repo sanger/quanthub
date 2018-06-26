@@ -18,8 +18,10 @@ class Triplicate {
 
   // If a well is not active it should not be considered as part of the
   // statistical calculation
+  // If a well has a concentration of n.a. this throws an error so it needs
+  // to be excluded
   get activeWells () {
-    return this.wells.filter(well => well.isActive)
+    return this.wells.filter(well => (well.isActive && well.concentration !== 'n.a.'))
   }
 
   get average () {
