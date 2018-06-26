@@ -22,6 +22,10 @@ class Triplicate {
     return this.wells[0].id
   }
 
+  get size () {
+    return this.activeWells.length
+  }
+
   // If a well is not active it should not be considered as part of the
   // statistical calculation
   // If a well has a concentration of n.a. this throws an error so it needs
@@ -43,7 +47,8 @@ class Triplicate {
   // Should be sample standard deviation i.e. average square difference
   // calculated as N - 1
   get standardDeviation () {
-    if (this.empty()) return '0'
+    if (this.empty() || this.size === 1) return '0'
+
     let average = this.average
 
     let squareDiffs = this.activeWells.map(function (well) {
@@ -57,7 +62,7 @@ class Triplicate {
   }
 
   get cv () {
-    if (this.empty()) return '0'
+    if (this.empty() || this.size === 1) return '0'
     return ((this.standardDeviation / this.average) * 100).toFixed(this.decimalPlaces)
   }
 

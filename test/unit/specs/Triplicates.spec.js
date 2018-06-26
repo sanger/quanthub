@@ -158,6 +158,20 @@ describe('Triplicates.vue', () => {
         expect(triplicate.average).toEqual(well1.concentration)
       })
     })
+
+    describe('when there is only one value', () => {
+      beforeEach(() => {
+        triplicate = new Triplicate([well1])
+      })
+
+      it('standard deviation will be 0', () => {
+        expect(triplicate.standardDeviation).toEqual('0')
+      })
+
+      it('cv will be 0', () => {
+        expect(triplicate.cv).toEqual('0')
+      })
+    })
   })
 
   describe('Triplicates', () => {
