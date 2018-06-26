@@ -121,6 +121,18 @@ describe('Triplicates.vue', () => {
         expect(triplicate.cv).toEqual('0')
       })
     })
+
+    describe('when a well has an invalid value', () => {
+      beforeEach(() => {
+        well2.concentration = 'n.a.'
+        well3.concentration = 'n.a.'
+        triplicate = new Triplicate([well1, well2, well3])
+      })
+
+      it('will exclude those values from the triplicate', () => {
+        expect(triplicate.average).toEqual(well1.concentration)
+      })
+    })
   })
 
   describe('Triplicates', () => {
