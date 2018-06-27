@@ -94,8 +94,6 @@ describe('Triplicates.vue', () => {
 
     describe('conversion', () => {
 
-      let triplicate
-
       it('just works with no options added', () => {
         triplicate = new Triplicate([well1, well2, well3])
         expect(triplicate.adjustedAverage).toEqual(triplicate.average)
@@ -109,6 +107,32 @@ describe('Triplicates.vue', () => {
       it('works with option as an expression', () => {
         triplicate = new Triplicate([well1, well2, well3], {conversionFactor: ((1000000 / 660) * (1 / 585))})
         expect(triplicate.adjustedAverage).toEqual('7.780')
+      })
+    })
+
+    describe('cv threshold', () => {
+
+      let well4, well5, well6
+      
+      beforeEach(() => {
+        well4 = new cmp({propsData: { row: 'A', column: '1', content:'Sample X1', id: 'A1', concentration: '0.685'}})
+        well5 = new cmp({propsData: { row: 'A', column: '2', content:'Sample X1', id: 'A1', concentration: '0.960'}})
+        well6 = new cmp({propsData: { row: 'A', column: '3', content:'Sample X1', id: 'A1', concentration: '0.660'}})
+        triplicate = new Triplicate([well4, well5, well6], {cvThreshold: 20})
+      })
+
+      it('will have a cv threshold', () => {
+        expect(triplicate.cvThreshold).toEqual(20.000)
+      })
+
+      it('will indicate whether the triplicate needs to be inspected', () => {
+        expect(triplicate.needsInspection()).toBeTruthy()
+      })
+
+      it('will indicate whether triplicate needs to be inspected at the threshold', () => {
+        well5 = new cmp({propsData: { row: 'A', column: '2', content:'Sample X1', id: 'A1', concentration: '0.935'}})
+        triplicate = new Triplicate([well4, well5, well6], {cvThreshold: 20})
+        expect(triplicate.needsInspection()).toBeTruthy()
       })
     })
 
@@ -180,7 +204,7 @@ describe('Triplicates.vue', () => {
     let triplicate1, triplicate2, triplicates, options
 
     beforeEach(() => {
-      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}}
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, cvThreshold: 5}
       triplicate1 = new Triplicate([well1, well2, well3], options)
 
       well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.616'}})

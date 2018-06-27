@@ -3,6 +3,7 @@
     "key": "libraryPlateReader",
     "name": "Library - Plate Reader",
     "wellType": "PlateReader",
+    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -41,6 +42,7 @@
     "key": "stockPlateReader",
     "name": "Stock - Plate Reader",
     "wellType": "PlateReader",
+    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -71,6 +73,7 @@
     "key": "cherryPickPlateReader",
     "name": "CherryPick - Plate Reader",
     "wellType": "PlateReader",
+    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -101,6 +104,7 @@
     "key": "libraryQPCR",
     "name": "Library - qPCR",
     "wellType": "QPCR",
+    "cvThreshold": 15,
     "parse": {
       "delimiter": "\t",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],

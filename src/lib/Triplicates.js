@@ -13,6 +13,7 @@ class Triplicate {
       key: 'Standard',
       units: 'standard',
       conversionFactor: 1,
+      cvThreshold: 1,
       assay: {type: 'Standard', version: '1'}}, options)
     this.decimalPlaces = 3
   }
@@ -78,6 +79,10 @@ class Triplicate {
     }
   }
 
+  get cvThreshold () {
+    return this.options.cvThreshold
+  }
+
   // sample represents whether the average needs to be adjusted if
   // it is from a sample. This is important for calculating sample
   // standard deviation
@@ -92,6 +97,10 @@ class Triplicate {
 
   empty () {
     return (this.wells.length === 0)
+  }
+
+  needsInspection () {
+    return this.cv >= this.cvThreshold
   }
 }
 

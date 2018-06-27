@@ -37,6 +37,10 @@ describe('QuantType.vue', () => {
       expect(Object.keys(quantType.triplicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor']);
     })
 
+    it('has a cv threshold', () => {
+      expect(quantType.cvThreshold).toBeDefined()
+    })
+
   })
 
   describe('libraryPlateReader', () => {

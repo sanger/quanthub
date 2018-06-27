@@ -17,6 +17,7 @@ export default {
       key: 'quantType',
       name: 'Quant Type',
       wellType: 'QuantType',
+      cvThreshold: 1,
       parse: {
         delimiter: ',',
         from: 16,
