@@ -107,8 +107,8 @@ describe('Well.vue', () => {
       expect(well.$el.className).toMatch('standard')
     })
 
-    it('will not create a triplicate', () => {
-      expect(well.triplicate).toEqual({})
+    it('will create an empty triplicate', () => {
+      expect(well.triplicate.size).toEqual(0)
     })
   })
 
@@ -155,8 +155,8 @@ describe('Well.vue', () => {
       expect(well.$el.className).toMatch('control')
     })
 
-    it('will not create a triplicate', () => {
-      expect(well.triplicate).toEqual({})
+    it('will create an empty triplicate', () => {
+      expect(well.triplicate.size).toEqual(0)
     })
   })
 

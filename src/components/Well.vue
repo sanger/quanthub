@@ -8,6 +8,8 @@
 
 <script>
 
+import { Triplicate } from '@/lib/Triplicates'
+
 // A well can be one of 3 different types which will determine its behaviour:
 // - Sample ~ part of a triplicate. Can be active or inactive and may need inspection
 // - Standard/Control ~ always inactive. Indentified by colours.
@@ -41,7 +43,7 @@ export default {
     return {
       msg: 'Well',
       store: this.$Store,
-      triplicate: {},
+      triplicate: new Triplicate(),
       isActive: this.active
     }
   },
@@ -90,7 +92,7 @@ export default {
       return this.concentration !== ''
     },
     needsInspection () {
-      return parseFloat(this.triplicate.cv) > 20
+      return this.triplicate.needsInspection()
     },
     setActive () {
       this.isActive = !this.isActive
