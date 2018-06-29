@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Well from '@/components/Well'
-import {TriplicateList as Triplicates, Triplicate} from '@/lib/Triplicates'
+import {TriplicateList as Triplicates, Triplicate, NullTriplicate} from '@/lib/Triplicates'
 
 describe('Triplicates.vue', () => {
 
@@ -20,7 +20,7 @@ describe('Triplicates.vue', () => {
     describe('creating all wells up front', () => {
 
       beforeEach(() => {
-        triplicate = new Triplicate([well1, well2, well3])
+        triplicate = new Triplicate([well1, well2, well3], {cvThreshold: 20})
       })
 
       it('will have three wells', () => {
@@ -55,7 +55,7 @@ describe('Triplicates.vue', () => {
       it('will set a cv', () => {
         // (0.164/3.004) * 100 = 5.459
         expect(triplicate.cv).toEqual('5.459')
-
+        expect(triplicate.needsInspection()).toBeFalsy()
       })
 
       it('can retrieve active wells', () => {
@@ -196,6 +196,23 @@ describe('Triplicates.vue', () => {
         expect(triplicate.cv).toEqual('0')
       })
     })
+
+    describe('when the values are really small', () => {
+      beforeEach(() => {
+        well1.concentration = '0.0000142'
+        well2.concentration = '0.0000142'
+        well3.concentration = '0.0000142'
+        triplicate = new Triplicate([well1, well2, well3])
+      })
+
+      it('standard deviation will be 0', () => {
+        expect(triplicate.standardDeviation).toEqual('0.000')
+      })
+
+      it('cv will be 0', () => {
+        expect(triplicate.cv).toEqual('0')
+      })
+    })
   })
 
   describe('Triplicates', () => {
@@ -239,5 +256,15 @@ describe('Triplicates.vue', () => {
       expect(triplicate.options).toEqual(options)
     })
 
+  })
+
+  describe('NullTriplicate', () => {
+    it('size will always return 0', () => {
+      expect(NullTriplicate.size).toEqual(0)
+    })
+
+    it('needs Inspection will always return false', () => {
+      expect(NullTriplicate.needsInspection()).toBeFalsy()
+    })
   })
 })

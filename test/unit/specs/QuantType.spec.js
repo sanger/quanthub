@@ -34,7 +34,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the triplicate options', () => {
-      expect(Object.keys(quantType.triplicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor']);
+      expect(Object.keys(quantType.triplicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor', 'cvThreshold']);
     })
 
     it('has a cv threshold', () => {

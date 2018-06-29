@@ -109,6 +109,7 @@
       "delimiter": "\t",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
       "from": 3,
+      "relax_column_count": true,
       "columns": [
         "include",
         "color",

@@ -53,7 +53,7 @@ export default {
       return WellFactories[this.wellType]
     },
     triplicateOptions () {
-      return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor})
+      return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold})
     }
   },
   methods: {

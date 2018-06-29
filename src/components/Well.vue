@@ -8,7 +8,7 @@
 
 <script>
 
-import { Triplicate } from '@/lib/Triplicates'
+import { NullTriplicate } from '@/lib/Triplicates'
 
 // A well can be one of 3 different types which will determine its behaviour:
 // - Sample ~ part of a triplicate. Can be active or inactive and may need inspection
@@ -43,7 +43,7 @@ export default {
     return {
       msg: 'Well',
       store: this.$Store,
-      triplicate: new Triplicate(),
+      triplicate: NullTriplicate,
       isActive: this.active
     }
   },

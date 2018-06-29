@@ -6,6 +6,11 @@
     considered an outlier and can be removed from the triplicate.
 */
 
+const NullTriplicate = {
+  size: 0,
+  needsInspection () { return false }
+}
+
 class Triplicate {
   constructor (wells = [], options = {}) {
     this.wells = wells
@@ -63,7 +68,7 @@ class Triplicate {
   }
 
   get cv () {
-    if (this.empty() || this.size === 1) return '0'
+    if (this.empty() || this.size === 1 || this.standardDeviation === '0.000') return '0'
     return ((this.standardDeviation / this.average) * 100).toFixed(this.decimalPlaces)
   }
 
@@ -96,7 +101,7 @@ class Triplicate {
   }
 
   empty () {
-    return (this.wells.length === 0)
+    return (this.wells.length === 0 || this.size === 0)
   }
 
   needsInspection () {
@@ -150,4 +155,4 @@ class TriplicateList {
   }
 }
 
-export { TriplicateList, Triplicate }
+export { TriplicateList, Triplicate, NullTriplicate }
