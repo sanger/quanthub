@@ -131,6 +131,21 @@ describe('QuantFile.vue', () => {
         
       })
 
+      // This type of file errors even though it doesn't seem to have extra columns
+      describe('file with extra columns', () => {
+
+        beforeEach(() => {
+          plate = fs.readFileSync(config.rootDir + '/test/data/qPCR_extra_columns.txt', 'ascii')
+          file = new File([plate], 'plate3.txt', { type: 'text/plain'})
+        })
+
+        it('resolves', async () => {
+          expect.assertions(1)
+          await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+        })
+        
+      })
+
     })
   })
   

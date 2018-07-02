@@ -1,0 +1,386 @@
+Experiment: DN508674_PF_384_qPCR_08_03_2018  Selected Filter: SYBR Green I / HRM Dye (465-510)
+Include	Color	Pos	Name	Cp	Concentration	Standard	Status
+True	255	A1	A1	20.68	6.32E-3	0	
+True	255	A2	A1	10.00	7.39E0	0	
+True	255	A3	A2	10.80	4.36E0	0	
+True	255	A4	A2	10.78	4.43E0	0	
+True	255	A5	A3	  9.99	7.44E0	0	
+True	255	A6	A3	10.09	6.96E0	0	
+True	255	A7	A4	10.80	4.38E0	0	
+True	255	A8	A4	10.84	4.25E0	0	
+True	255	A9	A5	10.53	5.22E0	0	
+True	255	A10	A5	10.50	5.32E0	0	
+True	255	A11	A6	10.06	7.11E0	0	
+True	255	A12	A6	10.01	7.38E0	0	
+True	255	A13	A7	  9.60	9.63E0	0	
+True	255	A14	A7	  9.72	8.90E0	0	
+True	255	A15	A8	10.05	7.16E0	0	
+True	255	A16	A8	10.16	6.66E0	0	
+True	255	A17	A9	  9.54	1.01E1	0	
+True	255	A18	A9	  9.65	9.36E0	0	
+True	255	A19	A10	  9.95	7.66E0	0	
+True	255	A20	A10	  9.95	7.68E0	0	
+True	255	A21	A11	  9.84	8.22E0	0	
+True	255	A22	A11	  9.87	8.10E0	0	
+True	255	A23	A12	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	A24	A12	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	128	B1	200pM	  5.00	2.03E2	200	< - Early Cp call (first five cycles) has higher uncertainty
+True	255	B2	A1	  9.86	8.13E0	0	
+True	128	B3	200pM	  5.00	2.03E2	200	< - Early Cp call (first five cycles) has higher uncertainty
+True	255	B4	A2	10.72	4.62E0	0	
+True	128	B5	200pM	  5.00	2.03E2	200	< - Early Cp call (first five cycles) has higher uncertainty
+True	255	B6	A3	  9.98	7.49E0	0	
+True	65280	B7	Sample 31			0	
+True	255	B8	A4	10.76	4.47E0	0	
+True	65280	B9	Sample 33			0	
+True	255	B10	A5	10.48	5.39E0	0	
+True	16711680	B11	Sample 35	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	B12	A6	  9.91	7.87E0	0	
+True	16711680	B13	Sample 37	  9.96	7.63E0	0	? - Detector Call uncertain
+True	255	B14	A7	  9.65	9.35E0	0	
+True	65280	B15	Sample 39			0	
+True	255	B16	A8	10.02	7.33E0	0	
+True	65280	B17	Sample 41			0	
+True	255	B18	A9	  9.65	9.35E0	0	
+True	65280	B19	Sample 43			0	
+True	255	B20	A10	  9.88	8.00E0	0	
+True	65280	B21	Sample 45			0	
+True	255	B22	A11	  9.24	1.22E1	0	
+True	65280	B23	Sample 47			0	
+True	255	B24	A12	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	C1	B1	  9.49	1.04E1	0	
+True	255	C2	B1	  9.75	8.76E0	0	
+True	255	C3	B2	  9.71	9.00E0	0	
+True	255	C4	B2	  9.66	9.25E0	0	
+True	255	C5	B3	  9.69	9.13E0	0	
+True	255	C6	B3	  9.65	9.33E0	0	
+True	255	C7	B4	10.52	5.24E0	0	
+True	255	C8	B4	10.27	6.19E0	0	
+True	255	C9	B5	10.77	4.46E0	0	
+True	255	C10	B5	10.83	4.28E0	0	
+True	255	C11	B6	  9.72	8.94E0	0	
+True	255	C12	B6	  9.74	8.80E0	0	
+True	255	C13	B7	  9.71	8.95E0	0	
+True	255	C14	B7	10.04	7.21E0	0	
+True	255	C15	B8	10.45	5.52E0	0	
+True	255	C16	B8	10.46	5.46E0	0	
+True	255	C17	B9	10.74	4.54E0	0	
+True	255	C18	B9	10.62	4.93E0	0	
+True	255	C19	B10	  9.72	8.91E0	0	
+True	255	C20	B10	  9.91	7.87E0	0	
+True	255	C21	B11	  9.71	8.98E0	0	
+True	255	C22	B11	  9.66	9.26E0	0	
+True	255	C23	B12	10.78	4.43E0	0	
+True	255	C24	B12	10.78	4.43E0	0	
+True	128	D1	20pM	  8.52	1.97E1	20	
+True	255	D2	B1	  9.77	8.61E0	0	
+True	128	D3	20pM	  8.56	1.93E1	20	
+True	255	D4	B2	  9.58	9.79E0	0	
+True	128	D5	20pM	  8.57	1.91E1	20	
+True	255	D6	B3	  9.70	9.02E0	0	
+True	16711680	D7	Sample 79	  9.78	8.58E0	0	? - Detector Call uncertain
+True	255	D8	B4	10.42	5.61E0	0	
+True	255	D9	Sample 81	10.64	4.85E0	0	
+True	255	D10	B5	11.00	3.83E0	0	
+True	65280	D11	Sample 83			0	
+True	255	D12	B6	  9.65	9.37E0	0	
+True	16711680	D13	Sample 85	  9.81	8.43E0	0	? - Detector Call uncertain
+True	255	D14	B7	  9.95	7.66E0	0	
+True	65280	D15	Sample 87			0	
+True	255	D16	B8	10.26	6.23E0	0	
+True	16711680	D17	Sample 89	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	D18	B9	10.76	4.47E0	0	
+True	255	D19	Sample 91	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	D20	B10	  9.81	8.42E0	0	
+True	65280	D21	Sample 93			0	
+True	255	D22	B11	  8.26	2.35E1	0	
+True	255	D23	Sample 95	10.60	4.99E0	0	
+True	255	D24	B12	10.86	4.19E0	0	
+True	255	E1	C1	10.22	6.42E0	0	
+True	255	E2	C1	10.11	6.87E0	0	
+True	255	E3	C2	  9.79	8.52E0	0	
+True	255	E4	C2	  9.79	8.54E0	0	
+True	255	E5	C3	  9.42	1.08E1	0	
+True	255	E6	C3	  9.19	1.27E1	0	
+True	255	E7	C4	  9.71	8.97E0	0	
+True	255	E8	C4	  9.78	8.59E0	0	
+True	255	E9	C5	10.73	4.58E0	0	
+True	255	E10	C5	10.64	4.84E0	0	
+True	255	E11	C6	  9.84	8.22E0	0	
+True	255	E12	C6	  9.88	8.02E0	0	
+True	255	E13	C7	10.06	7.14E0	0	
+True	255	E14	C7	  9.94	7.70E0	0	
+True	255	E15	C8	10.32	6.02E0	0	
+True	255	E16	C8	10.31	6.02E0	0	
+True	255	E17	C9	  9.54	1.01E1	0	
+True	255	E18	C9	  9.60	9.67E0	0	
+True	255	E19	C10	  9.87	8.08E0	0	
+True	255	E20	C10	  9.93	7.78E0	0	
+True	255	E21	C11	  9.81	8.40E0	0	
+True	255	E22	C11	  9.94	7.72E0	0	
+True	255	E23	C12	10.23	6.35E0	0	
+True	255	E24	C12	10.31	6.03E0	0	
+True	128	F1	2pM	11.92	2.08E0	2	
+True	255	F2	C1	  9.98	7.50E0	0	
+True	128	F3	2pM	11.98	2.00E0	2	
+True	255	F4	C2	  9.61	9.58E0	0	
+True	128	F5	2pM	11.96	2.03E0	2	
+True	255	F6	C3	  9.22	1.24E1	0	
+True	65280	F7	Sample 127			0	
+True	255	F8	C4	  9.73	8.86E0	0	
+True	16711680	F9	Sample 129	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	F10	C5	10.56	5.12E0	0	
+True	65280	F11	Sample 131			0	
+True	255	F12	C6	  9.90	7.94E0	0	
+True	16711680	F13	Sample 133	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	F14	C7	  9.77	8.61E0	0	
+True	16711680	F15	Sample 135	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	F16	C8	10.17	6.61E0	0	
+True	16711680	F17	Sample 137	10.05	7.17E0	0	? - Detector Call uncertain
+True	255	F18	C9	  9.67	9.20E0	0	
+True	255	F19	Sample 139	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	F20	C10	  9.74	8.82E0	0	
+True	65280	F21	Sample 141			0	
+True	255	F22	C11	  9.81	8.39E0	0	
+True	65280	F23	Sample 143			0	
+True	255	F24	C12	10.44	5.55E0	0	
+True	255	G1	D1	  9.90	7.92E0	0	
+True	255	G2	D1	  9.88	8.01E0	0	
+True	255	G3	D2	  9.72	8.94E0	0	
+True	255	G4	D2	  9.52	1.02E1	0	
+True	255	G5	D3	10.61	4.95E0	0	
+True	255	G6	D3	10.64	4.87E0	0	
+True	255	G7	D4	10.25	6.26E0	0	
+True	255	G8	D4	10.44	5.55E0	0	
+True	255	G9	D5	  9.77	8.60E0	0	
+True	255	G10	D5	  9.74	8.78E0	0	
+True	255	G11	D6	  9.96	7.59E0	0	
+True	255	G12	D6	  9.92	7.81E0	0	
+True	255	G13	D7	  9.26	1.21E1	0	
+True	255	G14	D7	  9.29	1.18E1	0	
+True	255	G15	D8	10.50	5.34E0	0	
+True	255	G16	D8	10.53	5.23E0	0	
+True	255	G17	D9	  9.62	9.51E0	0	
+True	255	G18	D9	  9.63	9.47E0	0	
+True	255	G19	D10	  9.30	1.17E1	0	
+True	255	G20	D10	  9.12	1.33E1	0	
+True	255	G21	D11	10.22	6.40E0	0	
+True	255	G22	D11	10.19	6.53E0	0	
+True	255	G23	D12	10.50	5.34E0	0	
+True	255	G24	D12	10.53	5.22E0	0	
+True	128	H1	0.2pM	15.44	2.03E-1	0.2	
+True	255	H2	D1	  9.81	8.38E0	0	
+True	128	H3	0.2pM	15.48	1.97E-1	0.2	
+True	255	H4	D2	  9.49	1.04E1	0	
+True	128	H5	0.2pM	15.46	2.00E-1	0.2	
+True	255	H6	D3	10.52	5.24E0	0	
+True	65280	H7	Sample 175			0	
+True	255	H8	D4	10.22	6.41E0	0	
+True	16711680	H9	Sample 177	  9.91	7.89E0	0	? - Detector Call uncertain
+True	255	H10	D5	  9.78	8.58E0	0	
+True	65280	H11	Sample 179			0	
+True	255	H12	D6	  9.94	7.69E0	0	
+True	16711680	H13	Sample 181	  9.51	1.03E1	0	? - Detector Call uncertain
+True	255	H14	D7	  9.32	1.16E1	0	
+True	255	H15	Sample 183	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	H16	D8	10.44	5.53E0	0	
+True	65280	H17	Sample 185			0	
+True	255	H18	D9	  9.52	1.02E1	0	
+True	16711680	H19	Sample 187	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	H20	D10	  9.43	1.08E1	0	
+True	65280	H21	Sample 189			0	
+True	255	H22	D11	10.12	6.84E0	0	
+True	16711680	H23	Sample 191	  7.00	5.40E1	0	? - Detector Call uncertain
+True	255	H24	D12	10.55	5.16E0	0	
+True	255	I1	E1	  9.77	8.61E0	0	
+True	255	I2	E1	  9.83	8.30E0	0	
+True	255	I3	E2	  9.52	1.02E1	0	
+True	255	I4	E2	  9.25	1.21E1	0	
+True	255	I5	E3	  9.95	7.64E0	0	
+True	255	I6	E3	  9.91	7.89E0	0	
+True	255	I7	E4	  9.57	9.83E0	0	
+True	255	I8	E4	  9.62	9.50E0	0	
+True	255	I9	E5	  9.75	8.72E0	0	
+True	255	I10	E5	  9.60	9.64E0	0	
+True	255	I11	E6	  9.06	1.38E1	0	
+True	255	I12	E6	  9.11	1.33E1	0	
+True	255	I13	E7	10.33	5.97E0	0	
+True	255	I14	E7	10.31	6.02E0	0	
+True	255	I15	E8	  9.60	9.64E0	0	
+True	255	I16	E8	  9.55	9.99E0	0	
+True	255	I17	E9	10.63	4.87E0	0	
+True	255	I18	E9	10.59	5.01E0	0	
+True	255	I19	E10	  8.82	1.62E1	0	
+True	255	I20	E10	  8.78	1.66E1	0	
+True	255	I21	E11	10.32	6.00E0	0	
+True	255	I22	E11	10.54	5.20E0	0	
+True	255	I23	E12	10.54	5.18E0	0	
+True	255	I24	E12	10.68	4.73E0	0	
+True	128	J1	0.02pM	18.87	2.09E-2	0.02	
+True	255	J2	E1	  9.60	9.63E0	0	
+True	128	J3	0.02pM	18.91	2.03E-2	0.02	
+True	255	J4	E2	  9.30	1.18E1	0	
+True	128	J5	0.02pM	18.89	2.07E-2	0.02	
+True	255	J6	E3	  9.78	8.55E0	0	
+True	65280	J7	Sample 223			0	
+True	255	J8	E4	  9.62	9.53E0	0	
+True	16711680	J9	Sample 225	  9.73	8.87E0	0	? - Detector Call uncertain
+True	255	J10	E5	  9.82	8.36E0	0	
+True	16711680	J11	Sample 227	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	J12	E6	  9.03	1.40E1	0	
+True	255	J13	Sample 229	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	J14	E7	10.54	5.19E0	0	
+True	65280	J15	Sample 231			0	
+True	255	J16	E8	  9.50	1.03E1	0	
+True	65280	J17	Sample 233			0	
+True	255	J18	E9	10.63	4.88E0	0	
+True	255	J19	Sample 235	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	J20	E10	  8.73	1.71E1	0	
+True	16711680	J21	Sample 237	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	J22	E11	10.49	5.36E0	0	
+True	255	J23	Sample 239	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	J24	E12	10.66	4.78E0	0	
+True	255	K1	F1	10.84	4.25E0	0	
+True	255	K2	F1	10.65	4.81E0	0	
+True	255	K3	F2	  9.79	8.52E0	0	
+True	255	K4	F2	  9.64	9.38E0	0	
+True	255	K5	F3	  9.60	9.67E0	0	
+True	255	K6	F3	  9.70	9.06E0	0	
+True	255	K7	F4	  9.24	1.22E1	0	
+True	255	K8	F4	  9.23	1.23E1	0	
+True	255	K9	F5	10.07	7.08E0	0	
+True	255	K10	F5	  9.89	7.95E0	0	
+True	255	K11	F6	10.45	5.49E0	0	
+True	255	K12	F6	10.29	6.10E0	0	
+True	255	K13	F7	10.11	6.89E0	0	
+True	255	K14	F7	10.02	7.33E0	0	
+True	255	K15	F8	  9.46	1.06E1	0	
+True	255	K16	F8	  9.49	1.04E1	0	
+True	255	K17	F9	  9.79	8.52E0	0	
+True	255	K18	F9	  9.88	8.01E0	0	
+True	255	K19	F10	  9.54	1.01E1	0	
+True	255	K20	F10	  9.50	1.04E1	0	
+True	255	K21	F11	  9.78	8.58E0	0	
+True	255	K22	F11	  9.66	9.28E0	0	
+True	255	K23	F12	10.65	4.83E0	0	
+True	255	K24	F12	10.70	4.67E0	0	
+True	128	L1	0.002pM	22.32	2.14E-3	0.002	
+True	255	L2	F1	10.71	4.63E0	0	
+True	128	L3	0.002pM	22.51	1.88E-3	0.002	
+True	255	L4	F2	  9.72	8.90E0	0	
+True	128	L5	0.002pM	22.45	1.95E-3	0.002	
+True	255	L6	F3	  9.72	8.91E0	0	
+True	255	L7	Sample 271	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	L8	F4	  9.27	1.20E1	0	
+True	65280	L9	Sample 273			0	
+True	255	L10	F5	10.18	6.57E0	0	
+True	65280	L11	Sample 275			0	
+True	255	L12	F6	10.47	5.42E0	0	
+True	255	L13	Sample 277	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	L14	F7	10.09	6.99E0	0	
+True	65280	L15	Sample 279			0	
+True	255	L16	F8	  9.31	1.17E1	0	
+True	65280	L17	Sample 281			0	
+True	255	L18	F9	  9.87	8.09E0	0	
+True	16711680	L19	Sample 283	  9.96	7.60E0	0	? - Detector Call uncertain
+True	255	L20	F10	  9.55	9.99E0	0	
+True	255	L21	Sample 285	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	L22	F11	  9.86	8.13E0	0	
+True	255	L23	Sample 287	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	L24	F12	10.73	4.59E0	0	
+True	255	M1	G1	10.55	5.16E0	0	
+True	255	M2	G1	10.46	5.48E0	0	
+True	255	M3	G2	  9.85	8.16E0	0	
+True	255	M4	G2	  9.93	7.77E0	0	
+True	255	M5	G3	10.50	5.33E0	0	
+True	255	M6	G3	10.54	5.18E0	0	
+True	255	M7	G4	  9.96	7.60E0	0	
+True	255	M8	G4	  9.90	7.94E0	0	
+True	255	M9	G5	  9.08	1.37E1	0	
+True	255	M10	G5	  9.12	1.33E1	0	
+True	255	M11	G6	  9.64	9.38E0	0	
+True	255	M12	G6	  9.61	9.57E0	0	
+True	255	M13	G7	10.89	4.12E0	0	
+True	255	M14	G7	10.98	3.88E0	0	
+True	255	M15	G8	10.31	6.03E0	0	
+True	255	M16	G8	10.26	6.23E0	0	
+True	255	M17	G9	  9.96	7.59E0	0	
+True	255	M18	G9	  9.90	7.94E0	0	
+True	255	M19	G10	11.53	2.70E0	0	
+True	255	M20	G10	11.65	2.49E0	0	
+True	255	M21	G11	  9.15	1.30E1	0	
+True	255	M22	G11	  9.10	1.34E1	0	
+True	255	M23	G12	11.16	3.45E0	0	
+True	255	M24	G12	11.27	3.19E0	0	
+True	128	N1	0.0002pM	25.87	2.00E-4	0.0002	
+True	255	N2	G1	10.46	5.46E0	0	
+True	128	N3	0.0002pM	25.93	1.92E-4	0.0002	
+True	255	N4	G2	  10.00	7.42E0	0	
+True	128	N5	0.0002pM	25.83	2.05E-4	0.0002	
+True	255	N6	G3	10.50	5.33E0	0	
+True	16711680	N7	Sample 319	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	N8	G4	  9.95	7.68E0	0	
+True	65280	N9	Sample 321			0	
+True	255	N10	G5	  9.17	1.28E1	0	
+True	255	N11	Sample 323	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	N12	G6	  9.66	9.29E0	0	
+True	65280	N13	Sample 325			0	
+True	255	N14	G7	10.89	4.11E0	0	
+True	65280	N15	Sample 327			0	
+True	255	N16	G8	10.28	6.18E0	0	
+True	16711680	N17	Sample 329	30.00	1.21E-5	0	?, >, E - Detector Call uncertain, Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	N18	G9	  9.94	7.73E0	0	
+True	255	N19	Sample 331	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	N20	G10	11.82	2.23E0	0	
+True	255	N21	Sample 333	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	N22	G11	  9.19	1.27E1	0	
+True	65280	N23	Sample 335			0	
+True	255	N24	G12	11.26	3.21E0	0	
+True	255	O1	H1	10.95	3.95E0	0	
+True	255	O2	H1	10.82	4.31E0	0	
+True	255	O3	H2	10.54	5.18E0	0	
+True	255	O4	H2	10.45	5.51E0	0	
+True	255	O5	H3	10.16	6.66E0	0	
+True	255	O6	H3	10.30	6.07E0	0	
+True	255	O7	H4	  8.96	1.48E1	0	
+True	255	O8	H4	  8.93	1.50E1	0	
+True	255	O9	H5	10.54	5.17E0	0	
+True	255	O10	H5	10.51	5.27E0	0	
+True	255	O11	H6	  9.87	8.09E0	0	
+True	255	O12	H6	  9.67	9.22E0	0	
+True	255	O13	H7	10.76	4.49E0	0	
+True	255	O14	H7	10.75	4.51E0	0	
+True	255	O15	H8	10.50	5.33E0	0	
+True	255	O16	H8	29.06	2.31E-5	0	E - Extrapolated concentration in standard curve
+True	255	O17	H9	10.11	6.90E0	0	
+True	255	O18	H9	10.07	7.06E0	0	
+True	255	O19	H10	10.52	5.25E0	0	
+True	255	O20	H10	10.48	5.38E0	0	
+True	255	O21	H11	10.63	4.90E0	0	
+True	255	O22	H11	10.66	4.78E0	0	
+True	255	O23	H12	10.13	6.80E0	0	
+True	255	O24	H12	10.06	7.15E0	0	
+True	255	P1	Negative	30.00	1.21E-5	0	> - Late Cp call (last five cycles) has higher uncertainty
+True	255	P2	H1	10.84	4.26E0	0	
+True	255	P3	Negative	30.00	1.21E-5	0	> - Late Cp call (last five cycles) has higher uncertainty
+True	255	P4	H2	10.48	5.40E0	0	
+True	255	P5	Negative	30.00	1.21E-5	0	> - Late Cp call (last five cycles) has higher uncertainty
+True	255	P6	H3	10.51	5.29E0	0	
+True	255	P7	Sample 367	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P8	H4	  8.95	1.48E1	0	
+True	255	P9	Sample 369	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P10	H5	10.48	5.38E0	0	
+True	255	P11	Sample 371	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P12	H6	  9.89	7.97E0	0	
+True	255	P13	Sample 373	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P14	H7	10.87	4.17E0	0	
+True	255	P15	Sample 375	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P16	H8	10.42	5.60E0	0	
+True	255	P17	Sample 377	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P18	H9	10.07	7.07E0	0	
+True	255	P19	Sample 379	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P20	H10	10.54	5.20E0	0	
+True	255	P21	Sample 381	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P22	H11	10.64	4.85E0	0	
+True	255	P23	Sample 383	30.00	1.21E-5	0	>, E - Late Cp call (last five cycles) has higher uncertainty, Extrapolated concentration in standard curve
+True	255	P24	H12	10.13	6.82E0	0	
