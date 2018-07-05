@@ -8,6 +8,11 @@
 
 <script>
 
+import { NullTriplicate } from '@/lib/Triplicates'
+
+// A well can be one of 3 different types which will determine its behaviour:
+// - Sample ~ part of a triplicate. Can be active or inactive and may need inspection
+// - Standard/Control ~ always inactive. Indentified by colours.
 export default {
   name: 'Well',
   props: {
@@ -27,7 +32,7 @@ export default {
       default: true,
       type: Boolean
     },
-    content: {
+    type: {
       default: ''
     },
     plateId: {
@@ -38,11 +43,12 @@ export default {
     return {
       msg: 'Well',
       store: this.$Store,
-      triplicate: {},
+      triplicate: NullTriplicate,
       isActive: this.active
     }
   },
   computed: {
+    // The class is defined by the well type
     classObject () {
       if (!this.isActive && this.hasConcentration() && this.isSample()) {
         return {
@@ -57,9 +63,6 @@ export default {
         }
       }
     },
-    type () {
-      return this.content.split(' ')[0]
-    },
     location () {
       return this.row.concat(this.column)
     },
@@ -67,13 +70,14 @@ export default {
       return {
         row: this.row,
         column: this.column,
-        content: this.content,
+        type: this.type,
         id: this.id,
         concentration: this.concentration,
         active: this.isActive
       }
     }
   },
+  // TODO: Constantize well types.
   methods: {
     isStandard () {
       return this.type === 'Standard'
@@ -88,22 +92,7 @@ export default {
       return this.concentration !== ''
     },
     needsInspection () {
-      return parseFloat(this.triplicate.cv) > 20
-    },
-    compare (that) {
-      if (this.row > that.row) {
-        return 1
-      } else if (this.row < that.row) {
-        return -1
-      } else {
-        if (parseInt(this.column) > parseInt(that.column)) {
-          return 1
-        } else if (parseInt(this.column) < parseInt(that.column)) {
-          return -1
-        } else {
-          return 0
-        }
-      }
+      return this.triplicate.needsInspection()
     },
     setActive () {
       this.isActive = !this.isActive

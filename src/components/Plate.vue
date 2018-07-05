@@ -43,8 +43,17 @@
 
 <script>
 
+// A plate signifies the plate on the machine that does the quanting - not the plate that is being processed.
+// The plate structure is defined by the grid
+// Plate is made up of rows which are part of the grid which contains the wells.
+// When a plate is created it is added to the store as a sequencescape plate.
+// Once the plate is received from local storage a set of triplicates is created. The plate id is cascaded down so that the well can add a triplicate
+// The assumption is made that the data exists in local storage from when it was uploaded.
+// The QuantType is assigned from local storage and a QuantType component is created.
+
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
+import QuantType from '@/components/QuantType.vue'
 import {TriplicateList as Triplicates} from '@/lib/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
@@ -61,10 +70,11 @@ export default {
     return {
       msg: 'Plate',
       grid: {},
+      quantType: {},
       store: this.$Store,
       notice: '',
       uuid: '',
-      triplicates: new Triplicates(),
+      triplicates: {},
       alert: '',
       alertType: '',
       dismissSecs: 10,
@@ -79,11 +89,13 @@ export default {
     rows () {
       return this.grid.rows
     },
+    // We can't assign the uuid up front because it is pulled from quantessential.
+    // This will go away once we merge quanthub and quantessential.
     metadata () {
-      return {uuid: this.uuid, assay_type: 'Plate Reader', assay_version: 'v1.0'}
+      return {uuid: this.uuid}
     },
     json () {
-      return this.triplicates.keys.map(key => Object.assign(this.triplicates.find(key).json, this.metadata))
+      return this.triplicates.values.map(triplicate => Object.assign(triplicate.json, this.metadata))
     },
     jsonApiData () {
       return {data: {data: {attributes: this.json}}}
@@ -112,15 +124,21 @@ export default {
   methods: {
     fetchData () {
       let json = localStorage.getItem(this.id)
+      let Cmp = Vue.extend(QuantType)
+
       if (json !== null) {
         this.grid = JSON.parse(json)
+        this.quantType = new Cmp({propsData: { quantType: this.grid.quantType }})
+      } else {
+        this.quantType = new Cmp()
       }
+      this.triplicates = new Triplicates(this.quantType.triplicateOptions)
     },
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
     toGrid () {
       let Cmp = Vue.extend(Grid)
-      let grid = new Cmp()
+      let grid = new Cmp({propsData: {quantType: this.grid.quantType}})
       for (let child of this.$children) {
         // because we now have a b-alert it also exists as a child
         // we need to exclude it as it will throw an error as it
@@ -132,10 +150,14 @@ export default {
       }
       return grid.json
     },
+    // save the plate to local storage by recreating the grid
     save (event) {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
       this.showAlert('Plate saved to local storage', 'success')
     },
+    // send a get request to quantessential to return the barcode.
+    // build a request based on the triplicate data.
+    // A post request is the sent to sequencescape to populate the qc_results table.
     exportToSequencescape (event) {
       this.exporting = true
       axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)

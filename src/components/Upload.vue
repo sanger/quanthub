@@ -2,6 +2,12 @@
   <div class="upload container-fluid">
     <form enctype="multipart/form-data" method="post" action="#" v-on:submit.prevent="upload">
       <div class="form-group">
+        <div class="form-group">
+          <label for="quantType">Select a Quant Type:</label>
+          <select id="quant-type" class="form-control" name="quantType" v-model="quantType">
+              <option v-for="(option, key) in quantTypes" v-bind:key="key" v-bind:value="key">{{option.name}}</option>
+          </select>
+        </div>
         <input type="file" name="file-input" id="file-input" ref="fileInput" class="file" v-on:change.prevent="addFilenames">
         <div class="input-group">
           <input class="form-control" type="text" disabled placeholder="Upload File..." ref="browseFiles">
@@ -17,8 +23,10 @@
 
 <script>
 
+// Uploads a file. Parse options dependent on quantType
 import Vue from 'vue'
-import CsvFile from '@/components/CsvFile'
+import QuantFile from '@/components/QuantFile'
+import quantTypes from '../../config/quantTypes.json'
 
 export default {
   name: 'Upload',
@@ -27,23 +35,28 @@ export default {
   data () {
     return {
       msg: 'Upload',
-      notice: '',
-      Cmp: Vue.extend(CsvFile)
+      Cmp: Vue.extend(QuantFile),
+      quantType: Object.keys(quantTypes)[0],
+      quantTypes: quantTypes
     }
   },
   computed: {
   },
   components: {
-    CsvFile
+    QuantFile
   },
   methods: {
+    // create a quantFile based on the quantType
+    // if the upload is successful it is saved to local storage
+    // The user is then redirected to the plate page
+    // where the file is retrieved from local storage.
     upload (event) {
       const file = document.getElementById('file-input').files[0]
-      let csvFile = new this.Cmp()
-      csvFile.upload(file)
+      let quantFile = new this.Cmp({propsData: {quant: this.quantType}})
+      quantFile.upload(file)
         .then((result) => {
-          localStorage.setItem(csvFile.metadata.ID1, JSON.stringify(csvFile.json))
-          this.$router.push({ path: `/plate/${csvFile.metadata.ID1}` })
+          localStorage.setItem(quantFile.id, JSON.stringify(quantFile.json))
+          this.$router.push({ path: `/plate/${quantFile.id}` })
         })
         .catch((error) => {
           console.log('rejected:', error)
@@ -54,14 +67,6 @@ export default {
     },
     addFilenames (event) {
       this.$refs.browseFiles.value = this.$refs.fileInput.value.replace(/^.*[\\]/, '')
-    },
-    countDownChanged (dismissCountDown) {
-      this.dismissCountDown = dismissCountDown
-    },
-    showAlert (alert, alertType) {
-      this.alert = alert
-      this.alertType = alertType
-      this.dismissCountDown = this.dismissSecs
     }
   }
 }

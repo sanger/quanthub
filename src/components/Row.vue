@@ -9,6 +9,8 @@
 
 import Well from '@/components/Well.vue'
 
+// A row does nothing more than hold a group of wells.
+// It has an id which is the location e.g. A1
 export default {
   name: 'Row',
   props: {
