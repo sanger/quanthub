@@ -1,8 +1,21 @@
+
 <script>
 
+// Grid.vue
+// A Grid is a method of getting the wells into the correct place.
+// The Grid is created based on the number of columns and number of rows
+// Each column is assigned a number and each row is assigned a letter
+// Each row is built separately and contains a simple object which contains
+// the row and column identifier.
+// When you add a cell the basic object is replaced.
+// The only stipulation is that it needs a row and column - advantage is that it could support any type of object.
 export default {
   name: 'Grid',
   props: {
+    quantType: {
+      type: String,
+      default: 'libraryPlateReader'
+    },
     numberOfColumns: {
       type: Number,
       default: 24
@@ -26,6 +39,7 @@ export default {
     },
     json () {
       return {
+        quantType: this.quantType,
         columns: this.columns,
         rows: this.rows
       }

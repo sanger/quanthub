@@ -17,7 +17,7 @@ describe('Well.vue', () => {
 
   describe('Basic', () => {
     beforeEach(() => {
-      data = {row: 'A',column: '1', content: 'Basic X4', id: 'A1', concentration:'3.014', plateId: plateId}
+      data = {row: 'A',column: '1', type: 'Basic', id: 'A1', concentration:'3.014', plateId: plateId}
       cmp = mount(Well, { propsData: data })
       well = cmp.vm
     })
@@ -53,9 +53,9 @@ describe('Well.vue', () => {
     })
 
     it('produces json', () => {
-      expect(well.json).toEqual({row: 'A', column: '1', content: 'Basic X4', id: 'A1', concentration: '3.014', active: true})
+      expect(well.json).toEqual({row: 'A', column: '1', type: 'Basic', id: 'A1', concentration: '3.014', active: true})
       well.isActive = false
-      expect(well.json).toEqual({row: 'A', column: '1', content: 'Basic X4', id: 'A1', concentration: '3.014', active: false})
+      expect(well.json).toEqual({row: 'A', column: '1', type: 'Basic', id: 'A1', concentration: '3.014', active: false})
     })
 
     it('can have a plateId', () => {
@@ -67,7 +67,7 @@ describe('Well.vue', () => {
     beforeEach(() => {
       $Store = Store
       $Store.sequencescapePlates.add(plate)
-      data = {row: 'A',column: '1', content: 'Sample X1', id: 'A1', concentration:'3.014', plateId: plateId}
+      data = {row: 'A',column: '1', type: 'Sample', id: 'A1', concentration:'3.014', plateId: plateId}
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })
@@ -96,7 +96,7 @@ describe('Well.vue', () => {
   describe('Standard', () => {
     beforeEach(() => {
       $Store = Store
-      data = { row: 'B', column: '4', id: 'Std 1', concentration: '26.101', content: 'Standard S1', plateId: plateId }
+      data = { row: 'B', column: '4', id: 'Std 1', concentration: '26.101', type: 'Standard', plateId: plateId }
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })
@@ -107,8 +107,8 @@ describe('Well.vue', () => {
       expect(well.$el.className).toMatch('standard')
     })
 
-    it('will not create a triplicate', () => {
-      expect(well.triplicate).toEqual({})
+    it('will create an empty triplicate', () => {
+      expect(well.triplicate.size).toEqual(0)
     })
   })
 
@@ -119,9 +119,9 @@ describe('Well.vue', () => {
     beforeEach(() => {
       $Store = new newStore
       $Store.sequencescapePlates.add(plate)
-      well1 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', content: 'Sample X1', plateId: plateId}})
-      well2 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', content: 'Sample X1', plateId: plateId }})
-      well3 = mount(Well, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', content: 'Sample X1', plateId: plateId }})
+      well1 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', type: 'Sample', plateId: plateId}})
+      well2 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', type: 'Sample', plateId: plateId }})
+      well3 = mount(Well, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', type: 'Sample', plateId: plateId }})
     })
 
     // this would be better to check class but this is brittle
@@ -144,7 +144,7 @@ describe('Well.vue', () => {
   describe('Control', () => {
     beforeEach(() => {
       $Store = Store
-      data = { row: 'B', column: '8', id: 'Ctrl 1', concentration: '25.12', content: 'Control C1', plateId: plateId }
+      data = { row: 'B', column: '8', id: 'Ctrl 1', concentration: '25.12', type: 'Control', plateId: plateId }
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })
@@ -155,8 +155,8 @@ describe('Well.vue', () => {
       expect(well.$el.className).toMatch('control')
     })
 
-    it('will not create a triplicate', () => {
-      expect(well.triplicate).toEqual({})
+    it('will create an empty triplicate', () => {
+      expect(well.triplicate.size).toEqual(0)
     })
   })
 
@@ -171,38 +171,6 @@ describe('Well.vue', () => {
     it('has the correct class', () => {
       cmp.trigger('click')
       expect(well.$el.className).not.toMatch('inactive')
-    })
-  })
-
-  describe('Compare', () => {
-
-    let well1, well2, well3
-
-    beforeEach(() => {
-      let well = Vue.extend(Well)
-      well1 = new well({propsData: {row: 'A',column: '1', content: 'Sample X1', id: 'A1', concentration:'3.014', plateId: plateId}})
-      well2 = new well({propsData: {row: 'A',column: '14', content: 'Sample X1', id: 'A1', concentration:'3.014', plateId: plateId}})
-      well3 = new well({propsData: {row: 'B',column: '2', content: 'Sample X1', id: 'A1', concentration:'3.014', plateId: plateId}})
-    })
-
-    it('well with higher row should be higher', () => {
-      expect(well3.compare(well1)).toEqual(1)
-    })
-
-    it('well with lower row should be lower', () => {
-      expect(well1.compare(well3)).toEqual(-1)
-    })
-
-    it('well with same row and higher column should be higher', () => {
-      expect(well2.compare(well1)).toEqual(1)
-    })
-
-    it('well with same row and lower column should be lower', () => {
-      expect(well1.compare(well2)).toEqual(-1)
-    })
-
-    it('well with same row and column should be equal', () => {
-      expect(well1.compare(well1)).toEqual(0)
     })
   })
 })
