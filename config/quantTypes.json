@@ -33,7 +33,7 @@
       "key": "Molarity",
       "units": "nM",
       "assay": {
-        "type": "Plate Reader",
+        "type": "Library - Plate Reader",
         "version": "v1.0"
       }
     }
@@ -61,10 +61,10 @@
       "delimiter": ","
     },
     "qcResults": {
-      "key": "Molarity",
+      "key": "Concentration",
       "units": "ng/ul",
       "assay": {
-        "type": "Plate Reader",
+        "type": "Stock - Plate Reader",
         "version": "v1.0"
       }
     }
@@ -92,10 +92,10 @@
       "delimiter": ","
     },
     "qcResults": {
-      "key": "Molarity",
+      "key": "Concentration",
       "units": "ng/ul",
       "assay": {
-        "type": "Plate Reader",
+        "type": "CherryPick - Plate Reader",
         "version": "v1.0"
       }
     }
@@ -136,7 +136,7 @@
       "key": "Molarity",
       "units": "nM",
       "assay": {
-        "type": "qPCR",
+        "type": "Library - qPCR",
         "version": "v1.0"
       }
     }
