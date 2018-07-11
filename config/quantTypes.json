@@ -23,11 +23,9 @@
     },
     "conversion": {
       "factors": {
-        "dilution": 500,
-        "standardInsertSize": 452,
-        "libraryInsertSize": 573
+        "averageLibrarySize": 573
       },
-      "expression": "(dilution*standardInsertSize)/libraryInsertSize"
+      "expression": "(1515.151*(1/averageLibrarySize))"
     },
     "qcResults": {
       "key": "Molarity",
@@ -128,9 +126,11 @@
     },
     "conversion": {
       "factors": {
-        "averageLibrarySize": 585
+        "dilution": 500,
+        "standardInsertSize": 452,
+        "libraryInsertSize": 573
       },
-      "expression": "(1515.151*(1/averageLibrarySize))"
+      "expression": "(((dilution*standardInsertSize)/libraryInsertSize)/1000)"
     },
     "qcResults": {
       "key": "Molarity",
