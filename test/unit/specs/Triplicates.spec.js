@@ -213,6 +213,27 @@ describe('Triplicates.vue', () => {
         expect(triplicate.cv).toEqual('0')
       })
     })
+
+    describe('when all 3 values are n.a.', () => {
+      beforeEach(() => {
+        well1.concentration = 'n.a.'
+        well2.concentration = 'n.a.'
+        well3.concentration = 'n.a.'
+        triplicate = new Triplicate([well1, well2, well3])
+      })
+
+      it('standard deviation will be 0', () => {
+        expect(triplicate.standardDeviation).toEqual('0')
+      })
+
+      it('cv will be 0', () => {
+        expect(triplicate.cv).toEqual('0')
+      })
+
+      it('still has an id', () => {
+        expect(triplicate.id).toEqual(well1.id)
+      })
+    })
   })
 
   describe('Triplicates', () => {
