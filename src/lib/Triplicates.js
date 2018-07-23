@@ -24,7 +24,6 @@ class Triplicate {
   }
 
   get id () {
-    if (this.empty()) return ''
     return this.wells[0].id
   }
 
