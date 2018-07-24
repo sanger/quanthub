@@ -28,7 +28,7 @@
       "expression": "(1515.151*(1/averageLibrarySize))"
     },
     "qcResults": {
-      "key": "Molarity",
+      "key": "molarity",
       "units": "nM",
       "assay": {
         "type": "Library - Plate Reader",
@@ -59,7 +59,7 @@
       "delimiter": ","
     },
     "qcResults": {
-      "key": "Concentration",
+      "key": "concentration",
       "units": "ng/ul",
       "assay": {
         "type": "Stock - Plate Reader",
@@ -90,7 +90,7 @@
       "delimiter": ","
     },
     "qcResults": {
-      "key": "Concentration",
+      "key": "concentration",
       "units": "ng/ul",
       "assay": {
         "type": "CherryPick - Plate Reader",
@@ -133,7 +133,7 @@
       "expression": "(((dilution*standardInsertSize)/libraryInsertSize)/1000)"
     },
     "qcResults": {
-      "key": "Molarity",
+      "key": "molarity",
       "units": "nM",
       "assay": {
         "type": "Library - qPCR",
