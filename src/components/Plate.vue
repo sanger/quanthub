@@ -54,7 +54,7 @@
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
 import QuantType from '@/components/QuantType.vue'
-import {TriplicateList as Triplicates} from '@/lib/Triplicates'
+import {TriplicateList as Triplicates} from '@/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
@@ -151,21 +151,21 @@ export default {
       return grid.json
     },
     // save the plate to local storage by recreating the grid
-    save (event) {
+    save () {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
       this.showAlert('Plate saved to local storage', 'success')
     },
     // send a get request to quantessential to return the barcode.
     // build a request based on the triplicate data.
     // A post request is the sent to sequencescape to populate the qc_results table.
-    exportToSequencescape (event) {
+    exportToSequencescape () {
       this.exporting = true
       axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
         .then(response => {
           this.uuid = response.data
           return axios(this.request)
         })
-        .then(response => {
+        .then(() => {
           this.exporting = false
           this.showAlert('QC Results for plate has been successfully exported to Sequencescape', 'success')
         })

@@ -8,7 +8,7 @@
 
 <script>
 
-import { NullTriplicate } from '@/lib/Triplicates'
+import { NullTriplicate } from '@/Triplicates'
 
 // A well can be one of 3 different types which will determine its behaviour:
 // - Sample ~ part of a triplicate. Can be active or inactive and may need inspection
