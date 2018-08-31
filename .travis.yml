@@ -8,7 +8,6 @@ addons:
   chrome: stable
 
 before_script:
-  - cp config/private.conf.js.example config/private.conf.js
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 before_deploy: "./build-assets.sh release.tar.gz dist"
