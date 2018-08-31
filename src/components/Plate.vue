@@ -118,7 +118,8 @@ export default {
         this.store.sequencescapePlates.add(this)
       }
     } catch (error) {
-      console.log(error)
+      /*eslint no-console: ["error", { allow: ["error"] }] */
+      console.error(error)
     }
   },
   methods: {
@@ -172,7 +173,8 @@ export default {
         .catch(error => {
           this.exporting = false
           this.showAlert('QC Results for plate could not be exported', 'danger')
-          console.log(error)
+          /*eslint no-console: ["error", { allow: ["error"] }] */
+          console.error(error)
         })
     },
     countDownChanged (dismissCountDown) {
