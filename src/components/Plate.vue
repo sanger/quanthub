@@ -101,7 +101,7 @@ export default {
       return {data: {data: {attributes: this.json}}}
     },
     requestOptions () {
-      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
+      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL}
     },
     request () {
       return Object.assign(this.requestOptions, this.jsonApiData)
@@ -161,7 +161,7 @@ export default {
     // A post request is the sent to sequencescape to populate the qc_results table.
     exportToSequencescape () {
       this.exporting = true
-      axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
+      axios.get(`${process.env.VUE_APP_QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
         .then(response => {
           this.uuid = response.data
           return axios(this.request)

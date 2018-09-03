@@ -98,7 +98,7 @@ describe('Plate.vue', () => {
 
     it('returns some request options for export', () => {
       expect(plate.jsonApiData).toEqual({data: { data: {attributes: plate.json}}})
-      expect(plate.requestOptions).toEqual({url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL})
+      expect(plate.requestOptions).toEqual({url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL})
     })
 
     it('success', async() => {
