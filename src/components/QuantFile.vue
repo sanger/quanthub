@@ -61,7 +61,7 @@ export default {
       // The file is parsed by the quant type options and
       // a factory is used to ensure standardisation of the data
       // for when it is added to the grid.
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, ) => {
         const reader = new FileReader()
         reader.onload = () => {
           // \r\r\n is a non standard windows line ending which causes all sorts of problems.

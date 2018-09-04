@@ -1,8 +1,8 @@
-import Store from '@/lib/Store'
+import Store from '@/Store'
 
 export default {
   Store,
-  install (Vue, options) {
+  install (Vue, ) {
     Vue.prototype.$Store = Store
   }
 }

@@ -1,8 +1,8 @@
 <script>
 
 import math from 'mathjs'
-import * as WellFactories from '@/lib/QuantTypeWellFactories'
-import quantTypes from '../../config/quantTypes'
+import * as WellFactories from '@/QuantTypeWellFactories'
+import quantTypes from '@/quantTypes'
 
 // Related to the different QuantTypes in configuration.
 // The data structure indicates the structure of how

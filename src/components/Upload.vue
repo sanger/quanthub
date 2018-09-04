@@ -12,7 +12,7 @@
         <div class="input-group">
           <input class="form-control" type="text" disabled placeholder="Upload File..." ref="browseFiles">
           <span class="input-group-btn">
-            <button class="btn btn-success" v-on:click.prevent="browseFiles" type="button">Browse</button>
+            <button class="btn btn-success spacer" v-on:click.prevent="browseFiles" type="button">Browse</button>
             <button name="submit" class="btn btn-success" type="submit">Upload</button>
           </span>
         </div>
@@ -26,7 +26,7 @@
 // Uploads a file. Parse options dependent on quantType
 import Vue from 'vue'
 import QuantFile from '@/components/QuantFile'
-import quantTypes from '../../config/quantTypes.json'
+import quantTypes from '@/quantTypes.json'
 
 export default {
   name: 'Upload',
@@ -50,22 +50,23 @@ export default {
     // if the upload is successful it is saved to local storage
     // The user is then redirected to the plate page
     // where the file is retrieved from local storage.
-    upload (event) {
+    upload () {
       const file = document.getElementById('file-input').files[0]
       let quantFile = new this.Cmp({propsData: {quant: this.quantType}})
       quantFile.upload(file)
-        .then((result) => {
+        .then(() => {
           localStorage.setItem(quantFile.id, JSON.stringify(quantFile.json))
           this.$router.push({ path: `/plate/${quantFile.id}` })
         })
         .catch((error) => {
-          console.log('rejected:', error)
+          /*eslint no-console: ["error", { allow: ["error"] }] */
+          console.error('rejected:', error)
         })
     },
-    browseFiles (event) {
+    browseFiles () {
       this.$refs.fileInput.click()
     },
-    addFilenames (event) {
+    addFilenames () {
       this.$refs.browseFiles.value = this.$refs.fileInput.value.replace(/^.*[\\]/, '')
     }
   }

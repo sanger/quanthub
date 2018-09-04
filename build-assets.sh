@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Usage: ./archive-assets.sh <archive_name> <relative_path_to_folder>
+# Usage: ./archive-assets.sh <archive_name> <relative_path_to_folder> <environment>
 
 set -ev
 
 # Building assets
-NODE_ENV=production npm run build
+yarn build --mode $3
 
 # Storing revision hash
 git rev-parse HEAD > $2/REVISION
