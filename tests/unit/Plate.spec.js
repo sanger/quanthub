@@ -23,8 +23,8 @@ describe('Plate.vue', () => {
     grid = new(Vue.extend(Grid))({ propsData: { quantType: 'myNewQuantType'}})
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(id, JSON.stringify(grid.json))
-    // we need to stub b-alert as it is not loaded on a mount.
-    cmp = mount(Plate, {propsData: { id: id }, mocks: { $Store }, stubs: ['b-alert']})
+    // we need to stub b-alert and b-modal as they are not loaded on a mount.
+    cmp = mount(Plate, {propsData: { id: id }, mocks: { $Store }, stubs: ['b-alert', 'b-modal']})
     plate = cmp.vm
   })
   
