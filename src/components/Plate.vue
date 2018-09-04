@@ -54,7 +54,7 @@
 import Row from '@/components/Row.vue'
 import Grid from '@/components/Grid.vue'
 import QuantType from '@/components/QuantType.vue'
-import {TriplicateList as Triplicates} from '@/lib/Triplicates'
+import {TriplicateList as Triplicates} from '@/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
@@ -101,7 +101,7 @@ export default {
       return {data: {data: {attributes: this.json}}}
     },
     requestOptions () {
-      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.SEQUENCESCAPE_BASE_URL}
+      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL}
     },
     request () {
       return Object.assign(this.requestOptions, this.jsonApiData)
@@ -118,7 +118,8 @@ export default {
         this.store.sequencescapePlates.add(this)
       }
     } catch (error) {
-      console.log(error)
+      /*eslint no-console: ["error", { allow: ["error"] }] */
+      console.error(error)
     }
   },
   methods: {
@@ -151,28 +152,29 @@ export default {
       return grid.json
     },
     // save the plate to local storage by recreating the grid
-    save (event) {
+    save () {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
       this.showAlert('Plate saved to local storage', 'success')
     },
     // send a get request to quantessential to return the barcode.
     // build a request based on the triplicate data.
     // A post request is the sent to sequencescape to populate the qc_results table.
-    exportToSequencescape (event) {
+    exportToSequencescape () {
       this.exporting = true
-      axios.get(`${process.env.QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
+      axios.get(`${process.env.VUE_APP_QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
         .then(response => {
           this.uuid = response.data
           return axios(this.request)
         })
-        .then(response => {
+        .then(() => {
           this.exporting = false
           this.showAlert('QC Results for plate has been successfully exported to Sequencescape', 'success')
         })
         .catch(error => {
           this.exporting = false
           this.showAlert('QC Results for plate could not be exported', 'danger')
-          console.log(error)
+          /*eslint no-console: ["error", { allow: ["error"] }] */
+          console.error(error)
         })
     },
     countDownChanged (dismissCountDown) {

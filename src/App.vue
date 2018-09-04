@@ -3,7 +3,6 @@
     <nav-bar></nav-bar>
     <router-view/>
   </div>
-
 </template>
 
 <script>
@@ -16,7 +15,9 @@ export default {
     NavBar
   }
 }
+
 </script>
+
 
 <style lang="scss">
   @import "src/assets/stylesheets/colors.scss";
