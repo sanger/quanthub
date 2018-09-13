@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Plate from '@/components/Plate'
 import Upload from '@/components/Upload'
+import PrintJob from '@/components/PrintJob'
 import PlateList from '@/components/PlateList'
 
 Vue.use(Router)
@@ -32,6 +33,11 @@ export default new Router({
       path: '/upload',
       name: 'Upload',
       component: Upload
+    },
+    {
+      path: '/print_job',
+      name: 'PrintJob',
+      component: PrintJob
     }
   ]
 })

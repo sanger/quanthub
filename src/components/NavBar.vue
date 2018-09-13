@@ -5,6 +5,7 @@
       <b-navbar-brand href="/">QuantHub</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
         <b-nav-item href="/">Upload a new plate</b-nav-item>
+        <b-nav-item href="/print_job">Print a Barcode</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
