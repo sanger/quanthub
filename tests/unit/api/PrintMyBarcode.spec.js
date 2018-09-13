@@ -7,7 +7,7 @@ describe('PrintMyBarcode.js', () => {
   beforeEach(() => {
     date = new Date()
     json = {
-      labelTemplateId: 175,
+      labelTemplateId: '175',
       printerName: 'f225bc',
       labels: {
         body: [

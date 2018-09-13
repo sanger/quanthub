@@ -4,8 +4,12 @@
     <b-navbar class="navbar-default bg-dark" toggleable="md" type="dark" variant="info">
       <b-navbar-brand href="/">QuantHub</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item href="/">Upload a new plate</b-nav-item>
-        <b-nav-item href="/print_job">Print a Barcode</b-nav-item>
+        <router-link tag="b-nav-item" to="/">
+          <a>Upload a new plate</a>
+        </router-link>
+        <router-link tag="b-nav-item" to="print_job">
+          <a>Print a barcode</a>
+        </router-link>
       </b-navbar-nav>
     </b-navbar>
   </div>

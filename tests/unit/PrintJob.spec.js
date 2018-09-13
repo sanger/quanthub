@@ -9,10 +9,10 @@ describe('PrintJob.vue', () => {
 
   beforeEach(() => {
     date = new Date('February 1, 2018')
-    cmp = mount(PrintJob, {propsData: { labelTemplateId: 1 }})
+    cmp = mount(PrintJob, {propsData: { labelTemplateId: '1' }})
     cmp.setData({barcode: 'DN1234567', printerName: 'ippbc', date: date})
     attributes = {
-      labelTemplateId: 1,
+      labelTemplateId: '1',
       printerName: 'ippbc',
       labels: {
         body: [
