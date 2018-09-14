@@ -1,24 +1,32 @@
 <template>
   <div class="print-job">
-    <div>
-      <label for="printer">Select a Printer:</label>
-      <select id="printer" class="form-control" name="printer" v-model="printerName">
-          <option v-for="printer in printerList" v-bind:key="printer" v-bind:value="printer">{{printer}}</option>
-      </select>
-    </div>
-    <label for="barcode">Scan your barcode:</label>
-    <input name="barcode" id="barcode" v-model="barcode">
-    <span class="input-group-btn">
-      <button name="print" id="print" class="btn btn-success" v-on:click.prevent="execute">
-        Print
-      </button>
-    </span>
+    <alert ref='alert'></alert>
+    <form method="post" action="#" v-on:submit.prevent="execute">
+      <div class="form-group">
+        <div class="form-group">
+          <label for="printer">Select a Printer:</label>
+            <select id="printer" class="form-control" name="printer" v-model="printerName">
+              <option v-for="printer in printerList" v-bind:key="printer" v-bind:value="printer">{{printer}}</option>
+            </select>
+        </div>
+        <div class="input-group">
+          <label for="barcode">Scan your barcode:</label>
+          <input name="barcode" id="barcode" v-model="barcode">
+            <span class="input-group-btn">
+              <button name="submit" id="print" class="btn btn-success" type="submit">
+                Print
+              </button>
+            </span>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 
 import Model from '@/api/PrintMyBarcode'
+import Alert from '@/components/Alert'
 
 export default {
   name: 'PrintJob',
@@ -34,7 +42,6 @@ export default {
       barcode: '',
       printerName: '',
       date: new Date(),
-      alert: '',
       model: {},
       printerList: ['f225bc']
     }
@@ -68,16 +75,17 @@ export default {
     }
   },
   components: {
+    Alert
   },
   methods: {
     execute () {
       this.model = new Model(this.attributes)
       this.model.save().then(success => {
         if(success) {
-          this.alert = 'barcode successfully printed'
+          this.$refs.alert.show('barcode successfully printed','success')
         } else {
           console.error(this.model.errors)
-          this.alert = 'barcode printing failed'
+          this.$refs.alert.show('barcode printing failed','danger')
         }
       })
     }

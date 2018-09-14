@@ -9,7 +9,9 @@ describe('PrintJob.vue', () => {
 
   beforeEach(() => {
     date = new Date('February 1, 2018')
-    cmp = mount(PrintJob, {propsData: { labelTemplateId: '1' }})
+    // TODO: we still have to stub b-alert even though it is now part of the child component
+    // how can we abstract this problem away , far away?
+    cmp = mount(PrintJob, {propsData: { labelTemplateId: '1' }, stubs: ['b-alert']})
     cmp.setData({barcode: 'DN1234567', printerName: 'ippbc', date: date})
     attributes = {
       labelTemplateId: '1',
@@ -40,16 +42,16 @@ describe('PrintJob.vue', () => {
     
     it('successfully', async() => {
       Model.prototype.save = jest.fn(() => Promise.resolve(true))
-      cmp.find('#print').trigger('click')
+      printJob.execute()
       await flushPromises()
-      expect(printJob.alert).toEqual('barcode successfully printed')
+      expect(printJob.$refs.alert.message).toEqual('barcode successfully printed')
     })
 
     it('unsuccessfully', async() => {
       Model.prototype.save = jest.fn(() => Promise.resolve(false))
-      cmp.find('#print').trigger('click')
+      printJob.execute()
       await flushPromises()
-      expect(printJob.alert).toEqual('barcode printing failed')
+      expect(printJob.$refs.alert.message).toEqual('barcode printing failed')
     })
   })
 
