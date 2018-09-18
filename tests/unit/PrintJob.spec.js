@@ -10,7 +10,7 @@ describe('PrintJob.vue', () => {
   beforeEach(() => {
     date = new Date('February 1, 2018')
     // TODO: we still have to stub b-alert even though it is now part of the child component
-    // how can we abstract this problem away , far away?
+    // how can we abstract this problem away, far away?
     cmp = mount(PrintJob, {propsData: { labelTemplateId: '1' }, stubs: ['b-alert']})
     cmp.setData({barcode: 'DN1234567', printerName: 'ippbc', date: date})
     attributes = {
@@ -55,4 +55,19 @@ describe('PrintJob.vue', () => {
     })
   })
 
+  describe('it will not be valid', () => {
+
+    it('is not valid if printer is blank', () => {
+      cmp.setData({barcode: ''})
+      printJob.execute()
+      expect(printJob.errors['barcode']).toEqual('must be completed')
+    })
+
+    it('is not valid if the barcode is blank', () => {
+      cmp.setData({printerName: ''})
+      printJob.execute()
+      expect(printJob.errors['printerName']).toEqual('must be completed')
+    })
+
+  })
 })
