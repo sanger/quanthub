@@ -10,7 +10,7 @@
           </div>
           <div class="col-md-5">
             <select id="printer-name" class="form-control" name="printer-name" v-model="printerName">
-              <option v-for="printerName in printerList" v-bind:key="printerName" v-bind:value="printerName">{{printerName}}</option>
+              <option v-for="printerName in PrinterList" v-bind:key="printerName" v-bind:value="printerName">{{printerName}}</option>
             </select>
           </div>
           <div class="error">{{errors.printerName}}</div>
@@ -45,6 +45,7 @@
 
 import Model from '@/api/PrintMyBarcode'
 import Alert from '@/components/Alert'
+import PrinterList from '@/config/PrinterList'
 
 export default {
   name: 'PrintJob',
@@ -58,10 +59,9 @@ export default {
     return {
       msg: 'PrintJob',
       barcode: '',
-      printerName: '',
+      printerName: PrinterList[0],
       date: new Date(),
       model: {},
-      printerList: ['f225bc'],
       errors: {}
     }
   },

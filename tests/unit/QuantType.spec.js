@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import QuantType from '@/components/QuantType'
 import * as WellFactories from '@/QuantTypeWellFactories'
-import quantTypes from '@/quantTypes'
+import quantTypes from '@/config/quantTypes'
 
 describe('QuantType.vue', () => {
 
