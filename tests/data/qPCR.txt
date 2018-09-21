@@ -1,4 +1,4 @@
-Experiment: LA_384qPCR_PCR_Libs_Lesley  Selected Filter: SYBR Green I / HRM Dye (465-510)							
+Experiment: DN1234567_QC  Selected Filter: SYBR Green I / HRM Dye (465-510)							
 Include	Color	Pos	Name	Cp	Concentration	Standard	Status
 TRUE	128	N1	0.0002pM	24.21	2.66E-04	0.0002	
 FALSE	128	N3	0.0002pM			0.0002	

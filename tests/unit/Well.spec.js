@@ -10,7 +10,7 @@ describe('Well.vue', () => {
   let cmp, well, data, $Store, plateId, plate, cmpPlate
 
   beforeEach(() => {
-    plateId = 'plate1'
+    plateId = 'DN1234567'
     cmpPlate = Vue.extend(Plate)
     plate = new cmpPlate({propsData: { id: plateId}})
   })
@@ -58,8 +58,8 @@ describe('Well.vue', () => {
       expect(well.json).toEqual({row: 'A', column: '1', type: 'Basic', id: 'A1', concentration: '3.014', active: false})
     })
 
-    it('can have a plateId', () => {
-      expect(well.plateId).toEqual('plate1')
+    it('can have a Plate Id', () => {
+      expect(well.plateId).toEqual(plateId)
     })
   })
 

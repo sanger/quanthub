@@ -19,7 +19,7 @@ describe('Plate.vue', () => {
     response = {data: '409a47b6-b407-11e7-abfd-68b599768938'}
     axios.get.mockResolvedValue(response)
     $Store = Store
-    id = 'plate1'
+    id = 'DN1234567'
     grid = new(Vue.extend(Grid))({ propsData: { quantType: 'myNewQuantType'}})
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(id, JSON.stringify(grid.json))
@@ -44,7 +44,7 @@ describe('Plate.vue', () => {
   })
 
   it('will create a sequencescape plate in the store', () => {
-    expect($Store.sequencescapePlates.find('plate1').id).toEqual('plate1')
+    expect($Store.sequencescapePlates.find(id).id).toEqual(id)
   })
 
   it('will create a new grid for saving', () => {

@@ -1,4 +1,4 @@
-Experiment: DN508674_PF_384_qPCR_08_03_2018  Selected Filter: SYBR Green I / HRM Dye (465-510)
+Experiment: DN1234567_QC  Selected Filter: SYBR Green I / HRM Dye (465-510)
 Include	Color	Pos	Name	Cp	Concentration	Standard	Status
 True	255	A1	A1	20.68	6.32E-3	0	
 True	255	A2	A1	10.00	7.39E0	0	

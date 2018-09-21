@@ -50,7 +50,7 @@ export default {
       return metadata
     },
     id () {
-      return this.metadata[this.quantType.metadata.idColumn]
+      return this.metadata[this.quantType.metadata.idColumn].split('_')[0]
     }
   },
   methods: {
