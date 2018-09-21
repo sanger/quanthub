@@ -26,7 +26,7 @@
 // Uploads a file. Parse options dependent on quantType
 import Vue from 'vue'
 import QuantFile from '@/components/QuantFile'
-import quantTypes from '@/quantTypes.json'
+import quantTypes from '@/config/quantTypes'
 
 export default {
   name: 'Upload',

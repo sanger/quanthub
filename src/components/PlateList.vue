@@ -14,7 +14,7 @@
 
 <script>
 
-import Upload from '@/components/Upload.vue'
+import Upload from '@/components/Upload'
 
 export default {
   name: 'Plates',

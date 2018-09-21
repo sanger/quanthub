@@ -72,7 +72,7 @@ describe('Plate.vue', () => {
       let json = JSON.parse(localStorage.getItem(id))
       expect(Object.keys(json.rows)).toHaveLength(grid.numberOfRows)
       expect(json.rows[well.row][well.column].active).toBeFalsy()
-      expect(plate.alert).toEqual('Plate saved to local storage')
+      expect(plate.$refs.alert.message).toEqual('Plate saved to local storage')
     })
 
     afterEach(() => {
@@ -105,7 +105,7 @@ describe('Plate.vue', () => {
       axios.mockResolvedValue({ data: {status: 201}})
       cmp.find('#export').trigger('click')
       await flushPromises()
-      expect(plate.alert).toEqual('QC Results for plate has been successfully exported to Sequencescape')
+      expect(plate.$refs.alert.message).toEqual('QC Results for plate has been successfully exported to Sequencescape')
       expect(plate.uuid).toEqual(uuid)
       expect(axios).toBeCalledWith(plate.request)
     })
@@ -114,7 +114,7 @@ describe('Plate.vue', () => {
       axios.mockRejectedValue({ data: { status: 422}})
       cmp.find('#export').trigger('click')
       await flushPromises()
-      expect(plate.alert).toEqual('QC Results for plate could not be exported')
+      expect(plate.$refs.alert.message).toEqual('QC Results for plate could not be exported')
     })
   })
 

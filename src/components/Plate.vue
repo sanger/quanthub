@@ -1,14 +1,7 @@
 <template>
   <div class="plate">
     <div>
-      <b-alert  :show="dismissCountDown"
-                dismissible
-                :dismiss-after-seconds="5"
-                :variant="alertType"
-                @dismissed="dismissCountdown=0"
-                @dismiss-count-down="countDownChanged">
-        <h4 class="text-center">{{alert}}</h4>
-      </b-alert>
+      <alert ref='alert'></alert>
       <div class="container-fluid row">
         <b-modal v-model="exporting" :hide-footer=true :hide-header=true :no-close-on-backdrop=true>
           <spinner size="huge" message="Exporting..."></spinner>
@@ -51,9 +44,10 @@
 // The assumption is made that the data exists in local storage from when it was uploaded.
 // The QuantType is assigned from local storage and a QuantType component is created.
 
-import Row from '@/components/Row.vue'
-import Grid from '@/components/Grid.vue'
-import QuantType from '@/components/QuantType.vue'
+import Row from '@/components/Row'
+import Grid from '@/components/Grid'
+import QuantType from '@/components/QuantType'
+import Alert from '@/components/Alert'
 import {TriplicateList as Triplicates} from '@/Triplicates'
 import Vue from 'vue'
 import axios from 'axios'
@@ -75,10 +69,6 @@ export default {
       notice: '',
       uuid: '',
       triplicates: {},
-      alert: '',
-      alertType: '',
-      dismissSecs: 10,
-      dismissCountDown: 0,
       exporting: false
     }
   },
@@ -109,7 +99,8 @@ export default {
   },
   components: {
     Row,
-    Spinner
+    Spinner,
+    Alert
   },
   created () {
     try {
@@ -154,7 +145,7 @@ export default {
     // save the plate to local storage by recreating the grid
     save () {
       localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
-      this.showAlert('Plate saved to local storage', 'success')
+      this.$refs.alert.show('Plate saved to local storage', 'success')
     },
     // send a get request to quantessential to return the barcode.
     // build a request based on the triplicate data.
@@ -168,22 +159,14 @@ export default {
         })
         .then(() => {
           this.exporting = false
-          this.showAlert('QC Results for plate has been successfully exported to Sequencescape', 'success')
+          this.$refs.alert.show('QC Results for plate has been successfully exported to Sequencescape', 'success')
         })
         .catch(error => {
           this.exporting = false
-          this.showAlert('QC Results for plate could not be exported', 'danger')
+          this.$refs.alert.show('QC Results for plate could not be exported', 'danger')
           /*eslint no-console: ["error", { allow: ["error"] }] */
           console.error(error)
         })
-    },
-    countDownChanged (dismissCountDown) {
-      this.dismissCountDown = dismissCountDown
-    },
-    showAlert (alert, alertType) {
-      this.alert = alert
-      this.alertType = alertType
-      this.dismissCountDown = this.dismissSecs
     }
   }
 }

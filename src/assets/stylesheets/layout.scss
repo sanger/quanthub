@@ -17,6 +17,14 @@ nav {
   height: 30px;
   width: 100%;
   margin-bottom: 10px;
+
+  a {
+    color: white;
+
+    &:hover, &:visited{
+      color: white;
+    }
+  }
 }
 
 th {
