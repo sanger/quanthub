@@ -9,8 +9,8 @@
             <label for="printer">Select a Printer</label>
           </div>
           <div class="col-md-5">
-            <select id="printer-name" class="form-control" name="printer-name" v-model="printerName">
-              <option v-for="printerName in PrinterList" v-bind:key="printerName" v-bind:value="printerName">{{printerName}}</option>
+            <select id="printer-list" class="form-control" name="printer-list" v-model="printerName">
+              <option v-for="printerName in printerList" v-bind:key="printerName" v-bind:value="printerName">{{printerName}}</option>
             </select>
           </div>
           <div class="error">{{errors.printerName}}</div>
@@ -62,7 +62,8 @@ export default {
       printerName: PrinterList[0],
       date: new Date(),
       model: {},
-      errors: {}
+      errors: {},
+      printerList: PrinterList
     }
   },
   computed: {

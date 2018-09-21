@@ -2,6 +2,7 @@ import PrintJob from '@/components/PrintJob'
 import Model from '@/api/PrintMyBarcode'
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
+import PrinterList from '@/config/PrinterList'
 
 describe('PrintJob.vue', () => {
 
@@ -36,6 +37,10 @@ describe('PrintJob.vue', () => {
 
   it('creates some valid print job attributes', () => {
     expect(printJob.attributes).toEqual(attributes)
+  })
+
+  it('will have a list of printers', () => {
+    expect(cmp.find('#printer-list').findAll('option').length).toEqual(PrinterList.length)
   })
 
   describe('it sends a print job', () => {
