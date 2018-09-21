@@ -1,8 +1,8 @@
 <script>
 
 import parse from 'csv-parse/lib/sync'
-import Grid from '@/components/Grid.vue'
-import QuantType from '@/components/QuantType.vue'
+import Grid from '@/components/Grid'
+import QuantType from '@/components/QuantType'
 import Vue from 'vue'
 
 // Handles the upload of the file - can be csv or text
