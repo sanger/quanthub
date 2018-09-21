@@ -1,4 +1,6 @@
-# quanthub-2
+# QuantHub
+
+Does what it says on the tin.
 
 ## Project setup
 ```
