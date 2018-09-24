@@ -7,17 +7,17 @@ import Plate from '@/components/Plate'
 
 describe('Well.vue', () => {
 
-  let cmp, well, data, $Store, plateId, plate, cmpPlate
+  let cmp, well, data, $Store, plateBarcode, plate, cmpPlate
 
   beforeEach(() => {
-    plateId = 'DN1234567'
+    plateBarcode = 'DN1234567'
     cmpPlate = Vue.extend(Plate)
-    plate = new cmpPlate({propsData: { id: plateId}})
+    plate = new cmpPlate({propsData: { barcode: plateBarcode}})
   })
 
   describe('Basic', () => {
     beforeEach(() => {
-      data = {row: 'A',column: '1', type: 'Basic', id: 'A1', concentration:'3.014', plateId: plateId}
+      data = {row: 'A',column: '1', type: 'Basic', id: 'A1', concentration:'3.014', plateBarcode: plateBarcode}
       cmp = mount(Well, { propsData: data })
       well = cmp.vm
     })
@@ -58,8 +58,8 @@ describe('Well.vue', () => {
       expect(well.json).toEqual({row: 'A', column: '1', type: 'Basic', id: 'A1', concentration: '3.014', active: false})
     })
 
-    it('can have a Plate Id', () => {
-      expect(well.plateId).toEqual(plateId)
+    it('can have a Plate barcode', () => {
+      expect(well.plateBarcode).toEqual(plateBarcode)
     })
   })
 
@@ -67,7 +67,7 @@ describe('Well.vue', () => {
     beforeEach(() => {
       $Store = Store
       $Store.sequencescapePlates.add(plate)
-      data = {row: 'A',column: '1', type: 'Sample', id: 'A1', concentration:'3.014', plateId: plateId}
+      data = {row: 'A',column: '1', type: 'Sample', id: 'A1', concentration:'3.014', plateBarcode: plateBarcode}
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })
@@ -87,7 +87,7 @@ describe('Well.vue', () => {
     })
 
     it('will create a triplicate', () => {
-      let triplicate = well.store.sequencescapePlates.find(plateId).triplicates.find(well.id)
+      let triplicate = well.store.sequencescapePlates.find(plateBarcode).triplicates.find(well.id)
       expect(triplicate).toBeTruthy()
       expect(well.triplicate).toEqual(triplicate)
     })
@@ -96,7 +96,7 @@ describe('Well.vue', () => {
   describe('Standard', () => {
     beforeEach(() => {
       $Store = Store
-      data = { row: 'B', column: '4', id: 'Std 1', concentration: '26.101', type: 'Standard', plateId: plateId }
+      data = { row: 'B', column: '4', id: 'Std 1', concentration: '26.101', type: 'Standard', plateBarcode: plateBarcode }
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })
@@ -119,9 +119,9 @@ describe('Well.vue', () => {
     beforeEach(() => {
       $Store = new newStore
       $Store.sequencescapePlates.add(plate)
-      well1 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', type: 'Sample', plateId: plateId}})
-      well2 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', type: 'Sample', plateId: plateId }})
-      well3 = mount(Well, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', type: 'Sample', plateId: plateId }})
+      well1 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', type: 'Sample', plateBarcode: plateBarcode}})
+      well2 = mount(Well, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', type: 'Sample', plateBarcode: plateBarcode }})
+      well3 = mount(Well, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', type: 'Sample', plateBarcode: plateBarcode }})
     })
 
     // this would be better to check class but this is brittle
@@ -144,7 +144,7 @@ describe('Well.vue', () => {
   describe('Control', () => {
     beforeEach(() => {
       $Store = Store
-      data = { row: 'B', column: '8', id: 'Ctrl 1', concentration: '25.12', type: 'Control', plateId: plateId }
+      data = { row: 'B', column: '8', id: 'Ctrl 1', concentration: '25.12', type: 'Control', plateBarcode: plateBarcode }
       cmp = mount(Well, { mocks: { $Store }, propsData: data})
       well = cmp.vm
     })

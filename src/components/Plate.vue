@@ -6,7 +6,7 @@
         <b-modal v-model="exporting" :hide-footer=true :hide-header=true :no-close-on-backdrop=true>
           <spinner size="huge" message="Exporting..."></spinner>
         </b-modal>
-        <h3 >{{ msg }}: {{ id }}</h3>
+        <h3 >{{ msg }}: {{ barcode }}</h3>
         <div>
           <button name="save" id="save" class="btn btn-success" v-on:click.prevent="save">
             Save
@@ -27,7 +27,7 @@
           <th v-for="column in columns" v-bind:key="column">{{ column }}</th>
         </thead>
         <tbody>
-           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:plateId="id" v-bind:key="key.concat(index)"></row>
+           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:plateBarcode="barcode" v-bind:key="key.concat(index)"></row>
         </tbody>
       </table>
     </div>
@@ -56,7 +56,7 @@ import Spinner from 'vue-simple-spinner'
 export default {
   name: 'Plate',
   props: {
-    id: {
+    barcode: {
       type: String
     }
   },
@@ -81,11 +81,8 @@ export default {
     },
     // We can't assign the uuid up front because it is pulled from quantessential.
     // This will go away once we merge quanthub and quantessential.
-    metadata () {
-      return {uuid: this.uuid}
-    },
     json () {
-      return this.triplicates.values.map(triplicate => Object.assign(triplicate.json, this.metadata))
+      return this.triplicates.values.map(triplicate => triplicate.json)
     },
     jsonApiData () {
       return {data: {data: {attributes: this.json}}}
@@ -115,7 +112,7 @@ export default {
   },
   methods: {
     fetchData () {
-      let json = localStorage.getItem(this.id)
+      let json = localStorage.getItem(this.barcode)
       let Cmp = Vue.extend(QuantType)
 
       if (json !== null) {
@@ -144,7 +141,7 @@ export default {
     },
     // save the plate to local storage by recreating the grid
     save () {
-      localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
+      localStorage.setItem(this.barcode, JSON.stringify(this.toGrid()))
       this.$refs.alert.show('Plate saved to local storage', 'success')
     },
     // send a get request to quantessential to return the barcode.
@@ -152,11 +149,7 @@ export default {
     // A post request is the sent to sequencescape to populate the qc_results table.
     exportToSequencescape () {
       this.exporting = true
-      axios.get(`${process.env.VUE_APP_QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
-        .then(response => {
-          this.uuid = response.data
-          return axios(this.request)
-        })
+      axios(this.request)
         .then(() => {
           this.exporting = false
           this.$refs.alert.show('QC Results for plate has been successfully exported to Sequencescape', 'success')

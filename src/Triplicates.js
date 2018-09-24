@@ -27,6 +27,10 @@ class Triplicate {
     return this.wells[0].id
   }
 
+  get plateBarcode () {
+    return this.wells[0].plateBarcode
+  }
+
   get size () {
     return this.activeWells.length
   }
@@ -73,6 +77,7 @@ class Triplicate {
 
   get json () {
     return {
+      barcode: this.plateBarcode,
       well_location: this.id,
       key: this.options.key,
       value: this.adjustedAverage,

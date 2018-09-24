@@ -35,7 +35,7 @@ export default {
     type: {
       default: ''
     },
-    plateId: {
+    plateBarcode: {
       default: ''
     }
   },

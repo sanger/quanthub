@@ -8,9 +8,9 @@ describe('Triplicates.vue', () => {
 
   beforeEach(() => {
     cmp = Vue.extend(Well)
-    well1 = new cmp({propsData: {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014'}})
-    well2 = new cmp({propsData: {row:'A',column:'2',content:'Sample X1',id:'A1',concentration:'3.163'}})
-    well3 = new cmp({propsData: {row:'B',column:'1',content:'Sample X1',id:'A1',concentration:'2.836'}})
+    well1 = new cmp({propsData: {row:'A',column:'1',content:'Sample X1',id:'A1',concentration:'3.014', plateBarcode: 'DN1234567'}})
+    well2 = new cmp({propsData: {row:'A',column:'2',content:'Sample X1',id:'A1',concentration:'3.163', plateBarcode: 'DN1234567'}})
+    well3 = new cmp({propsData: {row:'B',column:'1',content:'Sample X1',id:'A1',concentration:'2.836', plateBarcode: 'DN1234567'}})
   })
 
   describe('Triplicate', () => {
@@ -35,7 +35,7 @@ describe('Triplicates.vue', () => {
         expect(triplicate.options.key).toBeDefined()
         expect(triplicate.options.units).toBeDefined()
         expect(triplicate.options.conversionFactor).toBeDefined()
-      })
+      }) 
 
       it('will set a standard deviation', () => {
         // average = 3.004
@@ -50,6 +50,10 @@ describe('Triplicates.vue', () => {
 
       it('will have an id', () => {
         expect(triplicate.id).toEqual(well1.id)
+      })
+
+      it('will have a plate barcode', () => {
+        expect(triplicate.plateBarcode).toEqual('DN1234567')
       })
       
       it('will set a cv', () => {
@@ -80,6 +84,7 @@ describe('Triplicates.vue', () => {
 
       it('will return some json for exporting purposes', () => {
         expect(triplicate.json).toEqual({
+          barcode: triplicate.plateBarcode,
           well_location: triplicate.id, 
           key: triplicate.options.key, 
           value: triplicate.adjustedAverage, 
