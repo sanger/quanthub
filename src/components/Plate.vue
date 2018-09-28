@@ -144,9 +144,9 @@ export default {
       localStorage.setItem(this.barcode, JSON.stringify(this.toGrid()))
       this.$refs.alert.show('Plate saved to local storage', 'success')
     },
-    // send a get request to quantessential to return the barcode.
     // build a request based on the triplicate data.
     // A post request is the sent to sequencescape to populate the qc_results table.
+    // TODO: can we move this to an ORM
     exportToSequencescape () {
       this.exporting = true
       axios(this.request)
