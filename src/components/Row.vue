@@ -7,7 +7,6 @@
 
 <script>
 
-import Well from '@/components/Well'
 import Control from '@/components/wells/Control'
 import Sample from '@/components/wells/Sample'
 import Standard from '@/components/wells/Standard'
@@ -45,7 +44,6 @@ export default {
   methods: {
   },
   components: {
-    Well,
     Sample,
     Control,
     Standard,
