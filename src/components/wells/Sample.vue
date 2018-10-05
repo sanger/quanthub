@@ -66,6 +66,11 @@ export default {
           inactive: true
         }
       }
+      else {
+        return {
+          inspect: this.needsInspection()
+        }
+      }
     }
   },
   methods: {
@@ -96,6 +101,16 @@ export default {
       min-height: 50px;
       font-size: 12px;
     }
+  }
+
+  .inactive {
+    background-color: gray;
+    color: white;
+  }
+
+  .inspect {
+    color: white;
+    background-color: $well-red;
   }
 
 </style>
