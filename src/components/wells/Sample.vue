@@ -3,16 +3,17 @@
     {{ id }}
     <br />
     {{ concentration }}
-    }
   </td>
 </template>
 
 <script>
 
 import { NullTriplicate } from '@/Triplicates'
+import Well from '@/mixins/Well'
 
 export default {
   name: 'sample-well',
+  mixins: [Well],
   props: {
     row: {
       default: ''

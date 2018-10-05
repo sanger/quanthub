@@ -1,5 +1,5 @@
 <template>
-  <td class="well control" >
+  <td class="well blank" >
     {{ concentration }}
   </td>
 </template>
@@ -9,16 +9,16 @@
 import Well from '@/mixins/Well'
 
 export default {
-  name: 'control-well',
+  name: 'blank-well',
   mixins: [Well],
   props: {
     type: {
-      default: 'Control'
+      default: 'Blank'
     }
   },
   data () {
     return {
-      msg: 'Control Well'
+      msg: 'Blank Well'
     }
   },
   computed: {
@@ -47,8 +47,7 @@ export default {
     }
   }
 
-  .control {
+  .blank {
     color: white;
-    background-color: $well-green;
   }
 </style>

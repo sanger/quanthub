@@ -59,7 +59,7 @@ export default {
     buildCells (rowId) {
       let cells = {}
       for (let column of this.columns) {
-        cells[column] = {row: rowId, column: String(column)}
+        cells[column] = {row: rowId, column: String(column), type: 'Empty'}
       }
       return cells
     },

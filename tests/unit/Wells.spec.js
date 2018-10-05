@@ -43,6 +43,50 @@ describe('Wells', () => {
     })
   })
 
+  describe('Blank.vue', () => {
+
+    beforeEach(() => {
+      data = { row: '', column: '', concentration: '', plateBarcode: plateBarcode }
+      cmp = mount(Wells.Blank, { propsData: data })
+      well = cmp.vm
+    })
+
+    it('produces some json', () => {
+      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Blank', concentration: data.concentration})
+    })
+
+    it('has a type', () => {
+      expect(well.type).toEqual('Blank')
+    })
+
+    it('has the correct class', () => {
+      expect(well.$el.className).toMatch('blank')
+    })
+
+  })
+
+  describe('Empty.vue', () => {
+
+    beforeEach(() => {
+      data = { row: '', column: '', concentration: '', plateBarcode: plateBarcode }
+      cmp = mount(Wells.Empty, { propsData: data })
+      well = cmp.vm
+    })
+
+    it('produces some json', () => {
+      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Empty', concentration: data.concentration})
+    })
+
+    it('has a type', () => {
+      expect(well.type).toEqual('Empty')
+    })
+
+    it('has the correct class', () => {
+      expect(well.$el.className).toMatch('empty')
+    })
+
+  })
+
   describe('Control.vue', () => {
 
     beforeEach(() => {
@@ -51,32 +95,16 @@ describe('Wells', () => {
       well = cmp.vm
     })
 
-    it('has a row', () => {
-      expect(well.row).toEqual(data.row)
-    })
-
-    it('has a column', () => {
-      expect(well.column).toEqual(data.column)
-    })
-
-    it('has a concentration', () => {
-      expect(well.concentration).toEqual(data.concentration)
-    })
-
-    it('has a plateBarcode', () => {
-      expect(well.plateBarcode).toEqual(data.plateBarcode)
-    })
-
-    it('has a location', () => {
-      expect(well.location).toEqual(well.row.concat(well.column))
-    })
-
     it('outputs concentration', () => {
       expect(well.$el.textContent).toMatch(new RegExp(well.concentration))
     })
 
     it('produces some json', () => {
       expect(well.json).toEqual({row: data.row, column: data.column, type: 'Control', concentration: data.concentration})
+    })
+
+    it('has a type', () => {
+      expect(well.type).toEqual('Control')
     })
 
     it('has the correct class', () => {
@@ -92,26 +120,6 @@ describe('Wells', () => {
       well = cmp.vm
     })
 
-    it('has a row', () => {
-      expect(well.row).toEqual(data.row)
-    })
-
-    it('has a column', () => {
-      expect(well.column).toEqual(data.column)
-    })
-
-    it('has a concentration', () => {
-      expect(well.concentration).toEqual(data.concentration)
-    })
-
-    it('has a plateBarcode', () => {
-      expect(well.plateBarcode).toEqual(data.plateBarcode)
-    })
-
-    it('has a location', () => {
-      expect(well.location).toEqual(well.row.concat(well.column))
-    })
-
     it('outputs concentration', () => {
       expect(well.$el.textContent).toMatch(new RegExp(well.concentration))
     })
@@ -122,6 +130,10 @@ describe('Wells', () => {
 
     it('has the correct class', () => {
       expect(well.$el.className).toMatch('standard')
+    })
+
+    it('has a type', () => {
+      expect(well.type).toEqual('Standard')
     })
 
   })
@@ -142,28 +154,12 @@ describe('Wells', () => {
       well = cmp.vm
     })
 
-    it('has a row', () => {
-      expect(well.row).toEqual(data.row)
-    })
-
-    it('has a column', () => {
-      expect(well.column).toEqual(data.column)
-    })
-
-    it('has a concentration', () => {
-      expect(well.concentration).toEqual(data.concentration)
-    })
-
-    it('has a plateBarcode', () => {
-      expect(well.plateBarcode).toEqual(data.plateBarcode)
-    })
-
-    it('has a location', () => {
-      expect(well.location).toEqual(well.row.concat(well.column))
-    })
-
     it('has an id', () => {
       expect(well.id).toEqual(data.id)
+    })
+
+    it('has a type', () => {
+      expect(well.type).toEqual('Sample')
     })
 
     it('outputs concentration', () => {

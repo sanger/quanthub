@@ -6,8 +6,11 @@
 
 <script>
 
+import Well from '@/mixins/Well'
+
 export default {
   name: 'standard-well',
+  mixins: [Well],
   props: {
     row: {
       default: ''

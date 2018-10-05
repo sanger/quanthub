@@ -1,13 +1,18 @@
 <template>
   <tr class="plate-row">
     <th>{{ id }}</th>
-    <well v-for="(well, key, index) in wells" v-bind="well" v-bind:plateBarcode="plateBarcode" :key="key.concat(index)"></well>
+    <component v-for="(well, key, index) in wells" v-bind="well" :is="well.type" v-bind:plateBarcode="plateBarcode" :key="key.concat(index)"></component>
   </tr>
 </template>
 
 <script>
 
 import Well from '@/components/Well'
+import Control from '@/components/wells/Control'
+import Sample from '@/components/wells/Sample'
+import Standard from '@/components/wells/Standard'
+import Blank from '@/components/wells/Blank'
+import Empty from '@/components/wells/Empty'
 
 // A row does nothing more than hold a group of wells.
 // It has an id which is the location e.g. A1
@@ -37,8 +42,15 @@ export default {
       return this.$children.map(well => well.json)
     }
   },
+  methods: {
+  },
   components: {
-    Well
+    Well,
+    Sample,
+    Control,
+    Standard,
+    Blank,
+    Empty
   }
 }
 </script>
