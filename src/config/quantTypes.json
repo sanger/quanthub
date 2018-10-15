@@ -162,7 +162,7 @@
   },
   "LCMB": {
     "key": "LCMB",
-    "name": "Working Dilution - Plate Reader",
+    "name": "LCMB",
     "wellType": "PlateReader",
     "cvThreshold": 20,
     "parse": {
