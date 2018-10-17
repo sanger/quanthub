@@ -7,16 +7,13 @@
 
 <script>
 
-import Control from '@/components/wells/Control'
-import Sample from '@/components/wells/Sample'
-import Standard from '@/components/wells/Standard'
-import Blank from '@/components/wells/Blank'
-import Empty from '@/components/wells/Empty'
+import WellTypes from '@/mixins/WellTypes'
 
 // A row does nothing more than hold a group of wells.
 // It has an id which is the location e.g. A1
 export default {
   name: 'Row',
+  mixins: [WellTypes],
   props: {
     id: {
       type: String,
@@ -42,13 +39,6 @@ export default {
     }
   },
   methods: {
-  },
-  components: {
-    Sample,
-    Control,
-    Standard,
-    Blank,
-    Empty
   }
 }
 </script>

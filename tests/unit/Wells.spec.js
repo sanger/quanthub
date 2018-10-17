@@ -4,7 +4,8 @@ import Wells from '@/components/wells'
 import Store from '@/Store'
 import { Store as newStore } from '@/Store'
 import Plate from '@/components/Plate'
-import Well from '@/mixins/Well'
+import WellProperties from '@/mixins/WellProperties'
+import { components } from '@/mixins/WellTypes'
 
 describe('Wells', () => {
 
@@ -18,7 +19,7 @@ describe('Wells', () => {
 
     beforeEach(() => {
       data = { row: 'B', column: '8', concentration: '25.12', plateBarcode: plateBarcode }
-      cmp = Vue.extend({mixins: [Well]})
+      cmp = Vue.extend({mixins: [WellProperties]})
       well = new cmp({propsData: data})
     })
 
@@ -40,6 +41,12 @@ describe('Wells', () => {
 
     it('has a location', () => {
       expect(well.location).toEqual(well.row.concat(well.column))
+    })
+  })
+
+  describe("Well Type mixin", () => {
+    it('has the correct number of types', () => {
+      expect(Object.keys(components()).length).toEqual(Object.keys(Wells).length)
     })
   })
 

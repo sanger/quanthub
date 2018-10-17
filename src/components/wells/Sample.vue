@@ -9,11 +9,11 @@
 <script>
 
 import { NullTriplicate } from '@/Triplicates'
-import Well from '@/mixins/Well'
+import WellProperties from '@/mixins/WellProperties'
 
 export default {
   name: 'sample-well',
-  mixins: [Well],
+  mixins: [WellProperties],
   props: {
     row: {
       default: ''

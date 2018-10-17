@@ -1,4 +1,4 @@
-const Well = {
+const WellProperties = {
   props: {
     row: {
       default: ''
@@ -20,4 +20,4 @@ const Well = {
   }
 }
 
-export default Well
+export default WellProperties

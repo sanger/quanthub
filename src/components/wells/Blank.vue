@@ -6,11 +6,11 @@
 
 <script>
 
-import Well from '@/mixins/Well'
+import WellProperties from '@/mixins/WellProperties'
 
 export default {
   name: 'blank-well',
-  mixins: [Well],
+  mixins: [WellProperties],
   props: {
     type: {
       default: 'Blank'
