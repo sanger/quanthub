@@ -20,16 +20,6 @@ export default {
     return {
       msg: 'Empty Well'
     }
-  },
-  computed: {
-    json () {
-      return {
-        row: this.row,
-        column: this.column,
-        type: this.type,
-        concentration: this.concentration
-      }
-    }
   }
 }
 </script>

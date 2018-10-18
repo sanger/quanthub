@@ -42,6 +42,15 @@ describe('Wells', () => {
     it('has a location', () => {
       expect(well.location).toEqual(well.row.concat(well.column))
     })
+
+    it('has a type', () => {
+      expect(well.type).toEqual('Base')
+    })
+
+    it('has some json', () => {
+      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Base', concentration: data.concentration})
+    })
+
   })
 
   describe("Well Type mixin", () => {
@@ -56,10 +65,6 @@ describe('Wells', () => {
       data = { row: '', column: '', concentration: '', plateBarcode: plateBarcode }
       cmp = mount(Wells.Blank, { propsData: data })
       well = cmp.vm
-    })
-
-    it('produces some json', () => {
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Blank', concentration: data.concentration})
     })
 
     it('has a type', () => {
@@ -78,10 +83,6 @@ describe('Wells', () => {
       data = { row: '', column: '', concentration: '', plateBarcode: plateBarcode }
       cmp = mount(Wells.Empty, { propsData: data })
       well = cmp.vm
-    })
-
-    it('produces some json', () => {
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Empty', concentration: data.concentration})
     })
 
     it('has a type', () => {
@@ -106,10 +107,6 @@ describe('Wells', () => {
       expect(well.$el.textContent).toMatch(new RegExp(well.concentration))
     })
 
-    it('produces some json', () => {
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Control', concentration: data.concentration})
-    })
-
     it('has a type', () => {
       expect(well.type).toEqual('Control')
     })
@@ -129,10 +126,6 @@ describe('Wells', () => {
 
     it('outputs concentration', () => {
       expect(well.$el.textContent).toMatch(new RegExp(well.concentration))
-    })
-
-    it('produces some json', () => {
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Standard', concentration: data.concentration})
     })
 
     it('has the correct class', () => {

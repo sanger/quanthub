@@ -32,19 +32,6 @@ export default {
     return {
       msg: 'Standard Well'
     }
-  },
-  computed: {
-    location () {
-      return this.row.concat(this.column)
-    },
-    json () {
-      return {
-        row: this.row,
-        column: this.column,
-        type: this.type,
-        concentration: this.concentration
-      }
-    }
   }
 }
 </script>
