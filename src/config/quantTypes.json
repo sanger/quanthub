@@ -67,9 +67,9 @@
       }
     }
   },
-  "cherryPickPlateReader": {
-    "key": "cherryPickPlateReader",
-    "name": "CherryPick - Plate Reader",
+  "normalisation": {
+    "key": "normalisation",
+    "name": "Normalisation",
     "wellType": "PlateReader",
     "cvThreshold": 20,
     "parse": {
@@ -93,7 +93,7 @@
       "key": "concentration",
       "units": "ng/ul",
       "assay": {
-        "type": "CherryPick - Plate Reader",
+        "type": "Normalisation",
         "version": "v1.0"
       }
     }
@@ -125,6 +125,68 @@
       "units": "ng/ul",
       "assay": {
         "type": "Working Dilution - Plate Reader",
+        "version": "v1.0"
+      }
+    }
+  },
+  "RNAHighThroughput": {
+    "key": "RNAHighThroughput",
+    "name": "RNA - High Throughput",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "RNA - High Throughput",
+        "version": "v1.0"
+      }
+    }
+  },
+  "LCMB": {
+    "key": "LCMB",
+    "name": "LCMB",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "LCMB",
         "version": "v1.0"
       }
     }
