@@ -18,7 +18,7 @@ describe('Wells', () => {
   describe('Well mixin', () => {
 
     beforeEach(() => {
-      data = { row: 'B', column: '8', concentration: '25.12', plateBarcode: plateBarcode }
+      data = { row: 'B', column: '8', concentration: '25.12', plateBarcode: plateBarcode, defaultFields: {'row':'row','column':'column','concentration':'concentration'}, extraFields: {'type':'type'} }
       cmp = Vue.extend({mixins: [WellProperties]})
       well = new cmp({propsData: data})
     })
@@ -47,13 +47,17 @@ describe('Wells', () => {
       expect(well.type).toEqual('Base')
     })
 
+    it('has some default fields', () => {
+
+    })
+
     it('has some json', () => {
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Base', concentration: data.concentration})
+      expect(well.json).toEqual({row: data.row, column: data.column, concentration: data.concentration, type: well.type})
     })
 
   })
 
-  describe("Well Type mixin", () => {
+  describe('Well Type mixin', () => {
     it('has the correct number of types', () => {
       expect(Object.keys(components()).length).toEqual(Object.keys(Wells).length)
     })

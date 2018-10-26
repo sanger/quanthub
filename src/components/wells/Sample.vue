@@ -36,6 +36,14 @@ export default {
     active: {
       default: true,
       type: Boolean
+    },
+    extraFields: {
+      default () {
+        return {
+          'id': 'id',
+          'active': 'isActive'
+        }
+      }
     }
   },
   data () {
@@ -49,16 +57,6 @@ export default {
   computed: {
     location () {
       return this.row.concat(this.column)
-    },
-    json () {
-      return {
-        row: this.row,
-        column: this.column,
-        type: this.type,
-        concentration: this.concentration,
-        id: this.id,
-        active: this.isActive
-      }
     },
     classObject () {
       if (!this.isActive) {
