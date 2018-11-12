@@ -73,7 +73,7 @@ describe('QuantFile.vue', () => {
         it('creates some metadata', () => {
           let metadata = quantFile.metadata
           expect(metadata.User).toEqual('SANGER')
-          expect(metadata.ID1).toEqual('DN1234567_QC')
+          expect(metadata.ID1).toEqual('DN1234567-QC')
         })
 
         it('has an id', () => {

@@ -22,8 +22,8 @@ describe('PrintJob.vue', () => {
           {
             main_label: {
               top_left: '01-FEB-2018',
-              bottom_left: 'DN1234567_QC',
-              barcode: 'DN1234567_QC'
+              bottom_left: 'DN1234567-QC',
+              barcode: 'DN1234567-QC'
             }
           }
         ]
@@ -32,7 +32,7 @@ describe('PrintJob.vue', () => {
   })
 
   it('will modify the barcode for the print job', () => {
-    expect(printJob.qcBarcode).toEqual('DN1234567_QC')
+    expect(printJob.qcBarcode).toEqual('DN1234567-QC')
   })
 
   it('creates some valid print job attributes', () => {

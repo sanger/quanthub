@@ -71,7 +71,7 @@ export default {
       return `${this.date.getDate().toString().padStart(2,'0')}-${this.months[this.date.getMonth()]}-${this.date.getFullYear()}`
     },
     qcBarcode () {
-      return this.barcode.concat('_QC')
+      return this.barcode.concat('-QC')
     },
     attributes () {
       return {
