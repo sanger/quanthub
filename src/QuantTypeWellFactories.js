@@ -8,7 +8,7 @@ class PlateReader {
     this.concentration = cell.concentration
   }
   get type () {
-    return this.content.split(' ')[0]
+    return this.content.split(' ')[0] || 'Empty'
   }
   get json () {
     return {

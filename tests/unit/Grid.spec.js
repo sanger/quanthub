@@ -59,12 +59,14 @@ describe('Grid.vue', () => {
       expect(Object.keys(row)).toHaveLength(grid.numberOfColumns)
     })
 
-    it('adds a row and column to each cell', () => {
+    it('adds a row, column and type to each cell', () => {
       let row = grid.rows.A
       expect(row['1'].row).toEqual('A')
       expect(row['1'].column).toEqual('1')
+      expect(row['1'].type).toEqual('Empty')
       expect(row['10'].row).toEqual('A')
       expect(row['10'].column).toEqual('10')
+      expect(row['10'].type).toEqual('Empty')
     })
 
     it('produces some json', () => {

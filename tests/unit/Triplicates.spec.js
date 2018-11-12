@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Well from '@/components/Well'
+import Well from '@/components/wells/Sample'
 import {TriplicateList as Triplicates, Triplicate, NullTriplicate} from '@/Triplicates'
 
 describe('Triplicates.vue', () => {
