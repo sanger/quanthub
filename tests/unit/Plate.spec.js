@@ -3,9 +3,9 @@ import Plate from '@/components/Plate'
 import Grid from '@/components/Grid'
 import plateReader from '../data/plate_reader'
 import Store from '@/Store'
-import { mount } from '@vue/test-utils'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
+import { mount, localVue } from './testHelper'
 
 jest.mock('axios')
 
@@ -21,8 +21,7 @@ describe('Plate.vue', () => {
     grid = new(Vue.extend(Grid))({ propsData: { quantType: 'myNewQuantType'}})
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(barcode, JSON.stringify(grid.json))
-    // we need to stub b-alert and b-modal as they are not loaded on a mount.
-    cmp = mount(Plate, {propsData: { barcode: barcode }, mocks: { $Store }, stubs: ['b-alert', 'b-modal']})
+    cmp = mount(Plate, {propsData: { barcode: barcode }, mocks: { $Store }, localVue})
     plate = cmp.vm
   })
   
@@ -58,8 +57,15 @@ describe('Plate.vue', () => {
     expect(plate.quantType.triplicateOptions).toBeDefined()
   })
 
+  it('allows the user to enter a lot number', () => {
+    const input = cmp.find('input[type="text"]')
+    input.setValue('LOT1234567')
+    expect(plate.lotNumber).toEqual('LOT1234567')
+  })
+
   describe('saving', () => {
     beforeEach(() => {
+      cmp.setData({lotNumber: 'LOT1234567'})
       localStorage.clear()
     })
 
@@ -68,6 +74,7 @@ describe('Plate.vue', () => {
       plate.$el.querySelector('td').click()
       cmp.find('#save').trigger('click')
       let json = JSON.parse(localStorage.getItem(barcode))
+      expect(json.lotNumber).toEqual('LOT1234567')
       expect(Object.keys(json.rows)).toHaveLength(grid.numberOfRows)
       expect(json.rows[well.row][well.column].active).toBeFalsy()
       expect(plate.$refs.alert.message).toEqual('Plate saved to local storage')
@@ -80,13 +87,19 @@ describe('Plate.vue', () => {
 
   describe('exporting', () => {
 
+    beforeEach(() => {
+      cmp.setData({lotNumber: 'LOT1234567'})
+    })
+
     it('has some json', () => {
-      expect(plate.json).toHaveLength(plate.triplicates.size)
+      let json = plate.json
+      expect(json.lot_number).toEqual('LOT1234567')
+      expect(json.qc_results).toHaveLength(plate.triplicates.size)
     })
 
     it('returns some request options for export', () => {
       expect(plate.jsonApiData).toEqual({data: { data: {attributes: plate.json}}})
-      expect(plate.requestOptions).toEqual({url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL})
+      expect(plate.requestOptions).toEqual({url: '/qc_assays', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL})
     })
 
     it('success', async() => {

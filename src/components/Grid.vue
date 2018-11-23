@@ -16,6 +16,10 @@ export default {
       type: String,
       default: 'libraryPlateReader'
     },
+    lotNumber: {
+      type: String,
+      default: ''
+    },
     numberOfColumns: {
       type: Number,
       default: 24
@@ -40,6 +44,7 @@ export default {
     json () {
       return {
         quantType: this.quantType,
+        lotNumber: this.lotNumber,
         columns: this.columns,
         rows: this.rows
       }

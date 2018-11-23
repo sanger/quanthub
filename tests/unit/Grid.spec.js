@@ -31,11 +31,15 @@ describe('Grid.vue', () => {
     let rows, keys
 
     beforeEach(() => {
-      grid = new cmp({propsData: { numberOfColumns: 10, numberOfRows: 20, quantType: 'someQuantType'}})
+      grid = new cmp({propsData: { numberOfColumns: 10, numberOfRows: 20, quantType: 'someQuantType', lotNumber: 'LOT1234567'}})
     })
 
     it('sets the quantType property', () => {
       expect(grid.quantType).toEqual('someQuantType')
+    })
+
+    it('sets the lotNumber property', () => {
+      expect(grid.lotNumber).toEqual('LOT1234567')
     })
 
     it('builds some columns', () => {
@@ -72,6 +76,7 @@ describe('Grid.vue', () => {
     it('produces some json', () => {
       let json = grid.json
       expect(json.quantType).toEqual(grid.quantType)
+      expect(json.lotNumber).toEqual(grid.lotNumber)
       expect(json.columns).toEqual(grid.columns)
       expect(json.rows).toEqual(grid.rows)
     })

@@ -7,6 +7,10 @@
           <spinner size="huge" message="Exporting..."></spinner>
         </b-modal>
         <h3 >{{ msg }}: {{ barcode }}</h3>
+        <div class="spacer">
+          <label class="spacer" for="lotNumber">Lot Number:</label>
+          <input type="text" v-model="lotNumber" id="lotNumber" />
+        </div>
         <div>
           <button name="save" id="save" class="btn btn-success" v-on:click.prevent="save">
             Save
@@ -69,7 +73,8 @@ export default {
       notice: '',
       uuid: '',
       triplicates: {},
-      exporting: false
+      exporting: false,
+      lotNumber: ''
     }
   },
   computed: {
@@ -82,13 +87,13 @@ export default {
     // We can't assign the uuid up front because it is pulled from quantessential.
     // This will go away once we merge quanthub and quantessential.
     json () {
-      return this.triplicates.values.map(triplicate => triplicate.json)
+      return { lot_number: this.lotNumber, qc_results: this.triplicates.values.map(triplicate => triplicate.json) }
     },
     jsonApiData () {
       return {data: {data: {attributes: this.json}}}
     },
     requestOptions () {
-      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL}
+      return {url: '/qc_assays', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL}
     },
     request () {
       return Object.assign(this.requestOptions, this.jsonApiData)
@@ -116,7 +121,9 @@ export default {
       let Cmp = Vue.extend(QuantType)
 
       if (json !== null) {
-        this.grid = JSON.parse(json)
+        let parsedJSON = JSON.parse(json)
+        this.grid = parsedJSON
+        this.lotNumber = parsedJSON.lotNumber
         this.quantType = new Cmp({propsData: { quantType: this.grid.quantType }})
       } else {
         this.quantType = new Cmp()
@@ -127,7 +134,7 @@ export default {
     // The wells could be totally different if it is a new plate
     toGrid () {
       let Cmp = Vue.extend(Grid)
-      let grid = new Cmp({propsData: {quantType: this.grid.quantType}})
+      let grid = new Cmp({propsData: {quantType: this.grid.quantType, lotNumber: this.lotNumber}})
       for (let child of this.$children) {
         // because we now have a b-alert it also exists as a child
         // we need to exclude it as it will throw an error as it

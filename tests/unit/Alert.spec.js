@@ -1,12 +1,12 @@
 import Alert from '@/components/Alert'
-import { mount } from '@vue/test-utils'
+import { mount, localVue } from './testHelper'
 
 describe('Alert.vue', () => {
 
   let cmp, alert
 
   beforeEach(() => {
-    cmp = mount(Alert, { stubs: ['b-alert'] } )
+    cmp = mount(Alert, { localVue } )
     alert = cmp.vm
     cmp.setData({ dismissSecs: 100})
   })
