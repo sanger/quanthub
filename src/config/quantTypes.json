@@ -93,7 +93,7 @@
       "key": "concentration",
       "units": "ng/ul",
       "assay": {
-        "type": "Stock - Plate Reader",
+        "type": "ISC",
         "version": "v1.0"
       }
     }
