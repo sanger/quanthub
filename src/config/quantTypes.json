@@ -67,6 +67,37 @@
       }
     }
   },
+  "ISC": {
+    "key": "ISC",
+    "name": "ISC",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Stock - Plate Reader",
+        "version": "v1.0"
+      }
+    }
+  },
   "normalisation": {
     "key": "normalisation",
     "name": "Normalisation",
