@@ -8,7 +8,7 @@
         </b-modal>
         <h3 >{{ msg }}: {{ barcode }}</h3>
         <div class="spacer">
-          <label class="spacer" for="lotNumber">Lot Number:</label>
+          <label class="spacer" for="lotNumber">Standards Lot Number:</label>
           <input type="text" v-model="lotNumber" id="lotNumber" />
         </div>
         <div>

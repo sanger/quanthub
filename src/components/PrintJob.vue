@@ -19,7 +19,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-3">
-            <label for="barcode">Scan your barcode</label>
+            <label for="barcode">Scan your plate barcode</label>
           </div>
           <div class="col-md-5">
             <input name="barcode" id="barcode" class="form-control" v-model="barcode">
