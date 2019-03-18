@@ -1,4 +1,4 @@
-Experiment: LA_TruseqIDT24_PoolsDFGHI_IlluminaLibs_180524  Selected Filter: SYBR Green I / HRM Dye (465-510)							
+Experiment: DN1234567-QC  Selected Filter: SYBR Green I / HRM Dye (465-510)							
 Include	Color	Pos	Name	Cp	Concentration	Standard	Status
 TRUE	255	A1	A1	8.18	2.48E+01	0	
 TRUE	255	A2	A1	8.12	2.57E+01	0	

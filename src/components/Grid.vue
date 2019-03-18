@@ -16,6 +16,10 @@ export default {
       type: String,
       default: 'libraryPlateReader'
     },
+    lotNumber: {
+      type: String,
+      default: ''
+    },
     numberOfColumns: {
       type: Number,
       default: 24
@@ -40,6 +44,7 @@ export default {
     json () {
       return {
         quantType: this.quantType,
+        lotNumber: this.lotNumber,
         columns: this.columns,
         rows: this.rows
       }
@@ -59,7 +64,7 @@ export default {
     buildCells (rowId) {
       let cells = {}
       for (let column of this.columns) {
-        cells[column] = {row: rowId, column: String(column)}
+        cells[column] = {row: rowId, column: String(column), type: 'Empty'}
       }
       return cells
     },

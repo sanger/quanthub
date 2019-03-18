@@ -8,22 +8,22 @@ describe('Plates.vue', () => {
 
   beforeEach(() => {
     cmp = Vue.extend(Plate)
-    plate = new cmp({propsData: {id:'plate1'}})
+    plate = new cmp({propsData: {barcode:'DN1234567'}})
     plates = new Plates()
     plates.add(plate)
   })
 
   it('will find an existing plate', () => {
     expect(plates).toHaveLength(1)
-    expect(plates.find(plate.id)).toEqual(plate)
+    expect(plates.find(plate.barcode)).toEqual(plate)
   })
 
   it('will return an empty plate if it does not exist', () => {
-    plate = plates.find('plate2')
-    expect(plate.id).toEqual('empty')
+    plate = plates.find('DN2345678')
+    expect(plate.barcode).toEqual('empty')
 
     plate = plates.find('')
-    expect(plate.id).toEqual('empty')
+    expect(plate.barcode).toEqual('empty')
 
   })
 

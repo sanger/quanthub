@@ -10,17 +10,22 @@ server.use(middlewares)
 // body parser allows us to accept json API requests.
 server.use(bodyParser.json({type: 'application/vnd.api+json'}))
 
-server.get( '/quants/:id/input.txt', ( req, res ) => {
-  res.jsonp("af1b62ff-b531-4ec1-9c8a-c6033004da4e")
-})
-
-server.post('/api/v2/qc_results', (req, res) => {
-  if (req.body.data.attributes[0].uuid === undefined) {
+server.post('/api/v2/qc_assays', (req, res) => {
+  if (req.body.data.attributes.qc_results[0].barcode === undefined) {
     res.sendStatus(422)
   }
   else {
     res.sendStatus(201)
   }
+})
+
+server.post('/v1/print_jobs', (req, res) => {
+  res.status(201).jsonp({
+    data: {
+      type: 'print_jobs',
+      id: 1
+    }
+  })
 })
 
 server.use(router)

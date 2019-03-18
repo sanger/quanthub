@@ -6,7 +6,11 @@
         <b-modal v-model="exporting" :hide-footer=true :hide-header=true :no-close-on-backdrop=true>
           <spinner size="huge" message="Exporting..."></spinner>
         </b-modal>
-        <h3 >{{ msg }}: {{ id }}</h3>
+        <h3 >{{ msg }}: {{ barcode }}</h3>
+        <div class="spacer">
+          <label class="spacer" for="lotNumber">Standards Lot Number:</label>
+          <input type="text" v-model="lotNumber" id="lotNumber" />
+        </div>
         <div>
           <button name="save" id="save" class="btn btn-success" v-on:click.prevent="save">
             Save
@@ -27,7 +31,7 @@
           <th v-for="column in columns" v-bind:key="column">{{ column }}</th>
         </thead>
         <tbody>
-           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:plateId="id" v-bind:key="key.concat(index)"></row>
+           <row v-for="(row, key, index) in rows" v-bind:id="key" v-bind:wells="row" v-bind:plateBarcode="barcode" v-bind:key="key.concat(index)"></row>
         </tbody>
       </table>
     </div>
@@ -56,7 +60,7 @@ import Spinner from 'vue-simple-spinner'
 export default {
   name: 'Plate',
   props: {
-    id: {
+    barcode: {
       type: String
     }
   },
@@ -69,7 +73,8 @@ export default {
       notice: '',
       uuid: '',
       triplicates: {},
-      exporting: false
+      exporting: false,
+      lotNumber: ''
     }
   },
   computed: {
@@ -81,17 +86,14 @@ export default {
     },
     // We can't assign the uuid up front because it is pulled from quantessential.
     // This will go away once we merge quanthub and quantessential.
-    metadata () {
-      return {uuid: this.uuid}
-    },
     json () {
-      return this.triplicates.values.map(triplicate => Object.assign(triplicate.json, this.metadata))
+      return { lot_number: this.lotNumber, qc_results: this.triplicates.values.map(triplicate => triplicate.json) }
     },
     jsonApiData () {
       return {data: {data: {attributes: this.json}}}
     },
     requestOptions () {
-      return {url: '/qc_results', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL}
+      return {url: '/qc_assays', method: 'post', headers: {'Content-Type': 'application/vnd.api+json'}, baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL}
     },
     request () {
       return Object.assign(this.requestOptions, this.jsonApiData)
@@ -115,11 +117,13 @@ export default {
   },
   methods: {
     fetchData () {
-      let json = localStorage.getItem(this.id)
+      let json = localStorage.getItem(this.barcode)
       let Cmp = Vue.extend(QuantType)
 
       if (json !== null) {
-        this.grid = JSON.parse(json)
+        let parsedJSON = JSON.parse(json)
+        this.grid = parsedJSON
+        this.lotNumber = parsedJSON.lotNumber
         this.quantType = new Cmp({propsData: { quantType: this.grid.quantType }})
       } else {
         this.quantType = new Cmp()
@@ -130,7 +134,7 @@ export default {
     // The wells could be totally different if it is a new plate
     toGrid () {
       let Cmp = Vue.extend(Grid)
-      let grid = new Cmp({propsData: {quantType: this.grid.quantType}})
+      let grid = new Cmp({propsData: {quantType: this.grid.quantType, lotNumber: this.lotNumber}})
       for (let child of this.$children) {
         // because we now have a b-alert it also exists as a child
         // we need to exclude it as it will throw an error as it
@@ -144,19 +148,15 @@ export default {
     },
     // save the plate to local storage by recreating the grid
     save () {
-      localStorage.setItem(this.id, JSON.stringify(this.toGrid()))
+      localStorage.setItem(this.barcode, JSON.stringify(this.toGrid()))
       this.$refs.alert.show('Plate saved to local storage', 'success')
     },
-    // send a get request to quantessential to return the barcode.
     // build a request based on the triplicate data.
     // A post request is the sent to sequencescape to populate the qc_results table.
+    // TODO: can we move this to an ORM
     exportToSequencescape () {
       this.exporting = true
-      axios.get(`${process.env.VUE_APP_QUANTESSENTIAL_BASE_URL}/quants/${this.id}/input.txt`)
-        .then(response => {
-          this.uuid = response.data
-          return axios(this.request)
-        })
+      axios(this.request)
         .then(() => {
           this.exporting = false
           this.$refs.alert.show('QC Results for plate has been successfully exported to Sequencescape', 'success')

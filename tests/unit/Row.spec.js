@@ -11,7 +11,7 @@ describe('Row.vue', () => {
     wells = { '1': {row:'A',column:'1',type:'Sample',id:'A1',concentration:'3.014', active: true},
               '2': {row:'A',column:'2',type:'Sample',id:'A1',concentration:'3.163', active: true},
               '3': {row:'A',column:'3',type:'Sample',id:'A2',concentration:'5.432', active: true} }
-    cmp = mount(Row, { mocks: { $Store }, propsData: {id: 'A', plateId: 'plate1', wells: wells}})
+    cmp = mount(Row, { mocks: { $Store }, propsData: {id: 'A', plateBarcode: 'DN1234567', wells: wells}})
     row = cmp.vm
   })
 
@@ -25,7 +25,7 @@ describe('Row.vue', () => {
   })
 
   it('can have a plateId', () => {
-    expect(row.plateId).toEqual('plate1')
+    expect(row.plateBarcode).toEqual('DN1234567')
   })
 
   it('can return wells as json', () => {
