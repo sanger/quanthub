@@ -105,6 +105,7 @@ export default {
           if(success) {
             this.$refs.alert.show('barcode successfully printed','success')
           } else {
+            /*eslint no-console: ["error", { allow: ["error"] }] */
             console.error(this.model.errors)
             this.$refs.alert.show('barcode printing failed','danger')
           }
