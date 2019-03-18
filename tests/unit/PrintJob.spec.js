@@ -1,8 +1,8 @@
 import PrintJob from '@/components/PrintJob'
 import Model from '@/api/PrintMyBarcode'
-import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 import PrinterList from '@/config/PrinterList'
+import { mount, localVue } from './testHelper'
 
 describe('PrintJob.vue', () => {
 
@@ -12,7 +12,7 @@ describe('PrintJob.vue', () => {
     date = new Date('February 1, 2018')
     // TODO: we still have to stub b-alert even though it is now part of the child component
     // how can we abstract this problem away, far away?
-    cmp = mount(PrintJob, {propsData: { labelTemplateId: '1' }, stubs: ['b-alert']})
+    cmp = mount(PrintJob, {propsData: { labelTemplateId: '1' }, localVue})
     cmp.setData({barcode: 'DN1234567', printerName: 'ippbc', date: date})
     attributes = {
       labelTemplateId: '1',
@@ -22,8 +22,8 @@ describe('PrintJob.vue', () => {
           {
             main_label: {
               top_left: '01-FEB-2018',
-              bottom_left: 'DN1234567_QC',
-              barcode: 'DN1234567_QC'
+              bottom_left: 'DN1234567-QC',
+              barcode: 'DN1234567-QC'
             }
           }
         ]
@@ -32,7 +32,7 @@ describe('PrintJob.vue', () => {
   })
 
   it('will modify the barcode for the print job', () => {
-    expect(printJob.qcBarcode).toEqual('DN1234567_QC')
+    expect(printJob.qcBarcode).toEqual('DN1234567-QC')
   })
 
   it('creates some valid print job attributes', () => {

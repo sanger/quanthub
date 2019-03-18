@@ -71,11 +71,28 @@ describe('QuantType.vue', () => {
 
   })
 
-  describe('cherryPickPlateReader', () => {
+  describe('Normalisation', () => {
 
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
-      quantType = new cmp({propsData: { quantType: 'cherryPickPlateReader'}})
+      quantType = new cmp({propsData: { quantType: 'normalisation'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
+  describe('Working Dilution - Plate Reader', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'workingDilutionPlateReader'}})
     })
 
     it('must have the correct units', () => {
@@ -97,6 +114,40 @@ describe('QuantType.vue', () => {
 
     it('must have the correct options', () => {
       expect(quantType.$data).toEqual(quantTypes["libraryQPCR"])
+    })
+
+  })
+
+  describe('RNA - High throughput', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'RNAHighThroughput'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
+  describe('LCMB', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'LCMB'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
     })
 
   })

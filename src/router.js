@@ -23,9 +23,9 @@ export default new Router({
       path: '/plate',
       name: 'Plate',
       component: Plate,
-      props: {id: true}
+      props: {barcode: true}
     },
-    { path: '/plate/:id',
+    { path: '/plate/:barcode',
       component: Plate,
       props: true
     },

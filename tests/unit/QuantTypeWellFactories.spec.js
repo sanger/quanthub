@@ -19,8 +19,8 @@ describe('QuantTypeWellFactories.js', () => {
       expect(well.column).toEqual(options.column)
     })
 
-    it('must have a content', () => {
-      expect(well.column).toEqual(options.column)
+    it('must have some content', () => {
+      expect(well.content).toEqual(options.content)
     })
 
     it('must have an id', () => {
@@ -37,6 +37,24 @@ describe('QuantTypeWellFactories.js', () => {
 
     it('produces some json', () => {
       expect(well.json).toEqual({row: 'A', column: '1', type: 'Sample', id: 'A1', concentration: 1.345})
+    })
+
+    describe('Empty well', () => {
+      beforeEach(() => {
+        well = new WellFactories.PlateReader({row: '', column: '', content: '', type: '', id: '', concentration: ''})
+      })
+
+      it('must have a type', () => {
+        expect(well.type).toEqual('Empty')
+      })
+
+      it('will be empty apart from the type', () => {
+        expect(well.row).toEqual('')
+        expect(well.column).toEqual('')
+        expect(well.content).toEqual('')
+        expect(well.id).toEqual('')
+        expect(well.concentration).toEqual('')
+      })
     })
 
   })

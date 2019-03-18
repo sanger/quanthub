@@ -31,11 +31,15 @@ describe('Grid.vue', () => {
     let rows, keys
 
     beforeEach(() => {
-      grid = new cmp({propsData: { numberOfColumns: 10, numberOfRows: 20, quantType: 'someQuantType'}})
+      grid = new cmp({propsData: { numberOfColumns: 10, numberOfRows: 20, quantType: 'someQuantType', lotNumber: 'LOT1234567'}})
     })
 
     it('sets the quantType property', () => {
       expect(grid.quantType).toEqual('someQuantType')
+    })
+
+    it('sets the lotNumber property', () => {
+      expect(grid.lotNumber).toEqual('LOT1234567')
     })
 
     it('builds some columns', () => {
@@ -59,17 +63,20 @@ describe('Grid.vue', () => {
       expect(Object.keys(row)).toHaveLength(grid.numberOfColumns)
     })
 
-    it('adds a row and column to each cell', () => {
+    it('adds a row, column and type to each cell', () => {
       let row = grid.rows.A
       expect(row['1'].row).toEqual('A')
       expect(row['1'].column).toEqual('1')
+      expect(row['1'].type).toEqual('Empty')
       expect(row['10'].row).toEqual('A')
       expect(row['10'].column).toEqual('10')
+      expect(row['10'].type).toEqual('Empty')
     })
 
     it('produces some json', () => {
       let json = grid.json
       expect(json.quantType).toEqual(grid.quantType)
+      expect(json.lotNumber).toEqual(grid.lotNumber)
       expect(json.columns).toEqual(grid.columns)
       expect(json.rows).toEqual(grid.rows)
     })

@@ -7,7 +7,7 @@ var url = function (path) {
 }
 
 var getId = function (file, line = 2, delimiter = ',') {
-  return file[line].split(delimiter)[0].split(': ')[1]
+  return file[line].split(delimiter)[0].split(': ')[1].split('-')[0]
 }
 
 var filePath = function (file) {
