@@ -191,10 +191,10 @@
       }
     }
   },
-  "libraryQPCR": {
-    "key": "libraryQPCR",
-    "name": "Library - qPCR",
-    "wellType": "QPCR",
+  "libraryQPCR10ul": {
+    "key": "libraryQPCR10ul",
+    "name": "Library - qPCR - 10ul",
+    "wellType": "QPCR10ul",
     "cvThreshold": 15,
     "parse": {
       "delimiter": "\t",
@@ -231,6 +231,43 @@
       "assay": {
         "type": "Library - qPCR",
         "version": "v1.0"
+      }
+    }
+  },
+  "libraryQPCR5ul": {
+    "key": "libraryQPCR5ul",
+    "name": "Library - qPCR - 5ul",
+    "wellType": "QPCR5ul",
+    "cvThreshold": 15,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "well",
+        "copyNumber",
+        "replicateError",
+        "totalError",
+        "shapeZError",
+        "Comments"
+      ]
+    },
+    "metadata": {
+    },
+    "conversion": {
+      "factors": {
+        "pM": 3.321e-7,
+        "calibration": 1.786,
+        "dilution": 0.5
+      },
+      "expression": "(pM*calibration*dilution)"
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Library - qPCR",
+        "version": "v2.0"
       }
     }
   }

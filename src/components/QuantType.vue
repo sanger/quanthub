@@ -59,6 +59,9 @@ export default {
   methods: {
     replaceData () {
       Object.assign(this.$data, quantTypes[this.quantType])
+    },
+    hasMetadata () {
+      return (Object.keys(this.$data.metadata).length > 0)
     }
   },
   created () {

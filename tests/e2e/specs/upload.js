@@ -64,7 +64,7 @@ module.exports = {
       .url(url('upload'))
       .waitForElementVisible('#app', 5000)
       .setValue('input[type="file"]', filePath('qPCR.txt'))
-      .click('select[id="quant-type"] option[value="libraryQPCR"]')
+      .click('select[id="quant-type"] option[value="libraryQPCR10ul"]')
       .click('button[name=submit]')
       .pause(1000)
       .assert.containsText('.row > h3', id)
