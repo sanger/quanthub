@@ -256,11 +256,11 @@
     },
     "conversion": {
       "factors": {
-        "pM": 3.321e-7,
+        "topM": 3.321e-7,
         "calibration": 1.786,
         "dilution": 0.5
       },
-      "expression": "(pM*calibration*dilution)"
+      "expression": "(topM*calibration*dilution)"
     },
     "qcResults": {
       "key": "molarity",
