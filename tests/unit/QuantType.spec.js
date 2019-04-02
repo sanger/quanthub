@@ -16,7 +16,8 @@ describe('QuantType.vue', () => {
                     factors: { 
                       dilution: 500, standardInsertSize: 452, libraryInsertSize: 573
                     },
-                    expression: "(dilution*standardInsertSize)/libraryInsertSize"
+                    expression: "(dilution*standardInsertSize)/libraryInsertSize",
+                    decimalPlaces: 5
                   }
                 }
       cmp = Vue.extend(QuantType)
@@ -24,7 +25,7 @@ describe('QuantType.vue', () => {
     })
 
     it('provides a conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual("394.415")
+      expect(quantType.conversionFactor).toEqual("394.41536")
     })
 
     it('provides a well type', () => {
