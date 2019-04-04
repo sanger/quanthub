@@ -16,7 +16,8 @@ describe('QuantType.vue', () => {
                     factors: { 
                       dilution: 500, standardInsertSize: 452, libraryInsertSize: 573
                     },
-                    expression: "(dilution*standardInsertSize)/libraryInsertSize"
+                    expression: "(dilution*standardInsertSize)/libraryInsertSize",
+                    decimalPlaces: 5
                   }
                 }
       cmp = Vue.extend(QuantType)
@@ -24,7 +25,7 @@ describe('QuantType.vue', () => {
     })
 
     it('provides a conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual("394.415")
+      expect(quantType.conversionFactor).toEqual("394.41536")
     })
 
     it('provides a well type', () => {
@@ -39,6 +40,10 @@ describe('QuantType.vue', () => {
       expect(quantType.cvThreshold).toBeDefined()
     })
 
+    it('should have metadata by default', () => {
+      expect(quantType.hasMetadata()).toBeTruthy()
+    })
+
   })
 
   describe('libraryPlateReader', () => {
@@ -46,6 +51,10 @@ describe('QuantType.vue', () => {
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
       quantType = new cmp({propsData: { quantType: 'libraryPlateReader'}})
+    })
+
+    it('has some metadata', () => {
+      expect(quantType.hasMetadata()).toBeTruthy()
     })
 
     it('must have the correct options', () => {
@@ -105,15 +114,48 @@ describe('QuantType.vue', () => {
 
   })
 
-  describe('libraryQPCR', () => {
+  describe('libraryQPCR - 10ul', () => {
 
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
-      quantType = new cmp({propsData: { quantType: 'libraryQPCR'}})
+      quantType = new cmp({propsData: { quantType: 'libraryQPCR10ul'}})
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes["libraryQPCR"])
+      expect(quantType.$data).toEqual(quantTypes["libraryQPCR10ul"])
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has some metadata', () => {
+      expect(quantType.hasMetadata()).toBeTruthy()
+    })
+
+  })
+
+  describe('libraryQPCR - 5ul', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'libraryQPCR5ul'}})
+    })
+
+    it('must have the correct options', () => {
+      expect(quantType.$data).toEqual(quantTypes["libraryQPCR5ul"])
+    })
+
+    it('has some metadata', () => {
+      expect(quantType.hasMetadata()).toBeFalsy()
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has the correct well type', () => {
+      expect(quantType.$data.wellType).toEqual('QPCR5ul')
     })
 
   })

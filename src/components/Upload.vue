@@ -41,6 +41,9 @@ export default {
     }
   },
   computed: {
+    filename () {
+      return this.$refs.fileInput.value.replace(/^.*[\\]/, '')
+    }
   },
   components: {
     QuantFile
@@ -52,7 +55,7 @@ export default {
     // where the file is retrieved from local storage.
     upload () {
       const file = document.getElementById('file-input').files[0]
-      let quantFile = new this.Cmp({propsData: {quant: this.quantType}})
+      let quantFile = new this.Cmp({propsData: {quant: this.quantType, filename: this.filename}})
       quantFile.upload(file)
         .then(() => {
           localStorage.setItem(quantFile.id, JSON.stringify(quantFile.json))
@@ -67,7 +70,7 @@ export default {
       this.$refs.fileInput.click()
     },
     addFilenames () {
-      this.$refs.browseFiles.value = this.$refs.fileInput.value.replace(/^.*[\\]/, '')
+      this.$refs.browseFiles.value = this.filename
     }
   }
 }

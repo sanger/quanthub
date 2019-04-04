@@ -87,7 +87,7 @@ describe('QuantFile.vue', () => {
     describe('text tab delimited', () => {
 
       beforeEach(async () => {
-        quantFile = new cmp({propsData: { quant: 'libraryQPCR'}})
+        quantFile = new cmp({propsData: { quant: 'libraryQPCR10ul'}})
         plate = fs.readFileSync('./tests/data/qPCR.txt', 'ascii')
         file = new File([plate], 'plate2.txt', { type: 'text/plain'})
       })
@@ -144,6 +144,46 @@ describe('QuantFile.vue', () => {
       })
 
     })
+
+  })
+
+  describe('csv with filename and no metadata', () => {
+    beforeEach(async () => {
+      quantFile = new cmp({propsData: { quant: 'libraryQPCR5ul', filename: 'DN123456_DN123456-QC_XYZ_results.csv'}})
+      plate = fs.readFileSync('./tests/data/DN123456_DN123456-QC_XYZ_results.csv', 'ascii')
+      file = new File([plate], 'DN123456_DN123456-QC_XYZ_results.csv', { type: 'text/plain'})
+    })
+
+    it('will have a filename', () => {
+      expect(quantFile.filename).toEqual('DN123456_DN123456-QC_XYZ_results.csv')
+    })
+
+    it('will have a parsed filename', () => {
+      expect(quantFile.parsedFilename).toEqual('DN123456')
+    })
+
+    it('resolves', async () => {
+      expect.assertions(1)
+      await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+    })
+
+    describe('successful', () => {
+
+      beforeEach(async () => {
+        quantFile.upload(file)
+        await flushPromises()
+        await flushPromises()
+      })
+
+      it('will have some text', () => {
+        expect(quantFile.raw).toEqual(plate)
+      })
+
+      it('has an id', () => {
+        expect(quantFile.id).toEqual('DN123456')
+      })
+    })
+
   })
   
 })

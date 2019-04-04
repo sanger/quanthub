@@ -25,7 +25,7 @@ export default {
         columns: ['column1', 'column2', 'column3', 'column4', 'column5']
       },
       metadata: {rows: 1, idColumn: 'id', delimiter: ','},
-      conversion: {factors: {}, expression: 1},
+      conversion: {factors: {}, expression: 1, decimalPlaces: 3},
       qcResults: {
         key: 'Concentration',
         units: 'ng',
@@ -45,7 +45,10 @@ export default {
       let factors = this.conversion.factors
       return math.eval(Object.keys(factors).reduce((factor, key) => {
         return factor.replace(key, factors[key])
-      }, this.conversion.expression)).toFixed(3)
+      }, this.conversion.expression)).toFixed(this.decimalPlaces)
+    },
+    decimalPlaces () {
+      return this.$data.conversion.decimalPlaces
     },
     // A constant which relates to a factory for conversion of well
     // to the correct format.
@@ -59,6 +62,9 @@ export default {
   methods: {
     replaceData () {
       Object.assign(this.$data, quantTypes[this.quantType])
+    },
+    hasMetadata () {
+      return (Object.keys(this.$data.metadata).length > 0)
     }
   },
   created () {

@@ -59,13 +59,13 @@ describe('QuantTypeWellFactories.js', () => {
 
   })
 
-  describe('QPCRWellFactory', () => {
+  describe('QPCRWellFactory - 10ul', () => {
 
     describe('sample', () => {
 
       beforeEach(() => {
         options = {include: 'TRUE', color: '128', pos: 'N1', name: 'A1', cp: '24.21', concentration: '5.61E+01', standard: '0.0002', status: 'red'}
-        well = new WellFactories.QPCR(options)
+        well = new WellFactories.QPCR10ul(options)
       })
 
       it('must have an include', () => {
@@ -125,7 +125,7 @@ describe('QuantTypeWellFactories.js', () => {
     describe('bugfix - column is 10 or above', () => {
       beforeEach(() => {
         options = {include: 'TRUE', color: '128', pos: 'D23', name: 'B6', cp: '24.21', concentration: '5.61E+01', standard: '0.0002', status: 'red'}
-        well = new WellFactories.QPCR(options)
+        well = new WellFactories.QPCR10ul(options)
       })
 
       it('will have the correct row', () => {
@@ -142,7 +142,7 @@ describe('QuantTypeWellFactories.js', () => {
 
       beforeEach(() => {
         options = {include: 'TRUE', color: '128', pos: 'N1', name: '0.0002pM', cp: '24.21', concentration: '2.66E-04', standard: '0.0002', status: 'red'}
-        well = new WellFactories.QPCR(options)
+        well = new WellFactories.QPCR10ul(options)
       })
 
       it('will have a name', () => {
@@ -159,6 +159,76 @@ describe('QuantTypeWellFactories.js', () => {
 
       it('will have a concentration', () => {
         expect(well.concentration).toEqual(0.000266)
+      })
+
+    })
+
+  })
+
+  describe('QPCRWellFactory - 5ul', () => {
+
+    let wellMap
+
+    describe('sample', () => {
+      beforeEach(() => {
+        wellMap = {A1: 'Z234', A2: 'X456'}
+        options = {well: 'A1', copyNumber: '48909000', replicateError: '2445450', totalError: '10082849', shapeZScore: '0.695615245', comments: 'This well was disregarded due to abnormally low background fluorescence.'}
+        well = new WellFactories.QPCR5ul(options, wellMap)
+      })
+
+      it('must have a well', () => {
+        expect(well.well).toEqual(options.well)
+      })
+
+      it('must have a copy number', () => {
+        expect(well.copyNumber).toEqual(options.copyNumber)
+      })
+
+      it('must have a replicate error', () => {
+        expect(well.replicateError).toEqual(options.replicateError)
+      })
+
+      it('must have a total error', () => {
+        expect(well.totalError).toEqual(options.totalError)
+      })
+
+      it('must have a shape Z score', () => {
+        expect(well.shapeZScore).toEqual(options.shapeZScore)
+      })
+
+      it('must have a comments', () => {
+        expect(well.comments).toEqual(options.comments)
+      })
+
+      it('must have a row', () => {
+        expect(well.row).toEqual('A')
+      })
+
+      it('must have a column', () => {
+        expect(well.column).toEqual('1')
+      })
+
+      it('must have an id', () => {
+        expect(well.id).toEqual('Z234')
+      })
+
+      it('must have a type', () => {
+        expect(well.type).toEqual('Sample')
+      })
+
+      it('produces some json', () => {
+        expect(well.json).toEqual({row: 'A', column: '1', type: 'Sample', id: 'Z234', concentration: 48909000})
+      })
+
+    })
+
+    describe('Empty', () => {
+      beforeEach(() => {
+        well = new WellFactories.QPCR5ul({well: 'Z1', copyNumber: '123', replicateError: '456', totalError: '789', shapeZScore: '0.00', comments: ''})
+      })
+
+      it('must have a type', () => {
+        expect(well.type).toEqual('Empty')
       })
 
     })
