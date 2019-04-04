@@ -263,7 +263,7 @@
         "dilution": 0.5
       },
       "expression": "(topM*calibration*dilution)",
-      "decimalPlaces": 7
+      "decimalPlaces": 10
     },
     "qcResults": {
       "key": "molarity",
