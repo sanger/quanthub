@@ -3,6 +3,7 @@
 import parse from 'csv-parse/lib/sync'
 import Grid from '@/components/Grid'
 import QuantType from '@/components/QuantType'
+import WellMap from '@/config/wellMap'
 import Vue from 'vue'
 
 // Handles the upload of the file - can be csv or text
@@ -13,6 +14,9 @@ export default {
     quant: {
       type: String,
       default: 'libraryPlateReader'
+    },
+    filename: {
+      type: String
     }
   },
   data () {
@@ -35,6 +39,7 @@ export default {
     // for each row split it and extract each row of metadata into a JSON object.
     // only the id is used at this stage.
     metadata () {
+      if (!this.quantType.hasMetadata()) return
       let rows = this.raw.split(/\r?\n/).slice(0, this.quantType.metadata.rows)
       let metadata = {}
       let split
@@ -50,7 +55,14 @@ export default {
       return metadata
     },
     id () {
-      return this.metadata[this.quantType.metadata.idColumn].split('-')[0]
+      if (this.quantType.hasMetadata()) {
+        return this.metadata[this.quantType.metadata.idColumn].split('-')[0]
+      } else {
+        return this.parsedFilename
+      } 
+    },
+    parsedFilename () {
+      return this.filename.split('_')[1].split('-')[0]
     }
   },
   methods: {
@@ -68,7 +80,7 @@ export default {
           // TODO: move it out into a constant.
           this.raw = reader.result.replace(/\r\r\n/g, '\n')
           this.grid = new this.GridCmp({propsData: {quantType: this.quant}})
-          this.grid.addAll(parse(this.raw, this.quantType.parse).map(cell => new this.quantType.WellFactory(cell).json))
+          this.grid.addAll(parse(this.raw, this.quantType.parse).map(cell => new this.quantType.WellFactory(cell, WellMap).json))
           resolve('File successfully uploaded')
         }
         reader.readAsText(file)
