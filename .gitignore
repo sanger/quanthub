@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
-/dist
+dist
 
-/tests/e2e/reports/
+tests/e2e/reports/
 selenium-debug.log
 
 # local asset build
