@@ -5,6 +5,7 @@
         <div class="form-group">
           <label for="quantType">Select a Quant Type:</label>
           <select id="quant-type" class="form-control" name="quantType" v-model="quantType">
+              <option :value="null" selected disabled>Please select a quant type ...</option>
               <option v-for="(option, key) in quantTypes" v-bind:key="key" v-bind:value="key">{{option.name}}</option>
           </select>
         </div>
@@ -36,7 +37,7 @@ export default {
     return {
       msg: 'Upload',
       Cmp: Vue.extend(QuantFile),
-      quantType: Object.keys(quantTypes)[0],
+      quantType: null,
       quantTypes: quantTypes
     }
   },
