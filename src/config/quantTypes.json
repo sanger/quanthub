@@ -1,4 +1,66 @@
 {
+  "ISC": {
+    "key": "ISC",
+    "name": "ISC",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "ISC",
+        "version": "v1.0"
+      }
+    }
+  },
+  "LCMB": {
+    "key": "LCMB",
+    "name": "LCMB",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "LCMB",
+        "version": "v1.0"
+      }
+    }
+  },
   "libraryPlateReader": {
     "key": "libraryPlateReader",
     "name": "Library - Plate Reader",
@@ -68,37 +130,6 @@
       }
     }
   },
-  "normalisation": {
-    "key": "normalisation",
-    "name": "Normalisation",
-    "wellType": "PlateReader",
-    "cvThreshold": 20,
-    "parse": {
-      "delimiter": ",",
-      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
-      "from": 16,
-      "columns": [
-        "row",
-        "column",
-        "content",
-        "id",
-        "concentration"
-      ]
-    },
-    "metadata": {
-      "rows": 3,
-      "idColumn": "ID1",
-      "delimiter": ","
-    },
-    "qcResults": {
-      "key": "concentration",
-      "units": "ng/ul",
-      "assay": {
-        "type": "Normalisation",
-        "version": "v1.0"
-      }
-    }
-  },
   "workingDilutionPlateReader": {
     "key": "workingDilutionPlateReader",
     "name": "Working Dilution - Plate Reader",
@@ -126,68 +157,6 @@
       "units": "ng/ul",
       "assay": {
         "type": "Working Dilution - Plate Reader",
-        "version": "v1.0"
-      }
-    }
-  },
-  "RNAHighThroughput": {
-    "key": "RNAHighThroughput",
-    "name": "RNA - High Throughput",
-    "wellType": "PlateReader",
-    "cvThreshold": 20,
-    "parse": {
-      "delimiter": ",",
-      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
-      "from": 16,
-      "columns": [
-        "row",
-        "column",
-        "content",
-        "id",
-        "concentration"
-      ]
-    },
-    "metadata": {
-      "rows": 3,
-      "idColumn": "ID1",
-      "delimiter": ","
-    },
-    "qcResults": {
-      "key": "concentration",
-      "units": "ng/ul",
-      "assay": {
-        "type": "RNA - High Throughput",
-        "version": "v1.0"
-      }
-    }
-  },
-  "LCMB": {
-    "key": "LCMB",
-    "name": "LCMB",
-    "wellType": "PlateReader",
-    "cvThreshold": 20,
-    "parse": {
-      "delimiter": ",",
-      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
-      "from": 16,
-      "columns": [
-        "row",
-        "column",
-        "content",
-        "id",
-        "concentration"
-      ]
-    },
-    "metadata": {
-      "rows": 3,
-      "idColumn": "ID1",
-      "delimiter": ","
-    },
-    "qcResults": {
-      "key": "concentration",
-      "units": "ng/ul",
-      "assay": {
-        "type": "LCMB",
         "version": "v1.0"
       }
     }
@@ -271,6 +240,99 @@
       "assay": {
         "type": "Library - qPCR",
         "version": "v2.0"
+      }
+    }
+  },
+  "normalisation": {
+    "key": "normalisation",
+    "name": "Normalisation",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Normalisation",
+        "version": "v1.0"
+      }
+    }
+  },
+  "RNAStock": {
+    "key": "RNAStock",
+    "name": "RNA - Stock",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "RNA - Stock",
+        "version": "v1.0"
+      }
+    }
+  },
+  "RNALibrary": {
+    "key": "RNAStock",
+    "name": "RNA - Library",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "RNA - Library",
+        "version": "v1.0"
       }
     }
   }

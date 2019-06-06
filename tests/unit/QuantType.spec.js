@@ -160,11 +160,28 @@ describe('QuantType.vue', () => {
 
   })
 
-  describe('RNA - High throughput', () => {
+  describe('RNA - Stock', () => {
 
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
-      quantType = new cmp({propsData: { quantType: 'RNAHighThroughput'}})
+      quantType = new cmp({propsData: { quantType: 'RNAStock'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
+  describe('RNA - Library', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'RNALibrary'}})
     })
 
     it('must have the correct units', () => {
@@ -182,6 +199,23 @@ describe('QuantType.vue', () => {
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
       quantType = new cmp({propsData: { quantType: 'LCMB'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
+  describe('ISC', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'ISC'}})
     })
 
     it('must have the correct units', () => {

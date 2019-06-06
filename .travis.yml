@@ -1,8 +1,8 @@
-dist: trusty
+dist: xenial
 sudo: required
 language: node_js
 node_js:
-  - 9.5.0
+  - 11.14.0
 
 addons:
   chrome: stable
@@ -10,7 +10,7 @@ addons:
 before_script:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
-before_deploy: "./compile-build.sh release.tar.gz dist"
+before_deploy: "./compile-build.sh release.tar.gz staging"
 
 deploy:
   file: release.tar.gz
