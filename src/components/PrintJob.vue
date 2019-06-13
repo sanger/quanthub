@@ -22,7 +22,7 @@
             <label for="barcode">Scan your plate barcode</label>
           </div>
           <div class="col-md-5">
-            <input name="barcode" id="barcode" class="form-control" v-model="barcode">
+            <textarea name="barcodes" id="barcodes" class="form-control" v-model="barcodes" rows="10" cols="10" />
           </div>
           <div class="error">{{errors.barcode}}</div>
         </div>
@@ -58,7 +58,7 @@ export default {
   data () {
     return {
       msg: 'PrintJob',
-      barcode: '',
+      barcodes: '',
       printerName: PrinterList[0],
       date: new Date(),
       model: {},
@@ -70,23 +70,24 @@ export default {
     today () {
       return `${this.date.getDate().toString().padStart(2,'0')}-${this.months[this.date.getMonth()]}-${this.date.getFullYear()}`
     },
-    qcBarcode () {
-      return this.barcode.concat('-QC')
+    labels () {
+      let self = this
+      return this.barcodes.split('\n').filter(Boolean).map(barcode => {
+        return { 
+          main_label: {
+            top_left: self.today,
+            bottom_left: barcode.concat('-QC'),  
+            barcode: barcode.concat('-QC')
+          } 
+        }
+      })
     },
     attributes () {
       return {
         labelTemplateId: this.labelTemplateId,
         printerName: this.printerName,
         labels: {
-          body: [
-            {
-              main_label: {
-                top_left: this.today,
-                bottom_left: this.qcBarcode,
-                barcode: this.qcBarcode
-              }
-            }
-          ]
+          body: this.labels
         }
       }
     },
@@ -114,8 +115,8 @@ export default {
     },
     valid () {
       this.errors = {}
-      if(!this.barcode) {
-        this.errors['barcode'] = 'must be completed'
+      if(!this.barcodes) {
+        this.errors['barcodes'] = 'must be completed'
       }
       if(!this.printerName) {
         this.errors['printerName'] = 'must be completed'

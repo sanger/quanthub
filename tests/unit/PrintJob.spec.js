@@ -13,7 +13,7 @@ describe('PrintJob.vue', () => {
     // TODO: we still have to stub b-alert even though it is now part of the child component
     // how can we abstract this problem away, far away?
     cmp = mount(PrintJob, {propsData: { labelTemplateId: '1' }, localVue})
-    cmp.setData({barcode: 'DN1234567', printerName: 'ippbc', date: date})
+    cmp.setData({barcodes: 'DN1234567\nDN2345678\nDN3456789\n', printerName: 'ippbc', date: date})
     attributes = {
       labelTemplateId: '1',
       printerName: 'ippbc',
@@ -25,14 +25,24 @@ describe('PrintJob.vue', () => {
               bottom_left: 'DN1234567-QC',
               barcode: 'DN1234567-QC'
             }
+          },
+          {
+            main_label: {
+              top_left: '01-FEB-2018',
+              bottom_left: 'DN2345678-QC',
+              barcode: 'DN2345678-QC'
+            }
+          },
+          {
+            main_label: {
+              top_left: '01-FEB-2018',
+              bottom_left: 'DN3456789-QC',
+              barcode: 'DN3456789-QC'
+            }
           }
         ]
       }}
     printJob = cmp.vm 
-  })
-
-  it('will modify the barcode for the print job', () => {
-    expect(printJob.qcBarcode).toEqual('DN1234567-QC')
   })
 
   it('creates some valid print job attributes', () => {
@@ -63,9 +73,9 @@ describe('PrintJob.vue', () => {
   describe('it will not be valid', () => {
 
     it('is not valid if printer is blank', () => {
-      cmp.setData({barcode: ''})
+      cmp.setData({barcodes: ''})
       printJob.execute()
-      expect(printJob.errors['barcode']).toEqual('must be completed')
+      expect(printJob.errors['barcodes']).toEqual('must be completed')
     })
 
     it('is not valid if the barcode is blank', () => {
