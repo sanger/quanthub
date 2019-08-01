@@ -10,10 +10,10 @@ describe('QuantType.vue', () => {
   describe('default', () => {
 
     beforeEach(() => {
-      options = { 
+      options = {
                   wellType: 'PlateReader',
-                  conversion: { 
-                    factors: { 
+                  conversion: {
+                    factors: {
                       dilution: 500, standardInsertSize: 452, libraryInsertSize: 573
                     },
                     expression: "(dilution*standardInsertSize)/libraryInsertSize",
@@ -227,5 +227,39 @@ describe('QuantType.vue', () => {
     })
 
   })
-  
+
+  describe('chromiumSingleCellcDNA', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'chromiumSingleCellcDNA'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
+  describe('chromiumSingleCellLibrary', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'chromiumSingleCellLibrary'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
+
 })

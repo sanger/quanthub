@@ -335,5 +335,67 @@
         "version": "v1.0"
       }
     }
+  },
+  "chromiumSingleCellcDNA": {
+    "key": "chromiumSingleCellcDNA",
+    "name": "Chromium Single Cell - cDNA",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Chromium Single Cell - cDNA",
+        "version": "v1.0"
+      }
+    }
+  },
+  "chromiumSingleCellLibrary": {
+    "key": "chromiumSingleCellLibrary",
+    "name": "Chromium Single Cell - Library",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 16,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 3,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Chromium Single Cell - Library",
+        "version": "v1.0"
+      }
+    }
   }
 }
