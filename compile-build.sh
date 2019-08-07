@@ -11,4 +11,4 @@ yarn build --mode $2 --dest dist/public
 git rev-parse HEAD > dist/REVISION
 
 # Creating tar.gz
-tar -zcvf $1 -C dist/public .
+tar -zcvf $1 -C dist .
