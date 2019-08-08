@@ -12,6 +12,7 @@ log(Y) = Slope * log(x) + Offset,,,,
 ,r²,0.9941,,
 ,,,,
 ,,,,
+,,,,
 Well Row,Well Col,Content,Sample IDs,Linear regression fit based on Blank corrected (485-12/EM520)
 P,2,Blank B,,
 P,4,Blank B,,
