@@ -31,8 +31,8 @@ module.exports = {
       .assert.containsText('div', 'Upload')
       .end()
   },
- 
-  'Plate Reader - upload file and check plate is stored in local storage': browser => {
+
+  'Plate Reader - upload file and check plate is stored in local storage and then clear it': browser => {
 
     id = getId(file(filePath('plate_reader.csv')))
 
@@ -53,6 +53,11 @@ module.exports = {
       .useCss()
       .pause(1000)
       .assert.containsText('.row > h3', id)
+      .url(url('plates'))
+      .assert.elementCount('.plate', 1)
+      .click('button[id="clear_local_storage_button"')
+      .pause(1000)
+      .assert.elementCount('.plate', 0)
       .end()
   },
 
