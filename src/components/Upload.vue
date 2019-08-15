@@ -46,7 +46,7 @@ export default {
     }
   },
   computed: {
-    filename_filtered () {
+    filenameFiltered () {
       return this.filename ? this.filename.replace(/^.*[\\]/, '') : null
     }
   },
@@ -55,9 +55,9 @@ export default {
     Alert
   },
   methods: {
-    valid_filetype () {
+    validFiletype () {
       var typeValid = false
-      var sFilename = this.filename_filtered
+      var sFilename = this.filenameFiltered
       if (sFilename && sFilename.length > 0) {
           for (var j = 0; j < this.validFileExtensions.length; j++) {
               var sCurExtension = this.validFileExtensions[j]
@@ -69,12 +69,12 @@ export default {
       }
       return typeValid
     },
-    form_is_valid () {
+    formIsValid () {
       if (!this.quantType) {
         this.$refs.alert.show(`Please select a quant type and file before uploading!`, 'warning')
         return false
       }
-      if(!this.valid_filetype()) {
+      if(!this.validFiletype()) {
         this.$refs.alert.show(`Please select a csv file before uploading!`, 'warning')
         return false
       }
@@ -85,10 +85,10 @@ export default {
     // The user is then redirected to the plate page
     // where the file is retrieved from local storage.
     async upload () {
-      if (!this.form_is_valid()) { return }
+      if (!this.formIsValid()) { return }
 
       const file = document.getElementById('file-input').files[0]
-      let quantFile = new this.Cmp({propsData: {quant: this.quantType, filename: this.filename_filtered}})
+      let quantFile = new this.Cmp({propsData: {quant: this.quantType, filename: this.filenameFiltered}})
       quantFile.upload(file)
         .then(() => {
           localStorage.setItem(quantFile.id, JSON.stringify(quantFile.json))
@@ -126,7 +126,7 @@ export default {
     addFilenames () {
       /*eslint no-console: */
       this.filename = this.$refs.fileInput.value
-      this.$refs.browseFiles.value = this.filename_filtered
+      this.$refs.browseFiles.value = this.filenameFiltered
     }
   }
 }
