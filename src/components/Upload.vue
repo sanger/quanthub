@@ -95,29 +95,7 @@ export default {
           this.$router.push({ path: `/plate/${quantFile.id}` })
         })
         .catch((error) => {
-          var msg = 'File rejected, please check the file and then retry, reason: '
-          switch (typeof error) {
-            case 'object':
-              switch (error.name) {
-                case 'QuotaExceededError':
-                  msg = 'Local storage is full up, please clear and then retry'
-                  break
-                case 'TypeError':
-                  msg += 'Formatting of file incorrect'
-                  break
-                default:
-                  msg += `Exception message: ${error.message}`
-              }
-              break
-            case 'string':
-              msg += `Error message: ${error}`
-              break
-            default:
-              msg += `Unrecognised error type: ${error}`;
-          }
-          this.$refs.alert.show(msg, 'danger')
-          /*eslint no-console: ["error", { allow: ["error"] }] */
-          console.error('rejected:', error)
+          this.handleUploadError(error)
         })
     },
     browseFiles () {
@@ -127,6 +105,35 @@ export default {
       /*eslint no-console: */
       this.filename = this.$refs.fileInput.value
       this.$refs.browseFiles.value = this.filenameFiltered
+    },
+    handleUploadError (error) {
+      var msg = 'File upload rejected, please check the file and then retry, reason: '
+      switch (typeof error) {
+        case 'object':
+          this.handleObjectError (error, msg)
+          break
+        case 'string':
+          msg += `Error message: ${error}`
+          break
+        default:
+          msg += `Unrecognised error type: ${error}`;
+      }
+      this.$refs.alert.show(msg, 'danger')
+      /*eslint no-console: ["error", { allow: ["error"] }] */
+      console.error('file upload rejected:', error)
+    },
+    handleObjectError (error, msg) {
+      switch (error.name) {
+        case 'QuotaExceededError':
+          msg = 'Local storage is full up, please clear and then retry'
+          break
+        case 'TypeError':
+          msg += 'Formatting of file incorrect'
+          break
+        default:
+          msg += `Exception message: ${error.message}`
+      }
+      return msg
     }
   }
 }
