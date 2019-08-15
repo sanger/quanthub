@@ -69,19 +69,24 @@ export default {
       }
       return typeValid
     },
+    form_is_valid () {
+      if (!this.quantType) {
+        this.$refs.alert.show(`Please select a quant type and file before uploading!`, 'warning')
+        return false
+      }
+      if(!this.valid_filetype()) {
+        this.$refs.alert.show(`Please select a csv file before uploading!`, 'warning')
+        return false
+      }
+      return true
+    },
     // create a quantFile based on the quantType
     // if the upload is successful it is saved to local storage
     // The user is then redirected to the plate page
     // where the file is retrieved from local storage.
     async upload () {
-      if (!this.quantType) {
-        this.$refs.alert.show(`Please select a quant type and file before uploading!`, 'warning')
-        return
-      }
-      if(!this.valid_filetype()) {
-        this.$refs.alert.show(`Please select a csv file before uploading!`, 'warning')
-        return
-      }
+      if (!this.form_is_valid()) { return }
+
       const file = document.getElementById('file-input').files[0]
       let quantFile = new this.Cmp({propsData: {quant: this.quantType, filename: this.filename_filtered}})
       quantFile.upload(file)
