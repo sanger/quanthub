@@ -12,9 +12,7 @@ describe('QuantFile.vue', () => {
   })
 
   describe('upload', () => {
-
     describe('csv', () => {
-
       beforeEach(async () => {
         quantFile = new cmp({propsData: { quant: 'libraryPlateReader'}})
         plate = fs.readFileSync('./tests/data/plate_reader.csv', 'ascii')
@@ -27,7 +25,6 @@ describe('QuantFile.vue', () => {
       })
 
       describe('successful', () => {
-
         let rows
 
         beforeEach(async () => {
@@ -79,13 +76,41 @@ describe('QuantFile.vue', () => {
         it('has an id', () => {
           expect(quantFile.id).toEqual('DN1234567')
         })
+      })
+    })
 
+    describe('csv_with_underscore_id', () => {
+      beforeEach(async () => {
+        quantFile = new cmp({propsData: { quant: 'libraryPlateReader'}})
+        plate = fs.readFileSync('./tests/data/plate_reader_underscore.csv', 'ascii')
+        file = new File([plate], 'plate1_underscore.csv', { type: 'text/csv'})
       })
 
+      it('resolves', async () => {
+        expect.assertions(1)
+        await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+      })
+
+      describe('successful', () => {
+        beforeEach(async () => {
+          quantFile.upload(file)
+          await flushPromises()
+          await flushPromises()
+        })
+
+        it('creates some metadata', () => {
+          let metadata = quantFile.metadata
+          expect(metadata.User).toEqual('SANGER')
+          expect(metadata.ID1).toEqual('DN1234567_QC')
+        })
+
+        it('has an id', () => {
+          expect(quantFile.id).toEqual('DN1234567')
+        })
+      })
     })
 
     describe('text tab delimited', () => {
-
       beforeEach(async () => {
         quantFile = new cmp({propsData: { quant: 'libraryQPCR10ul'}})
         plate = fs.readFileSync('./tests/data/qPCR.txt', 'ascii')
@@ -98,7 +123,6 @@ describe('QuantFile.vue', () => {
       })
 
       describe('successful', () => {
-
         beforeEach(async () => {
           quantFile.upload(file)
           await flushPromises()
@@ -115,7 +139,6 @@ describe('QuantFile.vue', () => {
       })
 
       describe('file with windows line feeds i.e \r\n\n', () => {
-
         beforeEach(async () => {
           plate = fs.readFileSync('./tests/data/qPCR_blank_lines.txt', 'ascii')
           file = new File([plate], 'plate2.txt', { type: 'text/plain'})
@@ -125,12 +148,10 @@ describe('QuantFile.vue', () => {
           expect.assertions(1)
           await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
         })
-        
       })
 
       // This type of file errors even though it doesn't seem to have extra columns
       describe('file with extra columns', () => {
-
         beforeEach(() => {
           plate = fs.readFileSync('./tests/data/qPCR_extra_columns.txt', 'ascii')
           file = new File([plate], 'plate3.txt', { type: 'text/plain'})
@@ -140,11 +161,8 @@ describe('QuantFile.vue', () => {
           expect.assertions(1)
           await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
         })
-        
       })
-
     })
-
   })
 
   describe('csv with filename and no metadata', () => {
@@ -168,7 +186,6 @@ describe('QuantFile.vue', () => {
     })
 
     describe('successful', () => {
-
       beforeEach(async () => {
         quantFile.upload(file)
         await flushPromises()
@@ -183,7 +200,42 @@ describe('QuantFile.vue', () => {
         expect(quantFile.id).toEqual('DN123456')
       })
     })
-
   })
-  
+
+  describe('csv with filename and no metadata and underscore barcode', () => {
+    beforeEach(async () => {
+      quantFile = new cmp({propsData: { quant: 'libraryQPCR5ul', filename: 'DN123456_DN123456_QC_XYZ_results.csv'}})
+      plate = fs.readFileSync('./tests/data/DN123456_DN123456_QC_XYZ_results.csv', 'ascii')
+      file = new File([plate], 'DN123456_DN123456_QC_XYZ_results.csv', { type: 'text/plain'})
+    })
+
+    it('will have a filename', () => {
+      expect(quantFile.filename).toEqual('DN123456_DN123456_QC_XYZ_results.csv')
+    })
+
+    it('will have a parsed filename', () => {
+      expect(quantFile.parsedFilename).toEqual('DN123456')
+    })
+
+    it('resolves', async () => {
+      expect.assertions(1)
+      await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+    })
+
+    describe('successful', () => {
+      beforeEach(async () => {
+        quantFile.upload(file)
+        await flushPromises()
+        await flushPromises()
+      })
+
+      it('will have some text', () => {
+        expect(quantFile.raw).toEqual(plate)
+      })
+
+      it('has an id', () => {
+        expect(quantFile.id).toEqual('DN123456')
+      })
+    })
+  })
 })
