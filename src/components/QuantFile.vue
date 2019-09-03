@@ -56,12 +56,14 @@ export default {
     },
     id () {
       if (this.quantType.hasMetadata()) {
-        return this.metadata[this.quantType.metadata.idColumn].split('-')[0]
+        // handles barcodes of type ABC-QC and ABC_QC
+        return this.metadata[this.quantType.metadata.idColumn].split(/[-,_]/)[0]
       } else {
         return this.parsedFilename
       }
     },
     parsedFilename () {
+      // handles filenames containing barcodes of type ABC-QC and ABC_QC
       return this.filename.split('_')[1].split('-')[0]
     }
   },
