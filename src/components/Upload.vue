@@ -46,7 +46,7 @@ export default {
     }
   },
   computed: {
-    filename_filtered () {
+    filenameFiltered () {
       return this.filename ? this.filename.replace(/^.*[\\]/, '') : null
     }
   },
@@ -55,9 +55,9 @@ export default {
     Alert
   },
   methods: {
-    valid_filetype () {
+    validFiletype () {
       var typeValid = false
-      var sFilename = this.filename_filtered
+      var sFilename = this.filenameFiltered
       if (sFilename && sFilename.length > 0) {
           for (var j = 0; j < this.validFileExtensions.length; j++) {
               var sCurExtension = this.validFileExtensions[j]
@@ -69,50 +69,33 @@ export default {
       }
       return typeValid
     },
+    formIsValid () {
+      if (!this.quantType) {
+        this.$refs.alert.show(`Please select a quant type and file before uploading!`, 'warning')
+        return false
+      }
+      if(!this.validFiletype()) {
+        this.$refs.alert.show(`Please select a csv file before uploading!`, 'warning')
+        return false
+      }
+      return true
+    },
     // create a quantFile based on the quantType
     // if the upload is successful it is saved to local storage
     // The user is then redirected to the plate page
     // where the file is retrieved from local storage.
     async upload () {
-      if (!this.quantType) {
-        this.$refs.alert.show(`Please select a quant type and file before uploading!`, 'warning')
-        return
-      }
-      if(!this.valid_filetype()) {
-        this.$refs.alert.show(`Please select a csv file before uploading!`, 'warning')
-        return
-      }
+      if (!this.formIsValid()) { return }
+
       const file = document.getElementById('file-input').files[0]
-      let quantFile = new this.Cmp({propsData: {quant: this.quantType, filename: this.filename_filtered}})
+      let quantFile = new this.Cmp({propsData: {quant: this.quantType, filename: this.filenameFiltered}})
       quantFile.upload(file)
         .then(() => {
           localStorage.setItem(quantFile.id, JSON.stringify(quantFile.json))
           this.$router.push({ path: `/plate/${quantFile.id}` })
         })
         .catch((error) => {
-          var msg = 'File rejected, please check the file and then retry, reason: '
-          switch (typeof error) {
-            case 'object':
-              switch (error.name) {
-                case 'QuotaExceededError':
-                  msg = 'Local storage is full up, please clear and then retry'
-                  break
-                case 'TypeError':
-                  msg += 'Formatting of file incorrect'
-                  break
-                default:
-                  msg += `Exception message: ${error.message}`
-              }
-              break
-            case 'string':
-              msg += `Error message: ${error}`
-              break
-            default:
-              msg += `Unrecognised error type: ${error}`;
-          }
-          this.$refs.alert.show(msg, 'danger')
-          /*eslint no-console: ["error", { allow: ["error"] }] */
-          console.error('rejected:', error)
+          this.handleUploadError(error)
         })
     },
     browseFiles () {
@@ -121,7 +104,36 @@ export default {
     addFilenames () {
       /*eslint no-console: */
       this.filename = this.$refs.fileInput.value
-      this.$refs.browseFiles.value = this.filename_filtered
+      this.$refs.browseFiles.value = this.filenameFiltered
+    },
+    handleUploadError (error) {
+      var msg = 'File upload rejected, please check the file and then retry, reason: '
+      switch (typeof error) {
+        case 'object':
+          this.handleObjectError (error, msg)
+          break
+        case 'string':
+          msg += `Error message: ${error}`
+          break
+        default:
+          msg += `Unrecognised error type: ${error}`;
+      }
+      this.$refs.alert.show(msg, 'danger')
+      /*eslint no-console: ["error", { allow: ["error"] }] */
+      console.error('file upload rejected:', error)
+    },
+    handleObjectError (error, msg) {
+      switch (error.name) {
+        case 'QuotaExceededError':
+          msg = 'Local storage is full up, please clear and then retry'
+          break
+        case 'TypeError':
+          msg += 'Formatting of file incorrect'
+          break
+        default:
+          msg += `Exception message: ${error.message}`
+      }
+      return msg
     }
   }
 }
