@@ -2,21 +2,29 @@ dist: xenial
 sudo: required
 language: node_js
 node_js:
-  - 11.14.0
-
+- 11.14.0
 addons:
   chrome: stable
-
 before_script:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-
-before_deploy: "./compile-build.sh release.tar.gz staging"
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+script:
+  - yarn test
+  - yarn lint
+before_deploy:
+  - ./compile-build.sh release.tar.gz dist
+  - export TAG_NAME=${TRAVIS_BRANCH}/$(date +'%Y-%m-%d/%H%M%S')
+  - git tag "${TAG_NAME}"
 
 deploy:
-  file: release.tar.gz
   provider: releases
-  on:
-    tags: true
+  name: ${TAG_NAME}
   skip_cleanup: true
+  file: release.tar.gz
   api_key:
-    secure: ahBG2wwDa4WxZDpzDDTpkokpNhmtUU3H2vhTKWfgpY0L7urmZUKDrZeqo6FBnUA+yj5zm9KKjcYyrnGFbScHKaXvxrID1Q4c/Pc7JIImTfcIY4/AXuoQpXE3YAHj2jTjGoEr5Yv1P+otZyUVWW/utG6C4CzB5xxpwiSWGjeuGc/pQ2qqUilr5TOoao0JCaMUasBfmJErSVC9r+N/Qu02FFGa7b+2XZCWbscWqfMUx3Dvs4XFDOtTYrdwiVXL2w/72+BBbXniMQxcrAKJccEJYgdebxPb6eYvhUD1WpGsqioLnpQPICjgFwQXGUQjVxYKpZjNTN4yGzHt2d+BW5SBj6KoF/1FVbZTxB29cphEuYY57uw6JzDAGQiWKqmz+NgbjVjPYHyDsvMZjpau0a+FLJ930G3CnVf2kD3AN0nK/cOo/cqscE9e+tuC7LLH9GBplbbSAkbcZbzYjekGOh0gfcQQR9RKfbj56gHXSFaa4+sxTcRUw6oKW2Y4sKsQyq7lPp1YTSECiY7mEN0YaI+D0+EtZwny+mRb+6pFlW0bISDfaunBTS/TGNZLBxqosf8WCUtmuqnNJ0zx16euv2PsNOrItk7aJrjK+cSdzVPmyYUuPYfwbf7pj2N5e+QnEySmjhAKQrjhHmQRgny9hzYuhkH2RlWP6LPq9S0tnooeTIw=
+    secure: Bu5KtZf7NJoebOsYbX0HlpRgna9XGhC6wdvYEaMkPMlpXhZMsqClW8ztX1UtlUBKHfQVKB4PGjfEFqPc3UA7wCNswkQg+vP78zdEUtfllcpJeB3vWxbRIhBBmzxdjb8+uzbzLJNSCfhVp8Drll6yY4iRtWK03iYGUYIzuleVRXPVy2rbnmrtE+CexxzOAS4r1BcwY7iAJuYXbWLqlyNmRZKHyKY0vjC+dWrgDwQ+rM2iQaaJIxETrrNdDG75WROk9LRTVf30wN1v10MLmFnQqe5dElCtCLXXFsBnay2ojpwfEQUvGFKVnVl1PaSINgpuNHi6khaYNSacGj7C4nKHtyRiypJzfw6mumBUpPXnidAF5+FPV2gZTUW10bH66WfPz6rWzjBogA17GnA8OjxDBUQUXgIhyuK4k1g+pld1ax1r3I/8keMHppWQvfH4qZCjgcwG4635VS1CNSQSsKsoVL0Rz1a0GJDVpLaYcvQ0CRgiRfr1A7wsWVeHyivY7Lekw/aSkSkdcPMJC9tzjZ2axBZ6rZPDtlqoqtYatOVHiZEVq8npXaJimBXUf4A+SlusOdPMOi6G4CLtrUs3alufjn5NxJyeNwq8SAOMVrNFKUC4c1nDDEixmw9Fh9hPESbYZudI672917aoE2w50EjBAedEuPPS5cFiaXU8FzdZji4=
+  file: release.tar.gz
+  on:
+    repo: sanger/quanthub
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^devel|master$ # only build a release on devel and master branches
+
