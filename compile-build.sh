@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Usage: ./compile-build.sh <archive_name> <environment>
+# Usage: ./compile-build.sh <archive_name> <relative_path_to_folder>
 
 set -ev
 
 # Building assets
-yarn build --mode $2 --dest dist/public
+yarn build --dest $2/public --report
 
 # Storing revision hash
-git rev-parse HEAD > dist/REVISION
+git rev-parse HEAD > $2/REVISION
 
 # Creating tar.gz
-tar -zcvf $1 -C dist .
+tar -zcvf $1 -C $2 .
