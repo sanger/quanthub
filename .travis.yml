@@ -1,3 +1,5 @@
+# only build if not a tag - this is to prevent builing after a tag is created by deployment
+if: tag IS blank
 dist: xenial
 sudo: required
 language: node_js
