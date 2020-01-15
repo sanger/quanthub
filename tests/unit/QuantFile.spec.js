@@ -238,4 +238,49 @@ describe('QuantFile.vue', () => {
       })
     })
   })
+
+  describe('qPCR 5ul quadruplicate', () => {
+    beforeEach(async () => {
+      quantFile = new cmp({propsData: { quant: 'libraryQPCR5ulQuadruplicate', filename: 'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv'}})
+      plate = fs.readFileSync('./tests/data/DN601493J_DN601493J-QC_n_4_M4_B5__results.csv', 'ascii')
+      file = new File([plate], 'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv', { type: 'text/plain'})
+    })
+
+    it('will have a filename', () => {
+      expect(quantFile.filename).toEqual('DN601493J_DN601493J-QC_n_4_M4_B5__results.csv')
+    })
+
+    it('will have a parsed filename', () => {
+      expect(quantFile.parsedFilename).toEqual('DN601493J')
+    })
+
+    it('resolves', async () => {
+      expect.assertions(1)
+      await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+    })
+
+    describe('successful', () => {
+      beforeEach(async () => {
+        quantFile.upload(file)
+        await flushPromises()
+        await flushPromises()
+      })
+
+      it('will have some text', () => {
+        expect(quantFile.raw).toEqual(plate)
+      })
+
+      it('has an id', () => {
+        expect(quantFile.id).toEqual('DN601493J')
+      })
+
+      it('should fill all of the cells correctly', () => {
+        let expectation = Object.values(quantFile.grid.rows).every(row => {
+          return Object.values(row).every(well => well.type === 'Sample')
+        })
+        expect(expectation).toBeTruthy()
+      })
+    })
+  })
+
 })

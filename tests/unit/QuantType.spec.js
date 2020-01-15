@@ -158,6 +158,39 @@ describe('QuantType.vue', () => {
       expect(quantType.$data.wellType).toEqual('QPCR5ul')
     })
 
+    it('has the correct assay version', () => {
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+  })
+
+  describe('libraryQPCR - 5ul - Quadruplicate', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'libraryQPCR5ulQuadruplicate'}})
+    })
+
+    it('must have the correct options', () => {
+      expect(quantType.$data).toEqual(quantTypes["libraryQPCR5ulQuadruplicate"])
+    })
+
+    it('has some metadata', () => {
+      expect(quantType.hasMetadata()).toBeFalsy()
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has the correct well type', () => {
+      expect(quantType.$data.wellType).toEqual('QPCR5ul')
+    })
+
+    it('has the correct assay version', () => {
+      expect(quantType.qcResults.assay.version).toEqual('v3.0')
+    })
+
   })
 
   describe('RNA - Stock', () => {
