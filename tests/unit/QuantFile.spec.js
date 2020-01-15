@@ -236,6 +236,12 @@ describe('QuantFile.vue', () => {
       it('has an id', () => {
         expect(quantFile.id).toEqual('DN123456')
       })
+
+      it('should have some empty cells', () => {
+        expect(quantFile.grid.rows['B']['1'].type === 'Empty').toBeTruthy()
+        expect(quantFile.grid.rows['P']['23'].type === 'Empty').toBeTruthy()
+      })
+
     })
   })
 
