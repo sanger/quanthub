@@ -44,7 +44,7 @@
 // The plate structure is defined by the grid
 // Plate is made up of rows which are part of the grid which contains the wells.
 // When a plate is created it is added to the store as a sequencescape plate.
-// Once the plate is received from local storage a set of triplicates is created. The plate id is cascaded down so that the well can add a triplicate
+// Once the plate is received from local storage a set of replicate is created. The plate id is cascaded down so that the well can add a replicate
 // The assumption is made that the data exists in local storage from when it was uploaded.
 // The QuantType is assigned from local storage and a QuantType component is created.
 
@@ -52,7 +52,7 @@ import Row from '@/components/Row'
 import Grid from '@/components/Grid'
 import QuantType from '@/components/QuantType'
 import Alert from '@/components/Alert'
-import {TriplicateList as Triplicates} from '@/Triplicates'
+import {ReplicateList as Replicates} from '@/Replicates'
 import Vue from 'vue'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
@@ -72,7 +72,7 @@ export default {
       store: this.$Store,
       notice: '',
       uuid: '',
-      triplicates: {},
+      replicates: {},
       exporting: false,
       lotNumber: ''
     }
@@ -87,7 +87,7 @@ export default {
     // We can't assign the uuid up front because it is pulled from quantessential.
     // This will go away once we merge quanthub and quantessential.
     json () {
-      return { lot_number: this.lotNumber, qc_results: this.triplicates.values.map(triplicate => triplicate.json) }
+      return { lot_number: this.lotNumber, qc_results: this.replicates.values.map(replicate => replicate.json) }
     },
     jsonApiData () {
       return {data: {data: {attributes: this.json}}}
@@ -128,7 +128,7 @@ export default {
       } else {
         this.quantType = new Cmp()
       }
-      this.triplicates = new Triplicates(this.quantType.triplicateOptions)
+      this.replicates = new Replicates(this.quantType.replicateOptions)
     },
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
@@ -151,7 +151,7 @@ export default {
       localStorage.setItem(this.barcode, JSON.stringify(this.toGrid()))
       this.$refs.alert.show('Plate saved to local storage', 'success')
     },
-    // build a request based on the triplicate data.
+    // build a request based on the replicate data.
     // A post request is the sent to sequencescape to populate the qc_results table.
     // TODO: can we move this to an ORM
     exportToSequencescape () {

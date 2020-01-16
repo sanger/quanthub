@@ -32,8 +32,8 @@ describe('QuantType.vue', () => {
       expect(quantType.WellFactory).toEqual(WellFactories.PlateReader)
     })
 
-    it('has the triplicate options', () => {
-      expect(Object.keys(quantType.triplicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor', 'cvThreshold']);
+    it('has the replicate options', () => {
+      expect(Object.keys(quantType.replicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor', 'cvThreshold']);
     })
 
     it('has a cv threshold', () => {

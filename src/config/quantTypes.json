@@ -266,7 +266,7 @@
     "conversion": {
       "factors": {
         "topM": 3.321e-7,
-        "calibration": 1.786,
+        "calibration": 1,
         "dilution": 0.5
       },
       "expression": "(topM*calibration*dilution)",

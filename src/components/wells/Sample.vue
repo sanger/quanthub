@@ -8,7 +8,7 @@
 
 <script>
 
-import { NullTriplicate } from '@/Triplicates'
+import { NullReplicate } from '@/Replicates'
 import WellProperties from '@/mixins/WellProperties'
 
 export default {
@@ -51,7 +51,7 @@ export default {
       msg: 'Sample Well',
       isActive: this.active,
       store: this.$Store,
-      triplicate: NullTriplicate
+      replicate: NullReplicate
     }
   },
   computed: {
@@ -76,13 +76,13 @@ export default {
       this.isActive = !this.isActive
     },
     needsInspection () {
-      return this.triplicate.needsInspection()
+      return this.replicate.needsInspection()
     }
   },
   mounted () {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
-      this.store.sequencescapePlates.addTriplicate(this)
+      this.store.sequencescapePlates.addReplicate(this)
     }
   }
 }

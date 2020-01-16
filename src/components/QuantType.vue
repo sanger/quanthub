@@ -39,7 +39,7 @@ export default {
   // factor into the placeholder.
   // This produces a string expression which can be evaluated.
   // This conversion factor is then used to create the adjusted average
-  // in triplicates. It is evaluated upfront which increases efficiency.
+  // in replicates. It is evaluated upfront which increases efficiency.
   computed: {
     conversionFactor () {
       let factors = this.conversion.factors
@@ -55,7 +55,7 @@ export default {
     WellFactory () {
       return WellFactories[this.wellType]
     },
-    triplicateOptions () {
+    replicateOptions () {
       return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold})
     }
   },

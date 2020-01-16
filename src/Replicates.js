@@ -1,17 +1,17 @@
-/*  Triplicates.js
-    A library to manage the statistics for a triplicate of wells.
+/*  Replicates.js
+    A library to manage the statistics for a replicate of wells.
     The ultimate aim is to calculate the coefficient of variation (CV),
     a standardized measure of dispersion of a probability distribution or frequency distribution.
-    In this case if a concentration in the triplicate is above a certain threshold e.g. 20% it is
-    considered an outlier and can be removed from the triplicate.
+    In this case if a concentration in the replicate is above a certain threshold e.g. 20% it is
+    considered an outlier and can be removed from the replicate.
 */
 
-const NullTriplicate = {
+const NullReplicate = {
   size: 0,
   needsInspection () { return false }
 }
 
-class Triplicate {
+class Replicate {
   constructor (wells = [], options = {}) {
     this.wells = wells
     this.options = Object.assign({
@@ -113,10 +113,10 @@ class Triplicate {
   }
 }
 
-// A JSON object to store the list of triplicates
+// A JSON object to store the list of replicates
 // The key is the well location
 
-class TriplicateList {
+class ReplicateList {
   constructor (options = {}) {
     this.items = new Map()
     this.options = options
@@ -135,18 +135,18 @@ class TriplicateList {
   }
 
   // Try and find the well id in the list.
-  // If it is found add the well as a new triplicate
+  // If it is found add the well as a new replicate
   // If not create a new key.
   add (well) {
-    let triplicate
-    triplicate = this.find(well.id)
-    if (triplicate === undefined) {
-      triplicate = new Triplicate([well], this.options)
-      this.items.set(well.id, triplicate)
+    let replicate
+    replicate = this.find(well.id)
+    if (replicate === undefined) {
+      replicate = new Replicate([well], this.options)
+      this.items.set(well.id, replicate)
     } else {
-      triplicate.add(well)
+      replicate.add(well)
     }
-    well.triplicate = triplicate
+    well.replicate = replicate
     return this
   }
 
@@ -159,4 +159,4 @@ class TriplicateList {
   }
 }
 
-export { TriplicateList, Triplicate, NullTriplicate }
+export { ReplicateList, Replicate, NullReplicate }
