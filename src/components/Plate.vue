@@ -44,7 +44,7 @@
 // The plate structure is defined by the grid
 // Plate is made up of rows which are part of the grid which contains the wells.
 // When a plate is created it is added to the store as a sequencescape plate.
-// Once the plate is received from local storage a set of replicate is created. The plate id is cascaded down so that the well can add a replicate
+// Once the plate is received from local storage a set of replicates is created. The plate id is cascaded down so that the well can add a replicate
 // The assumption is made that the data exists in local storage from when it was uploaded.
 // The QuantType is assigned from local storage and a QuantType component is created.
 
