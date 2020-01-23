@@ -54,7 +54,7 @@ describe('Plate.vue', () => {
   it('will have a quantType', () => {
     expect(plate.quantType).toBeDefined()
     expect(plate.quantType.key).toBeDefined()
-    expect(plate.quantType.triplicateOptions).toBeDefined()
+    expect(plate.quantType.replicateOptions).toBeDefined()
   })
 
   it('allows the user to enter a lot number', () => {
@@ -94,7 +94,7 @@ describe('Plate.vue', () => {
     it('has some json', () => {
       let json = plate.json
       expect(json.lot_number).toEqual('LOT1234567')
-      expect(json.qc_results).toHaveLength(plate.triplicates.size)
+      expect(json.qc_results).toHaveLength(plate.replicates.size)
     })
 
     it('returns some request options for export', () => {

@@ -1,10 +1,10 @@
 
-import { TriplicateList as Triplicates } from '@/Triplicates'
+import { ReplicateList as Replicates } from '@/Replicates'
 
 class Plate {
   constructor (barcode) {
     this.barcode = barcode
-    this.triplicates = new Triplicates()
+    this.replicates = new Replicates()
   }
 }
 
@@ -27,8 +27,8 @@ class SequencescapePlateList {
     return this
   }
 
-  addTriplicate (well) {
-    this.find(well.plateBarcode).triplicates.add(well)
+  addReplicate (well) {
+    this.find(well.plateBarcode).replicates.add(well)
   }
 
   find (key) {

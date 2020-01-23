@@ -195,10 +195,10 @@ describe('Wells', () => {
       expect(well.$el.className).toMatch('sample')
     })
 
-    it('will create a triplicate', () => {
-      let triplicate = well.store.sequencescapePlates.find(plateBarcode).triplicates.find(well.id)
-      expect(triplicate).toBeTruthy()
-      expect(well.triplicate).toEqual(triplicate)
+    it('will create a replicate', () => {
+      let replicate = well.store.sequencescapePlates.find(plateBarcode).replicates.find(well.id)
+      expect(replicate).toBeTruthy()
+      expect(well.replicate).toEqual(replicate)
     })
 
     describe('Outlier', () => {
