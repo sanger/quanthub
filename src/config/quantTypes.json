@@ -243,6 +243,44 @@
       }
     }
   },
+  "libraryQPCR5ulQuadruplicate": {
+    "key": "libraryQPCR5ulQuadruplicate",
+    "name": "Library - qPCR - 5ul - Quadruplicate",
+    "wellType": "QPCR5ul",
+    "cvThreshold": 15,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "well",
+        "copyNumber",
+        "replicateError",
+        "totalError",
+        "shapeZError",
+        "Comments"
+      ]
+    },
+    "metadata": {
+    },
+    "conversion": {
+      "factors": {
+        "topM": 3.321e-7,
+        "calibration": 1,
+        "dilution": 0.5
+      },
+      "expression": "(topM*calibration*dilution)",
+      "decimalPlaces": 10
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Library - qPCR",
+        "version": "v3.0"
+      }
+    }
+  },
   "normalisation": {
     "key": "normalisation",
     "name": "Normalisation",

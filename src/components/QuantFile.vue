@@ -81,7 +81,7 @@ export default {
           try {
             this.raw = reader.result.replace(/\r\r\n/g, '\n')
             this.grid = new this.GridCmp({propsData: {quantType: this.quant}})
-            this.grid.addAll(parse(this.raw, this.quantType.parse).map(cell => new this.quantType.WellFactory(cell, WellMap).json))
+            this.grid.addAll(parse(this.raw, this.quantType.parse).map(cell => new this.quantType.WellFactory(cell, WellMap[this.quantType.key]).json))
           } catch(error) {
             reject(`Failed to parse: ${error.message}`)
           }
