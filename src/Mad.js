@@ -1,11 +1,12 @@
-
 import math from 'mathjs'
 
-// const MAGIC_NUMBER = 1.4826
+const MAGIC_NUMBER = 1.4826
 
 const median = (values) => {
-  let sortedValues = values.sort()
-  let length = values.length
+  let mutableValues = [...values]
+
+  let sortedValues = mutableValues.sort()
+  let length = mutableValues.length
 
   if (length % 2 === 0) {
     return (sortedValues[length/2] + sortedValues[length/2 - 1])/2
@@ -24,4 +25,20 @@ const calculation = (values) => {
   return median(absoluteDeviations)
 }
 
-export { median, absoluteDeviation, calculation }
+// item - median / (magic * mad ) 
+const methodTwo = (values) => {
+  let medianResult = median(values)
+  let madResult = calculation(values)
+  return values.map(item => {
+    let result = (item - medianResult) / (MAGIC_NUMBER * madResult)
+    let fixedResultString = result.toFixed(10)
+    return Number(fixedResultString)
+  })
+}
+
+// Outlyer is defined as > 3.5 or < -3.5
+const isOutlier = (value) =>{
+  return math.abs(value) > 3.5
+}
+
+export { median, absoluteDeviation, calculation, methodTwo, isOutlier }

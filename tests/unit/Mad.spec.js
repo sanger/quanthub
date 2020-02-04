@@ -36,4 +36,26 @@ describe('Mad.vue', () => {
     expect(Mad.calculation(values)).toEqual(217900)
   })
 
+  // item - median / (magic * mad ) 
+  it('has another unknown function #methodTwo', () => {
+    let values = [2, 4, 1, 5]
+    let expected = [-0.4496605063, 0.4496605063, -0.8993210126, 0.8993210126]
+    expect(Mad.methodTwo(values)).toEqual(expected)
+
+    values = [15074400, 15443900, 15510200, 15916700]
+    expected = [-1.2463685374, -0.1026129815, 0.1026129815, 1.3608988637]
+    expect(Mad.methodTwo(values)).toEqual(expected)
+  })
+
+  it('has an isOutlier function', () => {
+    expect(Mad.isOutlier(1)).toBeFalsy()
+    expect(Mad.isOutlier(-1)).toBeFalsy()
+    expect(Mad.isOutlier(3.5)).toBeFalsy()
+    expect(Mad.isOutlier(-3.5)).toBeFalsy()
+
+    expect(Mad.isOutlier(3.6)).toBeTruthy()
+    expect(Mad.isOutlier(-3.6)).toBeTruthy()
+    expect(Mad.isOutlier(8)).toBeTruthy()
+    expect(Mad.isOutlier(-8)).toBeTruthy()
+  })
 })
