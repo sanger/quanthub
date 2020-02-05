@@ -1,4 +1,5 @@
 import  * as Mad from '@/Mad'
+import { calculateAverage, adjustedAverage } from '../../src/Mad'
 
 describe('Mad.vue', () => {
 
@@ -56,5 +57,23 @@ describe('Mad.vue', () => {
     expect(Mad.isOutlier(-3.6)).toBeTruthy()
     expect(Mad.isOutlier(8)).toBeTruthy()
     expect(Mad.isOutlier(-8)).toBeTruthy()
+  })
+
+ it('#calculateAverage', () => {
+    //  When calculating the avergae for a normal average
+    let values = [3.014, 3.163, 2.836]
+    expect(calculateAverage(values)).toEqual("3.004")
+
+    // When calculating the average for standard deviation
+    values = [3.014, 3.163, 2.836]
+    expect(calculateAverage(values, 1)).toEqual("4.506")
+  })
+
+  it('#adjustedAverage', () => {
+    let average = 3.004
+    let conversionFactor = ((1000000 / 660) * (1 / 585))
+    let decimalPlaces = 3
+
+    expect(adjustedAverage(average, conversionFactor, decimalPlaces)).toEqual("7.780")
   })
 })
