@@ -41,4 +41,16 @@ const isOutlier = (value) =>{
   return math.abs(value) > 3.5
 }
 
-export { median, absoluteDeviation, calculation, methodTwo, isOutlier }
+// sample represents whether the average needs to be adjusted if
+// it is from a sample. This is important for calculating sample
+// standard deviation
+const calculateAverage = (values, sample = 0) => {
+  let sum = values.reduce(function (a, b) { return a + b })
+  return (sum / (values.length - sample)).toFixed(3)
+}
+
+const adjustedAverage = (average, conversionFactor, decimalPlaces) => {
+  return (average * conversionFactor).toFixed(decimalPlaces)
+}
+
+export { median, absoluteDeviation, calculation, methodTwo, isOutlier, calculateAverage, adjustedAverage }
