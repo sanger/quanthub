@@ -1,5 +1,4 @@
 import  * as Mad from '@/Mad'
-// import { mount, localVue } from './testHelper'
 
 describe('Mad.vue', () => {
 

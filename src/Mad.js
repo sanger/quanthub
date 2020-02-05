@@ -1,8 +1,6 @@
 
 import math from 'mathjs'
 
-// const MAGIC_NUMBER = 1.4826
-
 const median = (values) => {
   let sortedValues = values.sort()
   let length = values.length
