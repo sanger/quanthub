@@ -6,7 +6,7 @@
     considered an outlier and can be removed from the replicate.
 */
 
-import * as Mad from '@/Mad'
+import * as Calculations from '@/Calculations'
 
 const NullReplicate = {
   size: 0,
@@ -47,12 +47,12 @@ class Replicate {
 
   get average () {
     if (this.empty()) return '0'
-    return Mad.calculateAverage(this.activeWells.map(well => parseFloat(well.concentration)))
+    return Calculations.calculateAverage(this.activeWells.map(well => parseFloat(well.concentration)))
   }
 
   get adjustedAverage () {
     if (this.empty()) return '0'
-    return Mad.adjustedAverage(this.average, this.options.conversionFactor, this.decimalPlaces)
+    return Calculations.adjustedAverage(this.average, this.options.conversionFactor, this.decimalPlaces)
   }
 
   // Should be sample standard deviation i.e. average square difference
@@ -67,7 +67,7 @@ class Replicate {
       let sqrDiff = diff * diff
       return sqrDiff
     })
-    let avgSquareDiff = Mad.calculateAverage(squareDiffs, 1)
+    let avgSquareDiff = Calculations.calculateAverage(squareDiffs, 1)
     let stdDev = Math.sqrt(avgSquareDiff)
     return stdDev.toFixed(this.decimalPlaces)
   }
