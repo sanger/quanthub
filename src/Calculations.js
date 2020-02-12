@@ -4,6 +4,10 @@ Number.prototype.toDecimalPlaces = function(n = 3) {
   return Number(this.toFixed(n))
 }
 
+// to find median first we need to sort values in ascending order
+// if the number of values are even we need to find the average of
+// the two middle values otherwise we can just return the middle
+// value
 const median = (values) => {
 
   let sortedValues = [...values].sort()
@@ -29,13 +33,12 @@ const mad = (values) => {
 
 // modified z scores
 // item - median / (magic * mad ) 
-const modifiedZScores = (values, consistency_constant = 1.4826) => {
+const modifiedZScores = (values, consistencyConstant = 1.4826) => {
   let medianResult = median(values)
   let madResult = mad(values)
 
   return values.map(item => {
-    let result = (item - medianResult) / (consistency_constant * madResult)
-    return result.toDecimalPlaces(10)
+    return ((item - medianResult) / (consistencyConstant * madResult))
   })
 }
 
@@ -47,12 +50,13 @@ const isOutlier = (value, limit = 3.5) => {
 // sample: represents whether the average needs to be adjusted if
 // it is from a sample. This is important for calculating sample
 // standard deviation
-const average = (values, {sample = 0, conversionFactor = 1, decimalPlaces = 3} = {}) => {
-  let sum = values.reduce(function (a, b) { return a + b })
-  return ((sum / (values.length - sample) * conversionFactor)).toDecimalPlaces(decimalPlaces)
+// will return 0 if array is empty
+const average = (values, { sample = 0, conversionFactor = 1 } = {}) => {
+  let sum = values.reduce(function (a, b) { return a + b }, 0)
+  return ((sum / (values.length - sample)) || 0 ) * conversionFactor
 }
 
-const standardDeviation = (values, {decimalPlaces}) => {
+const standardDeviation = (values) => {
   let mean = average(values)
 
   let squareDiffs = values.map(value => {
@@ -61,7 +65,11 @@ const standardDeviation = (values, {decimalPlaces}) => {
     return sqrDiff
   })
   let avgSquareDiff = average(squareDiffs, {sample: 1})
-  return math.sqrt(avgSquareDiff).toDecimalPlaces(decimalPlaces)
+  return math.sqrt(avgSquareDiff)
 }
 
-export { median, absoluteDeviation, mad, modifiedZScores, isOutlier, average, standardDeviation }
+const cv = (values) => {
+  return (standardDeviation(values) / average(values) || 0) * 100
+}
+
+export { median, absoluteDeviation, mad, modifiedZScores, isOutlier, average, standardDeviation, cv }

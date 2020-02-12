@@ -211,6 +211,8 @@ describe('Wells', () => {
         well1 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', type: 'Sample', plateBarcode: plateBarcode}})
         well2 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', type: 'Sample', plateBarcode: plateBarcode }})
         well3 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', type: 'Sample', plateBarcode: plateBarcode }})
+        // TODO: transparecny is key. This is not it.
+        well1.vm.replicate.options.cvThreshold = 15
       })
 
       // this would be better to check class but this is brittle

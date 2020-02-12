@@ -28,7 +28,7 @@ describe('Replicates.vue', () => {
       })
 
       it('will set an average', () => {
-        expect(replicate.average).toEqual('3.004')
+        expect(replicate.average).toEqual(3.004)
       })
 
       it('must have some options', () => {
@@ -45,7 +45,7 @@ describe('Replicates.vue', () => {
         // (0.0001 + 0.025281 + 0.028224) / 3 = 0.027
         // sqrt (0.018) = 0.163714690849661
 
-        expect(replicate.standardDeviation).toEqual('0.164')
+        expect(replicate.standardDeviation).toEqual(0.164)
       })
 
       it('will have an id', () => {
@@ -57,8 +57,8 @@ describe('Replicates.vue', () => {
       })
       
       it('will set a cv', () => {
-        // (0.164/3.004) * 100 = 5.459
-        expect(replicate.cv).toEqual('5.459')
+        // (0.16371418183325878/3.0043333333333333) * 100 = 5.449
+        expect(replicate.cv).toEqual(5.449)
         expect(replicate.needsInspection()).toBeFalsy()
       })
 
@@ -77,9 +77,9 @@ describe('Replicates.vue', () => {
         // (0.005 + 0.006) / 1 = 0.011
         // std = sqrt (0.011) = 0.105
         // cv = (0.105/3.088 * 100) = 3.400
-        expect(replicate.average).toEqual('3.088')
-        expect(replicate.standardDeviation).toEqual('0.105')
-        expect(replicate.cv).toEqual('3.400')
+        expect(replicate.average).toEqual(3.088)
+        expect(replicate.standardDeviation).toEqual(0.105)
+        expect(replicate.cv).toEqual(3.411)
       })
 
       it('will return some json for exporting purposes', () => {
@@ -106,12 +106,12 @@ describe('Replicates.vue', () => {
 
       it('works with option as a number', () => {
         replicate = new Replicate([well1, well2, well3], {conversionFactor: 2.590})
-        expect(replicate.adjustedAverage).toEqual('7.780')
+        expect(replicate.adjustedAverage).toEqual(7.781)
       })
 
       it('works with option as an expression', () => {
         replicate = new Replicate([well1, well2, well3], {conversionFactor: ((1000000 / 660) * (1 / 585))})
-        expect(replicate.adjustedAverage).toEqual('7.780')
+        expect(replicate.adjustedAverage).toEqual(7.781)
       })
     })
 
@@ -154,9 +154,9 @@ describe('Replicates.vue', () => {
       })
 
       it ('will create stats', () => {
-        expect(replicate.average).toEqual('3.004')
-        expect(replicate.standardDeviation).toEqual('0.164')
-        expect(replicate.cv).toEqual('5.459')
+        expect(replicate.average).toEqual(3.004)
+        expect(replicate.standardDeviation).toEqual(0.164)
+        expect(replicate.cv).toEqual(5.449)
       })
     })
 
@@ -170,9 +170,9 @@ describe('Replicates.vue', () => {
       })
 
       it('will produce stats without error', () => {
-        expect(replicate.average).toEqual('0')
-        expect(replicate.standardDeviation).toEqual('0')
-        expect(replicate.cv).toEqual('0')
+        expect(replicate.average).toEqual(0)
+        expect(replicate.standardDeviation).toEqual(0)
+        expect(replicate.cv).toEqual(0)
       })
     })
 
@@ -184,7 +184,7 @@ describe('Replicates.vue', () => {
       })
 
       it('will exclude those values from the replicate', () => {
-        expect(replicate.average).toEqual(well1.concentration)
+        expect(replicate.average).toEqual(Number(well1.concentration))
       })
     })
 
@@ -194,11 +194,11 @@ describe('Replicates.vue', () => {
       })
 
       it('standard deviation will be 0', () => {
-        expect(replicate.standardDeviation).toEqual('0')
+        expect(replicate.standardDeviation).toEqual(0)
       })
 
       it('cv will be 0', () => {
-        expect(replicate.cv).toEqual('0')
+        expect(replicate.cv).toEqual(0)
       })
     })
 
@@ -211,11 +211,11 @@ describe('Replicates.vue', () => {
       })
 
       it('standard deviation will be 0', () => {
-        expect(replicate.standardDeviation).toEqual('0.000')
+        expect(replicate.standardDeviation).toEqual(0)
       })
 
       it('cv will be 0', () => {
-        expect(replicate.cv).toEqual('0')
+        expect(replicate.cv).toEqual(0)
       })
     })
 
@@ -228,11 +228,11 @@ describe('Replicates.vue', () => {
       })
 
       it('standard deviation will be 0', () => {
-        expect(replicate.standardDeviation).toEqual('0')
+        expect(replicate.standardDeviation).toEqual(0)
       })
 
       it('cv will be 0', () => {
-        expect(replicate.cv).toEqual('0')
+        expect(replicate.cv).toEqual(0)
       })
 
       it('still has an id', () => {

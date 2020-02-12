@@ -45,36 +45,26 @@ class Replicate {
     return this.wells.filter(well => (well.isActive && well.concentration !== 'n.a.'))
   }
 
+  get concentrations () {
+    return this.activeWells.map(well => parseFloat(well.concentration))
+  }
+
   get average () {
-    if (this.empty()) return '0'
-    return Calculations.calculateAverage(this.activeWells.map(well => parseFloat(well.concentration)))
+    return Calculations.average(this.concentrations).toDecimalPlaces(this.decimalPlaces)
   }
 
   get adjustedAverage () {
-    if (this.empty()) return '0'
-    return Calculations.adjustedAverage(this.average, this.options.conversionFactor, this.decimalPlaces)
+    return (Calculations.average(this.concentrations, {conversionFactor: this.options.conversionFactor})).toDecimalPlaces(this.decimalPlaces)
   }
 
   // Should be sample standard deviation i.e. average square difference
   // calculated as N - 1
   get standardDeviation () {
-    if (this.empty() || this.size === 1) return '0'
-
-    let average = this.average
-
-    let squareDiffs = this.activeWells.map(function (well) {
-      let diff = well.concentration - average
-      let sqrDiff = diff * diff
-      return sqrDiff
-    })
-    let avgSquareDiff = Calculations.calculateAverage(squareDiffs, 1)
-    let stdDev = Math.sqrt(avgSquareDiff)
-    return stdDev.toFixed(this.decimalPlaces)
+    return Calculations.standardDeviation(this.concentrations).toDecimalPlaces(this.decimalPlaces)
   }
 
   get cv () {
-    if (this.empty() || this.size === 1 || this.standardDeviation === '0.000') return '0'
-    return ((this.standardDeviation / this.average) * 100).toFixed(this.decimalPlaces)
+    return Calculations.cv(this.concentrations).toDecimalPlaces(this.decimalPlaces)
   }
 
   get json () {
