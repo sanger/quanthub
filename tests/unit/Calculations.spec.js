@@ -159,7 +159,11 @@ describe('Calculations.vue', () => {
     })
 
     it('if there are no values', () => {
-      expect(Calculations.standardDeviation([])).toEqual(0)
+      expect(Calculations.cv([])).toEqual(0)
+    })
+
+    it('if there is a single value', () => {
+      expect(Calculations.cv([3.014])).toEqual(0)
     })
   })
 

@@ -63,12 +63,12 @@ describe('Replicates.vue', () => {
       })
 
       it('can retrieve active wells', () => {
-        well3.isActive = false
+        well3.active = false
         expect(replicate.activeWells).toHaveLength(2)
       })
 
       it('will recalculate statistics correctly if a well is rendered inactive', () => {
-        well3.isActive = false
+        well3.active = false
 
         // average = 3.088
         // nM = 7.998
@@ -95,6 +95,19 @@ describe('Replicates.vue', () => {
         })
       })
 
+    })
+
+    describe('active wells', () => {
+
+      let replicate
+
+      beforeEach(() => {
+        replicate = new Replicate([well1, well2, well3])
+      })
+
+      it('will only include wells which are set to active', () => {
+        expect(replicate.activeWells.length).toEqual(3)
+      })
     })
 
     describe('conversion', () => {
@@ -160,22 +173,6 @@ describe('Replicates.vue', () => {
       })
     })
 
-    describe('when it is empty', () => {
-      beforeEach(() => {
-        replicate = new Replicate()
-      })
-
-      it('will indicate it is empty', () => {
-        expect(replicate.empty()).toBeTruthy()
-      })
-
-      it('will produce stats without error', () => {
-        expect(replicate.average).toEqual(0)
-        expect(replicate.standardDeviation).toEqual(0)
-        expect(replicate.cv).toEqual(0)
-      })
-    })
-
     describe('when a well has an invalid value', () => {
       beforeEach(() => {
         well2.concentration = 'n.a.'
@@ -185,20 +182,6 @@ describe('Replicates.vue', () => {
 
       it('will exclude those values from the replicate', () => {
         expect(replicate.average).toEqual(Number(well1.concentration))
-      })
-    })
-
-    describe('when there is only one value', () => {
-      beforeEach(() => {
-        replicate = new Replicate([well1])
-      })
-
-      it('standard deviation will be 0', () => {
-        expect(replicate.standardDeviation).toEqual(0)
-      })
-
-      it('cv will be 0', () => {
-        expect(replicate.cv).toEqual(0)
       })
     })
 

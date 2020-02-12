@@ -176,7 +176,7 @@ describe('Wells', () => {
 
     it('produces some json', () => {
       expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, active: true, id: data.id})
-      well.isActive = false
+      well.active = false
       expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, active: false, id: data.id})
     })
 
@@ -186,11 +186,11 @@ describe('Wells', () => {
 
     it('on clicking renders it inactive', () => {
       cmp.trigger('click')
-      expect(well.isActive).toBeFalsy()
+      expect(well.active).toBeFalsy()
       expect(well.$el.className).toMatch('inactive')
 
       cmp.trigger('click')
-      expect(well.isActive).toBeTruthy()
+      expect(well.active).toBeTruthy()
       expect(well.$el.className).not.toMatch('inactive')
       expect(well.$el.className).toMatch('sample')
     })

@@ -42,7 +42,7 @@ class Replicate {
   // If a well has a concentration of n.a. this throws an error so it needs
   // to be excluded
   get activeWells () {
-    return this.wells.filter(well => (well.isActive && well.concentration !== 'n.a.'))
+    return this.wells.filter(well => (well.active && well.concentration !== 'n.a.'))
   }
 
   get concentrations () {
@@ -86,10 +86,6 @@ class Replicate {
 
   add (well) {
     this.wells.push(well)
-  }
-
-  empty () {
-    return (this.wells.length === 0 || this.size === 0)
   }
 
   needsInspection () {
