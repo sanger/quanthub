@@ -67,6 +67,10 @@ class Replicate {
     return Calculations.cv(this.concentrations).toDecimalPlaces(this.decimalPlaces)
   }
 
+  get stats () {
+    return (({average, standardDeviation, cv}) => ({average, standardDeviation, cv}))(this)
+  }
+
   get json () {
     return {
       barcode: this.plateBarcode,

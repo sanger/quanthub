@@ -175,9 +175,9 @@ describe('Wells', () => {
     })
 
     it('produces some json', () => {
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, active: true, id: data.id})
+      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, id: data.id, active: true})
       well.active = false
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, active: false, id: data.id})
+      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, id: data.id, active: false})
     })
 
     it('has the correct class', () => {
@@ -211,7 +211,7 @@ describe('Wells', () => {
         well1 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', type: 'Sample', plateBarcode: plateBarcode}})
         well2 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', type: 'Sample', plateBarcode: plateBarcode }})
         well3 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', type: 'Sample', plateBarcode: plateBarcode }})
-        // TODO: transparecny is key. This is not it.
+        // TODO: transparency is key. This is not it.
         well1.vm.replicate.options.cvThreshold = 15
       })
 

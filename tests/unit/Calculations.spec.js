@@ -150,6 +150,10 @@ describe('Calculations.vue', () => {
       expect(Calculations.standardDeviation([])).toEqual(0)
     })
 
+    it('the values are really small', () => {
+      expect(Calculations.standardDeviation([0.0000142,0.0000142,0.0000142]).toDecimalPlaces(3)).toEqual(0)
+    })
+
   })
 
   describe('#cv', () => {
@@ -164,6 +168,10 @@ describe('Calculations.vue', () => {
 
     it('if there is a single value', () => {
       expect(Calculations.cv([3.014])).toEqual(0)
+    })
+
+    it('the values are really small', () => {
+      expect(Calculations.cv([0.0000142,0.0000142,0.0000142]).toDecimalPlaces(3)).toEqual(0)
     })
   })
 
