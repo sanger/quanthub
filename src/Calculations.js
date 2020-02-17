@@ -33,13 +33,8 @@ const mad = (values) => {
 
 // modified z scores
 // item - median / (magic * mad ) 
-const modifiedZScores = (values, consistencyConstant = 1.4826) => {
-  let medianResult = median(values)
-  let madResult = mad(values)
-
-  return values.map(item => {
-    return ((item - medianResult) / (consistencyConstant * madResult))
-  })
+const modifiedZScores = (value, median, mad, consistencyConstant = 1.4826) => {
+  return ((value - median) / (consistencyConstant * mad))
 }
 
 // Outlier is defined as > 3.5 or < -3.5

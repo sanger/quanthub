@@ -4,7 +4,7 @@ import {ReplicateList as Replicates, Replicate, NullReplicate} from '@/Replicate
 
 describe('Replicates.vue', () => {
 
-  let cmp, well1, well2, well3
+  let cmp, well1, well2, well3, well4
 
   beforeEach(() => {
     cmp = Vue.extend(Well)
@@ -178,7 +178,7 @@ describe('Replicates.vue', () => {
     let replicate1, replicate2, replicates, options
 
     beforeEach(() => {
-      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, cvThreshold: 5}
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, outlier: {type: 'cv', threshold: 15}, cvThreshold: 5}
       replicate1 = new Replicate([well1, well2, well3], options)
 
       well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.616'}})
@@ -213,6 +213,58 @@ describe('Replicates.vue', () => {
       expect(replicate.options).toEqual(options)
     })
 
+  })
+
+  describe('#outliers', () => {
+
+    let options, replicate
+
+    beforeEach(() => {
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, outlier: {type: 'cv', threshold: 20}, cvThreshold: 5}
+    })
+
+    it('cv', () => {
+      // well2 is an outlier
+      well1 = new cmp({propsData: { row: 'A', column: '1', content:'Sample X1', id: 'A1', concentration: '0.685'}})
+      well2 = new cmp({propsData: { row: 'A', column: '2', content:'Sample X1', id: 'A1', concentration: '0.960'}})
+      well3 = new cmp({propsData: { row: 'A', column: '3', content:'Sample X1', id: 'A1', concentration: '0.660'}})
+      replicate = new Replicate([well1, well2, well3], options)
+
+      // replicate.outliers()
+      expect(well1.outlier).toBeTruthy()
+      expect(well2.outlier).toBeTruthy()
+      expect(well3.outlier).toBeTruthy()
+
+      // well2.active = false
+      replicate.outliers()
+      expect(well1.outlier).toBeFalsy()
+      expect(well2.outlier).toBeFalsy()
+      expect(well3.outlier).toBeFalsy()
+    })
+
+    it('mad', () => {
+      // well3 is an outlier
+      options.outlier = {type: 'mad', threshold: 3.5}
+      well1 = new cmp({propsData: { row: 'A', column: '1', content:'Sample X1', id: 'A1', concentration: '12241500'}})
+      well2 = new cmp({propsData: { row: 'A', column: '2', content:'Sample X1', id: 'A1', concentration: '12495300'}})
+      well3 = new cmp({propsData: { row: 'B', column: '1', content:'Sample X1', id: 'A1', concentration: '11008300'}})
+      well4 = new cmp({propsData: { row: 'B', column: '2', content:'Sample X1', id: 'A1', concentration: '12240200'}})
+      replicate = new Replicate([well1, well2, well3, well4], options)
+
+      replicate.outliers()
+      expect(well1.outlier).toBeFalsy()
+      expect(well2.outlier).toBeFalsy()
+      expect(well3.outlier).toBeTruthy()
+      expect(well4.outlier).toBeFalsy()
+
+      well3.active = false
+      well2.active = false
+      replicate.outliers()
+      expect(well1.outlier).toBeFalsy()
+      expect(well2.outlier).toBeFalsy()
+      expect(well3.outlier).toBeFalsy()
+      expect(well4.outlier).toBeFalsy()
+    })
   })
 
   describe('NullReplicate', () => {

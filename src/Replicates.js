@@ -8,6 +8,8 @@
 
 import * as Calculations from '@/Calculations'
 
+// let outliers = () => { return }
+
 const NullReplicate = {
   size: 0,
   needsInspection () { return false }
@@ -21,7 +23,8 @@ class Replicate {
       units: 'standard',
       conversionFactor: 1,
       cvThreshold: 1,
-      assay: {type: 'Standard', version: '1'}}, options)
+      assay: {type: 'Standard', version: '1'}, 
+      outlier: { type: 'cv', threshold: 15}}, options)
     this.decimalPlaces = 3
   }
 
@@ -94,6 +97,28 @@ class Replicate {
 
   needsInspection () {
     return this.cv >= this.cvThreshold
+  }
+
+  outliers () {
+    let self = this
+    self.wells.map(well => { well.outlier = false})
+    if (self.options.outlier.type === 'cv') {
+      if (self.cv >= self.options.outlier.threshold) {
+        console.log('outlier')
+        self.activeWells.map(well => { well.outlier = true})
+      }
+    }
+
+    if (self.options.outlier.type === 'mad') {
+      let median = Calculations.median(self.concentrations)
+      let mad = Calculations.mad(self.concentrations)
+      self.activeWells.map(well => {
+        let zscore = Calculations.modifiedZScores(well.concentration, median, mad)
+        if(Calculations.isOutlier(zscore, self.options.outlier.threshold)) {
+          well.outlier = true
+        }
+      })
+    }
   }
 }
 

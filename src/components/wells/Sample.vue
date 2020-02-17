@@ -1,5 +1,5 @@
 <template>
-  <td class="well sample" v-bind:class="{inactive: !active, inspect: needsInspection()}"  v-on:click="active = !active">
+  <td class="well sample" v-bind:class="{inactive: !active, inspect: needsInspection()}"  v-on:click="test()">
     {{ id }}
     <br />
     {{ concentration }}
@@ -48,7 +48,8 @@ export default {
       msg: 'Sample Well',
       store: this.$Store,
       replicate: NullReplicate,
-      active: true
+      active: true,
+      outlier: false
     }
   },
   computed: {
@@ -58,7 +59,12 @@ export default {
   },
   methods: {
     needsInspection () {
-      return this.replicate.needsInspection()
+      // return this.replicate.needsInspection()
+      return this.outlier
+    },
+    test () {
+      this.active = !this.active
+      this.replicate.outliers()
     }
   },
   mounted () {

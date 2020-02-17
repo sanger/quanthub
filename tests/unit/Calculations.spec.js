@@ -49,19 +49,33 @@ describe('Calculations.vue', () => {
   // item - median / (consistency_constant * mad ) 
   describe('#modifiedZScores', () => {
 
-    let expected
+    let expected, mad, median
 
     it('small numbers', () => {
       values = [2, 4, 1, 5]
+      median = Calculations.median(values)
+      mad = Calculations.mad(values)
+
+
       expected = [-0.44966050631773014, 0.44966050631773014, -0.8993210126354603, 0.8993210126354603]
-      expect(Calculations.modifiedZScores(values)).toEqual(expected)
+      expect(Calculations.modifiedZScores(values[0], median, mad)).toEqual(expected[0])
+      expect(Calculations.modifiedZScores(values[1], median, mad)).toEqual(expected[1])
+      expect(Calculations.modifiedZScores(values[2], median, mad)).toEqual(expected[2])
+      expect(Calculations.modifiedZScores(values[3], median, mad)).toEqual(expected[3])
     })
 
     it('big numbers', () => {
       values = [15074400, 15443900, 15510200, 15916700]
+      median = Calculations.median(values)
+      mad = Calculations.mad(values)
+
       expected = [-1.2463685374173983, -0.10261298153579225, 0.10261298153579225, 1.360898863716774]
-      expect(Calculations.modifiedZScores(values)).toEqual(expected)
+      expect(Calculations.modifiedZScores(values[0], median, mad)).toEqual(expected[0])
+      expect(Calculations.modifiedZScores(values[1], median, mad)).toEqual(expected[1])
+      expect(Calculations.modifiedZScores(values[2], median, mad)).toEqual(expected[2])
+      expect(Calculations.modifiedZScores(values[3], median, mad)).toEqual(expected[3])
     })
+
   })
 
   describe('#isOutlier', () => {
