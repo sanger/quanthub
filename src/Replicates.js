@@ -6,6 +6,7 @@
     considered an outlier and can be removed from the replicate.
 */
 
+import Vue from 'vue'
 import * as Calculations from '@/Calculations'
 
 // let outliers = () => { return }
@@ -101,11 +102,10 @@ class Replicate {
 
   outliers () {
     let self = this
-    self.wells.map(well => { well.outlier = false})
+    self.wells.map(well => { Vue.set(well, 'outlier', false)})
     if (self.options.outlier.type === 'cv') {
       if (self.cv >= self.options.outlier.threshold) {
-        console.log('outlier')
-        self.activeWells.map(well => { well.outlier = true})
+        self.activeWells.map(well => { Vue.set(well, 'outlier', true)})
       }
     }
 
@@ -115,7 +115,7 @@ class Replicate {
       self.activeWells.map(well => {
         let zscore = Calculations.modifiedZScores(well.concentration, median, mad)
         if(Calculations.isOutlier(zscore, self.options.outlier.threshold)) {
-          well.outlier = true
+          Vue.set(well, 'outlier', true)
         }
       })
     }

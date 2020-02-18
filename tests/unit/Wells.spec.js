@@ -214,12 +214,11 @@ describe('Wells', () => {
         // TODO: transparency is key. This is not it.
         well1.vm.replicate.options.cvThreshold = 15
         well1.vm.replicate.options.outlier = {type: 'cv', threshold: 15}
-        // console.log(well1.vm.replicate.outliers())
+        well1.vm.replicate.outliers()
       })
 
       // this would be better to check class but this is brittle
       it('has the correct class', () => {
-        well1.trigger('click')
         expect(well1.vm.needsInspection()).toBeTruthy()
         expect(well2.vm.needsInspection()).toBeTruthy()
         expect(well3.vm.needsInspection()).toBeTruthy()

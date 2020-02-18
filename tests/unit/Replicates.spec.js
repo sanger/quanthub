@@ -230,12 +230,12 @@ describe('Replicates.vue', () => {
       well3 = new cmp({propsData: { row: 'A', column: '3', content:'Sample X1', id: 'A1', concentration: '0.660'}})
       replicate = new Replicate([well1, well2, well3], options)
 
-      // replicate.outliers()
+      replicate.outliers()
       expect(well1.outlier).toBeTruthy()
       expect(well2.outlier).toBeTruthy()
       expect(well3.outlier).toBeTruthy()
 
-      // well2.active = false
+      well2.active = false
       replicate.outliers()
       expect(well1.outlier).toBeFalsy()
       expect(well2.outlier).toBeFalsy()

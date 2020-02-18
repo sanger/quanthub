@@ -1,9 +1,8 @@
 <template>
-  <td class="well sample" v-bind:class="{inactive: !active, inspect: needsInspection()}"  v-on:click="test()">
+  <td class="well sample" v-bind:class="{inactive: !active, inspect: needsInspection()}"  v-on:click="setActive">
     {{ id }}
     <br />
     {{ concentration }}
-    {{ active }}
   </td>
 </template>
 
@@ -59,10 +58,9 @@ export default {
   },
   methods: {
     needsInspection () {
-      // return this.replicate.needsInspection()
       return this.outlier
     },
-    test () {
+    setActive () {
       this.active = !this.active
       this.replicate.outliers()
     }
@@ -71,6 +69,7 @@ export default {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
       this.store.sequencescapePlates.addReplicate(this)
+      this.replicate.outliers()
     }
   }
 }
