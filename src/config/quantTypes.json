@@ -3,7 +3,6 @@
     "key": "ISC",
     "name": "ISC",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -27,6 +26,10 @@
       "assay": {
         "type": "ISC",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
       }
     }
   },
@@ -34,7 +37,6 @@
     "key": "LCMB",
     "name": "LCMB",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -58,6 +60,10 @@
       "assay": {
         "type": "LCMB",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -65,7 +71,6 @@
     "key": "libraryPlateReader",
     "name": "Library - Plate Reader",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -96,6 +101,10 @@
       "assay": {
         "type": "Library - Plate Reader",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -103,7 +112,6 @@
     "key": "stockPlateReader",
     "name": "Stock - Plate Reader",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -127,6 +135,10 @@
       "assay": {
         "type": "Stock - Plate Reader",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -134,7 +146,6 @@
     "key": "workingDilutionPlateReader",
     "name": "Working Dilution - Plate Reader",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -158,6 +169,10 @@
       "assay": {
         "type": "Working Dilution - Plate Reader",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -165,7 +180,6 @@
     "key": "libraryQPCR10ul",
     "name": "Library - qPCR - 10ul",
     "wellType": "QPCR10ul",
-    "cvThreshold": 15,
     "parse": {
       "delimiter": "\t",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -202,6 +216,10 @@
       "assay": {
         "type": "Library - qPCR",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
       }
     }
   },
@@ -240,6 +258,10 @@
       "assay": {
         "type": "Library - qPCR",
         "version": "v2.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
       }
     }
   },
@@ -278,6 +300,10 @@
       "assay": {
         "type": "Library - qPCR",
         "version": "v3.0"
+      },
+      "outlier": {
+        "type": "mad",
+        "threshold": 3.5
       }
     }
   },
@@ -285,7 +311,6 @@
     "key": "normalisation",
     "name": "Normalisation",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -309,6 +334,10 @@
       "assay": {
         "type": "Normalisation",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -316,7 +345,6 @@
     "key": "RNAStock",
     "name": "RNA - Stock",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -340,6 +368,10 @@
       "assay": {
         "type": "RNA - Stock",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -347,7 +379,6 @@
     "key": "RNAStock",
     "name": "RNA - Library",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -371,6 +402,10 @@
       "assay": {
         "type": "RNA - Library",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -378,7 +413,6 @@
     "key": "chromiumSingleCellcDNA",
     "name": "Chromium Single Cell - cDNA",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -402,6 +436,10 @@
       "assay": {
         "type": "Chromium Single Cell - cDNA",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   },
@@ -409,7 +447,6 @@
     "key": "chromiumSingleCellLibrary",
     "name": "Chromium Single Cell - Library",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -433,6 +470,10 @@
       "assay": {
         "type": "Chromium Single Cell - Library",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
       }
     }
   }

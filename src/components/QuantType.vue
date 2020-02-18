@@ -17,7 +17,6 @@ export default {
       key: 'quantType',
       name: 'Quant Type',
       wellType: 'QuantType',
-      cvThreshold: 1,
       parse: {
         delimiter: ',',
         from: 16,
@@ -29,7 +28,8 @@ export default {
       qcResults: {
         key: 'Concentration',
         units: 'ng',
-        assay: {type: 'Quant Type', version: 'v1.0'}
+        assay: {type: 'Quant Type', version: 'v1.0'},
+        outlier: {type: 'standard', threshold: '1'}
       }
     }
   },
@@ -56,7 +56,8 @@ export default {
       return WellFactories[this.wellType]
     },
     replicateOptions () {
-      return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold})
+      return { conversionFactor: this.conversionFactor, ...this.qcResults }
+      // return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold})
     }
   },
   methods: {

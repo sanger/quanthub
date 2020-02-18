@@ -33,11 +33,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the replicate options', () => {
-      expect(Object.keys(quantType.replicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor', 'cvThreshold']);
-    })
-
-    it('has a cv threshold', () => {
-      expect(quantType.cvThreshold).toBeDefined()
+      expect(Object.keys(quantType.replicateOptions)).toEqual(['conversionFactor', 'key', 'units', 'assay', 'outlier'])
     })
 
     it('should have metadata by default', () => {
@@ -59,6 +55,10 @@ describe('QuantType.vue', () => {
 
     it('must have the correct options', () => {
       expect(quantType.$data).toEqual(quantTypes["libraryPlateReader"])
+    })
+
+    it('has the correct outlier options', () => {
+      expect(quantType.qcResults.outlier).toEqual({type: 'cv', threshold: 20})
     })
 
   })
@@ -189,6 +189,10 @@ describe('QuantType.vue', () => {
 
     it('has the correct assay version', () => {
       expect(quantType.qcResults.assay.version).toEqual('v3.0')
+    })
+
+    it('has the correct outlier options', () => {
+      expect(quantType.qcResults.outlier).toEqual({type: 'mad', threshold: 3.5})
     })
 
   })

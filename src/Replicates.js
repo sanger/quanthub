@@ -9,8 +9,6 @@
 import Vue from 'vue'
 import * as Calculations from '@/Calculations'
 
-// let outliers = () => { return }
-
 const NullReplicate = {
   size: 0,
   needsInspection () { return false }
