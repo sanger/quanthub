@@ -295,4 +295,20 @@ describe('QuantType.vue', () => {
 
   })
 
+  describe('Duplex Seq Library', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'duplexSeqLibrary'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual('1.000')
+    })
+
+  })
 })

@@ -435,5 +435,36 @@
         "version": "v1.0"
       }
     }
+  },
+  "duplexSeqLibrary": {
+    "key": "duplexSeqLibrary",
+    "name": "Duplex Seq Library",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 17,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 4,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Duplex Seq Library",
+        "version": "v1.0"
+      }
+    }
   }
 }
