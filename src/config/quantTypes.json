@@ -466,10 +466,9 @@
       "factors": {
         "dilution": 500,
         "standardInsertSize": 452,
-        "libraryInsertSize": 573,
-        "adjustmentFactor": 1.5
+        "libraryInsertSize": 573
       },
-      "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "expression": "(((dilution*standardInsertSize)/libraryInsertSize)/1000)",
       "decimalPlaces": 3
     },
     "qcResults": {
