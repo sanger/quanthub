@@ -311,4 +311,25 @@ describe('QuantType.vue', () => {
     })
 
   })
+
+  describe('Duplex Seq AL Lib', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'duplexSeqALLib'}})
+    })
+
+    it('must have the correct options', () => {
+      expect(quantType.$data).toEqual(quantTypes["duplexSeqALLib"])
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has some metadata', () => {
+      expect(quantType.hasMetadata()).toBeTruthy()
+    })
+
+  })
 })
