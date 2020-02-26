@@ -67,7 +67,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the correct qc results fields', () => {
-      expect(quantType.qcResults.fields).toEqual(['well_location','key','value','units','cv','assay_type','assay_version'])
+      expect(quantType.qcResults.fields).toEqual(['barcode','well_location','key','value','units','cv','assay_type','assay_version'])
     })
 
   })
@@ -205,7 +205,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the correct qc results fields', () => {
-      expect(quantType.qcResults.fields).toEqual(['well_location','key','value','units','assay_type','assay_version'])
+      expect(quantType.qcResults.fields).toEqual(['barcode','well_location','key','value','units','assay_type','assay_version'])
     })
 
   })
