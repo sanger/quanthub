@@ -20,7 +20,8 @@ describe('Replicates.vue', () => {
     describe('creating all wells up front', () => {
 
       beforeEach(() => {
-        replicate = new Replicate([well1, well2, well3], {cvThreshold: 20})
+        replicate = new Replicate([well1, well2, well3])
+        replicate.options.cvThreshold = 20
       })
 
       it('will have three wells', () => {
@@ -85,6 +86,18 @@ describe('Replicates.vue', () => {
           replicate.options.assay.type, 
           assay_version: replicate.options.assay.version
         })
+
+        replicate.options.fields = ["barcode","well_location","key","value","units","assay_type","assay_version"]
+
+         expect(replicate.json).toEqual({
+          barcode: replicate.plateBarcode,
+          well_location: replicate.id, 
+          key: replicate.options.key, 
+          value: replicate.adjustedAverage, 
+          units: replicate.options.units, 
+          assay_type: replicate.options.assay.type, 
+          assay_version: replicate.options.assay.version
+        })
       })
 
     })
@@ -146,7 +159,7 @@ describe('Replicates.vue', () => {
 
       it('will indicate whether replicate needs to be inspected at the threshold', () => {
         well5 = new cmp({propsData: { row: 'A', column: '2', content:'Sample X1', id: 'A1', concentration: '0.935'}})
-        replicate = new Replicate([well4, well5, well6], {cvThreshold: 20})
+        replicate = new Replicate([well4, well5, well6])
         expect(replicate.needsInspection()).toBeTruthy()
       })
     })
@@ -178,7 +191,7 @@ describe('Replicates.vue', () => {
     let replicate1, replicate2, replicates, options
 
     beforeEach(() => {
-      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, outlier: {type: 'cv', threshold: 15}, cvThreshold: 5}
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, outlier: {type: 'cv', threshold: 15}, fields: ['a','b','c'],cvThreshold: 5}
       replicate1 = new Replicate([well1, well2, well3], options)
 
       well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.616'}})
@@ -220,7 +233,7 @@ describe('Replicates.vue', () => {
     let options, replicate
 
     beforeEach(() => {
-      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, outlier: {type: 'cv', threshold: 20}, cvThreshold: 5}
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, outlier: {type: 'cv', threshold: 20},cvThreshold: 5}
     })
 
     it('cv', () => {

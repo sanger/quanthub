@@ -33,11 +33,16 @@ describe('QuantType.vue', () => {
     })
 
     it('has the replicate options', () => {
-      expect(Object.keys(quantType.replicateOptions)).toEqual(['conversionFactor', 'key', 'units', 'assay', 'outlier'])
+      expect(Object.keys(quantType.replicateOptions)).toEqual(['conversionFactor', 'key', 'units', 'assay', 'outlier', 'fields'])
     })
 
     it('should have metadata by default', () => {
       expect(quantType.hasMetadata()).toBeTruthy()
+    })
+
+ 
+    it('has the required fields for qc results', () => {
+      expect(quantType.qcResults.fields).toBeDefined()
     })
 
   })
@@ -59,6 +64,10 @@ describe('QuantType.vue', () => {
 
     it('has the correct outlier options', () => {
       expect(quantType.qcResults.outlier).toEqual({type: 'cv', threshold: 20})
+    })
+
+    it('has the correct qc results fields', () => {
+      expect(quantType.qcResults.fields).toEqual(['well_location','key','value','units','cv','assay_type','assay_version'])
     })
 
   })
@@ -193,6 +202,10 @@ describe('QuantType.vue', () => {
 
     it('has the correct outlier options', () => {
       expect(quantType.qcResults.outlier).toEqual({type: 'mad', threshold: 3.5})
+    })
+
+    it('has the correct qc results fields', () => {
+      expect(quantType.qcResults.fields).toEqual(['well_location','key','value','units','assay_type','assay_version'])
     })
 
   })

@@ -29,7 +29,8 @@ export default {
         key: 'Concentration',
         units: 'ng',
         assay: {type: 'Quant Type', version: 'v1.0'},
-        outlier: {type: 'standard', threshold: '1'}
+        outlier: {type: 'standard', threshold: '1'},
+        fields: ['a','b','c','d','e','f']
       }
     }
   },
@@ -57,7 +58,6 @@ export default {
     },
     replicateOptions () {
       return { conversionFactor: this.conversionFactor, ...this.qcResults }
-      // return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold})
     }
   },
   methods: {

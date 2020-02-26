@@ -30,7 +30,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 15
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "LCMB": {
@@ -64,7 +73,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "libraryPlateReader": {
@@ -105,7 +123,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "stockPlateReader": {
@@ -139,7 +166,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "workingDilutionPlateReader": {
@@ -173,7 +209,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "libraryQPCR10ul": {
@@ -220,7 +265,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 15
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "libraryQPCR5ul": {
@@ -262,7 +316,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 15
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "libraryQPCR5ulQuadruplicate": {
@@ -304,7 +367,15 @@
       "outlier": {
         "type": "mad",
         "threshold": 3.5
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "normalisation": {
@@ -338,7 +409,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "RNAStock": {
@@ -372,7 +452,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "RNALibrary": {
@@ -406,7 +495,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "chromiumSingleCellcDNA": {
@@ -440,7 +538,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "chromiumSingleCellLibrary": {
@@ -474,7 +581,16 @@
       "outlier": {
         "type": "cv",
         "threshold": 20
-      }
+      },
+      "fields": [
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   }
 }
