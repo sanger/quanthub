@@ -436,6 +436,51 @@
       }
     }
   },
+  "duplexSeqALLib": {
+    "key": "duplexSeqALLib",
+    "name": "Duplex Seq AL Lib",
+    "wellType": "QPCR10ul",
+    "cvThreshold": 15,
+    "parse": {
+      "delimiter": "\t",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 3,
+      "relax_column_count": true,
+      "columns": [
+        "include",
+        "color",
+        "pos",
+        "name",
+        "cp",
+        "concentration",
+        "standard",
+        "status"
+      ]
+    },
+    "metadata": {
+      "rows": 1,
+      "idColumn": "Experiment",
+      "delimiter": "  "
+    },
+    "conversion": {
+      "factors": {
+        "dilution": 500,
+        "standardInsertSize": 452,
+        "libraryInsertSize": 573,
+        "adjustmentFactor": 1.5
+      },
+      "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "decimalPlaces": 3
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Duplex Seq AL Lib",
+        "version": "v1.0"
+      }
+    }
+  },
   "duplexSeqLibrary": {
     "key": "duplexSeqLibrary",
     "name": "Duplex Seq Library",
