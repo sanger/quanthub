@@ -45,7 +45,7 @@ export default {
       let factors = this.conversion.factors
       return math.eval(Object.keys(factors).reduce((factor, key) => {
         return factor.replace(key, factors[key])
-      }, this.conversion.expression))
+      }, this.conversion.expression)).toString()
     },
     // A constant which relates to a factory for conversion of well
     // to the correct format.

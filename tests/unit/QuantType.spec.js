@@ -25,7 +25,7 @@ describe('QuantType.vue', () => {
     })
 
     it('provides a conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual("394.41536")
+      expect(quantType.conversionFactor).toEqual("394.41535776614313")
     })
 
     it('provides a well type', () => {
@@ -33,7 +33,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the replicate options', () => {
-      expect(Object.keys(quantType.replicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor', 'cvThreshold']);
+      expect(Object.keys(quantType.replicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor', 'cvThreshold', "decimalPlaces"]);
     })
 
     it('has a cv threshold', () => {
@@ -75,7 +75,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -92,7 +92,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -109,7 +109,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -205,7 +205,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -222,7 +222,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -239,7 +239,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -256,7 +256,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -273,7 +273,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -290,7 +290,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
@@ -307,7 +307,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual('1')
     })
 
   })
