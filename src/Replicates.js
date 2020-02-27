@@ -20,7 +20,6 @@ class Replicate {
       conversionFactor: 1,
       cvThreshold: 1,
       assay: {type: 'Standard', version: '1'}}, options)
-    this.decimalPlaces = 3
   }
 
   get id () {
@@ -50,7 +49,7 @@ class Replicate {
 
   get adjustedAverage () {
     if (this.empty()) return '0'
-    return (this.average * this.options.conversionFactor).toFixed(this.decimalPlaces)
+    return (this.average * this.options.conversionFactor).toFixed(this.options.decimalPlaces)
   }
 
   // Should be sample standard deviation i.e. average square difference
@@ -71,7 +70,7 @@ class Replicate {
   }
 
   get cv () {
-    if (this.empty() || this.size === 1 || this.standardDeviation === '0.000') return '0'
+    if (this.empty() || this.size === 1 || Number(this.standardDeviation) === 0) return '0'
     return ((this.standardDeviation / this.average) * 100).toFixed(this.decimalPlaces)
   }
 

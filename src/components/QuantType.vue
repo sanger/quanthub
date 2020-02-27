@@ -45,10 +45,7 @@ export default {
       let factors = this.conversion.factors
       return math.eval(Object.keys(factors).reduce((factor, key) => {
         return factor.replace(key, factors[key])
-      }, this.conversion.expression)).toFixed(this.decimalPlaces)
-    },
-    decimalPlaces () {
-      return this.$data.conversion.decimalPlaces
+      }, this.conversion.expression))
     },
     // A constant which relates to a factory for conversion of well
     // to the correct format.
@@ -56,7 +53,7 @@ export default {
       return WellFactories[this.wellType]
     },
     replicateOptions () {
-      return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold})
+      return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold, decimalPlaces: this.conversion.decimalPlaces})
     }
   },
   methods: {

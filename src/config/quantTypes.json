@@ -232,7 +232,7 @@
         "dilution": 0.5
       },
       "expression": "(topM*calibration*dilution)",
-      "decimalPlaces": 10
+      "decimalPlaces": 3
     },
     "qcResults": {
       "key": "molarity",
@@ -270,7 +270,7 @@
         "dilution": 0.5
       },
       "expression": "(topM*calibration*dilution)",
-      "decimalPlaces": 10
+      "decimalPlaces": 3
     },
     "qcResults": {
       "key": "molarity",
@@ -470,6 +470,7 @@
         "adjustmentFactor": 1.5
       },
       "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "decimalPlaces": 20
     },
     "qcResults": {
       "key": "molarity",
