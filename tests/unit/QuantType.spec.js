@@ -44,6 +44,10 @@ describe('QuantType.vue', () => {
       expect(quantType.hasMetadata()).toBeTruthy()
     })
 
+    it('must have the default number of decimal places when no config specified for the quant type', () => {
+      expect(quantType.conversion.decimalPlaces).toEqual(5)
+    })
+
   })
 
   describe('libraryPlateReader', () => {
@@ -310,6 +314,10 @@ describe('QuantType.vue', () => {
       expect(quantType.conversionFactor).toEqual('1')
     })
 
+    it('must have the default number of decimal places when not specified in the config', () => {
+      expect(quantType.conversion.decimalPlaces).toEqual(3)
+    })
+
   })
 
   describe('Duplex Seq AL Lib', () => {
@@ -329,6 +337,10 @@ describe('QuantType.vue', () => {
 
     it('has some metadata', () => {
       expect(quantType.hasMetadata()).toBeTruthy()
+    })
+
+    it('must have the number of decimal places specified in the config', () => {
+      expect(quantType.conversion.decimalPlaces).toEqual(20)
     })
 
   })
