@@ -42,6 +42,9 @@ export default {
   // in replicates. It is evaluated upfront which increases efficiency.
   computed: {
     conversionFactor () {
+      // returns a string to be consistent with 'standardDeviation' and 'cv' methods in Replicates
+      // and because it used to use 'toFixed'
+      // could probably change them all to return numbers
       let factors = this.conversion.factors
       return math.eval(Object.keys(factors).reduce((factor, key) => {
         return factor.replace(key, factors[key])
