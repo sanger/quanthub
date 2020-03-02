@@ -287,7 +287,6 @@
     "key": "libraryQPCR5ul",
     "name": "Library - qPCR - 5ul",
     "wellType": "QPCR5ul",
-    "cvThreshold": 15,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -339,7 +338,6 @@
     "key": "libraryQPCR5ulQuadruplicate",
     "name": "Library - qPCR - 5ul - Quadruplicate",
     "wellType": "QPCR5ul",
-    "cvThreshold": 15,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],

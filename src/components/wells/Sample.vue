@@ -1,5 +1,5 @@
 <template>
-  <td class="well sample" v-bind:class="{inactive: !active, inspect: needsInspection()}"  v-on:click="setActive">
+  <td class="well sample" v-bind:class="{inactive: !active, inspect: outlier}"  v-on:click="setActive">
     {{ id }}
     <br />
     {{ concentration }}
@@ -57,9 +57,6 @@ export default {
     }
   },
   methods: {
-    needsInspection () {
-      return this.outlier
-    },
     setActive () {
       this.active = !this.active
       this.replicate.outliers()

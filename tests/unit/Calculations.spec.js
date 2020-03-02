@@ -98,6 +98,7 @@ describe('Calculations.vue', () => {
   describe('#toDecimalPlaces', () => {
 
     it('should produce the correct result', () => {
+      expect((5.6789453).toDecimalPlaces()).toEqual(5.679)
       expect((2).toDecimalPlaces(5)).toEqual(2.00000)
       expect(5.678945345322.toDecimalPlaces(5)).toEqual(5.67895)
       expect(1.87667834567.toDecimalPlaces(3)).toEqual(1.877)

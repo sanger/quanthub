@@ -219,17 +219,17 @@ describe('Wells', () => {
 
       // this would be better to check class but this is brittle
       it('has the correct class', () => {
-        expect(well1.vm.needsInspection()).toBeTruthy()
-        expect(well2.vm.needsInspection()).toBeTruthy()
-        expect(well3.vm.needsInspection()).toBeTruthy()
+        expect(well1.vm.outlier).toBeTruthy()
+        expect(well2.vm.outlier).toBeTruthy()
+        expect(well3.vm.outlier).toBeTruthy()
       })
 
       // this would be better to check class but this is brittle
       it('removing outlier will be reflected in all wells', () => {
         well2.trigger('click')
         expect(well2.vm.$el.className).toMatch('inactive')
-        expect(well1.vm.needsInspection()).toBeFalsy()
-        expect(well3.vm.needsInspection()).toBeFalsy()
+        expect(well1.vm.outlier).toBeFalsy()
+        expect(well3.vm.outlier).toBeFalsy()
       })
 
     })
