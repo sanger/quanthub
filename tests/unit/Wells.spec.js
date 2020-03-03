@@ -175,9 +175,9 @@ describe('Wells', () => {
     })
 
     it('produces some json', () => {
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, active: true, id: data.id})
-      well.isActive = false
-      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, active: false, id: data.id})
+      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, id: data.id, active: true})
+      well.active = false
+      expect(well.json).toEqual({row: data.row, column: data.column, type: 'Sample', concentration: data.concentration, id: data.id, active: false})
     })
 
     it('has the correct class', () => {
@@ -186,11 +186,11 @@ describe('Wells', () => {
 
     it('on clicking renders it inactive', () => {
       cmp.trigger('click')
-      expect(well.isActive).toBeFalsy()
+      expect(well.active).toBeFalsy()
       expect(well.$el.className).toMatch('inactive')
 
       cmp.trigger('click')
-      expect(well.isActive).toBeTruthy()
+      expect(well.active).toBeTruthy()
       expect(well.$el.className).not.toMatch('inactive')
       expect(well.$el.className).toMatch('sample')
     })
@@ -211,21 +211,25 @@ describe('Wells', () => {
         well1 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'A', column: '13', id: 'A7', concentration: '0.69', type: 'Sample', plateBarcode: plateBarcode}})
         well2 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'A', column: '14', id: 'A7', concentration: '2.677', type: 'Sample', plateBarcode: plateBarcode }})
         well3 = mount(Wells.Sample, { mocks: { $Store }, propsData: { row: 'B', column: '13', id: 'A7', concentration: '0.665', type: 'Sample', plateBarcode: plateBarcode }})
+        // TODO: transparency is key. This is not it.
+        well1.vm.replicate.options.cvThreshold = 15
+        well1.vm.replicate.options.outlier = {type: 'cv', threshold: 15}
+        well1.vm.replicate.outliers()
       })
 
       // this would be better to check class but this is brittle
       it('has the correct class', () => {
-        expect(well1.vm.needsInspection()).toBeTruthy()
-        expect(well2.vm.needsInspection()).toBeTruthy()
-        expect(well3.vm.needsInspection()).toBeTruthy()
+        expect(well1.vm.outlier).toBeTruthy()
+        expect(well2.vm.outlier).toBeTruthy()
+        expect(well3.vm.outlier).toBeTruthy()
       })
 
       // this would be better to check class but this is brittle
       it('removing outlier will be reflected in all wells', () => {
         well2.trigger('click')
         expect(well2.vm.$el.className).toMatch('inactive')
-        expect(well1.vm.needsInspection()).toBeFalsy()
-        expect(well3.vm.needsInspection()).toBeFalsy()
+        expect(well1.vm.outlier).toBeFalsy()
+        expect(well3.vm.outlier).toBeFalsy()
       })
 
     })
