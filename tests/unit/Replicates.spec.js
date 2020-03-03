@@ -247,7 +247,7 @@ describe('Replicates.vue', () => {
     let replicate1, replicate2, replicates, options
 
     beforeEach(() => {
-      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, cvThreshold: 5}
+      options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, cvThreshold: 5, decimalPlaces: 16}
       replicate1 = new Replicate([well1, well2, well3], options)
 
       well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.616'}})

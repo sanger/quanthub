@@ -19,8 +19,8 @@ class Replicate {
       units: 'standard',
       conversionFactor: 1,
       cvThreshold: 1,
-      assay: {type: 'Standard', version: '1'}}, options)
-    this.decimalPlaces = 3
+      assay: {type: 'Standard', version: '1'},
+      decimalPlaces: 3}, options)
   }
 
   get id () {
@@ -50,7 +50,7 @@ class Replicate {
 
   get adjustedAverage () {
     if (this.empty()) return '0'
-    return (this.average * this.options.conversionFactor).toFixed(this.decimalPlaces)
+    return (this.average * this.options.conversionFactor).toFixed(this.options.decimalPlaces)
   }
 
   // Should be sample standard deviation i.e. average square difference
@@ -67,12 +67,12 @@ class Replicate {
     })
     let avgSquareDiff = this.calculateAverage(squareDiffs, 1)
     let stdDev = Math.sqrt(avgSquareDiff)
-    return stdDev.toFixed(this.decimalPlaces)
+    return stdDev.toFixed(this.options.decimalPlaces)
   }
 
   get cv () {
-    if (this.empty() || this.size === 1 || this.standardDeviation === '0.000') return '0'
-    return ((this.standardDeviation / this.average) * 100).toFixed(this.decimalPlaces)
+    if (this.empty() || this.size === 1 || Number(this.standardDeviation) === 0) return '0'
+    return ((this.standardDeviation / this.average) * 100).toFixed(this.options.decimalPlaces)
   }
 
   get json () {
