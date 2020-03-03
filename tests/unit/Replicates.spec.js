@@ -194,9 +194,9 @@ describe('Replicates.vue', () => {
       options = {conversionFactor: 2.590, units: 'nM', key: 'Molarity', assay: {type: "Plate Reader", version: "v1.0"}, outlier: {type: 'cv', threshold: 15}, fields: ['a','b','c'],cvThreshold: 5, decimalPlaces: 16}
       replicate1 = new Replicate([well1, well2, well3], options)
 
-      well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.616'}})
-      well5 = new cmp({propsData: {row:'A',column:'4',content:'Sample X9',id:'A2',concentration:'5.341'}})
-      well6 = new cmp({propsData: {row:'A',column:'5',content:'Sample X9',id:'A2',concentration:'5.054'}})
+      well4 = new cmp({propsData: {row:'A',column:'3',content:'Sample X9',id:'A2',concentration:'5.6167645657484545'}})
+      well5 = new cmp({propsData: {row:'A',column:'4',content:'Sample X9',id:'A2',concentration:'5.34143756346534856'}})
+      well6 = new cmp({propsData: {row:'A',column:'5',content:'Sample X9',id:'A2',concentration:'5.05425432343423423'}})
 
       replicate2 = new Replicate([well4, well5, well6], options)
 
@@ -224,6 +224,12 @@ describe('Replicates.vue', () => {
     it('can pass options to each replicate', () => {
       let replicate = replicates.find('A1')
       expect(replicate.options).toEqual(options)
+    })
+
+    it('will have the correct number of decimal places', () => {
+      expect(replicate2.average.toString().split(".")[1].length).toEqual(15)
+      expect(replicate2.standardDeviation.toString().split(".")[1].length).toEqual(16)
+      expect(replicate2.cv.toString().split(".")[1].length).toEqual(15)
     })
 
   })
