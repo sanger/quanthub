@@ -33,9 +33,9 @@ class Replicate {
         "cv",
         "assay_type",
         "assay_version"
-      ]
-    }, options)
-    this.decimalPlaces = 3
+      ],
+    decimalPlaces: 3}
+    ,options)
   }
 
   get id () {
