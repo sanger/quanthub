@@ -63,21 +63,21 @@ class Replicate {
   }
 
   get average () {
-    return Calculations.average(this.concentrations).toDecimalPlaces(this.decimalPlaces)
+    return Calculations.average(this.concentrations).toDecimalPlaces(this.options.decimalPlaces)
   }
 
   get adjustedAverage () {
-    return (Calculations.average(this.concentrations, {conversionFactor: this.options.conversionFactor})).toDecimalPlaces(this.decimalPlaces)
+    return (Calculations.average(this.concentrations, {conversionFactor: this.options.conversionFactor})).toDecimalPlaces(this.options.decimalPlaces)
   }
 
   // Should be sample standard deviation i.e. average square difference
   // calculated as N - 1
   get standardDeviation () {
-    return Calculations.standardDeviation(this.concentrations).toDecimalPlaces(this.decimalPlaces)
+    return Calculations.standardDeviation(this.concentrations).toDecimalPlaces(this.options.decimalPlaces)
   }
 
   get cv () {
-    return Calculations.cv(this.concentrations).toDecimalPlaces(this.decimalPlaces)
+    return Calculations.cv(this.concentrations).toDecimalPlaces(this.options.decimalPlaces)
   }
 
   get stats () {

@@ -25,7 +25,7 @@ describe('QuantType.vue', () => {
     })
 
     it('provides a conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('394.41535776614313')
+      expect(quantType.conversionFactor).toEqual(394.41535776614313)
     })
 
     it('provides a well type', () => {
@@ -34,12 +34,12 @@ describe('QuantType.vue', () => {
 
     it('has the replicate options', () => {
       expect(Object.keys(quantType.replicateOptions)).toEqual(['conversionFactor', 'decimalPlaces', 'key', 'units', 'assay', 'outlier', 'fields'])
+      expect(quantType.replicateOptions.decimalPlaces).toEqual(5)
     })
 
     it('should have metadata by default', () => {
       expect(quantType.hasMetadata()).toBeTruthy()
     })
-
 
     it('has the required fields for qc results', () => {
       expect(quantType.qcResults.fields).toBeDefined()
@@ -88,7 +88,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -105,7 +105,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -122,7 +122,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -175,6 +175,8 @@ describe('QuantType.vue', () => {
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
+  
+
   })
 
   describe('libraryQPCR - 5ul - Quadruplicate', () => {
@@ -226,7 +228,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -243,7 +245,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -260,7 +262,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -277,7 +279,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -294,7 +296,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -311,7 +313,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -328,7 +330,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
     it('must have the default number of decimal places when not specified in the config', () => {
