@@ -10,7 +10,7 @@ Number.prototype.toDecimalPlaces = function(n = 3) {
 // value
 const median = (values) => {
 
-  let sortedValues = [...values].sort()
+  let sortedValues = [...values].sort((a,b) => a - b)
   let length = sortedValues.length
 
   if (length % 2 === 0) {

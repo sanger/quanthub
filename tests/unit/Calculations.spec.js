@@ -76,6 +76,18 @@ describe('Calculations.vue', () => {
       expect(Calculations.modifiedZScores(values[3], median, mad)).toEqual(expected[3])
     })
 
+    it('where values have an outlier', () => {
+      values = [12241500, 12495300, 11008300, 12240200]
+      median = Calculations.median(values)
+      mad = Calculations.mad(values)
+
+      expected = [0.0034372324081519945, 1.3455442865450384, -6.517785853334986, -0.0034372324081519945]
+      expect(Calculations.modifiedZScores(values[0], median, mad)).toEqual(expected[0])
+      expect(Calculations.modifiedZScores(values[1], median, mad)).toEqual(expected[1])
+      expect(Calculations.modifiedZScores(values[2], median, mad)).toEqual(expected[2])
+      expect(Calculations.modifiedZScores(values[3], median, mad)).toEqual(expected[3])
+    })
+
   })
 
   describe('#isOutlier', () => {
@@ -190,4 +202,28 @@ describe('Calculations.vue', () => {
     })
   })
 
+  describe('qc against spreadsheet values', () => {
+
+    let values
+
+    it('values where a certain value should be an outlier', () => {
+      values = [20048000, 19435500, 19481600, 23234700]
+      expect(Calculations.median(values)).toEqual(19764800)
+      expect(Calculations.isOutlier(Calculations.modifiedZScores(values[3], Calculations.median(values), Calculations.mad(values)), 3.5)).toBeTruthy()
+    })
+
+    it('values where excel and calculations disagreed', () => {
+      values = [16583000,	16273600,	16895100,	17742500]
+      expect(Calculations.median(values)).toEqual(16739050)
+      expect(Calculations.mad(values)).toEqual(310750)
+      expect(Calculations.isOutlier(Calculations.modifiedZScores(values[3], Calculations.median(values), Calculations.mad(values)), 3.5)).toBeFalsy()
+    })
+
+    it('values where a certain value should be valid', () => {
+      values = [17932400,	17864300,	17833500,	18382600]
+      expect(Calculations.median(values)).toEqual(17898350)
+      expect(Calculations.isOutlier(Calculations.modifiedZScores(values[3], Calculations.median(values), Calculations.mad(values)), 3.5)).toBeTruthy()
+    })
+
+  })
 })
