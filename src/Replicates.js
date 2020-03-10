@@ -6,6 +6,9 @@
     considered an outlier and can be removed from the replicate.
 */
 
+import Vue from 'vue'
+import * as Calculations from '@/Calculations'
+
 const NullReplicate = {
   size: 0,
   needsInspection () { return false }
@@ -19,8 +22,20 @@ class Replicate {
       units: 'standard',
       conversionFactor: 1,
       cvThreshold: 1,
-      assay: {type: 'Standard', version: '1'}}, options)
-    this.decimalPlaces = 3
+      assay: {type: 'Standard', version: '1'}, 
+      outlier: { type: 'cv', threshold: 15},
+      fields: [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ],
+    decimalPlaces: 3}
+    ,options)
   }
 
   get id () {
@@ -40,43 +55,38 @@ class Replicate {
   // If a well has a concentration of n.a. this throws an error so it needs
   // to be excluded
   get activeWells () {
-    return this.wells.filter(well => (well.isActive && well.concentration !== 'n.a.'))
+    return this.wells.filter(well => (well.active && well.concentration !== 'n.a.'))
+  }
+
+  get concentrations () {
+    return this.activeWells.map(well => parseFloat(well.concentration))
   }
 
   get average () {
-    if (this.empty()) return '0'
-    return this.calculateAverage(this.activeWells.map(well => parseFloat(well.concentration)))
+    return Calculations.average(this.concentrations).toDecimalPlaces(this.options.decimalPlaces)
   }
 
   get adjustedAverage () {
-    if (this.empty()) return '0'
-    return (this.average * this.options.conversionFactor).toFixed(this.decimalPlaces)
+    return (Calculations.average(this.concentrations, {conversionFactor: this.options.conversionFactor})).toDecimalPlaces(this.options.decimalPlaces)
   }
 
   // Should be sample standard deviation i.e. average square difference
   // calculated as N - 1
   get standardDeviation () {
-    if (this.empty() || this.size === 1) return '0'
-
-    let average = this.average
-
-    let squareDiffs = this.activeWells.map(function (well) {
-      let diff = well.concentration - average
-      let sqrDiff = diff * diff
-      return sqrDiff
-    })
-    let avgSquareDiff = this.calculateAverage(squareDiffs, 1)
-    let stdDev = Math.sqrt(avgSquareDiff)
-    return stdDev.toFixed(this.decimalPlaces)
+    return Calculations.standardDeviation(this.concentrations).toDecimalPlaces(this.options.decimalPlaces)
   }
 
   get cv () {
-    if (this.empty() || this.size === 1 || this.standardDeviation === '0.000') return '0'
-    return ((this.standardDeviation / this.average) * 100).toFixed(this.decimalPlaces)
+    return Calculations.cv(this.concentrations).toDecimalPlaces(this.options.decimalPlaces)
   }
 
+  get stats () {
+    return (({average, standardDeviation, cv}) => ({average, standardDeviation, cv}))(this)
+  }
+
+
   get json () {
-    return {
+    const standardFields = {
       barcode: this.plateBarcode,
       well_location: this.id,
       key: this.options.key,
@@ -86,30 +96,43 @@ class Replicate {
       assay_type: this.options.assay.type,
       assay_version: this.options.assay.version
     }
+    return this.options.fields.reduce((result, field) => {
+      result[field] = standardFields[field]
+      return result
+    }, {})
   }
 
   get cvThreshold () {
     return this.options.cvThreshold
   }
 
-  // sample represents whether the average needs to be adjusted if
-  // it is from a sample. This is important for calculating sample
-  // standard deviation
-  calculateAverage (values, sample = 0) {
-    let sum = values.reduce(function (a, b) { return a + b })
-    return (sum / (values.length - sample)).toFixed(3)
-  }
-
   add (well) {
     this.wells.push(well)
   }
 
-  empty () {
-    return (this.wells.length === 0 || this.size === 0)
-  }
-
   needsInspection () {
     return this.cv >= this.cvThreshold
+  }
+
+  outliers () {
+    let self = this
+    self.wells.map(well => { Vue.set(well, 'outlier', false)})
+    if (self.options.outlier.type === 'cv') {
+      if (self.cv >= self.options.outlier.threshold) {
+        self.activeWells.map(well => { Vue.set(well, 'outlier', true)})
+      }
+    }
+
+    if (self.options.outlier.type === 'mad') {
+      let median = Calculations.median(self.concentrations)
+      let mad = Calculations.mad(self.concentrations)
+      self.activeWells.map(well => {
+        let zscore = Calculations.modifiedZScores(well.concentration, median, mad)
+        if(Calculations.isOutlier(zscore, self.options.outlier.threshold)) {
+          Vue.set(well, 'outlier', true)
+        }
+      })
+    }
   }
 }
 

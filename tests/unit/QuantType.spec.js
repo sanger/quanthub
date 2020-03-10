@@ -16,7 +16,7 @@ describe('QuantType.vue', () => {
                     factors: {
                       dilution: 500, standardInsertSize: 452, libraryInsertSize: 573
                     },
-                    expression: "(dilution*standardInsertSize)/libraryInsertSize",
+                    expression: '(dilution*standardInsertSize)/libraryInsertSize',
                     decimalPlaces: 5
                   }
                 }
@@ -25,7 +25,7 @@ describe('QuantType.vue', () => {
     })
 
     it('provides a conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual("394.41536")
+      expect(quantType.conversionFactor).toEqual(394.41535776614313)
     })
 
     it('provides a well type', () => {
@@ -33,15 +33,20 @@ describe('QuantType.vue', () => {
     })
 
     it('has the replicate options', () => {
-      expect(Object.keys(quantType.replicateOptions)).toEqual(['key', 'units', 'assay', 'conversionFactor', 'cvThreshold']);
-    })
-
-    it('has a cv threshold', () => {
-      expect(quantType.cvThreshold).toBeDefined()
+      expect(Object.keys(quantType.replicateOptions)).toEqual(['conversionFactor', 'decimalPlaces', 'key', 'units', 'assay', 'outlier', 'fields'])
+      expect(quantType.replicateOptions.decimalPlaces).toEqual(5)
     })
 
     it('should have metadata by default', () => {
       expect(quantType.hasMetadata()).toBeTruthy()
+    })
+
+    it('has the required fields for qc results', () => {
+      expect(quantType.qcResults.fields).toBeDefined()
+    })
+
+    it('must have the default number of decimal places when no config specified for the quant type', () => {
+      expect(quantType.conversion.decimalPlaces).toEqual(5)
     })
 
   })
@@ -58,7 +63,15 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes["libraryPlateReader"])
+      expect(quantType.$data).toEqual(quantTypes['libraryPlateReader'])
+    })
+
+    it('has the correct outlier options', () => {
+      expect(quantType.qcResults.outlier).toEqual({type: 'cv', threshold: 20})
+    })
+
+    it('has the correct qc results fields', () => {
+      expect(quantType.qcResults.fields).toEqual(['barcode','well_location','key','value','units','cv','assay_type','assay_version'])
     })
 
   })
@@ -75,7 +88,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -92,7 +105,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -109,7 +122,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -122,7 +135,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes["libraryQPCR10ul"])
+      expect(quantType.$data).toEqual(quantTypes['libraryQPCR10ul'])
     })
 
     it('must have the correct units', () => {
@@ -143,7 +156,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes["libraryQPCR5ul"])
+      expect(quantType.$data).toEqual(quantTypes['libraryQPCR5ul'])
     })
 
     it('has some metadata', () => {
@@ -162,6 +175,8 @@ describe('QuantType.vue', () => {
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
+  
+
   })
 
   describe('libraryQPCR - 5ul - Quadruplicate', () => {
@@ -172,7 +187,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes["libraryQPCR5ulQuadruplicate"])
+      expect(quantType.$data).toEqual(quantTypes['libraryQPCR5ulQuadruplicate'])
     })
 
     it('has some metadata', () => {
@@ -191,6 +206,14 @@ describe('QuantType.vue', () => {
       expect(quantType.qcResults.assay.version).toEqual('v3.0')
     })
 
+    it('has the correct outlier options', () => {
+      expect(quantType.qcResults.outlier).toEqual({type: 'mad', threshold: 3.5})
+    })
+
+    it('has the correct qc results fields', () => {
+      expect(quantType.qcResults.fields).toEqual(['barcode','well_location','key','value','units','assay_type','assay_version'])
+    })
+
   })
 
   describe('RNA - Stock', () => {
@@ -205,7 +228,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -222,7 +245,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -239,7 +262,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -256,7 +279,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -273,7 +296,7 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
@@ -290,9 +313,54 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual('1.000')
+      expect(quantType.conversionFactor).toEqual(1)
     })
 
   })
 
+  describe('Duplex Seq Library', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'duplexSeqLibrary'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual(1)
+    })
+
+    it('must have the default number of decimal places when not specified in the config', () => {
+      expect(quantType.conversion.decimalPlaces).toEqual(3)
+    })
+
+  })
+
+  describe('Duplex Seq AL Lib', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'duplexSeqALLib'}})
+    })
+
+    it('must have the correct options', () => {
+      expect(quantType.$data).toEqual(quantTypes['duplexSeqALLib'])
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has some metadata', () => {
+      expect(quantType.hasMetadata()).toBeTruthy()
+    })
+
+    it('must have the number of decimal places specified in the config', () => {
+      expect(quantType.conversion.decimalPlaces).toEqual(20)
+    })
+
+  })
 })
