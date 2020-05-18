@@ -363,4 +363,21 @@ describe('QuantType.vue', () => {
     })
 
   })
+
+  describe('Heron 96 cDNA', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'heron96cdna'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual(1)
+    })
+
+  })
 })
