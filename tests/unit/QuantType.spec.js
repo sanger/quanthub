@@ -175,7 +175,7 @@ describe('QuantType.vue', () => {
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
-  
+
 
   })
 
@@ -369,6 +369,23 @@ describe('QuantType.vue', () => {
     beforeEach(() => {
       cmp = Vue.extend(QuantType)
       quantType = new cmp({propsData: { quantType: 'heron96cdna'}})
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual(1)
+    })
+
+  })
+
+  describe('Heron 384 cDNA', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'heron384cdna'}})
     })
 
     it('must have the correct units', () => {
