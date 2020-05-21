@@ -679,5 +679,93 @@
         "version": "v1.0"
       }
     }
+  },
+  "heron96cdna": {
+    "key": "heron96cdna",
+    "name": "Heron 96 cDNA",
+    "wellType": "PlateReader",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 17,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 4,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Heron 96 cDNA",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    }
+  },
+  "heron384cdna": {
+    "key": "heron384cdna",
+    "name": "Heron 384 cDNA",
+    "wellType": "PlateReader",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 17,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 4,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Heron 384 cDNA",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    }
   }
 }
