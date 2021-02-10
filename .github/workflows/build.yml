@@ -1,21 +1,18 @@
+# Triggers on the creation of a release, either manually via the
+# GH interface, or via the automated release step which triggers on
+# changes to devel and master.
 name: Build Project
+
 on:
-  push:
-    branches:
-      - devel
-      - master
+  release:
+    types: published
 
 jobs:
-  build:
-    name: Build
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set release tag
-      # Generate a release tag name in the format:
-      # devel/YYYY-MM-DD/HHMMSS
-      # Writes this out to the environment file for use downstream
-      run: echo "RELEASE_TAG=${GITHUB_REF#refs/heads/}/$(date +'%Y-%m-%d/%H%M%S')" >> $GITHUB_ENV
     - name: Setup node
       uses: actions/setup-node@v2
       with:
@@ -24,13 +21,13 @@ jobs:
       run: yarn install
     - name: Compile build
       run: ./compile-build.sh release.tar.gz dist
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Upload release.gz
+      id: upload-release-gz
+      uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ env.RELEASE_TAG }}
-        release_name: Release ${{ env.RELEASE_TAG }}
-        draft: false
-        prerelease: ${{ github.ref == 'refs/heads/devel' }}
+        upload_url: ${{ github.event.release.upload_url }} # Pull the URL from the event
+        asset_path: ./release.tar.gz
+        asset_name: release.tar.gz
+        asset_content_type: application/gzip
