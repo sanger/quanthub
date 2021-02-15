@@ -2,6 +2,9 @@
 
 # Usage: ./compile-build.sh <archive_name> <relative_path_to_folder>
 
+# Set
+# -e Exit the script as soon as something goes wrong
+# -v Verbose - print out commands as they are executed
 set -ev
 
 # Building assets
