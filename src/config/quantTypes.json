@@ -384,6 +384,58 @@
       ]
     }
   },
+  "library10XVDJ": {
+    "key": "library10XVDJ",
+    "name": "Library - 10X VDJ - Tapestation",
+    "wellType": "TS10XVDJ",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "filename",
+        "wellId",
+        "sampleDescription",
+        "fromBasePair",
+        "toBasePair",
+        "averageSizeBasePairs",
+        "concentration",
+        "regionMolarity",
+        "percentageOfTotal",
+        "regionComment"
+      ]
+    },
+    "metadata": {},
+    "conversion": {
+      "factors": {
+        "dilution": 10
+      },
+      "expression": "(dilution)",
+      "decimalPlaces": 3
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Library - X10 VDJ",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    }
+  },
   "normalisation": {
     "key": "normalisation",
     "name": "Normalisation",

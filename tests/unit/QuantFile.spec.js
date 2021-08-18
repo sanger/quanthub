@@ -4,7 +4,6 @@ import flushPromises from 'flush-promises'
 import fs from 'fs'
 
 describe('QuantFile.vue', () => {
-
   let cmp, quantFile, plate, file
 
   beforeEach(() => {
@@ -289,4 +288,49 @@ describe('QuantFile.vue', () => {
     })
   })
 
+  describe('tapestation X10 VDJ file', () => {
+    beforeEach(async () => {
+      quantFile = new cmp({propsData: { quant: 'library10XVDJ', filename: 'DN987654 - 2019-11-05 - 16-32-56-D5000_compactRegionTable(1).csv'}})
+      plate = fs.readFileSync('./tests/data/DN987654 - 2019-11-05 - 16-32-56-D5000_compactRegionTable(1).csv', 'ascii')
+      file = new File([plate], 'DN987654 - 2019-11-05 - 16-32-56-D5000_compactRegionTable(1).csv', { type: 'text/plain'})
+    })
+
+    it('will have a filename', () => {
+      expect(quantFile.filename).toEqual('DN987654 - 2019-11-05 - 16-32-56-D5000_compactRegionTable(1).csv')
+    })
+
+    it('will have a parsed filename', () => {
+      expect(quantFile.parsedFilename).toEqual('DN987654')
+    })
+
+    it('resolves', async () => {
+      expect.assertions(1)
+      await expect(quantFile.upload(file)).resolves.toEqual('File successfully uploaded')
+    })
+
+    describe('successful', () => {
+      beforeEach(async () => {
+        quantFile.upload(file)
+        await flushPromises()
+        await flushPromises()
+      })
+
+      it('will have some text', () => {
+        expect(quantFile.raw).toEqual(plate)
+      })
+
+      it('has an id', () => {
+        expect(quantFile.id).toEqual('DN987654')
+      })
+
+      it('should fill all of the cells correctly', () => {
+        // The input file only contains [A1, B1, C1 ... F2, G2, H2]
+        // So expectation is that first 8 rows and first 2 cols of each be filled
+        let expectation = Object.values(quantFile.grid.rows).slice(0, 8).every(row => {
+          return Object.values(row).slice(1, 2).every(well => well.type === 'Sample')
+        })
+        expect(expectation).toBeTruthy()
+      })
+    })
+  })
 })
