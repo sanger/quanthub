@@ -38,11 +38,11 @@ class QPCR10ul {
   get column () {
     return this.pos.match(/[0-9]+/g).toString()
   }
-  get type () {
-    return this.isSample() ? 'Sample' : 'Standard'
-  }
   isSample () {
     return /^[A-P]\d{1,2}$/.test(this.name)
+  }
+  get type () {
+    return this.isSample() ? 'Sample' : 'Standard'
   }
   get id () {
     return this.isSample() ? this.name : ''
@@ -91,4 +91,43 @@ class QPCR5ul {
   }
 }
 
-export { PlateReader, QPCR10ul, QPCR5ul }
+class TS10XVDJ {
+  constructor (cell = {}) {
+    this.filename = cell.filename
+    this.wellId = cell.wellId
+    this.sampleDescription = cell.sampleDescription
+    this.fromBasePair = cell.fromBasePair
+    this.toBasePair = cell.toBasePair
+    this.averageSizeBasePairs = cell.averageSizeBasePairs
+    this.concentration = cell.concentration
+    this.regionMolarity = cell.regionMolarity
+    this.percentageOfTotal = cell.percentageOfTotal
+    this.regionComment = cell.regionComment
+  }
+  get row () {
+    return this.wellId.match(/^[A-P]/).toString()
+  }
+  get column () {
+    return this.wellId.match(/[0-9]+$/).toString()
+  }
+  hasSample () {
+    return /^[0-9.]+$/.test(this.regionMolarity)
+  }
+  get type () {
+    return this.hasSample() ? 'Sample' : 'Empty'
+  }
+  get id () {
+    return this.hasSample() ? this.wellId : ''
+  }
+  get json () {
+    return {
+      row: this.row,
+      column: this.column,
+      type: this.type,
+      id: this.id,
+      concentration: Number(this.regionMolarity)
+    }
+  }
+}
+
+export { PlateReader, QPCR10ul, QPCR5ul, TS10XVDJ }

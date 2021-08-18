@@ -234,5 +234,107 @@ describe('QuantTypeWellFactories.js', () => {
     })
 
   })
-  
+
+  describe('Tapestation - 10X VDJ - WellFactory', () => {
+    describe('sample', () => {
+      beforeEach(() => {
+        options = {
+          filename: 'DN987654 - 2019-11-05 - 16.32.56.D5001',
+          wellId: 'C11',
+          sampleDescription: 'The sample in A1',
+          fromBasePair: '100',
+          toBasePair: '1000',
+          averageSizeBasePairs: '456',
+          concentration: '128',
+          regionMolarity: '502',
+          percentageOfTotal: '81.43',
+          regionComment: 'Such a nice region',
+        }
+        well = new WellFactories.TS10XVDJ(options)
+      })
+
+      it('must have a filename', () => {
+        expect(well.filename).toEqual(options.filename)
+      })
+
+      it('must have a well ID', () => {
+        expect(well.wellId).toEqual(options.wellId)
+      })
+
+      it('must have a sample description', () => {
+        expect(well.sampleDescription).toEqual(options.sampleDescription)
+      })
+
+      it('must have a from base pair', () => {
+        expect(well.fromBasePair).toEqual(options.fromBasePair)
+      })
+
+      it('must have a to base pair', () => {
+        expect(well.toBasePair).toEqual(options.toBasePair)
+      })
+
+      it('must have an average size base pairs', () => {
+        expect(well.averageSizeBasePairs).toEqual(options.averageSizeBasePairs)
+      })
+
+      it('must have a concentration', () => {
+        expect(well.concentration).toEqual(options.concentration)
+      })
+
+      it('must have a region molarity', () => {
+        expect(well.regionMolarity).toEqual(options.regionMolarity)
+      })
+
+      it('must have a percentage of total', () => {
+        expect(well.percentageOfTotal).toEqual(options.percentageOfTotal)
+      })
+
+      it('must have a region comment', () => {
+        expect(well.regionComment).toEqual(options.regionComment)
+      })
+
+      it('must have a row', () => {
+        expect(well.row).toEqual('C')
+      })
+
+      it('must have a column', () => {
+        expect(well.column).toEqual('11')
+      })
+
+      it('must have a type', () => {
+        expect(well.type).toEqual('Sample')
+      })
+
+      it('must have an id', () => {
+        expect(well.id).toEqual('C11')
+      })
+
+      it('produces correct json', () => {
+        expect(well.json).toEqual({row: 'C', column: '11', type: 'Sample', id: 'C11', concentration: 502})
+      })
+    })
+
+    describe('Empty', () => {
+      beforeEach(() => {
+        options = {
+          filename: 'DN987654 - 2019-11-05 - 16.32.56.D5001',
+          wellId: 'B7',
+          sampleDescription: '',
+          fromBasePair: '',
+          toBasePair: '',
+          averageSizeBasePairs: '',
+          concentration: '',
+          regionMolarity: '',
+          percentageOfTotal: '',
+          regionComment: '',
+        }
+        well = new WellFactories.TS10XVDJ(options)
+      })
+
+      it('must have a type', () => {
+        expect(well.type).toEqual('Empty')
+      })
+    })
+  })
+
 })
