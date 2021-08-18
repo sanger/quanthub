@@ -216,6 +216,31 @@ describe('QuantType.vue', () => {
 
   })
 
+  describe('library10XVDJ', () => {
+
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({propsData: { quantType: 'library10XVDJ'}})
+    })
+
+    it('must have the correct options', () => {
+      expect(quantType.$data).toEqual(quantTypes['library10XVDJ'])
+    })
+
+    it('has the correct well type', () => {
+      expect(quantType.$data.wellType).toEqual('TS10XVDJ')
+    })
+
+    it('must have the correct units', () => {
+      expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('does not have any metadata', () => {
+      expect(quantType.hasMetadata()).toBeFalsy()
+    })
+
+  })
+
   describe('RNA - Stock', () => {
 
     beforeEach(() => {
