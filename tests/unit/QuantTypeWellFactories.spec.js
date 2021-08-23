@@ -116,6 +116,10 @@ describe('QuantTypeWellFactories.js', () => {
         expect(well.type).toEqual('Sample')
       })
 
+      it('must be a sample', () => {
+        expect(well.isSample()).toBeTruthy()
+      })
+
       it('produces some json', () => {
         expect(well.json).toEqual({row: 'N', column: '1', type: 'Sample', id: 'A1', concentration: 56.1})
       })
@@ -155,6 +159,10 @@ describe('QuantTypeWellFactories.js', () => {
 
       it('will have a type', () => {
         expect(well.type).toEqual('Standard')
+      })
+
+      it('must not be a sample', () => {
+        expect(well.isSample()).toBeFalsy()
       })
 
       it('will have a concentration', () => {
@@ -305,6 +313,10 @@ describe('QuantTypeWellFactories.js', () => {
         expect(well.type).toEqual('Sample')
       })
 
+      it('must have a sample', () => {
+        expect(well.hasSample()).toBeTruthy()
+      })
+
       it('must have an id', () => {
         expect(well.id).toEqual('C11')
       })
@@ -333,6 +345,10 @@ describe('QuantTypeWellFactories.js', () => {
 
       it('must have a type', () => {
         expect(well.type).toEqual('Empty')
+      })
+
+      it('should not have a sample', () => {
+        expect(well.hasSample()).toBeFalsy()
       })
     })
   })
