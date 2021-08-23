@@ -168,7 +168,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the correct well type', () => {
-      expect(quantType.$data.wellType).toEqual('QPCR5ul')
+      expect(quantType.wellType).toEqual('QPCR5ul')
     })
 
     it('has the correct assay version', () => {
@@ -199,7 +199,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the correct well type', () => {
-      expect(quantType.$data.wellType).toEqual('QPCR5ul')
+      expect(quantType.wellType).toEqual('QPCR5ul')
     })
 
     it('has the correct assay version', () => {
@@ -228,7 +228,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the correct well type', () => {
-      expect(quantType.$data.wellType).toEqual('TS10XVDJ')
+      expect(quantType.wellType).toEqual('TS10XVDJ')
     })
 
     it('must have the correct units', () => {
