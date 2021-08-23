@@ -64,7 +64,7 @@ export default {
     },
     parsedFilename () {
       // Try to identify a barcode based on pattern matching a sequence of at
-      // least 2 uppercase letters and then at least 6 digits optionally
+      // least 2 uppercase letters and then at least 6 digits, optionally
       // followed by more uppercase letters
       const found = this.filename.match(/\b[A-Z]{2,}\d{6,}[A-Z]*\b/)
       if (found) {
