@@ -397,4 +397,94 @@ describe('QuantType.vue', () => {
     })
 
   })
+
+  describe('v2 - new plasticware', () => {
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+    })
+
+    it('ISC - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'ISCV2'}})
+      expect(quantType.name).toEqual('ISC - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('LCMB - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'LCMBV2'}})
+      expect(quantType.name).toEqual('LCMB - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('libraryPlateReader - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'libraryPlateReaderV2'}})
+      expect(quantType.name).toEqual('Library - Plate Reader - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('stockPlateReader - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'stockPlateReaderV2'}})
+      expect(quantType.name).toEqual('Stock - Plate Reader - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('workingDilutionPlateReader - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'workingDilutionPlateReaderV2'}})
+      expect(quantType.name).toEqual('Working Dilution - Plate Reader - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('normalisation - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'normalisationV2'}})
+      expect(quantType.name).toEqual('Normalisation - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('RNAStock - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'RNAStockV2'}})
+      expect(quantType.name).toEqual('RNA - Stock - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('RNALibrary - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'RNALibraryV2'}})
+      expect(quantType.name).toEqual('RNA - Library - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('chromiumSingleCellcDNA - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'chromiumSingleCellcDNAV2'}})
+      expect(quantType.name).toEqual('Chromium Single Cell - cDNA - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('chromiumSingleCellLibrary - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'chromiumSingleCellLibraryV2'}})
+      expect(quantType.name).toEqual('Chromium Single Cell - Library - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('duplexSeqALLib - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'duplexSeqALLibV2'}})
+      expect(quantType.name).toEqual('Duplex Seq AL Lib - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('duplexSeqLibrary - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'duplexSeqLibraryV2'}})
+      expect(quantType.name).toEqual('Duplex Seq Library - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('heron96cdna - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'heron96cdnaV2'}})
+      expect(quantType.name).toEqual('Heron 96 cDNA - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+
+    it('heron384cdna - V2', () => {
+      const quantType = new cmp({propsData: { quantType: 'heron384cdnaV2'}})
+      expect(quantType.name).toEqual('Heron 384 cDNA - v2')
+      expect(quantType.qcResults.assay.version).toEqual('v2.0')
+    })
+  })
 })
