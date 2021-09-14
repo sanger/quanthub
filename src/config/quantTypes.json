@@ -45,7 +45,7 @@
   },
   "ISCV2": {
     "key": "ISCV2",
-    "name": "ISC - v2",
+    "name": "ISC - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -133,7 +133,7 @@
   },
   "LCMBV2": {
     "key": "LCMBV2",
-    "name": "LCMB - v2",
+    "name": "LCMB - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -228,7 +228,7 @@
   },
   "libraryPlateReaderV2": {
     "key": "libraryPlateReaderV2",
-    "name": "Library - Plate Reader - v2",
+    "name": "Library - Plate Reader - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -323,7 +323,7 @@
   },
   "stockPlateReaderV2": {
     "key": "stockPlateReaderV2",
-    "name": "Stock - Plate Reader - v2",
+    "name": "Stock - Plate Reader - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -411,7 +411,7 @@
   },
   "workingDilutionPlateReaderV2": {
     "key": "workingDilutionPlateReaderV2",
-    "name": "Working Dilution - Plate Reader - v2",
+    "name": "Working Dilution - Plate Reader - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -657,7 +657,7 @@
   },
   "normalisationV2": {
     "key": "normalisationV2",
-    "name": "Normalisation - v2",
+    "name": "Normalisation - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -745,7 +745,7 @@
   },
   "RNAStockV2": {
     "key": "RNAStockV2",
-    "name": "RNA - Stock - v2",
+    "name": "RNA - Stock - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -833,7 +833,7 @@
   },
   "RNALibraryV2": {
     "key": "RNAStockV2",
-    "name": "RNA - Library - v2",
+    "name": "RNA - Library - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -921,7 +921,7 @@
   },
   "chromiumSingleCellcDNAV2": {
     "key": "chromiumSingleCellcDNAV2",
-    "name": "Chromium Single Cell - cDNA - v2",
+    "name": "Chromium Single Cell - cDNA - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -1009,7 +1009,7 @@
   },
   "chromiumSingleCellLibraryV2": {
     "key": "chromiumSingleCellLibraryV2",
-    "name": "Chromium Single Cell - Library - v2",
+    "name": "Chromium Single Cell - Library - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -1098,7 +1098,7 @@
   },
   "duplexSeqALLibV2": {
     "key": "duplexSeqALLibV2",
-    "name": "Duplex Seq AL Lib - v2",
+    "name": "Duplex Seq AL Lib - greiner assay plate",
     "wellType": "QPCR10ul",
     "cvThreshold": 15,
     "parse": {
@@ -1174,7 +1174,7 @@
   },
   "duplexSeqLibraryV2": {
     "key": "duplexSeqLibraryV2",
-    "name": "Duplex Seq Library - v2",
+    "name": "Duplex Seq Library - greiner assay plate",
     "wellType": "PlateReader",
     "cvThreshold": 20,
     "parse": {
@@ -1249,7 +1249,7 @@
   },
   "heron96cdnaV2": {
     "key": "heron96cdnaV2",
-    "name": "Heron 96 cDNA - v2",
+    "name": "Heron 96 cDNA - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
@@ -1337,7 +1337,7 @@
   },
   "heron384cdnaV2": {
     "key": "heron384cdnaV2",
-    "name": "Heron 384 cDNA - v2",
+    "name": "Heron 384 cDNA - greiner assay plate",
     "wellType": "PlateReader",
     "parse": {
       "delimiter": ",",
