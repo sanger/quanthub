@@ -34,7 +34,7 @@
     "babel-jest": "^23.0.1",
     "flush-promises": "^1.0.0",
     "lint-staged": "^7.2.2",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.14.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
   },

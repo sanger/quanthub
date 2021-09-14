@@ -1,5 +1,5 @@
 <template>
-  <td class="well sample" v-bind:class="classObject"  v-on:click="setActive" >
+  <td class="well sample" v-bind:class="{inactive: !active, inspect: outlier}"  v-on:click="setActive">
     {{ id }}
     <br />
     {{ concentration }}
@@ -8,7 +8,7 @@
 
 <script>
 
-import { NullTriplicate } from '@/Triplicates'
+import { NullReplicate } from '@/Replicates'
 import WellProperties from '@/mixins/WellProperties'
 
 export default {
@@ -33,15 +33,11 @@ export default {
     plateBarcode: {
       default: ''
     },
-    active: {
-      default: true,
-      type: Boolean
-    },
     extraFields: {
       default () {
         return {
           'id': 'id',
-          'active': 'isActive'
+          'active': 'active'
         }
       }
     }
@@ -49,40 +45,28 @@ export default {
   data () {
     return {
       msg: 'Sample Well',
-      isActive: this.active,
       store: this.$Store,
-      triplicate: NullTriplicate
+      replicate: NullReplicate,
+      active: true,
+      outlier: false
     }
   },
   computed: {
     location () {
       return this.row.concat(this.column)
-    },
-    classObject () {
-      if (!this.isActive) {
-        return {
-          inactive: true
-        }
-      }
-      else {
-        return {
-          inspect: this.needsInspection()
-        }
-      }
     }
   },
   methods: {
     setActive () {
-      this.isActive = !this.isActive
-    },
-    needsInspection () {
-      return this.triplicate.needsInspection()
+      this.active = !this.active
+      this.replicate.outliers()
     }
   },
   mounted () {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
-      this.store.sequencescapePlates.addTriplicate(this)
+      this.store.sequencescapePlates.addReplicate(this)
+      this.replicate.outliers()
     }
   }
 }

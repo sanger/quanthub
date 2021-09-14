@@ -17,7 +17,6 @@ export default {
       key: 'quantType',
       name: 'Quant Type',
       wellType: 'QuantType',
-      cvThreshold: 1,
       parse: {
         delimiter: ',',
         from: 16,
@@ -29,7 +28,9 @@ export default {
       qcResults: {
         key: 'Concentration',
         units: 'ng',
-        assay: {type: 'Quant Type', version: 'v1.0'}
+        assay: {type: 'Quant Type', version: 'v1.0'},
+        outlier: {type: 'standard', threshold: '1'},
+        fields: ['a','b','c','d','e','f']
       }
     }
   },
@@ -39,24 +40,22 @@ export default {
   // factor into the placeholder.
   // This produces a string expression which can be evaluated.
   // This conversion factor is then used to create the adjusted average
-  // in triplicates. It is evaluated upfront which increases efficiency.
+  // in replicates. It is evaluated upfront which increases efficiency.
   computed: {
     conversionFactor () {
       let factors = this.conversion.factors
       return math.eval(Object.keys(factors).reduce((factor, key) => {
         return factor.replace(key, factors[key])
-      }, this.conversion.expression)).toFixed(this.decimalPlaces)
-    },
-    decimalPlaces () {
-      return this.$data.conversion.decimalPlaces
+      }, this.conversion.expression))
     },
     // A constant which relates to a factory for conversion of well
     // to the correct format.
     WellFactory () {
       return WellFactories[this.wellType]
     },
-    triplicateOptions () {
-      return Object.assign(this.qcResults, {conversionFactor: this.conversionFactor, cvThreshold: this.cvThreshold})
+    replicateOptions () {
+      return { conversionFactor: this.conversionFactor, decimalPlaces: this.conversion.decimalPlaces, ...this.qcResults }
+
     }
   },
   methods: {

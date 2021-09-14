@@ -3,7 +3,6 @@
     "key": "ISC",
     "name": "ISC",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -27,14 +26,27 @@
       "assay": {
         "type": "ISC",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "LCMB": {
     "key": "LCMB",
     "name": "LCMB",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -58,14 +70,27 @@
       "assay": {
         "type": "LCMB",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "libraryPlateReader": {
     "key": "libraryPlateReader",
     "name": "Library - Plate Reader",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -96,14 +121,27 @@
       "assay": {
         "type": "Library - Plate Reader",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "stockPlateReader": {
     "key": "stockPlateReader",
     "name": "Stock - Plate Reader",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -127,14 +165,27 @@
       "assay": {
         "type": "Stock - Plate Reader",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "workingDilutionPlateReader": {
     "key": "workingDilutionPlateReader",
     "name": "Working Dilution - Plate Reader",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -158,14 +209,27 @@
       "assay": {
         "type": "Working Dilution - Plate Reader",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "libraryQPCR10ul": {
     "key": "libraryQPCR10ul",
     "name": "Library - qPCR - 10ul",
     "wellType": "QPCR10ul",
-    "cvThreshold": 15,
     "parse": {
       "delimiter": "\t",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -202,14 +266,27 @@
       "assay": {
         "type": "Library - qPCR",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "libraryQPCR5ul": {
     "key": "libraryQPCR5ul",
     "name": "Library - qPCR - 5ul",
     "wellType": "QPCR5ul",
-    "cvThreshold": 15,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -232,7 +309,7 @@
         "dilution": 0.5
       },
       "expression": "(topM*calibration*dilution)",
-      "decimalPlaces": 10
+      "decimalPlaces": 3
     },
     "qcResults": {
       "key": "molarity",
@@ -240,14 +317,77 @@
       "assay": {
         "type": "Library - qPCR",
         "version": "v2.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    }
+  },
+  "libraryQPCR5ulQuadruplicate": {
+    "key": "libraryQPCR5ulQuadruplicate",
+    "name": "Library - qPCR - 5ul - Quadruplicate",
+    "wellType": "QPCR5ul",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "well",
+        "copyNumber",
+        "replicateError",
+        "totalError",
+        "shapeZError",
+        "Comments"
+      ]
+    },
+    "metadata": {
+    },
+    "conversion": {
+      "factors": {
+        "topM": 3.321e-7,
+        "calibration": 1,
+        "dilution": 0.5
+      },
+      "expression": "(topM*calibration*dilution)",
+      "decimalPlaces": 3
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Library - qPCR",
+        "version": "v3.0"
+      },
+      "outlier": {
+        "type": "mad",
+        "threshold": 3.5
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "normalisation": {
     "key": "normalisation",
     "name": "Normalisation",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -271,14 +411,27 @@
       "assay": {
         "type": "Normalisation",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "RNAStock": {
     "key": "RNAStock",
     "name": "RNA - Stock",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -302,14 +455,27 @@
       "assay": {
         "type": "RNA - Stock",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "RNALibrary": {
     "key": "RNAStock",
     "name": "RNA - Library",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -333,14 +499,27 @@
       "assay": {
         "type": "RNA - Library",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "chromiumSingleCellcDNA": {
     "key": "chromiumSingleCellcDNA",
     "name": "Chromium Single Cell - cDNA",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -364,14 +543,27 @@
       "assay": {
         "type": "Chromium Single Cell - cDNA",
         "version": "v1.0"
-      }
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   },
   "chromiumSingleCellLibrary": {
     "key": "chromiumSingleCellLibrary",
     "name": "Chromium Single Cell - Library",
     "wellType": "PlateReader",
-    "cvThreshold": 20,
     "parse": {
       "delimiter": ",",
       "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
@@ -395,7 +587,185 @@
       "assay": {
         "type": "Chromium Single Cell - Library",
         "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    }
+  },
+  "duplexSeqALLib": {
+    "key": "duplexSeqALLib",
+    "name": "Duplex Seq AL Lib",
+    "wellType": "QPCR10ul",
+    "cvThreshold": 15,
+    "parse": {
+      "delimiter": "\t",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 3,
+      "relax_column_count": true,
+      "columns": [
+        "include",
+        "color",
+        "pos",
+        "name",
+        "cp",
+        "concentration",
+        "standard",
+        "status"
+      ]
+    },
+    "metadata": {
+      "rows": 1,
+      "idColumn": "Experiment",
+      "delimiter": "  "
+    },
+    "conversion": {
+      "factors": {
+        "dilution": 500,
+        "standardInsertSize": 452,
+        "libraryInsertSize": 573,
+        "adjustmentFactor": 1.5
+      },
+      "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "decimalPlaces": 20
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Duplex Seq AL Lib",
+        "version": "v1.0"
       }
+    }
+  },
+  "duplexSeqLibrary": {
+    "key": "duplexSeqLibrary",
+    "name": "Duplex Seq Library",
+    "wellType": "PlateReader",
+    "cvThreshold": 20,
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 17,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 4,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Duplex Seq Library",
+        "version": "v1.0"
+      }
+    }
+  },
+  "heron96cdna": {
+    "key": "heron96cdna",
+    "name": "Heron 96 cDNA",
+    "wellType": "PlateReader",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 17,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 4,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Heron 96 cDNA",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    }
+  },
+  "heron384cdna": {
+    "key": "heron384cdna",
+    "name": "Heron 384 cDNA",
+    "wellType": "PlateReader",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 17,
+      "columns": [
+        "row",
+        "column",
+        "content",
+        "id",
+        "concentration"
+      ]
+    },
+    "metadata": {
+      "rows": 4,
+      "idColumn": "ID1",
+      "delimiter": ","
+    },
+    "qcResults": {
+      "key": "concentration",
+      "units": "ng/ul",
+      "assay": {
+        "type": "Heron 384 cDNA",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 20
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
     }
   }
 }
