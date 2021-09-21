@@ -21,7 +21,8 @@ export default {
         delimiter: ',',
         from: 16,
         rowDelimiter: ['\r\n', '\r', '\n'],
-        columns: ['column1', 'column2', 'column3', 'column4', 'column5']
+        columns: ['column1', 'column2', 'column3', 'column4', 'column5'],
+        relax_column_count: true
       },
       metadata: {rows: 1, idColumn: 'id', delimiter: ','},
       conversion: {factors: {}, expression: 1, decimalPlaces: 3},
