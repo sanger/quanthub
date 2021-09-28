@@ -1,6 +1,6 @@
 <script>
 
-import math from 'mathjs'
+import { evaluate } from 'mathjs'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
 
@@ -21,7 +21,8 @@ export default {
         delimiter: ',',
         from: 16,
         rowDelimiter: ['\r\n', '\r', '\n'],
-        columns: ['column1', 'column2', 'column3', 'column4', 'column5']
+        columns: ['column1', 'column2', 'column3', 'column4', 'column5'],
+        relax_column_count: true
       },
       metadata: {rows: 1, idColumn: 'id', delimiter: ','},
       conversion: {factors: {}, expression: 1, decimalPlaces: 3},
@@ -44,7 +45,7 @@ export default {
   computed: {
     conversionFactor () {
       let factors = this.conversion.factors
-      return math.eval(Object.keys(factors).reduce((factor, key) => {
+      return evaluate(Object.keys(factors).reduce((factor, key) => {
         return factor.replace(key, factors[key])
       }, this.conversion.expression))
     },
