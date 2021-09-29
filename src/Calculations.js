@@ -1,4 +1,4 @@
-import math from 'mathjs'
+import { abs, sqrt } from 'mathjs'
 
 Number.prototype.toDecimalPlaces = function(n = 3) {
   return Number(this.toFixed(n))
@@ -21,7 +21,7 @@ const median = (values) => {
 }
 
 const absoluteDeviation = (values, median) => {
-  return values.map(item => math.abs(item - median))
+  return values.map(item => abs(item - median))
 }
 
 const mad = (values) => {
@@ -39,7 +39,7 @@ const modifiedZScores = (value, median, mad, consistencyConstant = 1.4826) => {
 
 // Outlier is defined as > 3.5 or < -3.5
 const isOutlier = (value, limit = 3.5) => {
-  return math.abs(value) > limit
+  return abs(value) > limit
 }
 
 // sample: represents whether the average needs to be adjusted if
@@ -60,7 +60,7 @@ const standardDeviation = (values) => {
     return sqrDiff
   })
   let avgSquareDiff = average(squareDiffs, {sample: 1})
-  return math.sqrt(avgSquareDiff)
+  return sqrt(avgSquareDiff)
 }
 
 const cv = (values) => {
