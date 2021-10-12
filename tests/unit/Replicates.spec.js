@@ -82,8 +82,8 @@ describe('Replicates.vue', () => {
           key: replicate.options.key,
           value: replicate.adjustedAverage,
           units: replicate.options.units,
-          cv: replicate.cv, assay_type:
-          replicate.options.assay.type,
+          cv: replicate.cv,
+          assay_type: replicate.options.assay.type,
           assay_version: replicate.options.assay.version
         })
 
