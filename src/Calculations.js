@@ -32,7 +32,7 @@ const mad = (values) => {
 }
 
 // modified z scores
-// item - median / (magic * mad ) 
+// item - median / (magic * mad )
 const modifiedZScores = (value, median, mad, consistencyConstant = 1.4826) => {
   return ((value - median) / (consistencyConstant * mad))
 }

@@ -36,7 +36,7 @@ describe('Replicates.vue', () => {
         expect(replicate.options.key).toBeDefined()
         expect(replicate.options.units).toBeDefined()
         expect(replicate.options.conversionFactor).toBeDefined()
-      }) 
+      })
 
       it('will set a standard deviation', () => {
         expect(typeof(replicate.standardDeviation)).toEqual('number')
@@ -49,7 +49,7 @@ describe('Replicates.vue', () => {
       it('will have a plate barcode', () => {
         expect(replicate.plateBarcode).toEqual('DN1234567')
       })
-      
+
       it('will set a cv', () => {
         // (0.16371418183325878/3.0043333333333333) * 100 = 5.449
         expect(typeof(replicate.cv)).toEqual('number')
@@ -78,12 +78,12 @@ describe('Replicates.vue', () => {
       it('will return some json for exporting purposes', () => {
         expect(replicate.json).toEqual({
           barcode: replicate.plateBarcode,
-          well_location: replicate.id, 
-          key: replicate.options.key, 
-          value: replicate.adjustedAverage, 
-          units: replicate.options.units, 
-          cv: replicate.cv, assay_type: 
-          replicate.options.assay.type, 
+          well_location: replicate.id,
+          key: replicate.options.key,
+          value: replicate.adjustedAverage,
+          units: replicate.options.units,
+          cv: replicate.cv,
+          assay_type: replicate.options.assay.type,
           assay_version: replicate.options.assay.version
         })
 
@@ -91,11 +91,11 @@ describe('Replicates.vue', () => {
 
          expect(replicate.json).toEqual({
           barcode: replicate.plateBarcode,
-          well_location: replicate.id, 
-          key: replicate.options.key, 
-          value: replicate.adjustedAverage, 
-          units: replicate.options.units, 
-          assay_type: replicate.options.assay.type, 
+          well_location: replicate.id,
+          key: replicate.options.key,
+          value: replicate.adjustedAverage,
+          units: replicate.options.units,
+          assay_type: replicate.options.assay.type,
           assay_version: replicate.options.assay.version
         })
       })
@@ -141,7 +141,7 @@ describe('Replicates.vue', () => {
     describe('cv threshold', () => {
 
       let well4, well5, well6
-      
+
       beforeEach(() => {
         well4 = new cmp({propsData: { row: 'A', column: '1', content:'Sample X1', id: 'A1', concentration: '0.685'}})
         well5 = new cmp({propsData: { row: 'A', column: '2', content:'Sample X1', id: 'A1', concentration: '0.960'}})

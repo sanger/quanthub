@@ -22,7 +22,7 @@ class Replicate {
       units: 'standard',
       conversionFactor: 1,
       cvThreshold: 1,
-      assay: {type: 'Standard', version: '1'}, 
+      assay: {type: 'Standard', version: '1'},
       outlier: { type: 'cv', threshold: 15},
       fields: [
         "barcode",

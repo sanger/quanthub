@@ -42,7 +42,7 @@ describe('PrintJob.vue', () => {
           }
         ]
       }}
-    printJob = cmp.vm 
+    printJob = cmp.vm
   })
 
   it('creates some valid print job attributes', () => {
@@ -54,7 +54,7 @@ describe('PrintJob.vue', () => {
   })
 
   describe('it sends a print job', () => {
-    
+
     it('successfully', async() => {
       Model.prototype.save = jest.fn(() => Promise.resolve(true))
       printJob.execute()
