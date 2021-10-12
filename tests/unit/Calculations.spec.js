@@ -46,7 +46,7 @@ describe('Calculations.vue', () => {
 
   })
 
-  // item - median / (consistency_constant * mad ) 
+  // item - median / (consistency_constant * mad )
   describe('#modifiedZScores', () => {
 
     let expected, mad, median

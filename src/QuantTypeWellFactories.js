@@ -38,11 +38,11 @@ class QPCR10ul {
   get column () {
     return this.pos.match(/[0-9]+/g).toString()
   }
-  get type () {
-    return this.isSample() ? 'Sample' : 'Standard'
-  }
   isSample () {
     return /^[A-P]\d{1,2}$/.test(this.name)
+  }
+  get type () {
+    return this.isSample() ? 'Sample' : 'Standard'
   }
   get id () {
     return this.isSample() ? this.name : ''

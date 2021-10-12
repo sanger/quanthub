@@ -34,7 +34,7 @@ describe('PrintMyBarcode.js', () => {
 
   it('has some labels', () => {
     expect(printJob.labels).toEqual(json.labels)
-    
+
   })
 
 })

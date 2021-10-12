@@ -73,12 +73,12 @@ export default {
     labels () {
       let self = this
       return this.barcodes.split('\n').filter(Boolean).map(barcode => {
-        return { 
+        return {
           main_label: {
             top_left: self.today,
-            bottom_left: barcode.concat('-QC'),  
+            bottom_left: barcode.concat('-QC'),
             barcode: barcode.concat('-QC')
-          } 
+          }
         }
       })
     },
@@ -92,7 +92,7 @@ export default {
       }
     },
     months () {
-      return ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'] 
+      return ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
     }
   },
   components: {
