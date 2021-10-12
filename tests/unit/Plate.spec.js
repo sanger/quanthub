@@ -24,7 +24,7 @@ describe('Plate.vue', () => {
     cmp = mount(Plate, {propsData: { barcode: barcode }, mocks: { $Store }, localVue})
     plate = cmp.vm
   })
-  
+
   it('will have have some columns', () => {
     let columns = plate.$el.querySelector('thead').querySelectorAll('th')
     expect(columns).toHaveLength(grid.numberOfColumns + 1)
