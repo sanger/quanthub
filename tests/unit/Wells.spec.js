@@ -184,12 +184,12 @@ describe('Wells', () => {
       expect(well.$el.className).toMatch('sample')
     })
 
-    it('on clicking renders it inactive', () => {
-      cmp.trigger('click')
+    it('on clicking renders it inactive', async () => {
+      await cmp.trigger('click')
       expect(well.active).toBeFalsy()
       expect(well.$el.className).toMatch('inactive')
 
-      cmp.trigger('click')
+      await cmp.trigger('click')
       expect(well.active).toBeTruthy()
       expect(well.$el.className).not.toMatch('inactive')
       expect(well.$el.className).toMatch('sample')
@@ -225,8 +225,8 @@ describe('Wells', () => {
       })
 
       // this would be better to check class but this is brittle
-      it('removing outlier will be reflected in all wells', () => {
-        well2.trigger('click')
+      it('removing outlier will be reflected in all wells', async () => {
+        await well2.trigger('click')
         expect(well2.vm.$el.className).toMatch('inactive')
         expect(well1.vm.outlier).toBeFalsy()
         expect(well3.vm.outlier).toBeFalsy()
