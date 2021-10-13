@@ -8,12 +8,14 @@ jobs:
     name: EsLint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - name: Install
-      run: yarn install
-    - name: Run yarn test
-      run: yarn lint
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install
+        run: yarn install
+      - name: Run yarn lint
+        run: yarn lint
+      - name: Check prettier
+        run: yarn prettier-check

@@ -14,7 +14,7 @@
               class="btn btn-success"
               v-on:click="clearLocalStorage"
             >
-            {{ clearLocalStorageTxt }}
+              {{ clearLocalStorageTxt }}
             </button>
           </b-col>
           <b-col cols="3">
@@ -22,7 +22,13 @@
           </b-col>
         </b-row>
         <b-col>
-          <router-link v-for="plate in plates" :to="`/plate/${plate}`" :key="plate" class="plate" tag="div">
+          <router-link
+            v-for="plate in plates"
+            :to="`/plate/${plate}`"
+            :key="plate"
+            class="plate"
+            tag="div"
+          >
             <b-row>
               <div>
                 <a>{{ plate }}</a>
@@ -36,55 +42,62 @@
 </template>
 
 <script>
-
 import Upload from '@/components/Upload'
 
 export default {
   name: 'Plates',
-  props: {
-  },
-  data () {
+  props: {},
+  data() {
     return {
       msg: 'Plates',
       clearLocalStorageTxt: 'Clear Local Storage',
-      localStorageClearedCounter: 0
+      localStorageClearedCounter: 0,
     }
   },
   computed: {
-    plates () {
+    plates() {
       // localStorage is not reactive, so to trigger a recomputation we use a data counter that is
       this.localStorageClearedCounter
 
       // loglevel:webpack-dev-server is a local storage item added during dev.
       // need to find a way to remove it by environment.
-      return Object.keys(localStorage).filter(key => localStorage.hasOwnProperty(key) && key !== 'loglevel:webpack-dev-server')
+      return Object.keys(localStorage).filter(
+        (key) =>
+          localStorage.hasOwnProperty(key) &&
+          key !== 'loglevel:webpack-dev-server'
+      )
     },
-    localStorageUsed () {
+    localStorageUsed() {
       // localStorage is not reactive, so to trigger a recomputation we use a data counter that is
       this.localStorageClearedCounter
 
       var allStrings = ''
-      for(var key in window.localStorage){
-          if(window.localStorage.hasOwnProperty(key)){
-              allStrings += window.localStorage[key]
-          }
+      for (var key in window.localStorage) {
+        if (window.localStorage.hasOwnProperty(key)) {
+          allStrings += window.localStorage[key]
+        }
       }
-      return `Local Storage used (of 5 MB) = ${ allStrings ? Math.round((3 + ((allStrings.length*16)/(8*1024))) * 100) / 100 + ' KB' : 'Empty (0 KB)' }`
+      return `Local Storage used (of 5 MB) = ${
+        allStrings
+          ? Math.round((3 + (allStrings.length * 16) / (8 * 1024)) * 100) /
+              100 +
+            ' KB'
+          : 'Empty (0 KB)'
+      }`
     },
   },
   components: {
-    Upload
+    Upload,
   },
   methods: {
-    clearLocalStorage () {
+    clearLocalStorage() {
       // Clear local storage and trigger refresh of plateslist
       localStorage.clear()
       this.localStorageClearedCounter += 1
-    }
-  }
+    },
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

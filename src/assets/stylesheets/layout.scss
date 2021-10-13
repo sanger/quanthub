@@ -1,4 +1,4 @@
-@import "src/assets/stylesheets/colors.scss";
+@import 'src/assets/stylesheets/colors.scss';
 
 .file {
   visibility: hidden;
@@ -25,7 +25,8 @@ nav {
   a {
     color: white;
 
-    &:hover, &:visited{
+    &:hover,
+    &:visited {
       color: white;
     }
   }

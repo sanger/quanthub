@@ -1,12 +1,17 @@
 <template>
   <tr class="plate-row">
     <th>{{ id }}</th>
-    <component v-for="(well, key, index) in wells" v-bind="well" :is="well.type" v-bind:plateBarcode="plateBarcode" :key="key.concat(index)"></component>
+    <component
+      v-for="(well, key, index) in wells"
+      v-bind="well"
+      :is="well.type"
+      v-bind:plateBarcode="plateBarcode"
+      :key="key.concat(index)"
+    ></component>
   </tr>
 </template>
 
 <script>
-
 import WellTypes from '@/mixins/WellTypes'
 
 // A row does nothing more than hold a group of wells.
@@ -17,33 +22,30 @@ export default {
   props: {
     id: {
       type: String,
-      default: ''
+      default: '',
     },
     wells: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     plateBarcode: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
-  data () {
+  data() {
     return {
-      msg: 'Well'
+      msg: 'Well',
     }
   },
   computed: {
-    json () {
-      return this.$children.map(well => well.json)
-    }
+    json() {
+      return this.$children.map((well) => well.json)
+    },
   },
-  methods: {
-  }
+  methods: {},
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>

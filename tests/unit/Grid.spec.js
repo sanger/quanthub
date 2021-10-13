@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Grid from '@/components/Grid'
 
 describe('Grid.vue', () => {
-
   let cmp, grid
 
   beforeEach(() => {
@@ -27,11 +26,17 @@ describe('Grid.vue', () => {
   })
 
   describe('creation', () => {
-
     let rows, keys
 
     beforeEach(() => {
-      grid = new cmp({propsData: { numberOfColumns: 10, numberOfRows: 20, quantType: 'someQuantType', lotNumber: 'LOT1234567'}})
+      grid = new cmp({
+        propsData: {
+          numberOfColumns: 10,
+          numberOfRows: 20,
+          quantType: 'someQuantType',
+          lotNumber: 'LOT1234567',
+        },
+      })
     })
 
     it('sets the quantType property', () => {
@@ -45,7 +50,9 @@ describe('Grid.vue', () => {
     it('builds some columns', () => {
       expect(grid.columns).toHaveLength(grid.numberOfColumns)
       expect(grid.columns[0]).toEqual('1')
-      expect(grid.columns[grid.numberOfColumns - 1]).toEqual(String(grid.numberOfColumns))
+      expect(grid.columns[grid.numberOfColumns - 1]).toEqual(
+        String(grid.numberOfColumns)
+      )
     })
 
     it('builds some rows', () => {
@@ -80,19 +87,36 @@ describe('Grid.vue', () => {
       expect(json.columns).toEqual(grid.columns)
       expect(json.rows).toEqual(grid.rows)
     })
-
   })
 
   describe('updating', () => {
-
     let wells
 
     beforeEach(() => {
-      grid = new cmp({propsData: { numberOfColumns: 5, numberOfRows: 10}})
-      wells = [ { row: 'A', column: '1', id: 'A1', concentration: '0.69', type: 'Sample' },
-                { row: 'E', column: '3', id: 'E3', concentration: '2.677', type: 'Sample' },
-                { row: 'J', column: '5', id: 'J5', concentration: '0.665', type: 'Sample' }
-              ]
+      grid = new cmp({ propsData: { numberOfColumns: 5, numberOfRows: 10 } })
+      wells = [
+        {
+          row: 'A',
+          column: '1',
+          id: 'A1',
+          concentration: '0.69',
+          type: 'Sample',
+        },
+        {
+          row: 'E',
+          column: '3',
+          id: 'E3',
+          concentration: '2.677',
+          type: 'Sample',
+        },
+        {
+          row: 'J',
+          column: '5',
+          id: 'J5',
+          concentration: '0.665',
+          type: 'Sample',
+        },
+      ]
     })
 
     it('allows a new cell to be added', () => {
@@ -106,7 +130,5 @@ describe('Grid.vue', () => {
       expect(grid.find('E', '3')).toEqual(wells[1])
       expect(grid.find('J', '5')).toEqual(wells[2])
     })
-
   })
-
 })

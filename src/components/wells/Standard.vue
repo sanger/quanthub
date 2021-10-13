@@ -1,11 +1,10 @@
 <template>
-  <td class="well standard" >
+  <td class="well standard">
     {{ concentration }}
   </td>
 </template>
 
 <script>
-
 import WellProperties from '@/mixins/WellProperties'
 
 export default {
@@ -13,44 +12,44 @@ export default {
   mixins: [WellProperties],
   props: {
     row: {
-      default: ''
+      default: '',
     },
     column: {
-      default: ''
+      default: '',
     },
     concentration: {
-      default: ''
+      default: '',
     },
     type: {
-      default: 'Standard'
+      default: 'Standard',
     },
     plateBarcode: {
-      default: ''
+      default: '',
+    },
+  },
+  data() {
+    return {
+      msg: 'Standard Well',
     }
   },
-  data () {
-    return {
-      msg: 'Standard Well'
-    }
-  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import 'src/assets/stylesheets/colors.scss';
 
-  @import "src/assets/stylesheets/colors.scss";
-
-  .table {
-    td, th {
-      min-width: 75px;
-      min-height: 50px;
-      font-size: 12px;
-    }
+.table {
+  td,
+  th {
+    min-width: 75px;
+    min-height: 50px;
+    font-size: 12px;
   }
+}
 
-  .standard {
-    color: white;
-    background-color: $well-blue;
-  }
+.standard {
+  color: white;
+  background-color: $well-blue;
+}
 </style>

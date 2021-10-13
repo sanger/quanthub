@@ -1,5 +1,4 @@
 <script>
-
 import parse from 'csv-parse/lib/sync'
 import Grid from '@/components/Grid'
 import QuantType from '@/components/QuantType'
@@ -13,32 +12,31 @@ export default {
   props: {
     quant: {
       type: String,
-      default: 'libraryPlateReader'
+      default: 'libraryPlateReader',
     },
     filename: {
-      type: String
-    }
+      type: String,
+    },
   },
-  data () {
+  data() {
     return {
       msg: 'QuantFile',
       raw: '',
       GridCmp: Vue.extend(Grid),
       grid: {},
       QuantTypeCmp: Vue.extend(QuantType),
-      quantType: {}
+      quantType: {},
     }
   },
-  components: {
-  },
+  components: {},
   computed: {
-    json () {
+    json() {
       return this.grid.json
     },
     // takes the raw file and extracts the rows where the metadata is.
     // for each row split it and extract each row of metadata into a JSON object.
     // only the id is used at this stage.
-    metadata () {
+    metadata() {
       if (!this.quantType.hasMetadata()) return
       let rows = this.raw.split(/\r?\n/).slice(0, this.quantType.metadata.rows)
       let metadata = {}
@@ -54,7 +52,7 @@ export default {
       }
       return metadata
     },
-    id () {
+    id() {
       if (this.quantType.hasMetadata()) {
         // handles barcodes of type ABC-QC and ABC_QC
         return this.metadata[this.quantType.metadata.idColumn].split(/[-,_]/)[0]
@@ -62,13 +60,13 @@ export default {
         return this.parsedFilename
       }
     },
-    parsedFilename () {
+    parsedFilename() {
       // handles filenames containing barcodes of type ABC-QC and ABC_QC
       return this.filename.split('_')[1].split('-')[0]
-    }
+    },
   },
   methods: {
-    upload (file) {
+    upload(file) {
       // A new file reader object gets the raw data.
       // The file is parsed by the quant type options and
       // a factory is used to ensure standardisation of the data
@@ -80,20 +78,35 @@ export default {
           // TODO: move it out into a constant.
           try {
             this.raw = reader.result.replace(/\r\r\n/g, '\n')
-            this.grid = new this.GridCmp({propsData: {quantType: this.quant}})
+            this.grid = new this.GridCmp({
+              propsData: { quantType: this.quant },
+            })
             // skip_empty_lines needs to be true otherwise an error is thrown
-            this.grid.addAll(parse(this.raw, { ...this.quantType.parse, skip_empty_lines: true}).map(cell => new this.quantType.WellFactory(cell, WellMap[this.quantType.key]).json))
-          } catch(error) {
+            this.grid.addAll(
+              parse(this.raw, {
+                ...this.quantType.parse,
+                skip_empty_lines: true,
+              }).map(
+                (cell) =>
+                  new this.quantType.WellFactory(
+                    cell,
+                    WellMap[this.quantType.key]
+                  ).json
+              )
+            )
+          } catch (error) {
             reject(`Failed to parse: ${error.message}`)
           }
           resolve('File successfully uploaded')
         }
         reader.readAsText(file)
       })
-    }
+    },
   },
-  created () {
-    this.quantType = new this.QuantTypeCmp({propsData: {quantType: this.quant}})
-  }
+  created() {
+    this.quantType = new this.QuantTypeCmp({
+      propsData: { quantType: this.quant },
+    })
+  },
 }
 </script>

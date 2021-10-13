@@ -1,6 +1,4 @@
-
 <script>
-
 // Grid.vue
 // A Grid is a method of getting the wells into the correct place.
 // The Grid is created based on the number of columns and number of rows
@@ -14,46 +12,45 @@ export default {
   props: {
     quantType: {
       type: String,
-      default: 'libraryPlateReader'
+      default: 'libraryPlateReader',
     },
     lotNumber: {
       type: String,
-      default: ''
+      default: '',
     },
     numberOfColumns: {
       type: Number,
-      default: 24
+      default: 24,
     },
     numberOfRows: {
       type: Number,
-      default: 16
-    }
+      default: 16,
+    },
   },
-  data () {
+  data() {
     return {
-      msg: 'Grid'
+      msg: 'Grid',
     }
   },
   computed: {
-    columns () {
+    columns() {
       return Array.from(Array(this.numberOfColumns), (e, i) => String(i + 1))
     },
-    rows () {
+    rows() {
       return this.buildRows()
     },
-    json () {
+    json() {
       return {
         quantType: this.quantType,
         lotNumber: this.lotNumber,
         columns: this.columns,
-        rows: this.rows
+        rows: this.rows,
       }
-    }
+    },
   },
-  components: {
-  },
+  components: {},
   methods: {
-    buildRows () {
+    buildRows() {
       let rows = {}
       for (let i = 1; i <= this.numberOfRows; i++) {
         let rowId = String.fromCharCode(64 + i)
@@ -61,24 +58,24 @@ export default {
       }
       return rows
     },
-    buildCells (rowId) {
+    buildCells(rowId) {
       let cells = {}
       for (let column of this.columns) {
-        cells[column] = {row: rowId, column: String(column), type: 'Empty'}
+        cells[column] = { row: rowId, column: String(column), type: 'Empty' }
       }
       return cells
     },
-    add (cell) {
+    add(cell) {
       this.rows[cell.row][cell.column] = cell
     },
-    addAll (cells) {
+    addAll(cells) {
       for (let cell of cells) {
         this.add(cell)
       }
     },
-    find (row, column) {
+    find(row, column) {
       return this.rows[row][column]
-    }
-  }
+    },
+  },
 }
 </script>

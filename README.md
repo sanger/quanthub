@@ -23,8 +23,12 @@ yarn run build
 ### Lints and fixes files
 
 ```shell
-yarn run lint
+yarn lint
+yarn prettify
 ```
+
+It is also possible to [configure your editor](https://prettier.io/docs/en/editors.html)
+to run prettier automatically on save
 
 ### Run your unit tests
 
