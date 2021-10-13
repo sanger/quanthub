@@ -6,6 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "prettify": "prettier --write .",
+    "prettier-check": "prettier --check .",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "test": "vue-cli-service test:unit && vue-cli-service test:e2e"
