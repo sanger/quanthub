@@ -66,6 +66,10 @@ export default {
     },
   },
   methods: {
+    canonicaliseLineEndings(content) {
+      // \r\r\n is a non standard windows line ending which causes all sorts of problems.
+      return content.replace(/\r\r\n/g, '\n')
+    },
     upload(file) {
       // A new file reader object gets the raw data.
       // The file is parsed by the quant type options and
@@ -74,10 +78,8 @@ export default {
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.onload = () => {
-          // \r\r\n is a non standard windows line ending which causes all sorts of problems.
-          // TODO: move it out into a constant.
           try {
-            this.raw = reader.result.replace(/\r\r\n/g, '\n')
+            this.raw = this.canonicaliseLineEndings(reader.result)
             this.grid = new this.GridCmp({
               propsData: { quantType: this.quant },
             })
