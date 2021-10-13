@@ -1,8 +1,7 @@
-
 import { ReplicateList as Replicates } from '@/Replicates'
 
 class Plate {
-  constructor (barcode) {
+  constructor(barcode) {
     this.barcode = barcode
     this.replicates = new Replicates()
   }
@@ -10,28 +9,28 @@ class Plate {
 
 // TODO: turn into a map
 class SequencescapePlateList {
-  constructor () {
+  constructor() {
     this.items = {}
   }
 
-  get keys () {
+  get keys() {
     return Object.keys(this.items)
   }
 
-  get length () {
+  get length() {
     return this.keys.length
   }
 
-  add (plate) {
+  add(plate) {
     this.items[plate.barcode] = plate
     return this
   }
 
-  addReplicate (well) {
+  addReplicate(well) {
     this.find(well.plateBarcode).replicates.add(well)
   }
 
-  find (key) {
+  find(key) {
     let plate = this.items[key]
     if (plate === undefined) {
       return new Plate('empty')

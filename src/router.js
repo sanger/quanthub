@@ -11,33 +11,30 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: {name: 'PlateList'},
-      component: PlateList
+      redirect: { name: 'PlateList' },
+      component: PlateList,
     },
     {
       path: '/plates',
       name: 'PlateList',
-      component: PlateList
+      component: PlateList,
     },
     {
       path: '/plate',
       name: 'Plate',
       component: Plate,
-      props: {barcode: true}
+      props: { barcode: true },
     },
-    { path: '/plate/:barcode',
-      component: Plate,
-      props: true
-    },
+    { path: '/plate/:barcode', component: Plate, props: true },
     {
       path: '/upload',
       name: 'Upload',
-      component: Upload
+      component: Upload,
     },
     {
       path: '/print_job',
       name: 'PrintJob',
-      component: PrintJob
-    }
-  ]
+      component: PrintJob,
+    },
+  ],
 })

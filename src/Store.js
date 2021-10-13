@@ -1,7 +1,7 @@
-import {SequencescapePlateList} from '@/SequencescapePlates'
+import { SequencescapePlateList } from '@/SequencescapePlates'
 
 class Store {
-  constructor () {
+  constructor() {
     this.sequencescapePlates = new SequencescapePlateList()
   }
 }

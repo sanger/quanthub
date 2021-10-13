@@ -2,7 +2,6 @@ import Upload from '@/components/Upload'
 import { mount, localVue } from './testHelper'
 
 describe('Upload.vue', () => {
-
   let cmp, upload
 
   beforeEach(() => {
@@ -13,5 +12,4 @@ describe('Upload.vue', () => {
   it('has a message', () => {
     expect(upload.msg).toEqual('Upload')
   })
-
 })

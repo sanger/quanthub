@@ -1,13 +1,17 @@
 import * as WellFactories from '@/QuantTypeWellFactories'
 
 describe('QuantTypeWellFactories.js', () => {
-
   let options, well
 
   describe('PlateReader Factory', () => {
-
     beforeEach(() => {
-      options = {row: 'A', column: '1', content: 'Sample X1', id: 'A1', concentration: 1.345}
+      options = {
+        row: 'A',
+        column: '1',
+        content: 'Sample X1',
+        id: 'A1',
+        concentration: 1.345,
+      }
       well = new WellFactories.PlateReader(options)
     })
 
@@ -36,12 +40,25 @@ describe('QuantTypeWellFactories.js', () => {
     })
 
     it('produces some json', () => {
-      expect(well.json).toEqual({row: 'A', column: '1', type: 'Sample', id: 'A1', concentration: 1.345})
+      expect(well.json).toEqual({
+        row: 'A',
+        column: '1',
+        type: 'Sample',
+        id: 'A1',
+        concentration: 1.345,
+      })
     })
 
     describe('Empty well', () => {
       beforeEach(() => {
-        well = new WellFactories.PlateReader({row: '', column: '', content: '', type: '', id: '', concentration: ''})
+        well = new WellFactories.PlateReader({
+          row: '',
+          column: '',
+          content: '',
+          type: '',
+          id: '',
+          concentration: '',
+        })
       })
 
       it('must have a type', () => {
@@ -56,15 +73,21 @@ describe('QuantTypeWellFactories.js', () => {
         expect(well.concentration).toEqual('')
       })
     })
-
   })
 
   describe('QPCRWellFactory - 10ul', () => {
-
     describe('sample', () => {
-
       beforeEach(() => {
-        options = {include: 'TRUE', color: '128', pos: 'N1', name: 'A1', cp: '24.21', concentration: '5.61E+01', standard: '0.0002', status: 'red'}
+        options = {
+          include: 'TRUE',
+          color: '128',
+          pos: 'N1',
+          name: 'A1',
+          cp: '24.21',
+          concentration: '5.61E+01',
+          standard: '0.0002',
+          status: 'red',
+        }
         well = new WellFactories.QPCR10ul(options)
       })
 
@@ -121,14 +144,28 @@ describe('QuantTypeWellFactories.js', () => {
       })
 
       it('produces some json', () => {
-        expect(well.json).toEqual({row: 'N', column: '1', type: 'Sample', id: 'A1', concentration: 56.1})
+        expect(well.json).toEqual({
+          row: 'N',
+          column: '1',
+          type: 'Sample',
+          id: 'A1',
+          concentration: 56.1,
+        })
       })
-
     })
 
     describe('bugfix - column is 10 or above', () => {
       beforeEach(() => {
-        options = {include: 'TRUE', color: '128', pos: 'D23', name: 'B6', cp: '24.21', concentration: '5.61E+01', standard: '0.0002', status: 'red'}
+        options = {
+          include: 'TRUE',
+          color: '128',
+          pos: 'D23',
+          name: 'B6',
+          cp: '24.21',
+          concentration: '5.61E+01',
+          standard: '0.0002',
+          status: 'red',
+        }
         well = new WellFactories.QPCR10ul(options)
       })
 
@@ -139,13 +176,20 @@ describe('QuantTypeWellFactories.js', () => {
       it('will have the correct column', () => {
         expect(well.column).toEqual('23')
       })
-
     })
 
     describe('standard', () => {
-
       beforeEach(() => {
-        options = {include: 'TRUE', color: '128', pos: 'N1', name: '0.0002pM', cp: '24.21', concentration: '2.66E-04', standard: '0.0002', status: 'red'}
+        options = {
+          include: 'TRUE',
+          color: '128',
+          pos: 'N1',
+          name: '0.0002pM',
+          cp: '24.21',
+          concentration: '2.66E-04',
+          standard: '0.0002',
+          status: 'red',
+        }
         well = new WellFactories.QPCR10ul(options)
       })
 
@@ -168,19 +212,24 @@ describe('QuantTypeWellFactories.js', () => {
       it('will have a concentration', () => {
         expect(well.concentration).toEqual(0.000266)
       })
-
     })
-
   })
 
   describe('QPCRWellFactory - 5ul', () => {
-
     let wellMap
 
     describe('sample', () => {
       beforeEach(() => {
-        wellMap = {A1: 'Z234', A2: 'X456'}
-        options = {well: 'A1', copyNumber: '48909000', replicateError: '2445450', totalError: '10082849', shapeZScore: '0.695615245', comments: 'This well was disregarded due to abnormally low background fluorescence.'}
+        wellMap = { A1: 'Z234', A2: 'X456' }
+        options = {
+          well: 'A1',
+          copyNumber: '48909000',
+          replicateError: '2445450',
+          totalError: '10082849',
+          shapeZScore: '0.695615245',
+          comments:
+            'This well was disregarded due to abnormally low background fluorescence.',
+        }
         well = new WellFactories.QPCR5ul(options, wellMap)
       })
 
@@ -225,22 +274,31 @@ describe('QuantTypeWellFactories.js', () => {
       })
 
       it('produces some json', () => {
-        expect(well.json).toEqual({row: 'A', column: '1', type: 'Sample', id: 'Z234', concentration: 48909000})
+        expect(well.json).toEqual({
+          row: 'A',
+          column: '1',
+          type: 'Sample',
+          id: 'Z234',
+          concentration: 48909000,
+        })
       })
-
     })
 
     describe('Empty', () => {
       beforeEach(() => {
-        well = new WellFactories.QPCR5ul({well: 'Z1', copyNumber: '123', replicateError: '456', totalError: '789', shapeZScore: '0.00', comments: ''})
+        well = new WellFactories.QPCR5ul({
+          well: 'Z1',
+          copyNumber: '123',
+          replicateError: '456',
+          totalError: '789',
+          shapeZScore: '0.00',
+          comments: '',
+        })
       })
 
       it('must have a type', () => {
         expect(well.type).toEqual('Empty')
       })
-
     })
-
   })
-
 })

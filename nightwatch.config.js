@@ -1,6 +1,5 @@
 module.exports = {
   test_settings: {
-
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
@@ -8,17 +7,17 @@ module.exports = {
         webStorageEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-           args: ["--headless"]
-        }
-      }
+          args: ['--headless'],
+        },
+      },
     },
 
     firefox: {
       desiredCapabilities: {
         browserName: 'firefox',
         javascriptEnabled: true,
-        acceptSslCerts: true
-      }
-    }
-  }
+        acceptSslCerts: true,
+      },
+    },
+  },
 }

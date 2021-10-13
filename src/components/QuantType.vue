@@ -1,5 +1,4 @@
 <script>
-
 import { evaluate } from 'mathjs'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
@@ -12,7 +11,7 @@ import quantTypes from '@/config/quantTypes'
 export default {
   name: 'QuantType',
   props: ['quantType'],
-  data () {
+  data() {
     return {
       key: 'quantType',
       name: 'Quant Type',
@@ -22,55 +21,59 @@ export default {
         from: 16,
         rowDelimiter: ['\r\n', '\r', '\n'],
         columns: ['column1', 'column2', 'column3', 'column4', 'column5'],
-        relax_column_count: true
+        relax_column_count: true,
       },
-      metadata: {rows: 1, idColumn: 'id', delimiter: ','},
-      conversion: {factors: {}, expression: 1, decimalPlaces: 3},
+      metadata: { rows: 1, idColumn: 'id', delimiter: ',' },
+      conversion: { factors: {}, expression: 1, decimalPlaces: 3 },
       qcResults: {
         key: 'Concentration',
         units: 'ng',
-        assay: {type: 'Quant Type', version: 'v1.0'},
-        outlier: {type: 'standard', threshold: '1'},
-        fields: ['a','b','c','d','e','f']
-      }
+        assay: { type: 'Quant Type', version: 'v1.0' },
+        outlier: { type: 'standard', threshold: '1' },
+        fields: ['a', 'b', 'c', 'd', 'e', 'f'],
+      },
     }
   },
-  components: {
-  },
+  components: {},
   // Take the conversion expression and then inject the value for each
   // factor into the placeholder.
   // This produces a string expression which can be evaluated.
   // This conversion factor is then used to create the adjusted average
   // in replicates. It is evaluated upfront which increases efficiency.
   computed: {
-    conversionFactor () {
+    conversionFactor() {
       let factors = this.conversion.factors
-      return evaluate(Object.keys(factors).reduce((factor, key) => {
-        return factor.replace(key, factors[key])
-      }, this.conversion.expression))
+      return evaluate(
+        Object.keys(factors).reduce((factor, key) => {
+          return factor.replace(key, factors[key])
+        }, this.conversion.expression)
+      )
     },
     // A constant which relates to a factory for conversion of well
     // to the correct format.
-    WellFactory () {
+    WellFactory() {
       return WellFactories[this.wellType]
     },
-    replicateOptions () {
-      return { conversionFactor: this.conversionFactor, decimalPlaces: this.conversion.decimalPlaces, ...this.qcResults }
-
-    }
+    replicateOptions() {
+      return {
+        conversionFactor: this.conversionFactor,
+        decimalPlaces: this.conversion.decimalPlaces,
+        ...this.qcResults,
+      }
+    },
   },
   methods: {
-    replaceData () {
+    replaceData() {
       Object.assign(this.$data, quantTypes[this.quantType])
     },
-    hasMetadata () {
-      return (Object.keys(this.$data.metadata).length > 0)
-    }
+    hasMetadata() {
+      return Object.keys(this.$data.metadata).length > 0
+    },
   },
-  created () {
+  created() {
     if (this.quantType !== undefined) {
       this.replaceData()
     }
-  }
+  },
 }
 </script>

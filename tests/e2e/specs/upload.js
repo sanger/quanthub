@@ -14,16 +14,14 @@ var filePath = function (file) {
   return process.cwd() + '/tests/data/' + file
 }
 
-var file = function (path, delimiter='\n') {
+var file = function (path, delimiter = '\n') {
   return fs.readFileSync(path, 'ascii').split(delimiter)
 }
 
 var id = ''
 
 module.exports = {
-
-  'upload page': browser => {
-
+  'upload page': (browser) => {
     browser
       .url(url('upload'))
       .waitForElementVisible('#app', 5000)
@@ -32,37 +30,38 @@ module.exports = {
       .end()
   },
 
-  'Plate Reader - upload file and check plate is stored in local storage and then clear it': browser => {
+  'Plate Reader - upload file and check plate is stored in local storage and then clear it':
+    (browser) => {
+      id = getId(file(filePath('plate_reader.csv')))
 
-    id = getId(file(filePath('plate_reader.csv')))
+      browser
+        .url(url('upload'))
+        .waitForElementVisible('#app', 5000)
+        .setValue('input[type="file"]', filePath('plate_reader.csv'))
+        .click('select[id="quant-type"] option[value="libraryPlateReader"]')
+        .click('button[name=submit]')
+        .pause(1000)
+        .assert.containsText('.row > h3', id)
+        .assert.elementCount('td', 384)
+        .url(url('plates'))
+        .assert.elementCount('.plate', 1)
+        .assert.containsText('.plate', id)
+        .useXpath()
+        .click("//a[text()='" + id + "']")
+        .useCss()
+        .pause(1000)
+        .assert.containsText('.row > h3', id)
+        .url(url('plates'))
+        .assert.elementCount('.plate', 1)
+        .click('button[id="clear_local_storage_button"')
+        .pause(1000)
+        .assert.elementCount('.plate', 0)
+        .end()
+    },
 
+  'qPCR - 10ul - upload file and check plate is stored in local storage': (
     browser
-      .url(url('upload'))
-      .waitForElementVisible('#app', 5000)
-      .setValue('input[type="file"]', filePath('plate_reader.csv'))
-      .click('select[id="quant-type"] option[value="libraryPlateReader"]')
-      .click('button[name=submit]')
-      .pause(1000)
-      .assert.containsText('.row > h3', id)
-      .assert.elementCount('td', 384)
-      .url(url('plates'))
-      .assert.elementCount('.plate', 1)
-      .assert.containsText('.plate', id)
-      .useXpath()
-      .click("//a[text()='" + id + "']")
-      .useCss()
-      .pause(1000)
-      .assert.containsText('.row > h3', id)
-      .url(url('plates'))
-      .assert.elementCount('.plate', 1)
-      .click('button[id="clear_local_storage_button"')
-      .pause(1000)
-      .assert.elementCount('.plate', 0)
-      .end()
-  },
-
-  'qPCR - 10ul - upload file and check plate is stored in local storage': browser => {
-
+  ) => {
     id = getId(file(filePath('qPCR.txt')), 0, '  ')
 
     browser
@@ -85,14 +84,18 @@ module.exports = {
       .end()
   },
 
-  'qPCR - 5ul - upload file and check plate is stored in local storage': browser => {
-
+  'qPCR - 5ul - upload file and check plate is stored in local storage': (
+    browser
+  ) => {
     id = getId(file(filePath('qPCR.txt')), 0, '  ')
 
     browser
       .url(url('upload'))
       .waitForElementVisible('#app', 5000)
-      .setValue('input[type="file"]', filePath('DN123456_DN123456-QC_XYZ_results.csv'))
+      .setValue(
+        'input[type="file"]',
+        filePath('DN123456_DN123456-QC_XYZ_results.csv')
+      )
       .click('select[id="quant-type"] option[value="libraryQPCR5ul"]')
       .click('button[name=submit]')
       .pause(1000)
@@ -107,5 +110,5 @@ module.exports = {
       .pause(1000)
       .assert.containsText('.row > h3', 'DN123456')
       .end()
-  }
+  },
 }

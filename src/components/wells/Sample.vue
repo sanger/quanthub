@@ -1,5 +1,9 @@
 <template>
-  <td class="well sample" v-bind:class="{inactive: !active, inspect: outlier}"  v-on:click="setActive">
+  <td
+    class="well sample"
+    v-bind:class="{ inactive: !active, inspect: outlier }"
+    v-on:click="setActive"
+  >
     {{ id }}
     <br />
     {{ concentration }}
@@ -7,7 +11,6 @@
 </template>
 
 <script>
-
 import { NullReplicate } from '@/Replicates'
 import WellProperties from '@/mixins/WellProperties'
 
@@ -16,83 +19,82 @@ export default {
   mixins: [WellProperties],
   props: {
     row: {
-      default: ''
+      default: '',
     },
     column: {
-      default: ''
+      default: '',
     },
     concentration: {
-      default: ''
+      default: '',
     },
     type: {
-      default: 'Sample'
+      default: 'Sample',
     },
     id: {
-      default: ''
+      default: '',
     },
     plateBarcode: {
-      default: ''
+      default: '',
     },
     extraFields: {
-      default () {
+      default() {
         return {
-          'id': 'id',
-          'active': 'active'
+          id: 'id',
+          active: 'active',
         }
-      }
-    }
+      },
+    },
   },
-  data () {
+  data() {
     return {
       msg: 'Sample Well',
       store: this.$Store,
       replicate: NullReplicate,
       active: true,
-      outlier: false
+      outlier: false,
     }
   },
   computed: {
-    location () {
+    location() {
       return this.row.concat(this.column)
-    }
+    },
   },
   methods: {
-    setActive () {
+    setActive() {
       this.active = !this.active
       this.replicate.outliers()
-    }
+    },
   },
-  mounted () {
+  mounted() {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
       this.store.sequencescapePlates.addReplicate(this)
       this.replicate.outliers()
     }
-  }
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import 'src/assets/stylesheets/colors.scss';
 
-  @import "src/assets/stylesheets/colors.scss";
-
-  .table {
-    td, th {
-      min-width: 75px;
-      min-height: 50px;
-      font-size: 12px;
-    }
+.table {
+  td,
+  th {
+    min-width: 75px;
+    min-height: 50px;
+    font-size: 12px;
   }
+}
 
-  .inactive {
-    background-color: gray;
-    color: white;
-  }
+.inactive {
+  background-color: gray;
+  color: white;
+}
 
-  .inspect {
-    color: white;
-    background-color: $well-red;
-  }
-
+.inspect {
+  color: white;
+  background-color: $well-red;
+}
 </style>
