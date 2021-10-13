@@ -91,4 +91,30 @@ class QPCR5ul {
   }
 }
 
-export { PlateReader, QPCR10ul, QPCR5ul }
+class TubeTapeStation {
+  constructor(cell = {}) {
+    this.well = cell.wellId
+    this.id = cell.sampleDescription
+    this.concentration = cell.regionMolarity
+  }
+  get row() {
+    return this.well.match(/[a-zA-Z]+/g).toString()
+  }
+  get column() {
+    return this.well.match(/[0-9]+/g).toString()
+  }
+  get type() {
+    return 'Sample'
+  }
+  get json() {
+    return {
+      row: this.row,
+      column: this.column,
+      type: this.type,
+      id: this.id,
+      concentration: this.concentration,
+    }
+  }
+}
+
+export { PlateReader, QPCR10ul, QPCR5ul, TubeTapeStation }

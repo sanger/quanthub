@@ -301,4 +301,54 @@ describe('QuantTypeWellFactories.js', () => {
       })
     })
   })
+
+  describe('TubeTapeStation Factory', () => {
+    beforeEach(() => {
+      // I'm including all the columns from the file here, although in practice
+      // we only rely on an handful.
+      options = {
+        fileName: 'DNXXXXXX - 2019-11-05 - 16.32.56.D5001',
+        wellId: 'A1',
+        sampleDescription: 'NT12345',
+        from: '100',
+        to: '1000',
+        averageSize: '456',
+        conc: '128',
+        regionMolarity: '502',
+        percentageOfTotal: '1.345',
+        regionComment: '',
+      }
+      well = new WellFactories.TubeTapeStation(options)
+    })
+
+    it('must have a row', () => {
+      expect(well.row).toEqual('A')
+    })
+
+    it('must have a column', () => {
+      expect(well.column).toEqual('1')
+    })
+
+    it('must have an id', () => {
+      expect(well.id).toEqual(options.sampleDescription)
+    })
+
+    it('must have a concentration', () => {
+      expect(well.concentration).toEqual(options.regionMolarity)
+    })
+
+    it('must have a type', () => {
+      expect(well.type).toEqual('Sample')
+    })
+
+    it('produces some json', () => {
+      expect(well.json).toEqual({
+        row: 'A',
+        column: '1',
+        type: 'Sample',
+        id: 'NT12345',
+        concentration: '502',
+      })
+    })
+  })
 })
