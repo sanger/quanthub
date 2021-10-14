@@ -86,12 +86,8 @@ export default {
               parse(this.raw, {
                 ...this.quantType.parse,
                 skip_empty_lines: true,
-              }).map(
-                (cell) =>
-                  new this.quantType.WellFactory(
-                    cell,
-                    WellMap[this.quantType.key]
-                  ).json
+              }).map((cell) =>
+                this.quantType.WellFactory(cell, WellMap[this.quantType.key])
               )
             )
           } catch (error) {
