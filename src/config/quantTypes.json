@@ -1220,5 +1220,33 @@
         "assay_version"
       ]
     }
+  },
+  "heronTubeTapeStation": {
+    "key": "heronTubeTapeStation",
+    "name": "Heron TapeStation Tubes",
+    "wellType": "PlateReader",
+    "fileNameSpecs": {
+      "pattern": ""
+    },
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": []
+    },
+    "metadata": {},
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Heron TapeStation Tubes",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
+      },
+      "fields": []
+    }
   }
 }
