@@ -26,13 +26,15 @@ describe('Grid.vue', () => {
   describe('creation', () => {
     let rows, keys
 
+    const options = {
+      numberOfColumns: 10,
+      numberOfRows: 20,
+      quantType: 'someQuantType',
+      lotNumber: 'LOT1234567',
+    }
+
     beforeEach(() => {
-      grid = Grid({
-        numberOfColumns: 10,
-        numberOfRows: 20,
-        quantType: 'someQuantType',
-        lotNumber: 'LOT1234567',
-      })
+      grid = Grid(options)
     })
 
     it('sets the quantType property', () => {
@@ -87,9 +89,10 @@ describe('Grid.vue', () => {
 
   describe('updating', () => {
     let wells
+    const options = { numberOfColumns: 5, numberOfRows: 10 }
 
     beforeEach(() => {
-      grid = Grid({ numberOfColumns: 5, numberOfRows: 10 })
+      grid = Grid(options)
       wells = [
         {
           row: 'A',

@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import Plate from '@/components/Plate'
 import Grid from '@/Grid'
 import plateReader from '../data/plate_reader'
