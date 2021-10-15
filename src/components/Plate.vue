@@ -70,11 +70,10 @@
 // The QuantType is assigned from local storage and a QuantType component is created.
 
 import Row from '@/components/Row'
-import Grid from '@/components/Grid'
+import Grid from '@/Grid'
 import QuantType from '@/QuantType'
 import Alert from '@/components/Alert'
 import { ReplicateList as Replicates } from '@/Replicates'
-import Vue from 'vue'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
 
@@ -161,12 +160,9 @@ export default {
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
     toGrid() {
-      let Cmp = Vue.extend(Grid)
-      let grid = new Cmp({
-        propsData: {
-          quantType: this.grid.quantType,
-          lotNumber: this.lotNumber,
-        },
+      let grid = Grid({
+        quantType: this.grid.quantType,
+        lotNumber: this.lotNumber,
       })
       for (let child of this.$children) {
         // because we now have a b-alert it also exists as a child

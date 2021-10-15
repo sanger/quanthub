@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import Grid from '@/components/Grid'
+//import Grid from '@/components/Grid'
+import Grid from '@/Grid'
 
 describe('Grid.vue', () => {
   let cmp, grid
 
   beforeEach(() => {
-    cmp = Vue.extend(Grid)
-    grid = new cmp({})
+    grid = Grid()
   })
 
   it('has a message', () => {
@@ -29,13 +29,11 @@ describe('Grid.vue', () => {
     let rows, keys
 
     beforeEach(() => {
-      grid = new cmp({
-        propsData: {
-          numberOfColumns: 10,
-          numberOfRows: 20,
-          quantType: 'someQuantType',
-          lotNumber: 'LOT1234567',
-        },
+      grid = Grid({
+        numberOfColumns: 10,
+        numberOfRows: 20,
+        quantType: 'someQuantType',
+        lotNumber: 'LOT1234567',
       })
     })
 
@@ -93,7 +91,7 @@ describe('Grid.vue', () => {
     let wells
 
     beforeEach(() => {
-      grid = new cmp({ propsData: { numberOfColumns: 5, numberOfRows: 10 } })
+      grid = Grid({ numberOfColumns: 5, numberOfRows: 10 })
       wells = [
         {
           row: 'A',

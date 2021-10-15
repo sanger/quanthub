@@ -1,11 +1,8 @@
 <script>
 import parse from 'csv-parse/lib/sync'
-import Grid from '@/components/Grid'
+import Grid from '@/Grid'
 import QuantType from '@/QuantType'
 import WellMap from '@/config/wellMap'
-import Vue from 'vue'
-
-const GridCmp = Vue.extend(Grid)
 
 // Handles the upload of the file - can be csv or text
 // A quant type is passed in which determines the upload options e.g. file type.
@@ -80,11 +77,9 @@ export default {
           // TODO: move it out into a constant.
           try {
             this.raw = reader.result.replace(/\r\r\n/g, '\n')
-            this.grid = new GridCmp({
-              propsData: {
-                quantType: this.quant,
-                ...(this.quantType.grid || {}),
-              },
+            this.grid = Grid({
+              quantType: this.quant,
+              ...(this.quantType.grid || {}),
             })
             // skip_empty_lines needs to be true otherwise an error is thrown
             this.grid.addAll(
