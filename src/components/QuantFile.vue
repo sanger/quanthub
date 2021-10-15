@@ -5,6 +5,9 @@ import QuantType from '@/components/QuantType'
 import WellMap from '@/config/wellMap'
 import Vue from 'vue'
 
+const GridCmp = Vue.extend(Grid)
+const QuantTypeCmp = Vue.extend(QuantType)
+
 // Handles the upload of the file - can be csv or text
 // A quant type is passed in which determines the upload options e.g. file type.
 export default {
@@ -22,9 +25,7 @@ export default {
     return {
       msg: 'QuantFile',
       raw: '',
-      GridCmp: Vue.extend(Grid),
       grid: {},
-      QuantTypeCmp: Vue.extend(QuantType),
       quantType: {},
     }
   },
@@ -40,13 +41,12 @@ export default {
       if (!this.quantType.hasMetadata()) return
       let rows = this.raw.split(/\r?\n/).slice(0, this.quantType.metadata.rows)
       let metadata = {}
-      let split
 
       for (let row of rows) {
         for (let cell of row.split(this.quantType.metadata.delimiter)) {
           if (cell !== '') {
-            split = cell.split(': ')
-            metadata[split[0]] = split[1]
+            const [key, value] = cell.split(': ')
+            metadata[key] = value
           }
         }
       }
@@ -66,6 +66,9 @@ export default {
     },
   },
   methods: {
+    buildWell(cell) {
+      return this.quantType.WellFactory(cell, WellMap[this.quantType.key])
+    },
     upload(file) {
       // A new file reader object gets the raw data.
       // The file is parsed by the quant type options and
@@ -78,7 +81,7 @@ export default {
           // TODO: move it out into a constant.
           try {
             this.raw = reader.result.replace(/\r\r\n/g, '\n')
-            this.grid = new this.GridCmp({
+            this.grid = new GridCmp({
               propsData: {
                 quantType: this.quant,
                 ...(this.quantType.grid || {}),
@@ -89,9 +92,7 @@ export default {
               parse(this.raw, {
                 ...this.quantType.parse,
                 skip_empty_lines: true,
-              }).map((cell) =>
-                this.quantType.WellFactory(cell, WellMap[this.quantType.key])
-              )
+              }).map(this.buildWell)
             )
           } catch (error) {
             reject(`Failed to parse: ${error.message}`)
@@ -103,7 +104,7 @@ export default {
     },
   },
   created() {
-    this.quantType = new this.QuantTypeCmp({
+    this.quantType = new QuantTypeCmp({
       propsData: { quantType: this.quant },
     })
   },
