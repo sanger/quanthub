@@ -1,9 +1,3 @@
-/**
- * I'm currently in the place of refactoring QuantType into a plain JS object
- * This is where it will be housed. Currently this is simply wrapping the vue
- * component so that we can refactor gradually.
- */
-
 import { evaluate } from 'mathjs'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
