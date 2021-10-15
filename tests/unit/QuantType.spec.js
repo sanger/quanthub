@@ -2,7 +2,7 @@ import buildQuantType from '@/quantType'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
 
-describe('QuantType.vue', () => {
+describe('quantType', () => {
   let quantType
 
   describe('default', () => {
@@ -65,10 +65,25 @@ describe('QuantType.vue', () => {
       expect(quantType.hasMetadata()).toBeTruthy()
     })
 
-    it('must have the correct options', () => {
-      expect(quantType.$data).toEqual({
-        ...quantTypes['libraryPlateReader'],
-        grid: {},
+    it('has the correct metadata', () => {
+      expect(quantType.metadata).toEqual(
+        quantTypes['libraryPlateReader'].metadata
+      )
+    })
+
+    it('has the correct parse', () => {
+      expect(quantType.parse).toEqual(quantTypes['libraryPlateReader'].parse)
+    })
+
+    it('has the correct grid', () => {
+      expect(quantType.grid).toEqual({})
+    })
+
+    it('has correct replicateOptions', () => {
+      expect(quantType.replicateOptions).toEqual({
+        conversionFactor: 2.6442425828970335,
+        decimalPlaces: 3,
+        ...quantTypes['libraryPlateReader'].qcResults,
       })
     })
 
@@ -140,10 +155,23 @@ describe('QuantType.vue', () => {
       quantType = buildQuantType('libraryQPCR10ul')
     })
 
-    it('must have the correct options', () => {
-      expect(quantType.$data).toEqual({
-        ...quantTypes['libraryQPCR10ul'],
-        grid: {},
+    it('has the correct metadata', () => {
+      expect(quantType.metadata).toEqual(quantTypes['libraryQPCR10ul'].metadata)
+    })
+
+    it('has the correct parse', () => {
+      expect(quantType.parse).toEqual(quantTypes['libraryQPCR10ul'].parse)
+    })
+
+    it('has the correct grid', () => {
+      expect(quantType.grid).toEqual({})
+    })
+
+    it('has correct replicateOptions', () => {
+      expect(quantType.replicateOptions).toEqual({
+        conversionFactor: 0.3944153577661431,
+        decimalPlaces: 3,
+        ...quantTypes['libraryQPCR10ul'].qcResults,
       })
     })
 
@@ -161,10 +189,23 @@ describe('QuantType.vue', () => {
       quantType = buildQuantType('libraryQPCR5ul')
     })
 
-    it('must have the correct options', () => {
-      expect(quantType.$data).toEqual({
-        ...quantTypes['libraryQPCR5ul'],
-        grid: {},
+    it('has the correct metadata', () => {
+      expect(quantType.metadata).toEqual(quantTypes['libraryQPCR5ul'].metadata)
+    })
+
+    it('has the correct parse', () => {
+      expect(quantType.parse).toEqual(quantTypes['libraryQPCR5ul'].parse)
+    })
+
+    it('has the correct grid', () => {
+      expect(quantType.grid).toEqual({})
+    })
+
+    it('has correct replicateOptions', () => {
+      expect(quantType.replicateOptions).toEqual({
+        conversionFactor: 2.965653e-7,
+        decimalPlaces: 3,
+        ...quantTypes['libraryQPCR5ul'].qcResults,
       })
     })
 
@@ -177,7 +218,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the correct well type', () => {
-      expect(quantType.$data.wellType).toEqual('QPCR5ul')
+      expect(quantType.wellType).toEqual('QPCR5ul')
     })
 
     it('has the correct assay version', () => {
@@ -190,10 +231,27 @@ describe('QuantType.vue', () => {
       quantType = buildQuantType('libraryQPCR5ulQuadruplicate')
     })
 
-    it('must have the correct options', () => {
-      expect(quantType.$data).toEqual({
-        ...quantTypes['libraryQPCR5ulQuadruplicate'],
-        grid: {},
+    it('has the correct metadata', () => {
+      expect(quantType.metadata).toEqual(
+        quantTypes['libraryQPCR5ulQuadruplicate'].metadata
+      )
+    })
+
+    it('has the correct parse', () => {
+      expect(quantType.parse).toEqual(
+        quantTypes['libraryQPCR5ulQuadruplicate'].parse
+      )
+    })
+
+    it('has the correct grid', () => {
+      expect(quantType.grid).toEqual({})
+    })
+
+    it('has correct replicateOptions', () => {
+      expect(quantType.replicateOptions).toEqual({
+        conversionFactor: 1.6605e-7,
+        decimalPlaces: 3,
+        ...quantTypes['libraryQPCR5ulQuadruplicate'].qcResults,
       })
     })
 
@@ -206,7 +264,7 @@ describe('QuantType.vue', () => {
     })
 
     it('has the correct well type', () => {
-      expect(quantType.$data.wellType).toEqual('QPCR5ul')
+      expect(quantType.wellType).toEqual('QPCR5ul')
     })
 
     it('has the correct assay version', () => {
@@ -340,10 +398,23 @@ describe('QuantType.vue', () => {
       quantType = buildQuantType('duplexSeqALLib')
     })
 
-    it('must have the correct options', () => {
-      expect(quantType.$data).toEqual({
-        ...quantTypes['duplexSeqALLib'],
-        grid: {},
+    it('has the correct metadata', () => {
+      expect(quantType.metadata).toEqual(quantTypes['duplexSeqALLib'].metadata)
+    })
+
+    it('has the correct parse', () => {
+      expect(quantType.parse).toEqual(quantTypes['duplexSeqALLib'].parse)
+    })
+
+    it('has the correct grid', () => {
+      expect(quantType.grid).toEqual({})
+    })
+
+    it('has correct replicateOptions', () => {
+      expect(quantType.replicateOptions).toEqual({
+        conversionFactor: 0.5916230366492147,
+        decimalPlaces: 20,
+        ...quantTypes['duplexSeqALLib'].qcResults,
       })
     })
 
