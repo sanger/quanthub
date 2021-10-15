@@ -1,9 +1,7 @@
-import Vue from 'vue'
-//import Grid from '@/components/Grid'
 import Grid from '@/Grid'
 
 describe('Grid.vue', () => {
-  let cmp, grid
+  let grid
 
   beforeEach(() => {
     grid = Grid()
