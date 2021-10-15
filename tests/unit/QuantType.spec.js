@@ -3,8 +3,14 @@ import QuantType from '@/components/QuantType'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
 
+const component = Vue.extend(QuantType)
+
+const buildQuantType = (quantType, data = {}) => {
+  return new component({ data, propsData: { quantType } })
+}
+
 describe('QuantType.vue', () => {
-  let cmp, quantType, options
+  let quantType, options
 
   describe('default', () => {
     beforeEach(() => {
@@ -20,8 +26,7 @@ describe('QuantType.vue', () => {
           decimalPlaces: 5,
         },
       }
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ data: options })
+      quantType = buildQuantType('', options)
     })
 
     it('provides a conversion factor', () => {
@@ -60,8 +65,7 @@ describe('QuantType.vue', () => {
 
   describe('libraryPlateReader', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'libraryPlateReader' } })
+      quantType = buildQuantType('libraryPlateReader')
     })
 
     it('has some metadata', () => {
@@ -98,8 +102,7 @@ describe('QuantType.vue', () => {
 
   describe('stockPlateReader', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'stockPlateReader' } })
+      quantType = buildQuantType('stockPlateReader')
     })
 
     it('must have the correct units', () => {
@@ -113,8 +116,7 @@ describe('QuantType.vue', () => {
 
   describe('Normalisation', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'normalisation' } })
+      quantType = buildQuantType('normalisation')
     })
 
     it('must have the correct units', () => {
@@ -128,10 +130,7 @@ describe('QuantType.vue', () => {
 
   describe('Working Dilution - Plate Reader', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({
-        propsData: { quantType: 'workingDilutionPlateReader' },
-      })
+      quantType = buildQuantType('workingDilutionPlateReader')
     })
 
     it('must have the correct units', () => {
@@ -145,8 +144,7 @@ describe('QuantType.vue', () => {
 
   describe('libraryQPCR - 10ul', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'libraryQPCR10ul' } })
+      quantType = buildQuantType('libraryQPCR10ul')
     })
 
     it('must have the correct options', () => {
@@ -167,8 +165,7 @@ describe('QuantType.vue', () => {
 
   describe('libraryQPCR - 5ul', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'libraryQPCR5ul' } })
+      quantType = buildQuantType('libraryQPCR5ul')
     })
 
     it('must have the correct options', () => {
@@ -197,10 +194,7 @@ describe('QuantType.vue', () => {
 
   describe('libraryQPCR - 5ul - Quadruplicate', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({
-        propsData: { quantType: 'libraryQPCR5ulQuadruplicate' },
-      })
+      quantType = buildQuantType('libraryQPCR5ulQuadruplicate')
     })
 
     it('must have the correct options', () => {
@@ -248,8 +242,7 @@ describe('QuantType.vue', () => {
 
   describe('RNA - Stock', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'RNAStock' } })
+      quantType = buildQuantType('RNAStock')
     })
 
     it('must have the correct units', () => {
@@ -263,8 +256,7 @@ describe('QuantType.vue', () => {
 
   describe('RNA - Library', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'RNALibrary' } })
+      quantType = buildQuantType('RNALibrary')
     })
 
     it('must have the correct units', () => {
@@ -278,8 +270,7 @@ describe('QuantType.vue', () => {
 
   describe('LCMB', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'LCMB' } })
+      quantType = buildQuantType('LCMB')
     })
 
     it('must have the correct units', () => {
@@ -293,8 +284,7 @@ describe('QuantType.vue', () => {
 
   describe('ISC', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'ISC' } })
+      quantType = buildQuantType('ISC')
     })
 
     it('must have the correct units', () => {
@@ -308,10 +298,7 @@ describe('QuantType.vue', () => {
 
   describe('chromiumSingleCellcDNA', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({
-        propsData: { quantType: 'chromiumSingleCellcDNA' },
-      })
+      quantType = buildQuantType('chromiumSingleCellcDNA')
     })
 
     it('must have the correct units', () => {
@@ -325,10 +312,7 @@ describe('QuantType.vue', () => {
 
   describe('chromiumSingleCellLibrary', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({
-        propsData: { quantType: 'chromiumSingleCellLibrary' },
-      })
+      quantType = buildQuantType('chromiumSingleCellLibrary')
     })
 
     it('must have the correct units', () => {
@@ -342,8 +326,7 @@ describe('QuantType.vue', () => {
 
   describe('Duplex Seq Library', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'duplexSeqLibrary' } })
+      quantType = buildQuantType('duplexSeqLibrary')
     })
 
     it('must have the correct units', () => {
@@ -361,8 +344,7 @@ describe('QuantType.vue', () => {
 
   describe('Duplex Seq AL Lib', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'duplexSeqALLib' } })
+      quantType = buildQuantType('duplexSeqALLib')
     })
 
     it('must have the correct options', () => {
@@ -387,8 +369,7 @@ describe('QuantType.vue', () => {
 
   describe('Heron 96 cDNA', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'heron96cdna' } })
+      quantType = buildQuantType('heron96cdna')
     })
 
     it('must have the correct units', () => {
@@ -402,8 +383,7 @@ describe('QuantType.vue', () => {
 
   describe('Heron 384 cDNA', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({ propsData: { quantType: 'heron384cdna' } })
+      quantType = buildQuantType('heron384cdna')
     })
 
     it('must have the correct units', () => {
@@ -416,26 +396,20 @@ describe('QuantType.vue', () => {
   })
 
   describe('v2 - new plasticware - greiner assay plate', () => {
-    beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-    })
-
     it('ISC - V2 - greiner assay plate', () => {
-      const quantType = new cmp({ propsData: { quantType: 'ISCV2' } })
+      const quantType = buildQuantType('ISCV2')
       expect(quantType.name).toEqual('ISC - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('LCMB - V2 - greiner assay plate', () => {
-      const quantType = new cmp({ propsData: { quantType: 'LCMBV2' } })
+      const quantType = buildQuantType('LCMBV2')
       expect(quantType.name).toEqual('LCMB - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('libraryPlateReader - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'libraryPlateReaderV2' },
-      })
+      const quantType = buildQuantType('libraryPlateReaderV2')
       expect(quantType.name).toEqual(
         'Library - Plate Reader - greiner assay plate'
       )
@@ -443,9 +417,7 @@ describe('QuantType.vue', () => {
     })
 
     it('stockPlateReader - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'stockPlateReaderV2' },
-      })
+      const quantType = buildQuantType('stockPlateReaderV2')
       expect(quantType.name).toEqual(
         'Stock - Plate Reader - greiner assay plate'
       )
@@ -453,9 +425,7 @@ describe('QuantType.vue', () => {
     })
 
     it('workingDilutionPlateReader - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'workingDilutionPlateReaderV2' },
-      })
+      const quantType = buildQuantType('workingDilutionPlateReaderV2')
       expect(quantType.name).toEqual(
         'Working Dilution - Plate Reader - greiner assay plate'
       )
@@ -463,29 +433,25 @@ describe('QuantType.vue', () => {
     })
 
     it('normalisation - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'normalisationV2' },
-      })
+      const quantType = buildQuantType('normalisationV2')
       expect(quantType.name).toEqual('Normalisation - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('RNAStock - V2 - greiner assay plate', () => {
-      const quantType = new cmp({ propsData: { quantType: 'RNAStockV2' } })
+      const quantType = buildQuantType('RNAStockV2')
       expect(quantType.name).toEqual('RNA - Stock - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('RNALibrary - V2 - greiner assay plate', () => {
-      const quantType = new cmp({ propsData: { quantType: 'RNALibraryV2' } })
+      const quantType = buildQuantType('RNALibraryV2')
       expect(quantType.name).toEqual('RNA - Library - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('chromiumSingleCellcDNA - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'chromiumSingleCellcDNAV2' },
-      })
+      const quantType = buildQuantType('chromiumSingleCellcDNAV2')
       expect(quantType.name).toEqual(
         'Chromium Single Cell - cDNA - greiner assay plate'
       )
@@ -493,9 +459,7 @@ describe('QuantType.vue', () => {
     })
 
     it('chromiumSingleCellLibrary - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'chromiumSingleCellLibraryV2' },
-      })
+      const quantType = buildQuantType('chromiumSingleCellLibraryV2')
       expect(quantType.name).toEqual(
         'Chromium Single Cell - Library - greiner assay plate'
       )
@@ -503,29 +467,25 @@ describe('QuantType.vue', () => {
     })
 
     it('duplexSeqALLib - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'duplexSeqALLibV2' },
-      })
+      const quantType = buildQuantType('duplexSeqALLibV2')
       expect(quantType.name).toEqual('Duplex Seq AL Lib - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('duplexSeqLibrary - V2 - greiner assay plate', () => {
-      const quantType = new cmp({
-        propsData: { quantType: 'duplexSeqLibraryV2' },
-      })
+      const quantType = buildQuantType('duplexSeqLibraryV2')
       expect(quantType.name).toEqual('Duplex Seq Library - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('heron96cdna - V2 - greiner assay plate', () => {
-      const quantType = new cmp({ propsData: { quantType: 'heron96cdnaV2' } })
+      const quantType = buildQuantType('heron96cdnaV2')
       expect(quantType.name).toEqual('Heron 96 cDNA - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
 
     it('heron384cdna - V2 - greiner assay plate', () => {
-      const quantType = new cmp({ propsData: { quantType: 'heron384cdnaV2' } })
+      const quantType = buildQuantType('heron384cdnaV2')
       expect(quantType.name).toEqual('Heron 384 cDNA - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
@@ -533,10 +493,7 @@ describe('QuantType.vue', () => {
 
   describe('heronTubeTapeStation', () => {
     beforeEach(() => {
-      cmp = Vue.extend(QuantType)
-      quantType = new cmp({
-        propsData: { quantType: 'heronTubeTapeStation' },
-      })
+      quantType = buildQuantType('heronTubeTapeStation')
     })
 
     it('must have the correct units', () => {
