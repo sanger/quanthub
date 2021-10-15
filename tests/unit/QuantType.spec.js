@@ -1,4 +1,4 @@
-import buildQuantType from '@/quantType'
+import buildQuantType from '@/QuantType'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
 
