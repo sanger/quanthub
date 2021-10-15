@@ -71,7 +71,7 @@
 
 import Row from '@/components/Row'
 import Grid from '@/components/Grid'
-import QuantType from '@/components/QuantType'
+import QuantType from '@/QuantType'
 import Alert from '@/components/Alert'
 import { ReplicateList as Replicates } from '@/Replicates'
 import Vue from 'vue'
@@ -147,17 +147,14 @@ export default {
   methods: {
     fetchData() {
       let json = localStorage.getItem(this.barcode)
-      let Cmp = Vue.extend(QuantType)
 
       if (json !== null) {
         let parsedJSON = JSON.parse(json)
         this.grid = parsedJSON
         this.lotNumber = parsedJSON.lotNumber
-        this.quantType = new Cmp({
-          propsData: { quantType: this.grid.quantType },
-        })
+        this.quantType = QuantType(this.grid.quantType)
       } else {
-        this.quantType = new Cmp()
+        this.quantType = QuantType()
       }
       this.replicates = new Replicates(this.quantType.replicateOptions)
     },

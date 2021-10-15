@@ -1,12 +1,11 @@
 <script>
 import parse from 'csv-parse/lib/sync'
 import Grid from '@/components/Grid'
-import QuantType from '@/components/QuantType'
+import QuantType from '@/QuantType'
 import WellMap from '@/config/wellMap'
 import Vue from 'vue'
 
 const GridCmp = Vue.extend(Grid)
-const QuantTypeCmp = Vue.extend(QuantType)
 
 // Handles the upload of the file - can be csv or text
 // A quant type is passed in which determines the upload options e.g. file type.
@@ -104,9 +103,7 @@ export default {
     },
   },
   created() {
-    this.quantType = new QuantTypeCmp({
-      propsData: { quantType: this.quant },
-    })
+    this.quantType = QuantType(this.quant)
   },
 }
 </script>

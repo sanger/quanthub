@@ -1,20 +1,13 @@
-import Vue from 'vue'
-import QuantType from '@/components/QuantType'
+import buildQuantType from '@/quantType'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
 
-const component = Vue.extend(QuantType)
-
-const buildQuantType = (quantType, data = {}) => {
-  return new component({ data, propsData: { quantType } })
-}
-
 describe('QuantType.vue', () => {
-  let quantType, options
+  let quantType
 
   describe('default', () => {
     beforeEach(() => {
-      options = {
+      const options = {
         wellType: 'PlateReader',
         conversion: {
           factors: {
