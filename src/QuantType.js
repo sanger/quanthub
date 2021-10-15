@@ -46,7 +46,7 @@ const quantType = (quantType, data = {}) => {
 
   return {
     ...config,
-    hasMetadata: () => Object.keys(config.metadata).length > 0,
+    hasMetadata: Object.keys(config.metadata).length > 0,
     conversionFactor,
     replicateOptions: {
       conversionFactor,

@@ -44,7 +44,7 @@ describe('quantType', () => {
     })
 
     it('should have metadata by default', () => {
-      expect(quantType.hasMetadata()).toBeTruthy()
+      expect(quantType.hasMetadata).toBeTruthy()
     })
 
     it('has the required fields for qc results', () => {
@@ -62,7 +62,7 @@ describe('quantType', () => {
     })
 
     it('has some metadata', () => {
-      expect(quantType.hasMetadata()).toBeTruthy()
+      expect(quantType.hasMetadata).toBeTruthy()
     })
 
     it('has the correct metadata', () => {
@@ -180,7 +180,7 @@ describe('quantType', () => {
     })
 
     it('has some metadata', () => {
-      expect(quantType.hasMetadata()).toBeTruthy()
+      expect(quantType.hasMetadata).toBeTruthy()
     })
   })
 
@@ -210,7 +210,7 @@ describe('quantType', () => {
     })
 
     it('has some metadata', () => {
-      expect(quantType.hasMetadata()).toBeFalsy()
+      expect(quantType.hasMetadata).toBeFalsy()
     })
 
     it('must have the correct units', () => {
@@ -256,7 +256,7 @@ describe('quantType', () => {
     })
 
     it('has some metadata', () => {
-      expect(quantType.hasMetadata()).toBeFalsy()
+      expect(quantType.hasMetadata).toBeFalsy()
     })
 
     it('must have the correct units', () => {
@@ -423,7 +423,7 @@ describe('quantType', () => {
     })
 
     it('has some metadata', () => {
-      expect(quantType.hasMetadata()).toBeTruthy()
+      expect(quantType.hasMetadata).toBeTruthy()
     })
 
     it('must have the number of decimal places specified in the config', () => {

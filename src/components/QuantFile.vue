@@ -37,7 +37,7 @@ export default {
     // for each row split it and extract each row of metadata into a JSON object.
     // only the id is used at this stage.
     metadata() {
-      if (!this.quantType.hasMetadata()) return
+      if (!this.quantType.hasMetadata) return
       let rows = this.raw.split(/\r?\n/).slice(0, this.quantType.metadata.rows)
       let metadata = {}
 
@@ -52,7 +52,7 @@ export default {
       return metadata
     },
     id() {
-      if (this.quantType.hasMetadata()) {
+      if (this.quantType.hasMetadata) {
         // handles barcodes of type ABC-QC and ABC_QC
         return this.metadata[this.quantType.metadata.idColumn].split(/[-,_]/)[0]
       } else {
