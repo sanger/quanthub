@@ -32,6 +32,7 @@ export default {
         outlier: { type: 'standard', threshold: '1' },
         fields: ['a', 'b', 'c', 'd', 'e', 'f'],
       },
+      grid: {},
     }
   },
   components: {},

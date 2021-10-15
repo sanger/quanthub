@@ -159,7 +159,8 @@ describe('QuantTypeWellFactories.js', () => {
     // I'm including all the columns from the file here, although in practice
     // we only rely on an handful.
     const options = {
-      fileName: 'DNXXXXXX - 2019-11-05 - 16.32.56.D5001',
+      fileName:
+        'DN000000  - 2021-08-25 - 10-54-08-D5000_compactRegionTable - DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
       wellId: 'A1',
       sampleDescription: 'NT12345',
       from: '100',

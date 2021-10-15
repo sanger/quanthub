@@ -69,7 +69,10 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes['libraryPlateReader'])
+      expect(quantType.$data).toEqual({
+        ...quantTypes['libraryPlateReader'],
+        grid: {},
+      })
     })
 
     it('has the correct outlier options', () => {
@@ -147,7 +150,10 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes['libraryQPCR10ul'])
+      expect(quantType.$data).toEqual({
+        ...quantTypes['libraryQPCR10ul'],
+        grid: {},
+      })
     })
 
     it('must have the correct units', () => {
@@ -166,7 +172,10 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes['libraryQPCR5ul'])
+      expect(quantType.$data).toEqual({
+        ...quantTypes['libraryQPCR5ul'],
+        grid: {},
+      })
     })
 
     it('has some metadata', () => {
@@ -195,7 +204,10 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes['libraryQPCR5ulQuadruplicate'])
+      expect(quantType.$data).toEqual({
+        ...quantTypes['libraryQPCR5ulQuadruplicate'],
+        grid: {},
+      })
     })
 
     it('has some metadata', () => {
@@ -354,7 +366,10 @@ describe('QuantType.vue', () => {
     })
 
     it('must have the correct options', () => {
-      expect(quantType.$data).toEqual(quantTypes['duplexSeqALLib'])
+      expect(quantType.$data).toEqual({
+        ...quantTypes['duplexSeqALLib'],
+        grid: {},
+      })
     })
 
     it('must have the correct units', () => {

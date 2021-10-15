@@ -79,7 +79,10 @@ export default {
           try {
             this.raw = reader.result.replace(/\r\r\n/g, '\n')
             this.grid = new this.GridCmp({
-              propsData: { quantType: this.quant },
+              propsData: {
+                quantType: this.quant,
+                ...(this.quantType.grid || {}),
+              },
             })
             // skip_empty_lines needs to be true otherwise an error is thrown
             this.grid.addAll(

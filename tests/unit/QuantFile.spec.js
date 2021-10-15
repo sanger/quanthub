@@ -76,6 +76,11 @@ describe('QuantFile.vue', () => {
           expect(json[row[0]][row[1]].column).toEqual(row[1])
         })
 
+        it('generates a plate of the expected size', () => {
+          expect(Object.keys(quantFile.grid.rows).length).toEqual(16)
+          expect(quantFile.grid.columns.length).toEqual(24)
+        })
+
         it('creates some metadata', () => {
           let metadata = quantFile.metadata
           expect(metadata.User).toEqual('SANGER')
@@ -348,6 +353,35 @@ describe('QuantFile.vue', () => {
         })
         expect(expectation).toBeTruthy()
       })
+    })
+  })
+
+  describe('custom plate sizes', () => {
+    beforeEach(async () => {
+      quantFile = new cmp({
+        propsData: {
+          quant: 'heronTubeTapeStation',
+          filename:
+            'DN000000  - 2021-08-25 - 10-54-08-D5000_compactRegionTable - DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
+        },
+      })
+      plate = fs.readFileSync(
+        './tests/data/DN000000  - 2021-08-25 - 10-54-08-D5000_compactRegionTable - DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
+        'ascii'
+      )
+      file = new File(
+        [plate],
+        'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
+        { type: 'text/plain' }
+      )
+      quantFile.upload(file)
+      await flushPromises()
+      await flushPromises()
+    })
+
+    it('generates a plate of the expected size', () => {
+      expect(quantFile.grid.numberOfRows).toEqual(8)
+      expect(quantFile.grid.numberOfColumns).toEqual(12)
     })
   })
 })
