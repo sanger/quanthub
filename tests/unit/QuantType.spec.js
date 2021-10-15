@@ -530,4 +530,26 @@ describe('QuantType.vue', () => {
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
   })
+
+  describe('heronTubeTapeStation', () => {
+    beforeEach(() => {
+      cmp = Vue.extend(QuantType)
+      quantType = new cmp({
+        propsData: { quantType: 'heronTubeTapeStation' },
+      })
+    })
+
+    it('must have the correct units', () => {
+      // nM is the same as nmol/l but consistent with other measures
+      expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('must have the correct key', () => {
+      expect(quantType.qcResults.key).toEqual('molarity')
+    })
+
+    it('must have the correct conversion factor', () => {
+      expect(quantType.conversionFactor).toEqual(1.62)
+    })
+  })
 })

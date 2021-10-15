@@ -1259,6 +1259,13 @@
       },
       "fields": []
     },
+    "conversion": {
+      "factors": {
+        "multiplier": 1.62
+      },
+      "expression": "(multiplier)",
+      "decimalPlaces": 3
+    },
     "grid": {
       "numberOfRows": 8,
       "numberOfColumns": 12
