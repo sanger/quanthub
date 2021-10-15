@@ -31,13 +31,24 @@ const defaults = {
   grid: {},
 }
 
-const calculateConversionFactor = ({ factors, expression }) => {
-  return evaluate(
-    Object.keys(factors).reduce((factor, key) => {
-      return factor.replace(key, factors[key])
-    }, expression)
+/**
+ * Given an expression eg. "(factorA*factorB*factorC)"
+ * and factors { factorA: 2, factorB: 3, factorC: 10 }
+ * generates and evaluates the calculation (2*3*10)
+ * and returns the result (eg. 60)
+ *
+ * @param {Object} obj - Usually the value of conversion in quantTypes.json.
+ * @param {Object} obj.factors - Key value pair of factors and their values
+ * @param {string} obj.expression - The expression to be evaluated.
+ * @return {number} The result of the evaluated expression
+ */
+const calculateConversionFactor = ({ factors, expression }) =>
+  evaluate(
+    Object.entries(factors).reduce(
+      (calculation, [factor, value]) => calculation.replace(factor, value),
+      expression
+    )
   )
-}
 
 const quantType = (quantType, data = {}) => {
   const config = { ...defaults, ...(quantTypes[quantType] || {}), ...data }
