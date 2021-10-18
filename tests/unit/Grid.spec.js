@@ -1,12 +1,10 @@
-import Vue from 'vue'
-import Grid from '@/components/Grid'
+import Grid from '@/Grid'
 
 describe('Grid.vue', () => {
-  let cmp, grid
+  let grid
 
   beforeEach(() => {
-    cmp = Vue.extend(Grid)
-    grid = new cmp({})
+    grid = Grid()
   })
 
   it('has a message', () => {
@@ -28,15 +26,15 @@ describe('Grid.vue', () => {
   describe('creation', () => {
     let rows, keys
 
+    const options = {
+      numberOfColumns: 10,
+      numberOfRows: 20,
+      quantType: 'someQuantType',
+      lotNumber: 'LOT1234567',
+    }
+
     beforeEach(() => {
-      grid = new cmp({
-        propsData: {
-          numberOfColumns: 10,
-          numberOfRows: 20,
-          quantType: 'someQuantType',
-          lotNumber: 'LOT1234567',
-        },
-      })
+      grid = Grid(options)
     })
 
     it('sets the quantType property', () => {
@@ -91,9 +89,10 @@ describe('Grid.vue', () => {
 
   describe('updating', () => {
     let wells
+    const options = { numberOfColumns: 5, numberOfRows: 10 }
 
     beforeEach(() => {
-      grid = new cmp({ propsData: { numberOfColumns: 5, numberOfRows: 10 } })
+      grid = Grid(options)
       wells = [
         {
           row: 'A',

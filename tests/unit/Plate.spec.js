@@ -1,6 +1,5 @@
-import Vue from 'vue'
 import Plate from '@/components/Plate'
-import Grid from '@/components/Grid'
+import Grid from '@/Grid'
 import plateReader from '../data/plate_reader'
 import Store from '@/Store'
 import axios from 'axios'
@@ -17,9 +16,8 @@ describe('Plate.vue', () => {
   beforeEach(() => {
     $Store = Store
     barcode = 'DN1234567'
-    grid = new (Vue.extend(Grid))({
-      propsData: { quantType: 'myNewQuantType' },
-    })
+    grid = Grid({ quantType: 'myNewQuantType' })
+
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(barcode, JSON.stringify(grid.json))
     cmp = mount(Plate, {
