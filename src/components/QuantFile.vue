@@ -58,8 +58,7 @@ export default {
         return this.barcodeFromFileName
       } else {
         // Fall back to getting the id directly from the filename
-        // handles barcodes of type ABC-QC and ABC_QC
-        return this.filename.split('_')[1].split('-')[0]
+        return this.parsedFilename
       }
     },
     barcodeFromFileName() {
@@ -79,6 +78,10 @@ export default {
       )
 
       return barcode + this.barcodeSuffix
+    },
+    parsedFilename() {
+      // handles barcodes of type ABC-QC and ABC_QC
+      return this.filename.split('_')[1].split('-')[0]
     },
   },
   methods: {
