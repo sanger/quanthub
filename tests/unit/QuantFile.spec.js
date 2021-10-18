@@ -356,13 +356,13 @@ describe('QuantFile.vue', () => {
     })
   })
 
-  describe('custom plate sizes', () => {
+  describe('heron tape station tubes', () => {
     beforeEach(async () => {
       quantFile = new cmp({
         propsData: {
           quant: 'heronTubeTapeStation',
           filename:
-            'DN000000  - 2021-08-25 - 10-54-08-D5000_compactRegionTable - DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
+            'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
         },
       })
       plate = fs.readFileSync(
@@ -371,17 +371,32 @@ describe('QuantFile.vue', () => {
       )
       file = new File(
         [plate],
-        'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
+        'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
         { type: 'text/plain' }
       )
-      quantFile.upload(file)
-      await flushPromises()
-      await flushPromises()
     })
 
-    it('generates a plate of the expected size', () => {
-      expect(quantFile.grid.numberOfRows).toEqual(8)
-      expect(quantFile.grid.numberOfColumns).toEqual(12)
+    it('will have a filename', () => {
+      expect(quantFile.filename).toEqual(
+        'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv'
+      )
+    })
+
+    it('will have a barcode from file name', () => {
+      expect(quantFile.barcodeFromFileName).toMatch(/210825-105408-[0-9a-f]{6}/)
+    })
+
+    describe('successful', () => {
+      beforeEach(async () => {
+        quantFile.upload(file)
+        await flushPromises()
+        await flushPromises()
+      })
+
+      it('generates a plate of the expected size', () => {
+        expect(quantFile.grid.numberOfRows).toEqual(8)
+        expect(quantFile.grid.numberOfColumns).toEqual(12)
+      })
     })
   })
 })
