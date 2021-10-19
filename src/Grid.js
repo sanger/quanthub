@@ -8,19 +8,21 @@
  * The only stipulation is that it needs a row and column - advantage is that it could support any type of object.
  */
 
+const rowName = (index) => String.fromCharCode(64 + index)
+
 const buildRows = (numberOfRows, columns) => {
   let rows = {}
   for (let i = 1; i <= numberOfRows; i++) {
-    let rowId = String.fromCharCode(64 + i)
+    let rowId = rowName(i)
     rows[rowId] = buildCells(rowId, columns)
   }
   return rows
 }
 
-const buildCells = (rowId, columns) => {
-  let cells = {}
-  for (let column of columns) {
-    cells[column] = { row: rowId, column: String(column), type: 'Empty' }
+const buildCells = (row, columns) => {
+  const cells = {}
+  for (const column of columns) {
+    cells[column] = { row, column, type: 'Empty' }
   }
   return cells
 }
@@ -34,13 +36,13 @@ const grid = (
   } = {},
   cells = []
 ) => {
-  const columns = Array.from(Array(numberOfColumns), (e, i) => String(i + 1))
+  const columns = Array.from(Array(numberOfColumns), (_v, i) => String(i + 1))
   const rows = buildRows(numberOfRows, columns)
   const add = (cell) => {
     rows[cell.row][cell.column] = cell
   }
   const addAll = (cells) => {
-    for (let cell of cells) {
+    for (const cell of cells) {
       add(cell)
     }
   }
