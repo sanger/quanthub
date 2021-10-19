@@ -43,7 +43,7 @@ describe('QuantFile.vue', () => {
           let row = rows[quantFile.quantType.parse.from].split(
             quantFile.quantType.parse.delimiter
           )
-          let well = quantFile.grid.rows[row[0]][row[1]]
+          let well = quantFile.json.rows[row[0]][row[1]]
 
           expect(well.row).toBeDefined()
           expect(well.column).toBeDefined()
@@ -54,7 +54,7 @@ describe('QuantFile.vue', () => {
           row = rows[rows.length - (quantFile.quantType.parse.from - 1)].split(
             quantFile.quantType.parse.delimiter
           )
-          well = quantFile.grid.rows[row[0]][row[1]]
+          well = quantFile.json.rows[row[0]][row[1]]
           expect(well.row).toBeDefined()
           expect(well.type).toBeDefined()
           expect(well.id).toBeDefined()
@@ -77,8 +77,8 @@ describe('QuantFile.vue', () => {
         })
 
         it('generates a plate of the expected size', () => {
-          expect(Object.keys(quantFile.grid.rows).length).toEqual(16)
-          expect(quantFile.grid.columns.length).toEqual(24)
+          expect(Object.keys(quantFile.json.rows).length).toEqual(16)
+          expect(quantFile.json.columns.length).toEqual(24)
         })
 
         it('creates some metadata', () => {
@@ -290,8 +290,8 @@ describe('QuantFile.vue', () => {
       })
 
       it('should have some empty cells', () => {
-        expect(quantFile.grid.rows['B']['1'].type === 'Empty').toBeTruthy()
-        expect(quantFile.grid.rows['P']['23'].type === 'Empty').toBeTruthy()
+        expect(quantFile.json.rows['B']['1'].type === 'Empty').toBeTruthy()
+        expect(quantFile.json.rows['P']['23'].type === 'Empty').toBeTruthy()
       })
     })
   })
@@ -348,7 +348,7 @@ describe('QuantFile.vue', () => {
       })
 
       it('should fill all of the cells correctly', () => {
-        let expectation = Object.values(quantFile.grid.rows).every((row) => {
+        let expectation = Object.values(quantFile.json.rows).every((row) => {
           return Object.values(row).every((well) => well.type === 'Sample')
         })
         expect(expectation).toBeTruthy()
@@ -380,8 +380,10 @@ describe('QuantFile.vue', () => {
     })
 
     it('generates a plate of the expected size', () => {
-      expect(quantFile.grid.numberOfRows).toEqual(8)
-      expect(quantFile.grid.numberOfColumns).toEqual(12)
+      expect(Object.keys(quantFile.json.rows)).toHaveLength(8)
+      Object.values(quantFile.json.rows).forEach((row) => {
+        expect(Object.keys(row)).toHaveLength(12)
+      })
     })
   })
 })

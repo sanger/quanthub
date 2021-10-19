@@ -47,13 +47,6 @@ const grid = ({
   }
 
   return {
-    columns,
-    rows,
-    quantType,
-    lotNumber,
-    numberOfColumns,
-    numberOfRows,
-    msg: 'Grid',
     addAll,
     add,
     find(row, column) {
