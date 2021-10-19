@@ -92,15 +92,18 @@ export default {
       // \r\r\n is a non standard windows line ending which causes all sorts of problems.
       return content.replace(/\r\r\n/g, '\n')
     },
-    fileNameError() {
+    validateFileName() {
       if (
         this.quantType.hasFileNameSpecs &&
         this.barcodeFromFileName === null
       ) {
-        return this.quantType.fileNameSpecs.errorDescription
+        return {
+          valid: false,
+          message: this.quantType.fileNameSpecs.errorDescription,
+        }
       }
 
-      return ''
+      return { valid: true }
     },
     upload(file) {
       // A new file reader object gets the raw data.
@@ -108,9 +111,9 @@ export default {
       // a factory is used to ensure standardisation of the data
       // for when it is added to the grid.
       return new Promise((resolve, reject) => {
-        const fileNameError = this.fileNameError()
-        if (fileNameError.length > 0) {
-          reject(fileNameError)
+        const { valid, message } = this.validateFileName()
+        if (!valid) {
+          reject(message)
           return
         }
         const reader = new FileReader()
