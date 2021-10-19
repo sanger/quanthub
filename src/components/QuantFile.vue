@@ -4,6 +4,10 @@ import Grid from '@/Grid'
 import QuantType from '@/QuantType'
 import WellMap from '@/config/wellMap'
 
+// \r\r\n is a non standard windows line ending which causes all sorts of problems.
+// It appears to arise when the exchange server modifies attached files
+const corruptLineEndRegExp = /\r\r\n/g
+
 // Handles the upload of the file - can be csv or text
 // A quant type is passed in which determines the upload options e.g. file type.
 export default {
@@ -21,15 +25,12 @@ export default {
     return {
       msg: 'QuantFile',
       raw: '',
-      grid: {},
+      json: {},
       quantType: {},
     }
   },
   components: {},
   computed: {
-    json() {
-      return this.grid.json
-    },
     // takes the raw file and extracts the rows where the metadata is.
     // for each row split it and extract each row of metadata into a JSON object.
     // only the id is used at this stage.
@@ -65,6 +66,13 @@ export default {
     buildWell(cell) {
       return this.quantType.WellFactory(cell, WellMap[this.quantType.key])
     },
+    parseRaw() {
+      // skip_empty_lines needs to be true otherwise an error is thrown
+      return parse(this.raw, {
+        ...this.quantType.parse,
+        skip_empty_lines: true,
+      }).map(this.buildWell)
+    },
     upload(file) {
       // A new file reader object gets the raw data.
       // The file is parsed by the quant type options and
@@ -73,21 +81,17 @@ export default {
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.onload = () => {
-          // \r\r\n is a non standard windows line ending which causes all sorts of problems.
-          // TODO: move it out into a constant.
           try {
-            this.raw = reader.result.replace(/\r\r\n/g, '\n')
-            this.grid = Grid({
-              quantType: this.quant,
-              ...(this.quantType.grid || {}),
-            })
-            // skip_empty_lines needs to be true otherwise an error is thrown
-            this.grid.addAll(
-              parse(this.raw, {
-                ...this.quantType.parse,
-                skip_empty_lines: true,
-              }).map(this.buildWell)
+            this.raw = reader.result.replace(corruptLineEndRegExp, '\n')
+
+            const { json } = Grid(
+              {
+                quantType: this.quant,
+                ...(this.quantType.grid || {}),
+              },
+              this.parseRaw()
             )
+            this.json = json
           } catch (error) {
             reject(`Failed to parse: ${error.message}`)
           }

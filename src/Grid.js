@@ -1,8 +1,4 @@
 /**
- * I'm currently in the place of refactoring Grid into a plain JS object
- * This is where it will be housed. Currently this is simply wrapping the vue
- * component so that we can refactor gradually.
- *
  * A Grid is a method of getting the wells into the correct place.
  * The Grid is created based on the number of columns and number of rows
  * Each column is assigned a number and each row is assigned a letter
@@ -29,12 +25,15 @@ const buildCells = (rowId, columns) => {
   return cells
 }
 
-const grid = ({
-  quantType = 'libraryPlateReader',
-  lotNumber = '',
-  numberOfColumns = 24,
-  numberOfRows = 16,
-} = {}) => {
+const grid = (
+  {
+    quantType = 'libraryPlateReader',
+    lotNumber = '',
+    numberOfColumns = 24,
+    numberOfRows = 16,
+  } = {},
+  cells = []
+) => {
   const columns = Array.from(Array(numberOfColumns), (e, i) => String(i + 1))
   const rows = buildRows(numberOfRows, columns)
   const add = (cell) => {
@@ -45,6 +44,7 @@ const grid = ({
       add(cell)
     }
   }
+  addAll(cells)
 
   return {
     addAll,
