@@ -15,7 +15,7 @@ describe('tapestation', () => {
     cy.contains('compactRegionTable').click()
     cy.get('.row > h3').contains('compactRegionTable')
 
-    cy.intercept('POST', '/REPLACE_VUE_APP_SEQUENCESCAPE_BASE_URL/qc_assays', {
+    cy.intercept('POST', '**/qc_assays', {
       fixture: 'tapestationResponse',
     }).as('postPayload')
 
