@@ -14,5 +14,15 @@ describe('tapestation', () => {
     cy.visit('#/plates')
     cy.contains('compactRegionTable').click()
     cy.get('.row > h3').contains('compactRegionTable')
+
+    cy.intercept('POST', '/REPLACE_VUE_APP_SEQUENCESCAPE_BASE_URL/qc_assays', {
+      fixture: 'tapestationResponse',
+    }).as('postPayload')
+
+    cy.contains('button', 'Export').click()
+
+    cy.fixture('tapestationRequest').then((data) => {
+      cy.wait('@postPayload').its('request.body').should('deep.equal', data)
+    })
   })
 })
