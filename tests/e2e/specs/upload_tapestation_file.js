@@ -16,7 +16,8 @@ describe('tapestation', () => {
     cy.get('.row > h3').contains('compactRegionTable')
 
     cy.intercept('POST', '**/qc_assays', {
-      fixture: 'tapestationResponse',
+      statusCode: 201,
+      body: {},
     }).as('postPayload')
 
     cy.contains('button', 'Export').click()
