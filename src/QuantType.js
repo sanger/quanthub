@@ -6,6 +6,7 @@ const defaults = {
   key: 'quantType',
   name: 'Quant Type',
   wellType: 'QuantType',
+  fileNameSpecs: {},
   parse: {
     delimiter: ',',
     from: 16,
@@ -52,6 +53,7 @@ const quantType = (quantType, data = {}) => {
   return {
     ...config,
     hasMetadata: Object.keys(config.metadata).length > 0,
+    hasFileNameSpecs: Object.keys(config.fileNameSpecs).length > 0,
     conversionFactor,
     replicateOptions: {
       conversionFactor,

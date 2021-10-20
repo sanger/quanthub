@@ -160,20 +160,19 @@ export default {
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
     toGrid() {
-      let grid = Grid({
-        quantType: this.grid.quantType,
-        lotNumber: this.lotNumber,
-      })
-      for (let child of this.$children) {
-        // because we now have a b-alert it also exists as a child
-        // we need to exclude it as it will throw an error as it
-        // does not respond to json
-        // TODO: should we be using _componentTag
-        if (child.$options._componentTag === 'row') {
-          grid.addAll(child.json)
-        }
-      }
-      return grid.json
+      // Some children are *not* rows, so we fall back to an empty
+      // array to support them. Still not entirely sold on this
+      // approach.
+      const cells = this.$children.flatMap((row) => row.json || [])
+      let { json } = Grid(
+        {
+          quantType: this.grid.quantType,
+          lotNumber: this.lotNumber,
+        },
+        cells
+      )
+
+      return json
     },
     // save the plate to local storage by recreating the grid
     save() {
