@@ -135,6 +135,28 @@ describe('Replicates.vue', () => {
           assay_version: replicate.options.assay.version,
         })
       })
+
+      it('can have a custom barcode source', () => {
+        replicate.options.barcodeSource = 'id'
+        replicate.options.fields = [
+          'barcode',
+          'key',
+          'value',
+          'units',
+          'cv',
+          'assay_type',
+          'assay_version',
+        ]
+        expect(replicate.json).toEqual({
+          barcode: replicate.id,
+          key: replicate.options.key,
+          value: replicate.adjustedAverage,
+          units: replicate.options.units,
+          cv: replicate.cv,
+          assay_type: replicate.options.assay.type,
+          assay_version: replicate.options.assay.version,
+        })
+      })
     })
 
     describe('active wells', () => {
@@ -262,6 +284,7 @@ describe('Replicates.vue', () => {
         fields: ['a', 'b', 'c'],
         cvThreshold: 5,
         decimalPlaces: 16,
+        barcodeSource: 'plateBarcode',
       }
       replicate1 = new Replicate([well1, well2, well3], options)
 

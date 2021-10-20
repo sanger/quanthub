@@ -27,6 +27,7 @@ class Replicate {
         cvThreshold: 1,
         assay: { type: 'Standard', version: '1' },
         outlier: { type: 'cv', threshold: 15 },
+        barcodeSource: 'plateBarcode',
         fields: [
           'barcode',
           'well_location',
@@ -95,6 +96,10 @@ class Replicate {
     )
   }
 
+  get barcode() {
+    return this.wells[0][this.options.barcodeSource]
+  }
+
   get stats() {
     return (({ average, standardDeviation, cv }) => ({
       average,
@@ -105,7 +110,7 @@ class Replicate {
 
   get json() {
     const standardFields = {
-      barcode: this.plateBarcode,
+      barcode: this.barcode,
       well_location: this.id,
       key: this.options.key,
       value: this.adjustedAverage,
