@@ -14,5 +14,16 @@ describe('tapestation', () => {
     cy.visit('#/plates')
     cy.contains('210825-105408-').click()
     cy.get('.row > h3').contains('210825-105408-')
+
+    cy.intercept('POST', '**/qc_assays', {
+      statusCode: 201,
+      body: {},
+    }).as('postPayload')
+
+    cy.contains('button', 'Export').click()
+
+    cy.fixture('tapestationRequest').then((data) => {
+      cy.wait('@postPayload').its('request.body').should('deep.equal', data)
+    })
   })
 })

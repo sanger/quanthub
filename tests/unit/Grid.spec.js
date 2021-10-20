@@ -7,20 +7,8 @@ describe('Grid.vue', () => {
     grid = Grid()
   })
 
-  it('has a message', () => {
-    expect(grid.msg).toEqual('Grid')
-  })
-
-  it('has a property for number of columns', () => {
-    expect(grid.numberOfColumns).toBeDefined()
-  })
-
-  it('has a property for number of rows', () => {
-    expect(grid.numberOfRows).toBeDefined()
-  })
-
   it('has a property for quantType', () => {
-    expect(grid.quantType).toBeDefined()
+    expect(grid.json.quantType).toBeDefined()
   })
 
   describe('creation', () => {
@@ -38,38 +26,38 @@ describe('Grid.vue', () => {
     })
 
     it('sets the quantType property', () => {
-      expect(grid.quantType).toEqual('someQuantType')
+      expect(grid.json.quantType).toEqual('someQuantType')
     })
 
     it('sets the lotNumber property', () => {
-      expect(grid.lotNumber).toEqual('LOT1234567')
+      expect(grid.json.lotNumber).toEqual('LOT1234567')
     })
 
     it('builds some columns', () => {
-      expect(grid.columns).toHaveLength(grid.numberOfColumns)
-      expect(grid.columns[0]).toEqual('1')
-      expect(grid.columns[grid.numberOfColumns - 1]).toEqual(
-        String(grid.numberOfColumns)
+      expect(grid.json.columns).toHaveLength(options.numberOfColumns)
+      expect(grid.json.columns[0]).toEqual('1')
+      expect(grid.json.columns[options.numberOfColumns - 1]).toEqual(
+        String(options.numberOfColumns)
       )
     })
 
     it('builds some rows', () => {
-      rows = grid.rows
+      rows = grid.json.rows
       keys = Object.keys(rows)
-      expect(keys).toHaveLength(grid.numberOfRows)
+      expect(keys).toHaveLength(options.numberOfRows)
       expect(keys[0]).toEqual('A')
-      expect(keys[grid.numberOfRows - 1]).toEqual('T')
+      expect(keys[options.numberOfRows - 1]).toEqual('T')
     })
 
     it('builds cells within each row', () => {
-      let row = grid.rows.A
-      expect(Object.keys(row)).toHaveLength(grid.numberOfColumns)
-      row = grid.rows.T
-      expect(Object.keys(row)).toHaveLength(grid.numberOfColumns)
+      let row = grid.json.rows.A
+      expect(Object.keys(row)).toHaveLength(options.numberOfColumns)
+      row = grid.json.rows.T
+      expect(Object.keys(row)).toHaveLength(options.numberOfColumns)
     })
 
     it('adds a row, column and type to each cell', () => {
-      let row = grid.rows.A
+      let row = grid.json.rows.A
       expect(row['1'].row).toEqual('A')
       expect(row['1'].column).toEqual('1')
       expect(row['1'].type).toEqual('Empty')
@@ -80,10 +68,10 @@ describe('Grid.vue', () => {
 
     it('produces some json', () => {
       let json = grid.json
-      expect(json.quantType).toEqual(grid.quantType)
-      expect(json.lotNumber).toEqual(grid.lotNumber)
-      expect(json.columns).toEqual(grid.columns)
-      expect(json.rows).toEqual(grid.rows)
+      expect(json.quantType).toEqual(grid.json.quantType)
+      expect(json.lotNumber).toEqual(grid.json.lotNumber)
+      expect(json.columns).toEqual(grid.json.columns)
+      expect(json.rows).toEqual(grid.json.rows)
     })
   })
 
