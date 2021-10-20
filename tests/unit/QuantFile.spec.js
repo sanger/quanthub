@@ -356,33 +356,101 @@ describe('QuantFile.vue', () => {
     })
   })
 
-  describe('custom plate sizes', () => {
+  describe('Heron TapeStation Tubes', () => {
     beforeEach(async () => {
-      quantFile = new cmp({
-        propsData: {
-          quant: 'heronTubeTapeStation',
-          filename:
-            'DN000000  - 2021-08-25 - 10-54-08-D5000_compactRegionTable - DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
-        },
-      })
       plate = fs.readFileSync(
         './tests/data/DN000000  - 2021-08-25 - 10-54-08-D5000_compactRegionTable - DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
         'ascii'
       )
-      file = new File(
-        [plate],
-        'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
-        { type: 'text/plain' }
-      )
-      quantFile.upload(file)
-      await flushPromises()
-      await flushPromises()
     })
 
-    it('generates a plate of the expected size', () => {
-      expect(Object.keys(quantFile.json.rows)).toHaveLength(8)
-      Object.values(quantFile.json.rows).forEach((row) => {
-        expect(Object.keys(row)).toHaveLength(12)
+    describe('with a valid filename', () => {
+      beforeEach(async () => {
+        quantFile = new cmp({
+          propsData: {
+            quant: 'heronTubeTapeStation',
+            filename:
+              'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
+          },
+        })
+      })
+
+      it('will have a filename', () => {
+        expect(quantFile.filename).toEqual(
+          'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv'
+        )
+      })
+
+      it('will have a barcode from file name', () => {
+        expect(quantFile.barcodeFromFileName).toMatch(
+          /210825-105408-[0-9a-f]{6}/
+        )
+      })
+
+      describe('on upload', () => {
+        beforeEach(async () => {
+          file = new File(
+            [plate],
+            'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
+            { type: 'text/plain' }
+          )
+
+          quantFile.upload(file)
+          await flushPromises()
+          await flushPromises()
+        })
+
+        it('generates an id equal to the barcode from file name', () => {
+          expect(quantFile.id).toEqual(quantFile.barcodeFromFileName)
+        })
+
+        it('generates a plate of the expected size', () => {
+          expect(Object.keys(quantFile.json.rows)).toHaveLength(8)
+          Object.values(quantFile.json.rows).forEach((row) => {
+            expect(Object.keys(row)).toHaveLength(12)
+          })
+        })
+      })
+    })
+
+    describe('with an invalid filename', () => {
+      beforeEach(async () => {
+        quantFile = new cmp({
+          propsData: {
+            quant: 'heronTubeTapeStation',
+            filename: 'DN000000 - no_date_here.csv',
+          },
+        })
+      })
+
+      it('will have a filename', () => {
+        expect(quantFile.filename).toEqual('DN000000 - no_date_here.csv')
+      })
+
+      it('will not generate a barcode from the filename', () => {
+        expect(quantFile.barcodeFromFileName).toBeNull()
+      })
+
+      describe('on upload', () => {
+        let uploadError
+
+        beforeEach(async () => {
+          file = new File([plate], 'DN000000 - no_date_here.csv', {
+            type: 'text/plain',
+          })
+
+          quantFile.upload(file).catch((error) => {
+            uploadError = error
+          })
+          await flushPromises()
+          await flushPromises()
+        })
+
+        it('rejects the file', () => {
+          expect(uploadError).toEqual(
+            'Filename must contain date/time, similar to "2021-02-26 - 13-45-00"'
+          )
+        })
       })
     })
   })

@@ -1226,7 +1226,9 @@
     "name": "Heron TapeStation Tubes",
     "wellType": "TubeTapeStation",
     "fileNameSpecs": {
-      "pattern": ""
+      "pattern": "20(?<yy>\\d{2})-(?<mm>\\d{2})-(?<dd>\\d{2})\\s*-\\s*(?<HH>\\d{2})-(?<MM>\\d{2})-(?<SS>\\d{2})",
+      "barcodeFormat": "{yy}{mm}{dd}-{HH}{MM}{SS}",
+      "errorDescription": "Filename must contain date/time, similar to \"2021-02-26 - 13-45-00\""
     },
     "parse": {
       "delimiter": ",",

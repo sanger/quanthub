@@ -27,6 +27,7 @@ export default {
       raw: '',
       json: {},
       quantType: {},
+      barcodeSuffix: '-' + Math.random().toString(16).substr(2, 6),
     }
   },
   components: {},
@@ -53,18 +54,51 @@ export default {
       if (this.quantType.hasMetadata) {
         // handles barcodes of type ABC-QC and ABC_QC
         return this.metadata[this.quantType.metadata.idColumn].split(/[-,_]/)[0]
+      } else if (this.quantType.hasFileNameSpecs) {
+        // Use the file name specs to establish a unique barcode
+        return this.barcodeFromFileName
       } else {
+        // Fall back to getting the id directly from the filename
         return this.parsedFilename
       }
     },
+    barcodeFromFileName() {
+      const fileNameMatch = this.filename.match(
+        this.quantType.fileNameSpecs.pattern
+      )
+      if (!fileNameMatch) {
+        return null
+      }
+
+      const groups = fileNameMatch.groups
+      const barcode = this.quantType.fileNameSpecs.barcodeFormat.replace(
+        /{(.+?)}/g,
+        (_, key) => groups[key]
+      )
+
+      return barcode + this.barcodeSuffix
+    },
     parsedFilename() {
-      // handles filenames containing barcodes of type ABC-QC and ABC_QC
+      // handles barcodes of type ABC-QC and ABC_QC
       return this.filename.split('_')[1].split('-')[0]
     },
   },
   methods: {
     buildWell(cell) {
       return this.quantType.WellFactory(cell, WellMap[this.quantType.key])
+    },
+    validateFileName() {
+      if (
+        this.quantType.hasFileNameSpecs &&
+        this.barcodeFromFileName === null
+      ) {
+        return {
+          valid: false,
+          message: this.quantType.fileNameSpecs.errorDescription,
+        }
+      }
+
+      return { valid: true }
     },
     parseRaw() {
       // skip_empty_lines needs to be true otherwise an error is thrown
@@ -79,6 +113,11 @@ export default {
       // a factory is used to ensure standardisation of the data
       // for when it is added to the grid.
       return new Promise((resolve, reject) => {
+        const { valid, message } = this.validateFileName()
+        if (!valid) {
+          reject(message)
+          return
+        }
         const reader = new FileReader()
         reader.onload = () => {
           try {
@@ -94,6 +133,7 @@ export default {
             this.json = json
           } catch (error) {
             reject(`Failed to parse: ${error.message}`)
+            return
           }
           resolve('File successfully uploaded')
         }
