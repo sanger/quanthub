@@ -109,7 +109,9 @@ export default {
     json() {
       return {
         lot_number: this.lotNumber,
-        qc_results: this.replicates.values.map((replicate) => replicate.json),
+        qc_results: this.replicates
+          .values()
+          .map((replicate) => replicate.json()),
       }
     },
     jsonApiData() {

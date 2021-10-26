@@ -108,7 +108,7 @@ describe('Plate.vue', () => {
     it('has some json', () => {
       let json = plate.json
       expect(json.lot_number).toEqual('LOT1234567')
-      expect(json.qc_results).toHaveLength(plate.replicates.size)
+      expect(json.qc_results).toHaveLength(plate.replicates.size())
     })
 
     it('returns some request options for export', () => {
