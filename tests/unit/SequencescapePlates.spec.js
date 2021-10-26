@@ -3,12 +3,11 @@ import { SequencescapePlateList as Plates } from '@/SequencescapePlates'
 import Plate from '@/components/Plate'
 
 describe('Plates.vue', () => {
-
   let plate, cmp, plates
 
   beforeEach(() => {
     cmp = Vue.extend(Plate)
-    plate = new cmp({propsData: {barcode:'DN1234567'}})
+    plate = new cmp({ propsData: { barcode: 'DN1234567' } })
     plates = new Plates()
     plates.add(plate)
   })
@@ -24,7 +23,5 @@ describe('Plates.vue', () => {
 
     plate = plates.find('')
     expect(plate.barcode).toEqual('empty')
-
   })
-
 })

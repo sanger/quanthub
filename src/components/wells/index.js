@@ -5,5 +5,9 @@ import Empty from './Empty'
 import Blank from './Blank'
 
 export default {
-  Control, Sample, Standard, Empty, Blank
+  Control,
+  Sample,
+  Standard,
+  Empty,
+  Blank,
 }

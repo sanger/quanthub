@@ -1,54 +1,53 @@
-
 const WellProperties = {
   props: {
     row: {
-      default: ''
+      default: '',
     },
     column: {
-      default: ''
+      default: '',
     },
     concentration: {
-      default: ''
+      default: '',
     },
     plateBarcode: {
-      default: ''
+      default: '',
     },
     type: {
-      default: 'Base'
+      default: 'Base',
     },
     defaultFields: {
       type: Object,
-      default () {
+      default() {
         return {
-          'row' : 'row',
-          'column': 'column',
-          'concentration': 'concentration',
-          'type': 'type'
+          row: 'row',
+          column: 'column',
+          concentration: 'concentration',
+          type: 'type',
         }
-      }
+      },
     },
     extraFields: {
       type: Object,
-      default () {
+      default() {
         return {}
-      }
-    }
+      },
+    },
   },
   computed: {
-    location () {
+    location() {
       return this.row.concat(this.column)
     },
-    fields () {
-      return {...this.defaultFields, ...this.extraFields}
+    fields() {
+      return { ...this.defaultFields, ...this.extraFields }
     },
-    json () {
+    json() {
       var self = this
       return Object.keys(this.fields).reduce((result, key) => {
         result[key] = self[this.fields[key]]
         return result
       }, {})
-    }
-  }
+    },
+  },
 }
 
 export default WellProperties

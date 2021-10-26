@@ -2,13 +2,12 @@ import Alert from '@/components/Alert'
 import { mount, localVue } from './testHelper'
 
 describe('Alert.vue', () => {
-
   let cmp, alert
 
   beforeEach(() => {
-    cmp = mount(Alert, { localVue } )
+    cmp = mount(Alert, { localVue })
     alert = cmp.vm
-    cmp.setData({ dismissSecs: 100})
+    cmp.setData({ dismissSecs: 100 })
   })
 
   it('shows an alert', () => {
@@ -17,5 +16,4 @@ describe('Alert.vue', () => {
     expect(alert.type).toEqual('danger')
     expect(alert.dismissCountDown).toEqual(100)
   })
-
 })

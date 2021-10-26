@@ -1,7 +1,6 @@
 import PrintJob from '@/api/PrintMyBarcode'
 
 describe('PrintMyBarcode.js', () => {
-
   let printJob, date, json
 
   beforeEach(() => {
@@ -15,11 +14,11 @@ describe('PrintMyBarcode.js', () => {
             main_label: {
               top_left: date.getDate(),
               bottom_left: 'DN1234567',
-              barcode: 'DN1234567'
-            }
-          }
-        ]
-      }
+              barcode: 'DN1234567',
+            },
+          },
+        ],
+      },
     }
     printJob = new PrintJob(json)
   })
@@ -34,7 +33,5 @@ describe('PrintMyBarcode.js', () => {
 
   it('has some labels', () => {
     expect(printJob.labels).toEqual(json.labels)
-    
   })
-
 })
