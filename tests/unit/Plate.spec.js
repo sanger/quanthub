@@ -1,6 +1,5 @@
-import Vue from 'vue'
 import Plate from '@/components/Plate'
-import Grid from '@/components/Grid'
+import Grid from '@/Grid'
 import plateReader from '../data/plate_reader'
 import Store from '@/Store'
 import axios from 'axios'
@@ -14,12 +13,15 @@ jest.mock('axios')
 describe('Plate.vue', () => {
   let cmp, grid, plate, $Store, barcode
 
+  const numberOfColumns = 24
+  const numberOfRows = 16
+  const quantType = 'myNewQuantType'
+
   beforeEach(() => {
     $Store = Store
     barcode = 'DN1234567'
-    grid = new (Vue.extend(Grid))({
-      propsData: { quantType: 'myNewQuantType' },
-    })
+    grid = Grid({ quantType, numberOfColumns, numberOfRows })
+
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(barcode, JSON.stringify(grid.json))
     cmp = mount(Plate, {
@@ -32,17 +34,17 @@ describe('Plate.vue', () => {
 
   it('will have have some columns', () => {
     let columns = plate.$el.querySelector('thead').querySelectorAll('th')
-    expect(columns).toHaveLength(grid.numberOfColumns + 1)
-    expect(columns[1].textContent).toEqual(grid.columns[0])
-    expect(columns[grid.numberOfColumns].textContent).toEqual(
-      grid.columns[grid.numberOfColumns - 1]
+    expect(columns).toHaveLength(numberOfColumns + 1)
+    expect(columns[1].textContent).toEqual(grid.json.columns[0])
+    expect(columns[numberOfColumns].textContent).toEqual(
+      grid.json.columns[numberOfColumns - 1]
     )
   })
 
   it('will have the correct number of rows', () => {
     expect(
       plate.$el.querySelector('table').querySelectorAll('.plate-row')
-    ).toHaveLength(grid.numberOfRows)
+    ).toHaveLength(numberOfRows)
   })
 
   it('can have a barcode', () => {
@@ -57,7 +59,7 @@ describe('Plate.vue', () => {
 
   it('will create a new grid for saving', () => {
     let newGrid = plate.toGrid()
-    expect(newGrid.quantType).toEqual(grid.quantType)
+    expect(newGrid.quantType).toEqual(quantType)
     expect(newGrid.columns).toEqual(grid.json.columns)
     expect(Object.keys(newGrid.rows)).toHaveLength(
       Object.keys(newGrid.rows).length
@@ -88,7 +90,7 @@ describe('Plate.vue', () => {
       cmp.find('#save').trigger('click')
       let json = JSON.parse(localStorage.getItem(barcode))
       expect(json.lotNumber).toEqual('LOT1234567')
-      expect(Object.keys(json.rows)).toHaveLength(grid.numberOfRows)
+      expect(Object.keys(json.rows)).toHaveLength(numberOfRows)
       expect(json.rows[well.row][well.column].active).toBeFalsy()
       expect(plate.$refs.alert.message).toEqual('Plate saved to local storage')
     })
@@ -106,7 +108,7 @@ describe('Plate.vue', () => {
     it('has some json', () => {
       let json = plate.json
       expect(json.lot_number).toEqual('LOT1234567')
-      expect(json.qc_results).toHaveLength(plate.replicates.size)
+      expect(json.qc_results).toHaveLength(plate.replicates.size())
     })
 
     it('returns some request options for export', () => {

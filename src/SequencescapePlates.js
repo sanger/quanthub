@@ -1,9 +1,9 @@
-import { ReplicateList as Replicates } from '@/Replicates'
+import { ReplicateList } from '@/Replicates'
 
 class Plate {
   constructor(barcode) {
     this.barcode = barcode
-    this.replicates = new Replicates()
+    this.replicates = ReplicateList()
   }
 }
 

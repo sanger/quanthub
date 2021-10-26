@@ -70,11 +70,10 @@
 // The QuantType is assigned from local storage and a QuantType component is created.
 
 import Row from '@/components/Row'
-import Grid from '@/components/Grid'
-import QuantType from '@/components/QuantType'
+import Grid from '@/Grid'
+import QuantType from '@/QuantType'
 import Alert from '@/components/Alert'
 import { ReplicateList as Replicates } from '@/Replicates'
-import Vue from 'vue'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
 
@@ -110,7 +109,9 @@ export default {
     json() {
       return {
         lot_number: this.lotNumber,
-        qc_results: this.replicates.values.map((replicate) => replicate.json),
+        qc_results: this.replicates
+          .values()
+          .map((replicate) => replicate.json()),
       }
     },
     jsonApiData() {
@@ -147,40 +148,33 @@ export default {
   methods: {
     fetchData() {
       let json = localStorage.getItem(this.barcode)
-      let Cmp = Vue.extend(QuantType)
 
       if (json !== null) {
         let parsedJSON = JSON.parse(json)
         this.grid = parsedJSON
         this.lotNumber = parsedJSON.lotNumber
-        this.quantType = new Cmp({
-          propsData: { quantType: this.grid.quantType },
-        })
+        this.quantType = QuantType(this.grid.quantType)
       } else {
-        this.quantType = new Cmp()
+        this.quantType = QuantType()
       }
       this.replicates = new Replicates(this.quantType.replicateOptions)
     },
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
     toGrid() {
-      let Cmp = Vue.extend(Grid)
-      let grid = new Cmp({
-        propsData: {
+      // Some children are *not* rows, so we fall back to an empty
+      // array to support them. Still not entirely sold on this
+      // approach.
+      const cells = this.$children.flatMap((row) => row.json || [])
+      let { json } = Grid(
+        {
           quantType: this.grid.quantType,
           lotNumber: this.lotNumber,
         },
-      })
-      for (let child of this.$children) {
-        // because we now have a b-alert it also exists as a child
-        // we need to exclude it as it will throw an error as it
-        // does not respond to json
-        // TODO: should we be using _componentTag
-        if (child.$options._componentTag === 'row') {
-          grid.addAll(child.json)
-        }
-      }
-      return grid.json
+        cells
+      )
+
+      return json
     },
     // save the plate to local storage by recreating the grid
     save() {
