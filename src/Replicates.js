@@ -43,9 +43,6 @@ const defaultOptions = {
 }
 
 /**
- * Return an object describing the rows makeup. Indexed by row name, with
- * values being objects indexed by column name.
- *
  * @param {Array} wells - The wells which are part of this replicate each of which is a Vue component
  * @param {Object} options - Options which will be related to the type of assay and contain certain statistical parameters
  * @return {Object} Replicate
