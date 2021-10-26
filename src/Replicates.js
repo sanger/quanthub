@@ -55,16 +55,14 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
    * An active well is one which the property active is true and the concentration is not n.a.
    * @return {Array} wells which are active
    **/
-  const activeWells = () => {
-    return wells.filter((well) => well.active && well.concentration !== 'n.a.')
-  }
+  const activeWells = () =>
+    wells.filter((well) => well.active && well.concentration !== 'n.a.')
 
   /**
    * @return {Array} of concentrations from the wells in the replicate parsed to a float.
    **/
-  const concentrations = () => {
-    return activeWells().map((well) => parseFloat(well.concentration))
-  }
+  const concentrations = () =>
+    activeWells().map((well) => parseFloat(well.concentration))
 
   /**
    * @return {Float} the average of the concentrations in the well set to n decimal places
@@ -78,16 +76,12 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
   /**
    * @return {String} the id of the first well. The id will be the value which binds the replicates e.g. Well location
    **/
-  const id = () => {
-    return wells[0].id
-  }
+  const id = () => wells[0].id
 
   /**
    * @return {String} the plate barcode of the first well
    **/
-  const plateBarcode = () => {
-    return wells[0].plateBarcode
-  }
+  const plateBarcode = () => wells[0].plateBarcode
 
   // make cvThreshold first class
   const cvThreshold = options.cvThreshold
@@ -130,9 +124,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
   /**
    * @return {Boolean} if the actual cv is above the threshold then this is a well that needs to be checked
    **/
-  const needsInspection = () => {
-    return cv() >= cvThreshold
-  }
+  const needsInspection = () => cv() >= cvThreshold
 
   /**
    * @return {Object} json which will be sent to the api to be saved as a qc result
@@ -157,9 +149,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
   /**
    * @return {String} either a plate or a tube barcode
    **/
-  const barcode = () => {
-    return wells[0][options.barcodeSource]
-  }
+  const barcode = () => wells[0][options.barcodeSource]
 
   /**
    * This will calculate whether each well is an outlier based on cv or mad calculations
@@ -228,28 +218,20 @@ const ReplicateList = (options) => {
   /**
    * @return {Array} of all of the keys
    **/
-  const keys = () => {
-    return items.keys()
-  }
+  const keys = () => items.keys()
 
   /**
    * @return {Array} of all of the replicates
    **/
-  const values = () => {
-    return Array.from(items.values())
-  }
+  const values = () => Array.from(items.values())
 
   /**
    * @param {String} key - The key of the replicate
    * @return {Array} of all of the keys
    **/
-  const find = (key) => {
-    return items.get(key)
-  }
+  const find = (key) => items.get(key)
 
-  const size = () => {
-    return items.size
-  }
+  const size = () => items.size
 
   /**
    * @param {Object} well - The well to add
