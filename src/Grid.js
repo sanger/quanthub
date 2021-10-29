@@ -36,7 +36,7 @@ const buildRows = (numberOfRows, columns) => {
 }
 
 /**
- * Return an object describing the cow makeup. Indexed by column name, with
+ * Return an object describing the row makeup. Indexed by column name, with
  * values being basic object describing the well.
  *
  * @param {String} row - The name of the row
