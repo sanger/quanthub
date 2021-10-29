@@ -1,8 +1,8 @@
-import { SequencescapePlateList } from '@/SequencescapePlates'
+import QcAssayList from '@/QcAssays'
 
 class Store {
   constructor() {
-    this.sequencescapePlates = new SequencescapePlateList()
+    this.qcAssayList = QcAssayList()
   }
 }
 

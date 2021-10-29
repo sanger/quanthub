@@ -179,7 +179,7 @@ describe('Wells', () => {
       })
 
       $Store = Store
-      $Store.sequencescapePlates.add(plate)
+      $Store.qcAssayList.add(plate)
 
       data = {
         row: 'B',
@@ -244,7 +244,7 @@ describe('Wells', () => {
     })
 
     it('will create a replicate', () => {
-      let replicate = well.store.sequencescapePlates
+      let replicate = well.store.qcAssayList
         .find(plateBarcode)
         .replicates.find(well.id)
       expect(replicate).toBeTruthy()
@@ -256,7 +256,7 @@ describe('Wells', () => {
 
       beforeEach(() => {
         $Store = new newStore()
-        $Store.sequencescapePlates.add(plate)
+        $Store.qcAssayList.add(plate)
         well1 = mount(Wells.Sample, {
           mocks: { $Store },
           propsData: {

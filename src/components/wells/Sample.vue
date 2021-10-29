@@ -68,7 +68,7 @@ export default {
   mounted() {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
-      this.store.sequencescapePlates.addReplicate(this)
+      this.store.qcAssayList.addReplicate(this)
       this.replicate.outliers()
     }
   },
