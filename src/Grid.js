@@ -47,7 +47,7 @@ const buildCells = (row, columns) => {
   return columns.reduce((result, column) => {
     return {
       ...result,
-      [column]: { row, column, type: 'Empty' }
+      [column]: { row, column, type: 'Empty' },
     }
   }, {})
 }
