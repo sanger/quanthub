@@ -1257,7 +1257,7 @@
       },
       "barcodeSource": "id",
       "outlier": {
-        "type": "mad",
+        "type": "cv",
         "threshold": 15
       },
       "fields": [
