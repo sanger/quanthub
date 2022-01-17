@@ -138,7 +138,7 @@ export default {
     try {
       this.fetchData()
       if (this.store !== undefined) {
-        this.store.sequencescapePlates.add(this)
+        this.store.qcAssayList.add(this)
       }
     } catch (error) {
       /*eslint no-console: ["error", { allow: ["error"] }] */

@@ -36,7 +36,7 @@ const buildRows = (numberOfRows, columns) => {
 }
 
 /**
- * Return an object describing the cow makeup. Indexed by column name, with
+ * Return an object describing the row makeup. Indexed by column name, with
  * values being basic object describing the well.
  *
  * @param {String} row - The name of the row
@@ -44,11 +44,12 @@ const buildRows = (numberOfRows, columns) => {
  * @return {Object} Js object describing the well
  */
 const buildCells = (row, columns) => {
-  const cells = {}
-  for (const column of columns) {
-    cells[column] = { row, column, type: 'Empty' }
-  }
-  return cells
+  return columns.reduce((result, column) => {
+    return {
+      ...result,
+      [column]: { row, column, type: 'Empty' },
+    }
+  }, {})
 }
 
 /**

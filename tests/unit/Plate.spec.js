@@ -54,7 +54,7 @@ describe('Plate.vue', () => {
   })
 
   it('will create a sequencescape plate in the store', () => {
-    expect($Store.sequencescapePlates.find(barcode).barcode).toEqual(barcode)
+    expect($Store.qcAssayList.find(barcode).barcode).toEqual(barcode)
   })
 
   it('will create a new grid for saving', () => {
