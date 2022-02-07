@@ -19,7 +19,7 @@ name: Automated Release and Build Project
 on:
   push:
     branches:
-      - devel
+      - develop
       - master
       - release/* # Mostly for testing purposes.
 
@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set release tag
         # Generate a release tag name in the format:
-        # devel/YYYY-MM-DD/HHMMSS
+        # develop/YYYY-MM-DD/HHMMSS
         # Writes this out to the environment file for use downstream
         run: echo "RELEASE_TAG=${GITHUB_REF#refs/heads/}/$(date +'%Y-%m-%d/%H%M%S')" >> $GITHUB_ENV
       - name: Create Release
