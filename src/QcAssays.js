@@ -37,17 +37,19 @@ const QcAssayList = () => {
   const add = (labware) => items.set(labware.barcode, labware)
 
   /**
-   * @param {Object} Well - The well to add
-   * It will add the well to the replicate for the current qc assay
-   **/
-  const addReplicate = (well) => find(well.plateBarcode).replicates.add(well)
-
-  /**
    * @param {String} key - The key of the qc assay
    * @return {Object} QcAssay - if the item with that key exists return it
    * otherwise return an empty qc assay
-   **/
+  **/
   const find = (key) => items.get(key) || QcAssay('empty')
+
+  /**
+   * @param {Object} Well - The well to add
+   * It will add the well to the replicate for the current qc assay
+   **/
+  const addReplicate = (well) => {
+    return find(well.plateBarcode).replicates.add(well)
+  }
 
   return {
     items,

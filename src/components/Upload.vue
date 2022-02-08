@@ -88,7 +88,6 @@ export default {
     },
   },
   components: {
-    QuantFile,
     Alert,
   },
   methods: {
