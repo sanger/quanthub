@@ -40,7 +40,7 @@ const QcAssayList = () => {
    * @param {String} key - The key of the qc assay
    * @return {Object} QcAssay - if the item with that key exists return it
    * otherwise return an empty qc assay
-  **/
+   **/
   const find = (key) => items.get(key) || QcAssay('empty')
 
   /**
