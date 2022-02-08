@@ -1260,6 +1260,10 @@
         "type": "cv",
         "threshold": 15
       },
+      "warningThreshold": {
+        "value": 5,
+        "message": "Warning: TapeStation may not be accurate at this low concentration"
+      },
       "fields": [
         "barcode",
         "key",

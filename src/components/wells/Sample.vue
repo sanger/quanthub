@@ -1,8 +1,10 @@
 <template>
   <td
     class="well sample"
-    v-bind:class="{ inactive: !active, inspect: outlier }"
+    v-bind:class="{ inactive: !active, inspect: outlier, warning: warning }"
     v-on:click="setActive"
+    @mouseover="onMouseOver"
+    @mouseleave="onMouseLeave"
   >
     {{ id }}
     <br />
@@ -52,6 +54,9 @@ export default {
       replicate: NullReplicate,
       active: true,
       outlier: false,
+      warning: false,
+      warningMessage: '',
+      hover: false,
     }
   },
   computed: {
@@ -64,12 +69,31 @@ export default {
       this.active = !this.active
       this.replicate.outliers()
     },
+    onMouseOver() {
+      if (this.warningMessage) {
+        this.$emit('showWarningMessage', this.warningMessage)
+      }
+    },
+    onMouseLeave() {
+      if (this.warningMessage) {
+        this.$emit('hideWarningMessage')
+      }
+    },
   },
   mounted() {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
       this.store.qcAssayList.addReplicate(this)
       this.replicate.outliers()
+
+      const qcResults = this.store.qcAssayList.find(this.plateBarcode).quantType
+        .qcResults
+      if (qcResults.warningThreshold) {
+        if (this.concentration < qcResults.warningThreshold.value) {
+          this.warning = true
+          this.warningMessage = qcResults.warningThreshold.message
+        }
+      }
     }
   },
 }
@@ -89,12 +113,17 @@ export default {
 }
 
 .inactive {
-  background-color: gray;
   color: white;
+  background-color: gray;
 }
 
 .inspect {
   color: white;
   background-color: $well-red;
+}
+
+.warning {
+  color: black;
+  background-color: yellow;
 }
 </style>
