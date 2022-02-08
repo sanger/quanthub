@@ -148,7 +148,6 @@ export default {
   methods: {
     fetchData() {
       let json = localStorage.getItem(this.barcode)
-
       if (json !== null) {
         let parsedJSON = JSON.parse(json)
         this.grid = parsedJSON
@@ -157,7 +156,7 @@ export default {
       } else {
         this.quantType = QuantType()
       }
-      this.replicates = new Replicates(this.quantType.replicateOptions)
+      this.replicates = Replicates(this.quantType.replicateOptions)
     },
     // This may seem counter intuitive but is necessary to update local storage
     // The wells could be totally different if it is a new plate
