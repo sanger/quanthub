@@ -56,7 +56,6 @@ export default {
       outlier: false,
       warning: false,
       warningMessage: '',
-      hover: false,
     }
   },
   computed: {
