@@ -86,12 +86,16 @@ export default {
       this.store.qcAssayList.addReplicate(this)
       this.replicate.outliers()
 
-      const qcResults = this.store.qcAssayList.find(this.plateBarcode).quantType
-        .qcResults
-      if (qcResults.warningThreshold) {
-        if (this.concentration < qcResults.warningThreshold.value) {
-          this.warning = true
-          this.warningMessage = qcResults.warningThreshold.message
+      const qcAssay = this.store.qcAssayList.find(this.plateBarcode)
+      // pull out settings defined in the quantTypes.json config
+      if (qcAssay && qcAssay.quantType && qcAssay.quantType.qcResults) {
+        const qcResults = qcAssay.quantType.qcResults
+
+        if (qcResults.warningThreshold) {
+          if (this.concentration < qcResults.warningThreshold.value) {
+            this.warning = true
+            this.warningMessage = qcResults.warningThreshold.message
+          }
         }
       }
     }
