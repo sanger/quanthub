@@ -70,11 +70,13 @@ export default {
     },
     onMouseOver() {
       if (this.warningMessage) {
+        // This event bubbles up through Row to Plate, to show the warning message on the page.
         this.$emit('showWarningMessage', this.warningMessage)
       }
     },
     onMouseLeave() {
       if (this.warningMessage) {
+        // This event bubbles up through Row to Plate, to hide any warning messages on the page.
         this.$emit('hideWarningMessage')
       }
     },

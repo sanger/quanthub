@@ -311,5 +311,54 @@ describe('Wells', () => {
         expect(well3.vm.outlier).toBeFalsy()
       })
     })
+
+    it('has the expected warning defaults', () => {
+      expect(well.warning).toBe(false)
+      expect(well.warningMessage).toBe('')
+    })
+
+    it("doesn't fire an event on mouseover or mouseleave", async () => {
+      await cmp.trigger('mouseover')
+      expect(cmp.emitted().showWarningMessage).toBeFalsy()
+    })
+
+    it("doesn't fire an event on mouseleave", async () => {
+      await cmp.trigger('mouseleave')
+      expect(cmp.emitted().hideWarningMessage).toBeFalsy()
+    })
+
+    describe('Warning', () => {
+      beforeEach(() => {
+        data = {
+          row: 'B',
+          column: '4',
+          concentration: '2.0', // below the threshold
+          id: 'A1',
+          plateBarcode: plateBarcode,
+        }
+
+        cmp = mount(Wells.Sample, { mocks: { $Store }, propsData: data })
+        well = cmp.vm
+      })
+
+      it('sets the correct values when the concentration is under the threshold', () => {
+        expect(well.warning).toBe(true)
+        expect(well.warningMessage).toBe('Warning: This is a test warning.')
+      })
+
+      it('fires an event on mouseover', async () => {
+        await cmp.trigger('mouseover')
+        expect(cmp.emitted().showWarningMessage).toBeTruthy()
+        expect(cmp.emitted().showWarningMessage.length).toBe(1)
+        expect(cmp.emitted().showWarningMessage[0]).toEqual(['Warning: This is a test warning.'])
+      })
+
+      it('fires an event on mouseleave', async () => {
+        await cmp.trigger('mouseleave')
+        expect(cmp.emitted().hideWarningMessage).toBeTruthy()
+        expect(cmp.emitted().hideWarningMessage.length).toBe(1)
+        expect(cmp.emitted().hideWarningMessage[0]).toEqual([])
+      })
+    })
   })
 })

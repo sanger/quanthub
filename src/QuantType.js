@@ -22,6 +22,10 @@ const defaults = {
     assay: { type: 'Quant Type', version: 'v1.0' },
     outlier: { type: 'standard', threshold: '1' },
     fields: ['a', 'b', 'c', 'd', 'e', 'f'],
+    warningThreshold: {
+      "value": 5,
+      "message": "Warning: This is a test warning."
+    },
   },
   grid: {},
 }
