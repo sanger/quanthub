@@ -350,7 +350,9 @@ describe('Wells', () => {
         await cmp.trigger('mouseover')
         expect(cmp.emitted().showWarningMessage).toBeTruthy()
         expect(cmp.emitted().showWarningMessage.length).toBe(1)
-        expect(cmp.emitted().showWarningMessage[0]).toEqual(['Warning: This is a test warning.'])
+        expect(cmp.emitted().showWarningMessage[0]).toEqual([
+          'Warning: This is a test warning.',
+        ])
       })
 
       it('fires an event on mouseleave', async () => {
