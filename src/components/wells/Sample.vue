@@ -128,7 +128,7 @@ export default {
 }
 
 .warning {
-  color: black;
-  background-color: yellow;
+  color: white;
+  background-color: $well-purple;
 }
 </style>
