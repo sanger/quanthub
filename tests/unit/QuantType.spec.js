@@ -39,6 +39,7 @@ describe('quantType', () => {
         'assay',
         'outlier',
         'fields',
+        'warningThreshold',
       ])
       expect(quantType.replicateOptions.decimalPlaces).toEqual(5)
     })
