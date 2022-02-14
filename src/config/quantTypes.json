@@ -1261,7 +1261,7 @@
         "threshold": 15
       },
       "warningThreshold": {
-        "value": 5,
+        "value": 3.08642,
         "message": "Warning: TapeStation may not be accurate at this low concentration"
       },
       "fields": [
