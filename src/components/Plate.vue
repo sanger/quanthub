@@ -54,8 +54,6 @@
             v-bind:wells="row"
             v-bind:plateBarcode="barcode"
             v-bind:key="key.concat(index)"
-            @showWarningMessage="showWarningMessage"
-            @hideWarningMessage="hideWarningMessage"
           ></row>
         </tbody>
       </table>
@@ -98,7 +96,6 @@ export default {
       replicates: {},
       exporting: false,
       lotNumber: '',
-      warningMessage: '',
     }
   },
   computed: {
@@ -178,12 +175,6 @@ export default {
       )
 
       return json
-    },
-    showWarningMessage(message) {
-      this.warningMessage = message
-    },
-    hideWarningMessage() {
-      this.warningMessage = ''
     },
     // save the plate to local storage by recreating the grid
     save() {

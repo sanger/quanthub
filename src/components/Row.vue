@@ -7,8 +7,6 @@
       :is="well.type"
       v-bind:plateBarcode="plateBarcode"
       :key="key.concat(index)"
-      @showWarningMessage="showWarningMessage"
-      @hideWarningMessage="hideWarningMessage"
     ></component>
   </tr>
 </template>
@@ -43,14 +41,6 @@ export default {
   computed: {
     json() {
       return this.$children.map((well) => well.json)
-    },
-  },
-  methods: {
-    showWarningMessage(message) {
-      this.$emit('showWarningMessage', message)
-    },
-    hideWarningMessage() {
-      this.$emit('hideWarningMessage')
     },
   },
 }

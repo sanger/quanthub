@@ -24,6 +24,7 @@ const defaults = {
     fields: ['a', 'b', 'c', 'd', 'e', 'f'],
     warningThreshold: {
       value: 5,
+      shortMessage: 'brief',
       message: 'Warning: This is a test warning.',
     },
   },

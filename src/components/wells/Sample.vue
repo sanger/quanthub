@@ -1,14 +1,21 @@
 <template>
   <td
     class="well sample"
-    v-bind:class="{ inactive: !active, inspect: outlier, warning: warning }"
+    v-bind:class="{ inactive: !active, inspect: outlier }"
     v-on:click="setActive"
-    @mouseover="onMouseOver"
-    @mouseleave="onMouseLeave"
   >
     {{ id }}
     <br />
     {{ concentration }}
+    <br />
+    <b-badge
+      v-if="warning"
+      v-b-tooltip.hover.bottom
+      v-bind:title="warningMessage"
+      class="warning"
+    >
+      {{ shortWarningMessage }}
+    </b-badge>
   </td>
 </template>
 
@@ -56,6 +63,7 @@ export default {
       outlier: false,
       warning: false,
       warningMessage: '',
+      shortWarningMessage: '',
     }
   },
   computed: {
@@ -67,18 +75,6 @@ export default {
     setActive() {
       this.active = !this.active
       this.replicate.outliers()
-    },
-    onMouseOver() {
-      if (this.warningMessage) {
-        // This event bubbles up through Row to Plate, to show the warning message on the page.
-        this.$emit('showWarningMessage', this.warningMessage)
-      }
-    },
-    onMouseLeave() {
-      if (this.warningMessage) {
-        // This event bubbles up through Row to Plate, to hide any warning messages on the page.
-        this.$emit('hideWarningMessage')
-      }
     },
   },
   mounted() {
@@ -96,6 +92,7 @@ export default {
           if (this.concentration < qcResults.warningThreshold.value) {
             this.warning = true
             this.warningMessage = qcResults.warningThreshold.message
+            this.shortWarningMessage = qcResults.warningThreshold.shortMessage
           }
         }
       }

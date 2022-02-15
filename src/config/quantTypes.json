@@ -1262,7 +1262,8 @@
       },
       "warningThreshold": {
         "value": 3.08642,
-        "message": "Warning: TapeStation may not be accurate at this low concentration"
+        "shortMessage": "low conc",
+        "message": "TapeStation may not be accurate at this low concentration"
       },
       "fields": [
         "barcode",

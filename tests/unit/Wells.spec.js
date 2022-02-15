@@ -315,16 +315,7 @@ describe('Wells', () => {
     it('has the expected warning defaults', () => {
       expect(well.warning).toBe(false)
       expect(well.warningMessage).toBe('')
-    })
-
-    it("doesn't fire an event on mouseover or mouseleave", async () => {
-      await cmp.trigger('mouseover')
-      expect(cmp.emitted().showWarningMessage).toBeFalsy()
-    })
-
-    it("doesn't fire an event on mouseleave", async () => {
-      await cmp.trigger('mouseleave')
-      expect(cmp.emitted().hideWarningMessage).toBeFalsy()
+      expect(well.shortWarningMessage).toBe('')
     })
 
     describe('Warning', () => {
@@ -344,22 +335,7 @@ describe('Wells', () => {
       it('sets the correct values when the concentration is under the threshold', () => {
         expect(well.warning).toBe(true)
         expect(well.warningMessage).toBe('Warning: This is a test warning.')
-      })
-
-      it('fires an event on mouseover', async () => {
-        await cmp.trigger('mouseover')
-        expect(cmp.emitted().showWarningMessage).toBeTruthy()
-        expect(cmp.emitted().showWarningMessage.length).toBe(1)
-        expect(cmp.emitted().showWarningMessage[0]).toEqual([
-          'Warning: This is a test warning.',
-        ])
-      })
-
-      it('fires an event on mouseleave', async () => {
-        await cmp.trigger('mouseleave')
-        expect(cmp.emitted().hideWarningMessage).toBeTruthy()
-        expect(cmp.emitted().hideWarningMessage.length).toBe(1)
-        expect(cmp.emitted().hideWarningMessage[0]).toEqual([])
+        expect(well.shortWarningMessage).toBe('brief')
       })
     })
   })
