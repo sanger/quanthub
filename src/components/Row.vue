@@ -43,6 +43,7 @@ export default {
       return this.$children.map((well) => well.json)
     },
   },
+  methods: {},
 }
 </script>
 

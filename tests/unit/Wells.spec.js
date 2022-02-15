@@ -364,9 +364,7 @@ describe('Wells', () => {
     })
 
     it('has the expected warning defaults', () => {
-      expect(well.warning).toBe(false)
-      expect(well.warningMessage).toBe('')
-      expect(well.shortWarningMessage).toBe('')
+      expect(well.warning.message).toBeFalsy
       expect(well.$el.textContent).not.toMatch(new RegExp('brief'))
     })
 
@@ -394,9 +392,9 @@ describe('Wells', () => {
       })
 
       it('sets the correct values when the concentration is under the threshold', () => {
-        expect(well.warning).toBe(true)
-        expect(well.warningMessage).toBe('Warning: This is a test warning.')
-        expect(well.shortWarningMessage).toBe('brief')
+        expect(well.warning.message).toBeTruthy
+        expect(well.warning.message).toBe('Warning: This is a test warning.')
+        expect(well.warning.shortMessage).toBe('brief')
         expect(well.$el.textContent).toMatch(new RegExp('brief'))
       })
     })

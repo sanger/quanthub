@@ -9,12 +9,12 @@
     {{ concentration }}
     <br />
     <b-badge
-      v-if="warning"
+      v-if="warning.message"
       v-b-tooltip.hover.bottom
-      v-bind:title="warningMessage"
+      v-bind:title="warning.message"
       class="warning"
     >
-      {{ shortWarningMessage }}
+      {{ warning.shortMessage }}
     </b-badge>
   </td>
 </template>
@@ -61,9 +61,7 @@ export default {
       replicate: NullReplicate,
       active: true,
       outlier: false,
-      warning: false,
-      warningMessage: '',
-      shortWarningMessage: '',
+      warning: {},
     }
   },
   computed: {
@@ -90,9 +88,7 @@ export default {
 
         if (qcResults.warningThreshold) {
           if (this.concentration < qcResults.warningThreshold.value) {
-            this.warning = true
-            this.warningMessage = qcResults.warningThreshold.message
-            this.shortWarningMessage = qcResults.warningThreshold.shortMessage
+            this.warning = { ...qcResults.warningThreshold }
           }
         }
       }
