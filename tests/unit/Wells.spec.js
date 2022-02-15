@@ -367,6 +367,7 @@ describe('Wells', () => {
       expect(well.warning).toBe(false)
       expect(well.warningMessage).toBe('')
       expect(well.shortWarningMessage).toBe('')
+      expect(well.$el.textContent).not.toMatch(new RegExp('brief'))
     })
 
     describe('Warning', () => {
@@ -396,6 +397,7 @@ describe('Wells', () => {
         expect(well.warning).toBe(true)
         expect(well.warningMessage).toBe('Warning: This is a test warning.')
         expect(well.shortWarningMessage).toBe('brief')
+        expect(well.$el.textContent).toMatch(new RegExp('brief'))
       })
     })
   })
