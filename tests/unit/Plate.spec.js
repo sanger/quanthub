@@ -4,7 +4,7 @@ import plateReader from '../data/plate_reader'
 import Store from '@/Store'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
-import { mount, localVue } from './testHelper'
+import { mount, localVue, createContainer } from './testHelper'
 
 jest.mock('axios')
 
@@ -28,8 +28,13 @@ describe('Plate.vue', () => {
       propsData: { barcode: barcode },
       mocks: { $Store },
       localVue,
+      attachTo: createContainer(),
     })
     plate = cmp.vm
+  })
+
+  afterEach(() => {
+    cmp.destroy()
   })
 
   it('will have have some columns', () => {
