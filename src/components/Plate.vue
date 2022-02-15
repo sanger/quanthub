@@ -41,7 +41,6 @@
       </div>
     </div>
     <div class="col-md-12">
-      {{ warningMessage }}
       <table class="table table-bordered">
         <thead>
           <th>&nbsp;</th>
