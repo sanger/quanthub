@@ -7,6 +7,15 @@
     {{ id }}
     <br />
     {{ concentration }}
+    <br />
+    <b-badge
+      v-if="warning.message"
+      v-b-tooltip.hover.bottom
+      v-bind:title="warning.message"
+      class="warning"
+    >
+      {{ warning.shortMessage }}
+    </b-badge>
   </td>
 </template>
 
@@ -52,6 +61,7 @@ export default {
       replicate: NullReplicate,
       active: true,
       outlier: false,
+      warning: {},
     }
   },
   computed: {
@@ -70,6 +80,18 @@ export default {
     if (this.store !== undefined) {
       this.store.qcAssayList.addReplicate(this)
       this.replicate.outliers()
+
+      const qcAssay = this.store.qcAssayList.find(this.plateBarcode)
+      // pull out settings defined in the quantTypes.json config
+      if (qcAssay && qcAssay.quantType && qcAssay.quantType.qcResults) {
+        const qcResults = qcAssay.quantType.qcResults
+
+        if (qcResults.warningThreshold) {
+          if (this.concentration < qcResults.warningThreshold.value) {
+            this.warning = { ...qcResults.warningThreshold }
+          }
+        }
+      }
     }
   },
 }
@@ -89,12 +111,17 @@ export default {
 }
 
 .inactive {
-  background-color: gray;
   color: white;
+  background-color: gray;
 }
 
 .inspect {
   color: white;
   background-color: $well-red;
+}
+
+.warning {
+  color: white;
+  background-color: $well-purple;
 }
 </style>

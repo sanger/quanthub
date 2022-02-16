@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mount } from '@vue/test-utils'
+import { mount, localVue, createContainer } from './testHelper'
 import Wells from '@/components/wells'
 import Store from '@/Store'
 import { Store as newStore } from '@/Store'
@@ -84,8 +84,16 @@ describe('Wells', () => {
         concentration: '',
         plateBarcode: plateBarcode,
       }
-      cmp = mount(Wells.Blank, { propsData: data })
+      cmp = mount(Wells.Blank, {
+        propsData: data,
+        attachTo: createContainer(),
+        localVue,
+      })
       well = cmp.vm
+    })
+
+    afterEach(() => {
+      cmp.destroy()
     })
 
     it('has a type', () => {
@@ -105,8 +113,16 @@ describe('Wells', () => {
         concentration: '',
         plateBarcode: plateBarcode,
       }
-      cmp = mount(Wells.Empty, { propsData: data })
+      cmp = mount(Wells.Empty, {
+        propsData: data,
+        attachTo: createContainer(),
+        localVue,
+      })
       well = cmp.vm
+    })
+
+    afterEach(() => {
+      cmp.destroy()
     })
 
     it('has a type', () => {
@@ -126,8 +142,16 @@ describe('Wells', () => {
         concentration: '25.12',
         plateBarcode: plateBarcode,
       }
-      cmp = mount(Wells.Control, { propsData: data })
+      cmp = mount(Wells.Control, {
+        propsData: data,
+        attachTo: createContainer(),
+        localVue,
+      })
       well = cmp.vm
+    })
+
+    afterEach(() => {
+      cmp.destroy()
     })
 
     it('outputs concentration', () => {
@@ -151,8 +175,16 @@ describe('Wells', () => {
         concentration: '26.101',
         plateBarcode: plateBarcode,
       }
-      cmp = mount(Wells.Standard, { propsData: data })
+      cmp = mount(Wells.Standard, {
+        propsData: data,
+        attachTo: createContainer(),
+        localVue,
+      })
       well = cmp.vm
+    })
+
+    afterEach(() => {
+      cmp.destroy()
     })
 
     it('outputs concentration', () => {
@@ -188,8 +220,17 @@ describe('Wells', () => {
         id: 'A1',
         plateBarcode: plateBarcode,
       }
-      cmp = mount(Wells.Sample, { mocks: { $Store }, propsData: data })
+      cmp = mount(Wells.Sample, {
+        mocks: { $Store },
+        propsData: data,
+        attachTo: createContainer(),
+        localVue,
+      })
       well = cmp.vm
+    })
+
+    afterEach(() => {
+      cmp.destroy()
     })
 
     it('has an id', () => {
@@ -267,6 +308,8 @@ describe('Wells', () => {
             type: 'Sample',
             plateBarcode: plateBarcode,
           },
+          attachTo: createContainer(),
+          localVue,
         })
         well2 = mount(Wells.Sample, {
           mocks: { $Store },
@@ -278,6 +321,8 @@ describe('Wells', () => {
             type: 'Sample',
             plateBarcode: plateBarcode,
           },
+          attachTo: createContainer(),
+          localVue,
         })
         well3 = mount(Wells.Sample, {
           mocks: { $Store },
@@ -289,11 +334,17 @@ describe('Wells', () => {
             type: 'Sample',
             plateBarcode: plateBarcode,
           },
+          attachTo: createContainer(),
+          localVue,
         })
         // TODO: transparency is key. This is not it.
         well1.vm.replicate.options.cvThreshold = 15
         well1.vm.replicate.options.outlier = { type: 'cv', threshold: 15 }
         well1.vm.replicate.outliers()
+      })
+
+      afterEach(() => {
+        cmp.destroy()
       })
 
       // this would be better to check class but this is brittle
@@ -309,6 +360,42 @@ describe('Wells', () => {
         expect(well2.vm.$el.className).toMatch('inactive')
         expect(well1.vm.outlier).toBeFalsy()
         expect(well3.vm.outlier).toBeFalsy()
+      })
+    })
+
+    it('has the expected warning defaults', () => {
+      expect(well.warning.message).toBeFalsy
+      expect(well.$el.textContent).not.toMatch(new RegExp('brief'))
+    })
+
+    describe('Warning', () => {
+      beforeEach(() => {
+        data = {
+          row: 'B',
+          column: '4',
+          concentration: '2.0', // below the threshold
+          id: 'A1',
+          plateBarcode: plateBarcode,
+        }
+
+        cmp = mount(Wells.Sample, {
+          mocks: { $Store },
+          propsData: data,
+          attachTo: createContainer(),
+          localVue,
+        })
+        well = cmp.vm
+      })
+
+      afterEach(() => {
+        cmp.destroy()
+      })
+
+      it('sets the correct values when the concentration is under the threshold', () => {
+        expect(well.warning.message).toBeTruthy
+        expect(well.warning.message).toBe('Warning: This is a test warning.')
+        expect(well.warning.shortMessage).toBe('brief')
+        expect(well.$el.textContent).toMatch(new RegExp('brief'))
       })
     })
   })
