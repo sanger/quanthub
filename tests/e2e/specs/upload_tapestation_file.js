@@ -14,7 +14,7 @@ describe('tapestation', () => {
     cy.visit('#/plates')
     cy.contains('210825-105408-').click()
     cy.get('.row > h3').contains('210825-105408-')
-    
+
     // pretty basic but at least checks the warning exists. how do you make this more dynamic??
     cy.get('[data-attribute=warning-message]').contains('low conc')
 
