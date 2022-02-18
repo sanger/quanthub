@@ -169,9 +169,9 @@ describe('Calculations.vue', () => {
 
     it('should calculate the correct result', () => {
       expect(Calculations.mean(values).toDecimalPlaces(3)).toEqual(3.004)
-      expect(
-        Calculations.mean([5, 6, 7, 8, 9, 10]).toDecimalPlaces(3)
-      ).toEqual(7.5)
+      expect(Calculations.mean([5, 6, 7, 8, 9, 10]).toDecimalPlaces(3)).toEqual(
+        7.5
+      )
     })
 
     // When calculating the mean for standard deviation

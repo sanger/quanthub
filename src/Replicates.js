@@ -69,9 +69,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
    * where n is the decimalPlaces of the options
    **/
   const average = () =>
-    Calculations.mean(concentrations()).toDecimalPlaces(
-      options.decimalPlaces
-    )
+    Calculations.mean(concentrations()).toDecimalPlaces(options.decimalPlaces)
 
   /**
    * @return {String} the id of the first well. The id will be the value which binds the replicates e.g. Well location
