@@ -162,43 +162,43 @@ describe('Calculations.vue', () => {
     })
   })
 
-  describe('#average', () => {
+  describe('#mean', () => {
     beforeEach(() => {
       values = [3.014, 3.163, 2.836]
     })
 
     it('should calculate the correct result', () => {
-      expect(Calculations.average(values).toDecimalPlaces(3)).toEqual(3.004)
+      expect(Calculations.mean(values).toDecimalPlaces(3)).toEqual(3.004)
       expect(
-        Calculations.average([5, 6, 7, 8, 9, 10]).toDecimalPlaces(3)
+        Calculations.mean([5, 6, 7, 8, 9, 10]).toDecimalPlaces(3)
       ).toEqual(7.5)
     })
 
-    // When calculating the average for standard deviation
-    it('can calculate a sample average', () => {
+    // When calculating the mean for standard deviation
+    it('can calculate a sample mean', () => {
       expect(
-        Calculations.average(values, { sample: 1 }).toDecimalPlaces(3)
+        Calculations.mean(values, { sample: 1 }).toDecimalPlaces(3)
       ).toEqual(4.506)
     })
 
-    it('can calculate an adjusted average', () => {
+    it('can calculate an adjusted mean', () => {
       let conversionFactor = 2.59
       expect(
-        Calculations.average(values, {
+        Calculations.mean(values, {
           conversionFactor: conversionFactor,
         }).toDecimalPlaces(3)
       ).toEqual(7.781)
 
       conversionFactor = (1000000 / 660) * (1 / 585)
       expect(
-        Calculations.average(values, {
+        Calculations.mean(values, {
           conversionFactor: conversionFactor,
         }).toDecimalPlaces(3)
       ).toEqual(7.781)
     })
 
     it('when the values are empty', () => {
-      expect(Calculations.average([])).toEqual(0)
+      expect(Calculations.mean([])).toEqual(0)
     })
   })
 

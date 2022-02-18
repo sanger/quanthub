@@ -48,7 +48,7 @@ const isOutlier = (value, limit = 3.5) => {
 // it is from a sample. This is important for calculating sample
 // standard deviation
 // will return 0 if array is empty
-const average = (values, { sample = 0, conversionFactor = 1 } = {}) => {
+const mean = (values, { sample = 0, conversionFactor = 1 } = {}) => {
   let sum = values.reduce(function (a, b) {
     return a + b
   }, 0)
@@ -56,19 +56,19 @@ const average = (values, { sample = 0, conversionFactor = 1 } = {}) => {
 }
 
 const standardDeviation = (values) => {
-  let mean = average(values)
+  let average = mean(values)
 
   let squareDiffs = values.map((value) => {
-    let diff = value - mean
+    let diff = value - average
     let sqrDiff = diff * diff
     return sqrDiff
   })
-  let avgSquareDiff = average(squareDiffs, { sample: 1 })
+  let avgSquareDiff = mean(squareDiffs, { sample: 1 })
   return sqrt(avgSquareDiff)
 }
 
 const cv = (values) => {
-  return (standardDeviation(values) / average(values) || 0) * 100
+  return (standardDeviation(values) / mean(values) || 0) * 100
 }
 
 export {
@@ -77,7 +77,7 @@ export {
   mad,
   modifiedZScores,
   isOutlier,
-  average,
+  mean,
   standardDeviation,
   cv,
 }

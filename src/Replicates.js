@@ -69,7 +69,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
    * where n is the decimalPlaces of the options
    **/
   const average = () =>
-    Calculations.average(concentrations()).toDecimalPlaces(
+    Calculations.mean(concentrations()).toDecimalPlaces(
       options.decimalPlaces
     )
 
@@ -97,7 +97,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
    * returned with the number of decimal places as determined by the decimalPlaces of the options
    **/
   const adjustedAverage = () => {
-    return Calculations.average(concentrations(), {
+    return Calculations.mean(concentrations(), {
       conversionFactor: options.conversionFactor,
     }).toDecimalPlaces(options.decimalPlaces)
   }
