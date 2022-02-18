@@ -38,6 +38,7 @@ describe('quantType', () => {
         'units',
         'assay',
         'outlier',
+        'average',
         'fields',
         'warningThreshold',
       ])
@@ -54,6 +55,10 @@ describe('quantType', () => {
 
     it('must have the default number of decimal places when no config specified for the quant type', () => {
       expect(quantType.conversion.decimalPlaces).toEqual(5)
+    })
+
+    it('will have a default average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
   })
 
@@ -95,6 +100,10 @@ describe('quantType', () => {
       })
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('has the correct qc results fields', () => {
       expect(quantType.qcResults.fields).toEqual([
         'barcode',
@@ -118,6 +127,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -132,6 +145,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -144,6 +161,10 @@ describe('quantType', () => {
 
     it('must have the correct units', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('must have the correct conversion factor', () => {
@@ -178,6 +199,10 @@ describe('quantType', () => {
 
     it('must have the correct units', () => {
       expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('has some metadata', () => {
@@ -216,6 +241,10 @@ describe('quantType', () => {
 
     it('must have the correct units', () => {
       expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('has the correct well type', () => {
@@ -264,6 +293,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('nM')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('has the correct well type', () => {
       expect(quantType.wellType).toEqual('QPCR5ul')
     })
@@ -301,6 +334,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -313,6 +350,10 @@ describe('quantType', () => {
 
     it('must have the correct units', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('must have the correct conversion factor', () => {
@@ -329,6 +370,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -341,6 +386,10 @@ describe('quantType', () => {
 
     it('must have the correct units', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('must have the correct conversion factor', () => {
@@ -357,6 +406,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -371,6 +424,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -383,6 +440,10 @@ describe('quantType', () => {
 
     it('must have the correct units', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('must have the correct conversion factor', () => {
@@ -423,6 +484,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('nM')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('has some metadata', () => {
       expect(quantType.hasMetadata).toBeTruthy()
     })
@@ -441,6 +506,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -455,6 +524,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
+    })
+
     it('must have the correct conversion factor', () => {
       expect(quantType.conversionFactor).toEqual(1)
     })
@@ -465,12 +538,14 @@ describe('quantType', () => {
       const quantType = buildQuantType('ISCV2')
       expect(quantType.name).toEqual('ISC - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('LCMB - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('LCMBV2')
       expect(quantType.name).toEqual('LCMB - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('libraryPlateReader - V2 - greiner assay plate', () => {
@@ -479,6 +554,7 @@ describe('quantType', () => {
         'Library - Plate Reader - greiner assay plate'
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('stockPlateReader - V2 - greiner assay plate', () => {
@@ -487,6 +563,7 @@ describe('quantType', () => {
         'Stock - Plate Reader - greiner assay plate'
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('workingDilutionPlateReader - V2 - greiner assay plate', () => {
@@ -495,24 +572,28 @@ describe('quantType', () => {
         'Working Dilution - Plate Reader - greiner assay plate'
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('normalisation - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('normalisationV2')
       expect(quantType.name).toEqual('Normalisation - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('RNAStock - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('RNAStockV2')
       expect(quantType.name).toEqual('RNA - Stock - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('RNALibrary - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('RNALibraryV2')
       expect(quantType.name).toEqual('RNA - Library - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('chromiumSingleCellcDNA - V2 - greiner assay plate', () => {
@@ -521,6 +602,7 @@ describe('quantType', () => {
         'Chromium Single Cell - cDNA - greiner assay plate'
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('chromiumSingleCellLibrary - V2 - greiner assay plate', () => {
@@ -529,30 +611,35 @@ describe('quantType', () => {
         'Chromium Single Cell - Library - greiner assay plate'
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('duplexSeqALLib - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('duplexSeqALLibV2')
       expect(quantType.name).toEqual('Duplex Seq AL Lib - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('duplexSeqLibrary - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('duplexSeqLibraryV2')
       expect(quantType.name).toEqual('Duplex Seq Library - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('heron96cdna - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('heron96cdnaV2')
       expect(quantType.name).toEqual('Heron 96 cDNA - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('heron384cdna - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('heron384cdnaV2')
       expect(quantType.name).toEqual('Heron 384 cDNA - greiner assay plate')
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
+      expect(quantType.qcResults.average).toEqual('mean')
     })
   })
 
@@ -564,6 +651,10 @@ describe('quantType', () => {
     it('must have the correct units', () => {
       // nM is the same as nmol/l but consistent with other measures
       expect(quantType.qcResults.units).toEqual('nM')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('mean')
     })
 
     it('must have the correct key', () => {
@@ -614,6 +705,10 @@ describe('quantType', () => {
 
     it('has the correct assay version', () => {
       expect(quantType.qcResults.assay.version).toEqual('v1.0')
+    })
+
+    it('has the correct average type', () => {
+      expect(quantType.qcResults.average).toEqual('median')
     })
   })
 })
