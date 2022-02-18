@@ -1289,7 +1289,7 @@
   },
   "heronQPCR": {
     "key": "heronQPCR",
-    "name": "Heron - qPCR",
+    "name": "Heron qPCR",
     "wellType": "QPCR5ul",
     "parse": {
       "delimiter": ",",
