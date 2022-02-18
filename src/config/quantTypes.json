@@ -1286,5 +1286,53 @@
       "numberOfRows": 8,
       "numberOfColumns": 12
     }
+  },
+  "heronQPCR": {
+    "key": "heronQPCR",
+    "name": "Heron - qPCR",
+    "wellType": "QPCR5ul",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "well",
+        "copyNumber",
+        "replicateError",
+        "totalError",
+        "shapeZError",
+        "Comments"
+      ]
+    },
+    "metadata": {},
+    "conversion": {
+      "factors": {
+        "dilution": 0.000001424
+      },
+      "expression": "(dilution)",
+      "decimalPlaces": 3
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Heron - qPCR",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    }
   }
 }
