@@ -8,14 +8,17 @@ Number.prototype.toDecimalPlaces = function (n = 3) {
 // if the number of values are even we need to find the average of
 // the two middle values otherwise we can just return the middle
 // value
-const median = (values, { conversionFactor = 1} = {}) => {
+const median = (values, { conversionFactor = 1 } = {}) => {
   let sortedValues = [...values].sort((a, b) => a - b)
   let length = sortedValues.length
 
   if (length % 2 === 0) {
-    return ((sortedValues[length / 2] + sortedValues[length / 2 - 1]) / 2) * conversionFactor
+    return (
+      ((sortedValues[length / 2] + sortedValues[length / 2 - 1]) / 2) *
+      conversionFactor
+    )
   } else {
-    return (sortedValues[(length + 1) / 2 - 1]) * conversionFactor
+    return sortedValues[(length + 1) / 2 - 1] * conversionFactor
   }
 }
 

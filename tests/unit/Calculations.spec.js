@@ -23,9 +23,11 @@ describe('Calculations.vue', () => {
     })
 
     it('can calculate an adjusted median', () => {
-      expect(Calculations.median([5, 3, 1, 4, 2], {
-        conversionFactor: 1.5,
-      })).toEqual(4.5)
+      expect(
+        Calculations.median([5, 3, 1, 4, 2], {
+          conversionFactor: 1.5,
+        })
+      ).toEqual(4.5)
     })
   })
 
