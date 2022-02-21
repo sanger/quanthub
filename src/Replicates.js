@@ -28,6 +28,7 @@ const defaultOptions = {
   cvThreshold: 1,
   assay: { type: 'Standard', version: '1' },
   outlier: { type: 'cv', threshold: 15 },
+  average: 'mean',
   barcodeSource: 'plateBarcode',
   fields: [
     'barcode',
