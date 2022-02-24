@@ -38,7 +38,6 @@ describe('quantType', () => {
         'units',
         'assay',
         'outlier',
-        'average',
         'fields',
         'warningThreshold',
       ])
