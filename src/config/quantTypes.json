@@ -566,6 +566,12 @@
         "Comments"
       ]
     },
+    "fileNameSpecs": {
+      "pattern": "HT_(?<bc>\\d{6})_.*",
+      "barcodeFormat": "HT-{bc}",
+      "errorDescription": "Filename must contain HT barcode",
+      "barcodeSuffix": false
+    },
     "metadata": {},
     "conversion": {
       "factors": {
@@ -1275,7 +1281,8 @@
     "fileNameSpecs": {
       "pattern": "20(?<yy>\\d{2})-(?<mm>\\d{2})-(?<dd>\\d{2})\\s*-\\s*(?<HH>\\d{2})-(?<MM>\\d{2})-(?<SS>\\d{2})",
       "barcodeFormat": "{yy}{mm}{dd}-{HH}{MM}{SS}",
-      "errorDescription": "Filename must contain date/time, similar to \"2021-02-26 - 13-45-00\""
+      "errorDescription": "Filename must contain date/time, similar to \"2021-02-26 - 13-45-00\"",
+      "barcodeSuffix": true
     },
     "parse": {
       "delimiter": ",",
