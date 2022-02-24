@@ -8,17 +8,14 @@ Number.prototype.toDecimalPlaces = function (n = 3) {
 // if the number of values are even we need to find the average of
 // the two middle values otherwise we can just return the middle
 // value
-const median = (values, { conversionFactor = 1 } = {}) => {
+const median = (values) => {
   let sortedValues = [...values].sort((a, b) => a - b)
   let length = sortedValues.length
 
   if (length % 2 === 0) {
-    return (
-      ((sortedValues[length / 2] + sortedValues[length / 2 - 1]) / 2) *
-      conversionFactor
-    )
+    return (sortedValues[length / 2] + sortedValues[length / 2 - 1]) / 2
   } else {
-    return sortedValues[(length + 1) / 2 - 1] * conversionFactor
+    return sortedValues[(length + 1) / 2 - 1]
   }
 }
 
@@ -44,7 +41,7 @@ const isOutlier = (value, limit = 3.5) => {
   return abs(value) > limit
 }
 
-// sample: represents whether the average needs to be adjusted if
+// sample: represents whether the mean needs to be adjusted if
 // it is from a sample. This is important for calculating sample
 // standard deviation
 // will return 0 if array is empty

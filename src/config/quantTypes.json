@@ -25,7 +25,6 @@
         "type": "cv",
         "threshold": 15
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -64,7 +63,6 @@
         "type": "cv",
         "threshold": 15
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -103,7 +101,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -142,7 +139,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -188,7 +184,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -234,7 +229,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -273,7 +267,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -312,7 +305,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -351,7 +343,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -390,7 +381,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -448,7 +438,6 @@
         "type": "cv",
         "threshold": 15
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -499,7 +488,6 @@
         "type": "cv",
         "threshold": 15
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -550,7 +538,53 @@
         "type": "mad",
         "threshold": 3.5
       },
-      "average": "mean",
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "assay_type",
+        "assay_version"
+      ]
+    }
+  },
+  "heronQPCR": {
+    "key": "heronQPCR",
+    "name": "Heron - qPCR",
+    "wellType": "QPCR5ul",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "well",
+        "copyNumber",
+        "replicateError",
+        "totalError",
+        "shapeZError",
+        "Comments"
+      ]
+    },
+    "metadata": {},
+    "conversion": {
+      "factors": {
+        "dilution": 0.000001424
+      },
+      "expression": "(dilution)",
+      "decimalPlaces": 3
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Heron - qPCR",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "mad",
+        "threshold": 3.5
+      },
       "fields": [
         "barcode",
         "well_location",
@@ -588,7 +622,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -627,7 +660,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -666,7 +698,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -705,7 +736,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -744,7 +774,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -783,7 +812,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -822,7 +850,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -861,7 +888,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -900,7 +926,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -939,7 +964,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -991,7 +1015,6 @@
     "qcResults": {
       "key": "molarity",
       "units": "nM",
-      "average": "mean",
       "assay": {
         "type": "Duplex Seq AL Lib",
         "version": "v1.0"
@@ -1037,7 +1060,6 @@
     "qcResults": {
       "key": "molarity",
       "units": "nM",
-      "average": "mean",
       "assay": {
         "type": "Duplex Seq AL Lib",
         "version": "v2.0"
@@ -1063,7 +1085,6 @@
     "qcResults": {
       "key": "concentration",
       "units": "ng/ul",
-      "average": "mean",
       "assay": {
         "type": "Duplex Seq Library",
         "version": "v1.0"
@@ -1089,7 +1110,6 @@
     "qcResults": {
       "key": "concentration",
       "units": "ng/ul",
-      "average": "mean",
       "assay": {
         "type": "Duplex Seq Library",
         "version": "v2.0"
@@ -1122,7 +1142,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -1161,7 +1180,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -1200,7 +1218,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -1239,7 +1256,6 @@
         "type": "cv",
         "threshold": 20
       },
-      "average": "mean",
       "fields": [
         "barcode",
         "well_location",
@@ -1291,7 +1307,6 @@
         "type": "cv",
         "threshold": 15
       },
-      "average": "mean",
       "warningThreshold": {
         "value": 3.08642,
         "shortMessage": "low conc",
@@ -1317,55 +1332,6 @@
     "grid": {
       "numberOfRows": 8,
       "numberOfColumns": 12
-    }
-  },
-  "heronQPCR": {
-    "key": "heronQPCR",
-    "name": "Heron qPCR",
-    "wellType": "QPCR5ul",
-    "parse": {
-      "delimiter": ",",
-      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
-      "from": 2,
-      "columns": [
-        "well",
-        "copyNumber",
-        "replicateError",
-        "totalError",
-        "shapeZError",
-        "Comments"
-      ]
-    },
-    "metadata": {},
-    "conversion": {
-      "factors": {
-        "dilution": 0.000001424
-      },
-      "expression": "(dilution)",
-      "decimalPlaces": 3
-    },
-    "qcResults": {
-      "key": "molarity",
-      "units": "nM",
-      "assay": {
-        "type": "Heron - qPCR",
-        "version": "v1.0"
-      },
-      "outlier": {
-        "type": "cv",
-        "threshold": 15
-      },
-      "average": "median",
-      "fields": [
-        "barcode",
-        "well_location",
-        "key",
-        "value",
-        "units",
-        "cv",
-        "assay_type",
-        "assay_version"
-      ]
     }
   }
 }

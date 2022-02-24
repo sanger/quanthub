@@ -5,7 +5,7 @@ describe('heron qPCR', () => {
     cy.get('input[type="file"]')
       .as('fileInput')
       .attachFile('HT_132817_2897_2945_2956_HERON_16_2_22_results.csv')
-    cy.get('select[id="quant-type"]').select('Heron qPCR')
+    cy.get('select[id="quant-type"]').select('Heron - qPCR')
     cy.contains('button', 'Upload').click()
     cy.get('.row > h3').contains('132817')
     cy.get('td').should('have.length', 384)

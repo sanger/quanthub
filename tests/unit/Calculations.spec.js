@@ -21,14 +21,6 @@ describe('Calculations.vue', () => {
         Calculations.median([15074400, 15443900, 15510200, 15916700])
       ).toEqual(15477050)
     })
-
-    it('can calculate an adjusted median', () => {
-      expect(
-        Calculations.median([5, 3, 1, 4, 2], {
-          conversionFactor: 1.5,
-        })
-      ).toEqual(4.5)
-    })
   })
 
   describe('#absoluteDeviation', () => {
