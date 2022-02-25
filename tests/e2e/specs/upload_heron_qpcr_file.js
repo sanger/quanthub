@@ -21,7 +21,7 @@ describe('heron qPCR', () => {
 
     cy.contains('button', 'Export').click()
 
-    cy.fixture('tapestationRequest').then((data) => {
+    cy.fixture('heronQPCRRequest').then((data) => {
       cy.wait('@postPayload').its('request.body').should('deep.equal', data)
     })
   })

@@ -4,57 +4,75 @@
       "lot_number": "",
       "qc_results": [
         {
-          "barcode": "NT1",
+          "barcode": "HT-132817",
+          "well_location": "A1",
           "key": "molarity",
-          "value": 112.86,
+          "value": 57.193,
           "units": "nM",
-          "cv": 84.364,
-          "assay_type": "Heron TapeStation Tubes",
+          "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
         },
         {
-          "barcode": "NT3",
+          "barcode": "HT-132817",
+          "well_location": "B1",
           "key": "molarity",
-          "value": 108.486,
+          "value": 24.298,
           "units": "nM",
-          "cv": 4.89,
-          "assay_type": "Heron TapeStation Tubes",
+          "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
         },
         {
-          "barcode": "NT5",
+          "barcode": "HT-132817",
+          "well_location": "C1",
           "key": "molarity",
-          "value": 147.987,
+          "value": 29.787,
           "units": "nM",
-          "cv": 52.094,
-          "assay_type": "Heron TapeStation Tubes",
+          "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
         },
         {
-          "barcode": "NT6",
+          "barcode": "HT-132817",
+          "well_location": "D1",
           "key": "molarity",
-          "value": 90.72,
+          "value": 61.602,
           "units": "nM",
-          "cv": 19.301,
-          "assay_type": "Heron TapeStation Tubes",
+          "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
         },
         {
-          "barcode": "NT4",
+          "barcode": "HT-132817",
+          "well_location": "E1",
           "key": "molarity",
-          "value": 100.966,
+          "value": 0,
           "units": "nM",
-          "cv": 17.251,
-          "assay_type": "Heron TapeStation Tubes",
+          "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
         },
         {
-          "barcode": "NT2",
+          "barcode": "HT-132817",
+          "well_location": "F1",
           "key": "molarity",
-          "value": 85.914,
+          "value": 0,
           "units": "nM",
-          "cv": 14.279,
-          "assay_type": "Heron TapeStation Tubes",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "G1",
+          "key": "molarity",
+          "value": 0,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "H1",
+          "key": "molarity",
+          "value": 0,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
         }
       ]
