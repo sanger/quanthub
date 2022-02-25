@@ -1,5 +1,4 @@
 describe('heron qPCR', () => {
-  // TODO: check how plate barcode is to be extracted from filename
   it('upload file, check plate is stored', () => {
     cy.visit('/')
     cy.get('input[type="file"]')
@@ -15,5 +14,15 @@ describe('heron qPCR', () => {
     cy.get('.row > h3').contains('HT-132817')
 
     // TODO: add post request check after decisions have been made on how to calculate cv
+    cy.intercept('POST', '**/qc_assays', {
+      statusCode: 201,
+      body: {},
+    }).as('postPayload')
+
+    cy.contains('button', 'Export').click()
+
+    cy.fixture('tapestationRequest').then((data) => {
+      cy.wait('@postPayload').its('request.body').should('deep.equal', data)
+    })
   })
 })

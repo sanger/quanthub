@@ -76,7 +76,6 @@ export default {
         (_, key) => groups[key]
       )
 
-      // return barcode + this.barcodeSuffix
       return `${barcode}${
         this.quantType.fileNameSpecs.barcodeSuffix ? this.barcodeSuffix : ''
       }`

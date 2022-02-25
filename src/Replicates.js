@@ -65,10 +65,10 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
     activeWells().map((well) => parseFloat(well.concentration))
 
   /**
-   * @return {Float} the average of the concentrations in the well set to n decimal places
+   * @return {Float} the mean of the concentrations in the well set to n decimal places
    * where n is the decimalPlaces of the options
    **/
-  const average = () =>
+  const mean = () =>
     Calculations.mean(concentrations()).toDecimalPlaces(options.decimalPlaces)
 
   /**
@@ -91,10 +91,10 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
 
   /**
    * @return {Float} adjusted average.
-   * The standard average adjusted using the conversionFactor of the options
+   * The standard mean adjusted using the conversionFactor of the options
    * returned with the number of decimal places as determined by the decimalPlaces of the options
    **/
-  const adjustedAverage = () => {
+  const adjustedMean = () => {
     return Calculations.mean(concentrations(), {
       conversionFactor: options.conversionFactor,
     }).toDecimalPlaces(options.decimalPlaces)
@@ -132,7 +132,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
       barcode: barcode(),
       well_location: id(),
       key: options.key,
-      value: adjustedAverage(),
+      value: adjustedMean(),
       units: options.units,
       cv: cv(),
       assay_type: options.assay.type,
@@ -184,7 +184,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
   return {
     wells,
     options,
-    average,
+    mean,
     id,
     activeWells,
     concentrations,
@@ -194,7 +194,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
     cv,
     needsInspection,
     json,
-    adjustedAverage,
+    adjustedMean,
     add,
     barcode,
     outliers,
