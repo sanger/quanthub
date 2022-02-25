@@ -56,7 +56,12 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
    * @return {Array} wells which are active
    **/
   const activeWells = () =>
-    wells.filter((well) => well.active && well.concentration !== 'n.a.' && well.concentration.length > 0)
+    wells.filter(
+      (well) =>
+        well.active &&
+        well.concentration !== 'n.a.' &&
+        well.concentration.length > 0
+    )
 
   /**
    * @return {Array} of concentrations from the wells in the replicate parsed to a float.
