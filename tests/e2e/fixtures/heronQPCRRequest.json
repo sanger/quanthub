@@ -7,7 +7,7 @@
           "barcode": "HT-132817",
           "well_location": "A1",
           "key": "molarity",
-          "value": 57.193,
+          "value": 0,
           "units": "nM",
           "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
@@ -16,7 +16,7 @@
           "barcode": "HT-132817",
           "well_location": "B1",
           "key": "molarity",
-          "value": 24.298,
+          "value": 0,
           "units": "nM",
           "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
@@ -25,7 +25,7 @@
           "barcode": "HT-132817",
           "well_location": "C1",
           "key": "molarity",
-          "value": 29.787,
+          "value": 0,
           "units": "nM",
           "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
@@ -34,7 +34,7 @@
           "barcode": "HT-132817",
           "well_location": "D1",
           "key": "molarity",
-          "value": 61.602,
+          "value": 0,
           "units": "nM",
           "assay_type": "Heron - qPCR",
           "assay_version": "v1.0"
