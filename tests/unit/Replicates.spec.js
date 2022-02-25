@@ -184,6 +184,11 @@ describe('Replicates.vue', () => {
         well1.concentration = 'n.a.'
         expect(replicate.activeWells().length).toEqual(2)
       })
+
+      it('will only include wells which have a number', () => {
+        well1.concentration = ''
+        expect(replicate.activeWells().length).toEqual(2)
+      })
     })
 
     describe('conversion', () => {
