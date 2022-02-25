@@ -59,8 +59,8 @@ describe('Replicates.vue', () => {
         expect(replicate.wells).toEqual([well1, well2, well3])
       })
 
-      it('will set an average', () => {
-        expect(typeof replicate.average()).toEqual('number')
+      it('will set an mean', () => {
+        expect(typeof replicate.mean()).toEqual('number')
       })
 
       it('must have some options', () => {
@@ -93,19 +93,19 @@ describe('Replicates.vue', () => {
       })
 
       it('will recalculate statistics correctly if a well is rendered inactive', () => {
-        const average = replicate.average()
+        const mean = replicate.mean()
         const standardDeviation = replicate.standardDeviation()
         const cv = replicate.cv()
         well3.active = false
 
-        // average = 3.088
+        // mean = 3.088
         // nM = 7.998
         // (3.014 - 3.088)squared = 0.005
         // (3.163 - 3.088)squared = 0.006
         // (0.005 + 0.006) / 1 = 0.011
         // std = sqrt (0.011) = 0.105
         // cv = (0.105/3.088 * 100) = 3.400
-        expect(replicate.average()).not.toEqual(average)
+        expect(replicate.mean()).not.toEqual(mean)
         expect(replicate.standardDeviation()).not.toEqual(standardDeviation)
         expect(replicate.cv()).not.toEqual(cv)
       })
@@ -115,7 +115,7 @@ describe('Replicates.vue', () => {
           barcode: replicate.plateBarcode(),
           well_location: replicate.id(),
           key: replicate.options.key,
-          value: replicate.adjustedAverage(),
+          value: replicate.adjustedMean(),
           units: replicate.options.units,
           cv: replicate.cv(),
           assay_type: replicate.options.assay.type,
@@ -136,7 +136,7 @@ describe('Replicates.vue', () => {
           barcode: replicate.plateBarcode(),
           well_location: replicate.id(),
           key: replicate.options.key,
-          value: replicate.adjustedAverage(),
+          value: replicate.adjustedMean(),
           units: replicate.options.units,
           assay_type: replicate.options.assay.type,
           assay_version: replicate.options.assay.version,
@@ -157,7 +157,7 @@ describe('Replicates.vue', () => {
         expect(replicate.json()).toEqual({
           barcode: replicate.id(),
           key: replicate.options.key,
-          value: replicate.adjustedAverage(),
+          value: replicate.adjustedMean(),
           units: replicate.options.units,
           cv: replicate.cv(),
           assay_type: replicate.options.assay.type,
@@ -184,12 +184,17 @@ describe('Replicates.vue', () => {
         well1.concentration = 'n.a.'
         expect(replicate.activeWells().length).toEqual(2)
       })
+
+      it('will only include wells which have a number', () => {
+        well1.concentration = ''
+        expect(replicate.activeWells().length).toEqual(2)
+      })
     })
 
     describe('conversion', () => {
       it('with no options added', () => {
         replicate = Replicate({ wells: [well1, well2, well3] })
-        expect(replicate.adjustedAverage()).toEqual(replicate.average())
+        expect(replicate.adjustedMean()).toEqual(replicate.mean())
       })
 
       it('with an option', () => {
@@ -199,7 +204,7 @@ describe('Replicates.vue', () => {
             conversionFactor: 2.59,
           },
         })
-        expect(replicate.adjustedAverage()).toBeGreaterThan(replicate.average())
+        expect(replicate.adjustedMean()).toBeGreaterThan(replicate.mean())
       })
     })
 
@@ -276,7 +281,7 @@ describe('Replicates.vue', () => {
       })
 
       it('will create stats', () => {
-        expect(typeof replicate.average()).toEqual('number')
+        expect(typeof replicate.mean()).toEqual('number')
         expect(typeof replicate.standardDeviation()).toEqual('number')
         expect(typeof replicate.cv()).toEqual('number')
       })
@@ -349,7 +354,7 @@ describe('Replicates.vue', () => {
 
     it('each replicate will have correct stats', () => {
       const firstReplicate = replicateList.find('A1')
-      expect(firstReplicate.average()).toEqual(replicate1.average())
+      expect(firstReplicate.mean()).toEqual(replicate1.mean())
       expect(firstReplicate.standardDeviation()).toEqual(
         replicate1.standardDeviation()
       )
@@ -367,7 +372,7 @@ describe('Replicates.vue', () => {
     })
 
     it('will have the correct number of decimal places', () => {
-      expect(replicate2.average().toString().split('.')[1].length).toEqual(15)
+      expect(replicate2.mean().toString().split('.')[1].length).toEqual(15)
       expect(
         replicate2.standardDeviation().toString().split('.')[1].length
       ).toEqual(16)

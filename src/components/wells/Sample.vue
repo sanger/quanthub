@@ -11,8 +11,9 @@
     <b-badge
       v-if="warning.message"
       v-b-tooltip.hover.bottom
-      v-bind:title="warning.message"
+      :title="warning.message"
       class="warning"
+      data-attribute="warning-message"
     >
       {{ warning.shortMessage }}
     </b-badge>
@@ -83,7 +84,8 @@ export default {
 
       const qcAssay = this.store.qcAssayList.find(this.plateBarcode)
       // pull out settings defined in the quantTypes.json config
-      if (qcAssay && qcAssay.quantType && qcAssay.quantType.qcResults) {
+      // if we get more requests for this type of warning worth adding the quantType to the store
+      if (qcAssay?.quantType?.qcResults) {
         const qcResults = qcAssay.quantType.qcResults
 
         if (qcResults.warningThreshold) {

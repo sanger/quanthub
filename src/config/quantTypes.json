@@ -549,6 +549,59 @@
       ]
     }
   },
+  "heronQPCR": {
+    "key": "heronQPCR",
+    "name": "Heron - qPCR",
+    "wellType": "QPCR5ul",
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "well",
+        "copyNumber",
+        "replicateError",
+        "totalError",
+        "shapeZError",
+        "Comments"
+      ]
+    },
+    "fileNameSpecs": {
+      "pattern": "HT_(?<bc>\\d{6})_.*",
+      "barcodeFormat": "HT-{bc}",
+      "errorDescription": "Filename must contain HT barcode",
+      "barcodeSuffix": false
+    },
+    "metadata": {},
+    "conversion": {
+      "factors": {
+        "dilution": 0.000001424
+      },
+      "expression": "(dilution)",
+      "decimalPlaces": 3
+    },
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "Heron - qPCR",
+        "version": "v1.0"
+      },
+      "outlier": {
+        "type": "mad",
+        "threshold": 3.5
+      },
+      "fields": [
+        "barcode",
+        "well_location",
+        "key",
+        "value",
+        "units",
+        "assay_type",
+        "assay_version"
+      ]
+    }
+  },
   "normalisation": {
     "key": "normalisation",
     "name": "Normalisation",
@@ -1228,7 +1281,8 @@
     "fileNameSpecs": {
       "pattern": "20(?<yy>\\d{2})-(?<mm>\\d{2})-(?<dd>\\d{2})\\s*-\\s*(?<HH>\\d{2})-(?<MM>\\d{2})-(?<SS>\\d{2})",
       "barcodeFormat": "{yy}{mm}{dd}-{HH}{MM}{SS}",
-      "errorDescription": "Filename must contain date/time, similar to \"2021-02-26 - 13-45-00\""
+      "errorDescription": "Filename must contain date/time, similar to \"2021-02-26 - 13-45-00\"",
+      "barcodeSuffix": true
     },
     "parse": {
       "delimiter": ",",
