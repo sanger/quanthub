@@ -13,7 +13,6 @@ describe('heron qPCR', () => {
     cy.contains('132817').click()
     cy.get('.row > h3').contains('HT-132817')
 
-    // TODO: add post request check after decisions have been made on how to calculate cv
     cy.intercept('POST', '**/qc_assays', {
       statusCode: 201,
       body: {},
