@@ -245,6 +245,80 @@ describe('Wells', () => {
       expect(well.$el.textContent).toMatch(new RegExp(well.concentration))
     })
 
+    describe('parsed concentration', () => {
+      it('when the concentration is a string float', () => {
+        expect(well.parsedConcentration).toEqual(26.101)
+      })
+
+      it('when the concentration is a float', () => {
+        data = {
+          row: 'B',
+          column: '4',
+          concentration: 26.101,
+          id: 'A1',
+          plateBarcode: plateBarcode,
+        }
+        cmp = mount(Wells.Sample, {
+          mocks: { $Store },
+          propsData: data,
+          attachTo: createContainer(),
+          localVue,
+        })
+        expect(cmp.vm.parsedConcentration).toEqual(26.101)
+      })
+
+      it('when the concentration is a number', () => {
+        data = {
+          row: 'B',
+          column: '4',
+          concentration: 1000,
+          id: 'A1',
+          plateBarcode: plateBarcode,
+        }
+        cmp = mount(Wells.Sample, {
+          mocks: { $Store },
+          propsData: data,
+          attachTo: createContainer(),
+          localVue,
+        })
+        expect(cmp.vm.parsedConcentration).toEqual(1000)
+      })
+
+      it('when the concentration is empty', () => {
+        data = {
+          row: 'B',
+          column: '4',
+          concentration: '',
+          id: 'A1',
+          plateBarcode: plateBarcode,
+        }
+        cmp = mount(Wells.Sample, {
+          mocks: { $Store },
+          propsData: data,
+          attachTo: createContainer(),
+          localVue,
+        })
+        expect(cmp.vm.parsedConcentration).toBe(NaN)
+      })
+
+      it('when the concentration is n.a.', () => {
+        data = {
+          row: 'B',
+          column: '4',
+          concentration: 'n.a.',
+          id: 'A1',
+          plateBarcode: plateBarcode,
+        }
+        cmp = mount(Wells.Sample, {
+          mocks: { $Store },
+          propsData: data,
+          attachTo: createContainer(),
+          localVue,
+        })
+        expect(cmp.vm.parsedConcentration).toBe(NaN)
+      })
+    })
+
     it('outputs id', () => {
       expect(well.$el.textContent).toMatch(data.id)
     })

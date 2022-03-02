@@ -69,6 +69,10 @@ export default {
     location() {
       return this.row.concat(this.column)
     },
+    // we only want to carry out calculations on concentrations that are a number
+    parsedConcentration() {
+      return parseFloat(this.concentration)
+    },
   },
   methods: {
     setActive() {

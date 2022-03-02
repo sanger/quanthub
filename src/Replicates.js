@@ -52,22 +52,18 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
   options = { ...defaultOptions, ...options }
 
   /**
-   * An active well is one which the property active is true and the concentration is not n.a.
+   * An active well is one which the property active is true and the concentration is a valid number
+   * it is not enough to do isNaN on concentration as an empty string is converted to 0. Go figure!
    * @return {Array} wells which are active
    **/
   const activeWells = () =>
-    wells.filter(
-      (well) =>
-        well.active &&
-        well.concentration !== 'n.a.' &&
-        well.concentration.length > 0
-    )
+    wells.filter((well) => well.active && !isNaN(well.parsedConcentration))
 
   /**
-   * @return {Array} of concentrations from the wells in the replicate parsed to a float.
+   * @return {Array} of parsed concentrations from the wells in the replicate parsed to a float.
    **/
   const concentrations = () =>
-    activeWells().map((well) => parseFloat(well.concentration))
+    activeWells().map((well) => well.parsedConcentration)
 
   /**
    * @return {Float} the mean of the concentrations in the well set to n decimal places
