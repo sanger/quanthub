@@ -575,7 +575,7 @@ describe('quantType', () => {
     })
   })
 
-  describe('heronQPCR', () => {
+  describe.skip('heronQPCR', () => {
     beforeEach(() => {
       quantType = buildQuantType('heronQPCR')
     })
