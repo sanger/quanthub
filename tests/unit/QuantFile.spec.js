@@ -356,7 +356,7 @@ describe('QuantFile.vue', () => {
     })
   })
 
-  describe.skip('Heron qPCR', () => {
+  describe('Heron qPCR', () => {
     beforeEach(async () => {
       quantFile = new cmp({
         propsData: {
