@@ -1,4 +1,4 @@
-describe('heron qPCR', () => {
+describe.skip('heron qPCR', () => {
   it('upload file, check plate is stored', () => {
     cy.visit('/')
     cy.get('input[type="file"]')
