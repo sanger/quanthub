@@ -81,7 +81,7 @@ const QPCR10ul = ({ pos, name, concentration }) => {
 }
 
 /**
- * Processes the results of parsing a 5ul QPCR CSV and returns a {@link Well}
+ * Processes the results of parsing a qPCR with Well map CSV and returns a {@link Well}
  *
  * @param {Object} obj - Object extracted from a CSV row.
  * @param {string} obj.well - The well's name (eg. 'A1')

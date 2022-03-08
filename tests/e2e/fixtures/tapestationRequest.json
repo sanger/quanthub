@@ -6,9 +6,9 @@
         {
           "barcode": "NT1",
           "key": "molarity",
-          "value": 156.924,
+          "value": 112.86,
           "units": "nM",
-          "cv": 15.787,
+          "cv": 84.364,
           "assay_type": "Heron TapeStation Tubes",
           "assay_version": "v1.0"
         },

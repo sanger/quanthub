@@ -1,0 +1,81 @@
+{
+  "data": {
+    "attributes": {
+      "lot_number": "",
+      "qc_results": [
+        {
+          "barcode": "HT-132817",
+          "well_location": "A1",
+          "key": "molarity",
+          "value": 57.193,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "B1",
+          "key": "molarity",
+          "value": 24.571,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "C1",
+          "key": "molarity",
+          "value": 32.259,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "D1",
+          "key": "molarity",
+          "value": 61.602,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "E1",
+          "key": "molarity",
+          "value": 0,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "F1",
+          "key": "molarity",
+          "value": 0,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "G1",
+          "key": "molarity",
+          "value": 0,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        },
+        {
+          "barcode": "HT-132817",
+          "well_location": "H1",
+          "key": "molarity",
+          "value": 0,
+          "units": "nM",
+          "assay_type": "Heron - qPCR",
+          "assay_version": "v1.0"
+        }
+      ]
+    }
+  }
+}

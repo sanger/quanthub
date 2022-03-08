@@ -52,26 +52,25 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
   options = { ...defaultOptions, ...options }
 
   /**
-   * An active well is one which the property active is true and the concentration is not n.a.
+   * An active well is one which the property active is true and the concentration is a valid number
+   * it is not enough to do isNaN on concentration as an empty string is converted to 0. Go figure!
    * @return {Array} wells which are active
    **/
   const activeWells = () =>
-    wells.filter((well) => well.active && well.concentration !== 'n.a.')
+    wells.filter((well) => well.active && !isNaN(well.parsedConcentration))
 
   /**
-   * @return {Array} of concentrations from the wells in the replicate parsed to a float.
+   * @return {Array} of parsed concentrations from the wells in the replicate parsed to a float.
    **/
   const concentrations = () =>
-    activeWells().map((well) => parseFloat(well.concentration))
+    activeWells().map((well) => well.parsedConcentration)
 
   /**
-   * @return {Float} the average of the concentrations in the well set to n decimal places
+   * @return {Float} the mean of the concentrations in the well set to n decimal places
    * where n is the decimalPlaces of the options
    **/
-  const average = () =>
-    Calculations.average(concentrations()).toDecimalPlaces(
-      options.decimalPlaces
-    )
+  const mean = () =>
+    Calculations.mean(concentrations()).toDecimalPlaces(options.decimalPlaces)
 
   /**
    * @return {String} the id of the first well. The id will be the value which binds the replicates e.g. Well location
@@ -93,11 +92,11 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
 
   /**
    * @return {Float} adjusted average.
-   * The standard average adjusted using the conversionFactor of the options
+   * The standard mean adjusted using the conversionFactor of the options
    * returned with the number of decimal places as determined by the decimalPlaces of the options
    **/
-  const adjustedAverage = () => {
-    return Calculations.average(concentrations(), {
+  const adjustedMean = () => {
+    return Calculations.mean(concentrations(), {
       conversionFactor: options.conversionFactor,
     }).toDecimalPlaces(options.decimalPlaces)
   }
@@ -134,7 +133,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
       barcode: barcode(),
       well_location: id(),
       key: options.key,
-      value: adjustedAverage(),
+      value: adjustedMean(),
       units: options.units,
       cv: cv(),
       assay_type: options.assay.type,
@@ -186,7 +185,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
   return {
     wells,
     options,
-    average,
+    mean,
     id,
     activeWells,
     concentrations,
@@ -196,7 +195,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
     cv,
     needsInspection,
     json,
-    adjustedAverage,
+    adjustedMean,
     add,
     barcode,
     outliers,
