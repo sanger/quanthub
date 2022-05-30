@@ -29,6 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Export node version
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
       - name: Set release tag
         # Generate a release tag name in the format:
         # develop/YYYY-MM-DD/HHMMSS
@@ -50,7 +53,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
       - name: Install
         run: yarn install
       - name: Compile build
