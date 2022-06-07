@@ -193,29 +193,33 @@ describe('QuantFile.vue', () => {
     })
   })
 
-  describe('csv with filename and no metadata', () => {
+  describe.each([
+    ["DN123456", "DN123456_DN123456-QC_XYZ_results.csv"],
+    ["DN123456", "DN123456_DN123456_QC_XYZ_results.csv"],
+    ["TEST-1234-56-W", "TEST-1234-56-W_TEST-1234-56-W-QC_XYZ_results.csv"]
+  ])('csv with filename and no metadata with barcode %s', (barcode, filename) => {
     beforeEach(async () => {
       quantFile = new cmp({
         propsData: {
           quant: 'libraryQPCR5ul',
-          filename: 'DN123456_DN123456-QC_XYZ_results.csv',
+          filename: filename,
         },
       })
       plate = fs.readFileSync(
-        './tests/data/DN123456_DN123456-QC_XYZ_results.csv',
+        `./tests/data/${filename}`,
         'ascii'
       )
-      file = new File([plate], 'DN123456_DN123456-QC_XYZ_results.csv', {
+      file = new File([plate], filename, {
         type: 'text/plain',
       })
     })
 
     it('will have a filename', () => {
-      expect(quantFile.filename).toEqual('DN123456_DN123456-QC_XYZ_results.csv')
+      expect(quantFile.filename).toEqual(filename)
     })
 
     it('will have a parsed filename', () => {
-      expect(quantFile.parsedFilename).toEqual('DN123456')
+      expect(quantFile.parsedFilename).toEqual(barcode)
     })
 
     it('resolves', async () => {
@@ -237,56 +241,7 @@ describe('QuantFile.vue', () => {
       })
 
       it('has an id', () => {
-        expect(quantFile.id).toEqual('DN123456')
-      })
-    })
-  })
-
-  describe('csv with filename and no metadata and underscore barcode', () => {
-    beforeEach(async () => {
-      quantFile = new cmp({
-        propsData: {
-          quant: 'libraryQPCR5ul',
-          filename: 'DN123456_DN123456_QC_XYZ_results.csv',
-        },
-      })
-      plate = fs.readFileSync(
-        './tests/data/DN123456_DN123456_QC_XYZ_results.csv',
-        'ascii'
-      )
-      file = new File([plate], 'DN123456_DN123456_QC_XYZ_results.csv', {
-        type: 'text/plain',
-      })
-    })
-
-    it('will have a filename', () => {
-      expect(quantFile.filename).toEqual('DN123456_DN123456_QC_XYZ_results.csv')
-    })
-
-    it('will have a parsed filename', () => {
-      expect(quantFile.parsedFilename).toEqual('DN123456')
-    })
-
-    it('resolves', async () => {
-      expect.assertions(1)
-      await expect(quantFile.upload(file)).resolves.toEqual(
-        'File successfully uploaded'
-      )
-    })
-
-    describe('successful', () => {
-      beforeEach(async () => {
-        quantFile.upload(file)
-        await flushPromises()
-        await flushPromises()
-      })
-
-      it('will have some text', () => {
-        expect(quantFile.raw).toEqual(plate)
-      })
-
-      it('has an id', () => {
-        expect(quantFile.id).toEqual('DN123456')
+        expect(quantFile.id).toEqual(barcode)
       })
 
       it('should have some empty cells', () => {
@@ -295,6 +250,7 @@ describe('QuantFile.vue', () => {
       })
     })
   })
+
 
   describe('qPCR 5ul quadruplicate', () => {
     beforeEach(async () => {

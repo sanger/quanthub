@@ -82,7 +82,7 @@ export default {
     },
     parsedFilename() {
       // handles barcodes of type ABC-QC and ABC_QC
-      return this.filename.split('_')[1].split('-')[0]
+      return this.filename.split('_')[1].replace(/[_-]QC$/,'')
     },
   },
   methods: {
