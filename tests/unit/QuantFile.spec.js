@@ -84,11 +84,11 @@ describe('QuantFile.vue', () => {
         it('creates some metadata', () => {
           let metadata = quantFile.metadata
           expect(metadata.User).toEqual('SANGER')
-          expect(metadata.ID1).toEqual('DN1234567-QC')
+          expect(metadata.ID1).toEqual('SQPU-570-15-B-QC')
         })
 
         it('has an id', () => {
-          expect(quantFile.id).toEqual('DN1234567')
+          expect(quantFile.id).toEqual('SQPU-570-15-B')
         })
       })
     })
@@ -120,11 +120,11 @@ describe('QuantFile.vue', () => {
         it('creates some metadata', () => {
           let metadata = quantFile.metadata
           expect(metadata.User).toEqual('SANGER')
-          expect(metadata.ID1).toEqual('DN1234567_QC')
+          expect(metadata.ID1).toEqual('SQPU-570-15-B_QC')
         })
 
         it('has an id', () => {
-          expect(quantFile.id).toEqual('DN1234567')
+          expect(quantFile.id).toEqual('SQPU-570-15-B')
         })
       })
     })
