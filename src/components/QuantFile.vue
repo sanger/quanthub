@@ -52,8 +52,14 @@ export default {
     },
     id() {
       if (this.quantType.hasMetadata) {
-        // handles barcodes of type ABC-QC and ABC_QC
-        return this.metadata[this.quantType.metadata.idColumn].split(/[-,_]/)[0]
+        // handles barcodes of type ABC-1234-1-QC, ABC-1234-1_QC and ABC-1234-1
+        let barcodeLine = this.metadata[this.quantType.metadata.idColumn]
+        if (barcodeLine.match(/[-_]QC/)) {
+          return this.metadata[this.quantType.metadata.idColumn].split(
+            /[-_]QC/
+          )[0]
+        }
+        return this.metadata[this.quantType.metadata.idColumn].split(/,/)[0]
       } else if (this.quantType.hasFileNameSpecs) {
         // Use the file name specs to establish a unique barcode
         return this.barcodeFromFileName
@@ -82,7 +88,7 @@ export default {
     },
     parsedFilename() {
       // handles barcodes of type ABC-QC and ABC_QC
-      return this.filename.split('_')[1].split('-')[0]
+      return this.filename.split('_')[1].replace(/[_-]QC$/, '')
     },
   },
   methods: {
