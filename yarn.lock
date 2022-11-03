@@ -4062,9 +4062,10 @@ csstype@^3.1.0:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
-csv-parse@^4.4.6:
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.4.6.tgz#08804dbe86037c46810d49ced77fa0e121f83b4f"
+csv-parse@^4.16.3:
+  version "4.16.3"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.16.3.tgz#7ca624d517212ebc520a36873c3478fa66efbaf7"
+  integrity sha512-cO1I/zmz4w2dcKHVvpCr7JVRu8/FymG5OEpmvsZYlccYolPBLoVGKUHgNoc4ZGkFeFlWGEDmMyBM+TTqRdW/wg==
 
 cyclist@~0.2.2:
   version "0.2.2"
