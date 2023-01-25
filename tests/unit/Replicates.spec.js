@@ -199,7 +199,7 @@ describe('Replicates.vue', () => {
         replicate = Replicate({
           wells: [well1, well2, well3],
           options: {
-            conversionFactor: 2.59,
+            conversionExpression: '(ORIGINAL_VALUE * 2.59)',
           },
         })
         expect(replicate.adjustedMean()).toBeGreaterThan(replicate.mean())
