@@ -45,7 +45,7 @@ const defaults = {
  */
 const insertFactorsForConversion = ({ factors, expression }) =>
   Object.entries(factors).reduce(
-    (calculation, [factor, value]) => calculation.replace(factor, value),
+    (calculation, [factor, value]) => calculation.replaceAll(factor, value),
     expression
   )
 

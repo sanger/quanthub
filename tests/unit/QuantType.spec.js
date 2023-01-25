@@ -60,6 +60,24 @@ describe('quantType', () => {
     })
   })
 
+  describe('conversion expression contains factors multiple times', () => {
+    beforeEach(() => {
+      const options = {
+        conversion: {
+          factors: { dilution: 500 },
+          expression: '(ORIGINAL_VALUE * (dilution*dilution)/dilution)',
+        },
+      }
+      quantType = buildQuantType('', options)
+    })
+
+    it('provides a conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE * (500*500)/500)'
+      )
+    })
+  })
+
   describe('libraryPlateReader', () => {
     beforeEach(() => {
       quantType = buildQuantType('libraryPlateReader')
