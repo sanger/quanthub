@@ -1,4 +1,4 @@
-import { abs, sqrt } from 'mathjs'
+import { abs, evaluate, sqrt } from 'mathjs'
 
 Number.prototype.toDecimalPlaces = function (n = 3) {
   return Number(this.toFixed(n))
@@ -45,11 +45,20 @@ const isOutlier = (value, limit = 3.5) => {
 // it is from a sample. This is important for calculating sample
 // standard deviation
 // will return 0 if array is empty
-const mean = (values, { sample = 0, conversionFactor = 1 } = {}) => {
+const mean = (
+  values,
+  { sample = 0, conversionExpression = '(ORIGINAL_VALUE)' } = {}
+) => {
+  if (conversionExpression.indexOf('ORIGINAL_VALUE') === -1) {
+    return NaN
+  }
+
   let sum = values.reduce(function (a, b) {
     return a + b
   }, 0)
-  return (sum / (values.length - sample) || 0) * conversionFactor
+  let mean = sum / (values.length - sample) || 0
+
+  return evaluate(conversionExpression.replaceAll('ORIGINAL_VALUE', mean))
 }
 
 const standardDeviation = (values) => {
