@@ -15,16 +15,17 @@ describe('quantType', () => {
             standardInsertSize: 452,
             libraryInsertSize: 573,
           },
-          expression: '(dilution*standardInsertSize)/libraryInsertSize',
+          expression:
+            '(ORIGINAL_VALUE * (dilution*standardInsertSize)/libraryInsertSize)',
           decimalPlaces: 5,
         },
       }
       quantType = buildQuantType('', options)
     })
 
-    it('provides a conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(
-        394.41535776614313
+    it('provides a conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE * (500*452)/573)'
       )
     })
 
@@ -34,7 +35,7 @@ describe('quantType', () => {
 
     it('has the replicate options', () => {
       expect(Object.keys(quantType.replicateOptions)).toEqual([
-        'conversionFactor',
+        'conversionExpression',
         'decimalPlaces',
         'key',
         'units',
@@ -84,7 +85,7 @@ describe('quantType', () => {
 
     it('has correct replicateOptions', () => {
       expect(quantType.replicateOptions).toEqual({
-        conversionFactor: 2.6442425828970335,
+        conversionExpression: '(ORIGINAL_VALUE * 1515.151*(1/573))',
         decimalPlaces: 3,
         ...quantTypes['libraryPlateReader'].qcResults,
       })
@@ -120,8 +121,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -134,8 +137,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -148,8 +153,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -172,7 +179,7 @@ describe('quantType', () => {
 
     it('has correct replicateOptions', () => {
       expect(quantType.replicateOptions).toEqual({
-        conversionFactor: 0.3944153577661431,
+        conversionExpression: '(ORIGINAL_VALUE * ((500*452)/573)/1000)',
         decimalPlaces: 3,
         ...quantTypes['libraryQPCR10ul'].qcResults,
       })
@@ -206,7 +213,7 @@ describe('quantType', () => {
 
     it('has correct replicateOptions', () => {
       expect(quantType.replicateOptions).toEqual({
-        conversionFactor: 2.965653e-7,
+        conversionExpression: '(ORIGINAL_VALUE * 3.321e-7*1.786*0.5)',
         decimalPlaces: 3,
         ...quantTypes['libraryQPCR5ul'].qcResults,
       })
@@ -252,7 +259,7 @@ describe('quantType', () => {
 
     it('has correct replicateOptions', () => {
       expect(quantType.replicateOptions).toEqual({
-        conversionFactor: 1.6605e-7,
+        conversionExpression: '(ORIGINAL_VALUE * 3.321e-7*1*0.5)',
         decimalPlaces: 3,
         ...quantTypes['libraryQPCR5ulQuadruplicate'].qcResults,
       })
@@ -303,8 +310,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -317,8 +326,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -331,8 +342,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -345,8 +358,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -359,8 +374,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -373,8 +390,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -387,8 +406,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
 
     it('must have the default number of decimal places when not specified in the config', () => {
@@ -415,7 +436,7 @@ describe('quantType', () => {
 
     it('has correct replicateOptions', () => {
       expect(quantType.replicateOptions).toEqual({
-        conversionFactor: 0.5916230366492147,
+        conversionExpression: '(ORIGINAL_VALUE * (((500*452)/573)/1000)*1.5)',
         decimalPlaces: 20,
         ...quantTypes['duplexSeqALLib'].qcResults,
       })
@@ -443,8 +464,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -457,8 +480,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.units).toEqual('ng/ul')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE)'
+      )
     })
   })
 
@@ -572,8 +597,10 @@ describe('quantType', () => {
       expect(quantType.qcResults.key).toEqual('molarity')
     })
 
-    it('must have the correct conversion factor', () => {
-      expect(quantType.replicateOptions.conversionFactor).toEqual(1.62)
+    it('must have the correct conversion expression', () => {
+      expect(quantType.replicateOptions.conversionExpression).toEqual(
+        '(ORIGINAL_VALUE * 1.62)'
+      )
     })
   })
 
@@ -596,7 +623,7 @@ describe('quantType', () => {
 
     it('has correct replicateOptions', () => {
       expect(quantType.replicateOptions).toEqual({
-        conversionFactor: 0.000001424,
+        conversionExpression: '(ORIGINAL_VALUE * 0.000001424)',
         decimalPlaces: 3,
         ...quantTypes['heronQPCR'].qcResults,
       })
