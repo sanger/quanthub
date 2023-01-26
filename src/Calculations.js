@@ -1,5 +1,7 @@
 import { abs, evaluate, sqrt } from 'mathjs'
 
+let original_value = 'ORIGINAL_VALUE'
+
 Number.prototype.toDecimalPlaces = function (n = 3) {
   return Number(this.toFixed(n))
 }
@@ -47,9 +49,9 @@ const isOutlier = (value, limit = 3.5) => {
 // will return 0 if array is empty
 const mean = (
   values,
-  { sample = 0, conversionExpression = '(ORIGINAL_VALUE)' } = {}
+  { sample = 0, conversionExpression = `(${original_value})` } = {}
 ) => {
-  if (conversionExpression.indexOf('ORIGINAL_VALUE') === -1) {
+  if (conversionExpression.indexOf(original_value) === -1) {
     return NaN
   }
 
@@ -58,7 +60,7 @@ const mean = (
   }, 0)
   let mean = sum / (values.length - sample) || 0
 
-  return evaluate(conversionExpression.replaceAll('ORIGINAL_VALUE', mean))
+  return evaluate(conversionExpression.replaceAll(original_value, mean))
 }
 
 const standardDeviation = (values) => {
