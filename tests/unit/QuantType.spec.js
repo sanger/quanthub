@@ -23,7 +23,9 @@ describe('quantType', () => {
     })
 
     it('provides a conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(394.41535776614313)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(
+        394.41535776614313
+      )
     })
 
     it('provides a well type', () => {
@@ -119,7 +121,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -133,7 +135,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -147,7 +149,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -302,7 +304,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -316,7 +318,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -330,7 +332,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -344,7 +346,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -358,7 +360,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -372,7 +374,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -386,7 +388,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
 
     it('must have the default number of decimal places when not specified in the config', () => {
@@ -442,7 +444,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -456,7 +458,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1)
     })
   })
 
@@ -571,7 +573,7 @@ describe('quantType', () => {
     })
 
     it('must have the correct conversion factor', () => {
-      expect(quantType.conversionFactor).toEqual(1.62)
+      expect(quantType.replicateOptions.conversionFactor).toEqual(1.62)
     })
   })
 

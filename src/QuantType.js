@@ -59,7 +59,6 @@ const quantType = (quantType, data = {}) => {
     ...config,
     hasMetadata: Object.keys(config.metadata).length > 0,
     hasFileNameSpecs: Object.keys(config.fileNameSpecs).length > 0,
-    conversionFactor,
     replicateOptions: {
       conversionFactor,
       decimalPlaces: config.conversion.decimalPlaces,
