@@ -1,6 +1,6 @@
 import { abs, evaluate, sqrt } from 'mathjs'
 
-let originalValue = 'ORIGINAL_VALUE'
+const originalValue = 'ORIGINAL_VALUE'
 
 Number.prototype.toDecimalPlaces = function (n = 3) {
   return Number(this.toFixed(n))
@@ -55,10 +55,10 @@ const mean = (
     return NaN
   }
 
-  let sum = values.reduce(function (a, b) {
+  const sum = values.reduce(function (a, b) {
     return a + b
   }, 0)
-  let mean = sum / (values.length - sample) || 0
+  const mean = sum / (values.length - sample) || 0
 
   return evaluate(conversionExpression.replaceAll(originalValue, mean))
 }

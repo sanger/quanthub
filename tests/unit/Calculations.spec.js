@@ -189,7 +189,7 @@ describe('Calculations.vue', () => {
 
     describe('conversionExpression contains a non-linear curve', () => {
       it('can calculate an adjusted mean', () => {
-        let conversionExpression =
+        const conversionExpression =
           '(ORIGINAL_VALUE ^ 2 - 2 * ORIGINAL_VALUE + 1.5)'
         expect(
           Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
@@ -199,7 +199,7 @@ describe('Calculations.vue', () => {
 
     describe('conversionExpression does not contain ORIGINAL_VALUE', () => {
       it('returns NaN for the adjusted mean when conversion expression does not contain ORIGINAL_VALUE', () => {
-        let conversionExpression = '(500/25)'
+        const conversionExpression = '(500/25)'
         expect(Calculations.mean(values, { conversionExpression })).toBeNaN()
       })
     })
