@@ -37,11 +37,13 @@ export default {
     // only the id is used at this stage.
     metadata() {
       if (!this.quantType.hasMetadata) return
-      let rows = this.raw.split(/\r?\n/).slice(0, this.quantType.metadata.rows)
-      let metadata = {}
+      const rows = this.raw
+        .split(/\r?\n/)
+        .slice(0, this.quantType.metadata.rows)
+      const metadata = {}
 
-      for (let row of rows) {
-        for (let cell of row.split(this.quantType.metadata.delimiter)) {
+      for (const row of rows) {
+        for (const cell of row.split(this.quantType.metadata.delimiter)) {
           if (cell !== '') {
             const [key, value] = cell.split(': ')
             metadata[key] = value
@@ -53,7 +55,7 @@ export default {
     id() {
       if (this.quantType.hasMetadata) {
         // handles barcodes of type ABC-1234-1-QC, ABC-1234-1_QC and ABC-1234-1
-        let barcodeLine = this.metadata[this.quantType.metadata.idColumn]
+        const barcodeLine = this.metadata[this.quantType.metadata.idColumn]
         if (barcodeLine.match(/[-_]QC/)) {
           return this.metadata[this.quantType.metadata.idColumn].split(
             /[-_]QC/

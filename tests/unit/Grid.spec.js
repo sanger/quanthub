@@ -57,7 +57,7 @@ describe('Grid.vue', () => {
     })
 
     it('adds a row, column and type to each cell', () => {
-      let row = grid.json.rows.A
+      const row = grid.json.rows.A
       expect(row['1'].row).toEqual('A')
       expect(row['1'].column).toEqual('1')
       expect(row['1'].type).toEqual('Empty')
@@ -67,7 +67,7 @@ describe('Grid.vue', () => {
     })
 
     it('produces some json', () => {
-      let json = grid.json
+      const json = grid.json
       expect(json.quantType).toEqual(grid.json.quantType)
       expect(json.lotNumber).toEqual(grid.json.lotNumber)
       expect(json.columns).toEqual(grid.json.columns)

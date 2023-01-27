@@ -62,7 +62,7 @@ describe('QuantFile.vue', () => {
         })
 
         it('produces some json', () => {
-          let json = quantFile.json['rows']
+          const json = quantFile.json['rows']
           let row = rows[quantFile.quantType.parse.from].split(
             quantFile.quantType.parse.delimiter
           )
@@ -82,7 +82,7 @@ describe('QuantFile.vue', () => {
         })
 
         it('creates some metadata', () => {
-          let metadata = quantFile.metadata
+          const metadata = quantFile.metadata
           expect(metadata.User).toEqual('SANGER')
           expect(metadata.ID1).toEqual('SQPU-570-15-B-QC')
         })
@@ -118,7 +118,7 @@ describe('QuantFile.vue', () => {
         })
 
         it('creates some metadata', () => {
-          let metadata = quantFile.metadata
+          const metadata = quantFile.metadata
           expect(metadata.User).toEqual('SANGER')
           expect(metadata.ID1).toEqual('SQPU-570-15-B_QC')
         })
@@ -303,7 +303,7 @@ describe('QuantFile.vue', () => {
       })
 
       it('should fill all of the cells correctly', () => {
-        let expectation = Object.values(quantFile.json.rows).every((row) => {
+        const expectation = Object.values(quantFile.json.rows).every((row) => {
           return Object.values(row).every((well) => well.type === 'Sample')
         })
         expect(expectation).toBeTruthy()

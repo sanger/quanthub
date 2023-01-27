@@ -11,8 +11,8 @@ Number.prototype.toDecimalPlaces = function (n = 3) {
 // the two middle values otherwise we can just return the middle
 // value
 const median = (values) => {
-  let sortedValues = [...values].sort((a, b) => a - b)
-  let length = sortedValues.length
+  const sortedValues = [...values].sort((a, b) => a - b)
+  const length = sortedValues.length
 
   if (length % 2 === 0) {
     return (sortedValues[length / 2] + sortedValues[length / 2 - 1]) / 2
@@ -26,8 +26,8 @@ const absoluteDeviation = (values, median) => {
 }
 
 const mad = (values) => {
-  let medianResult = median(values)
-  let absoluteDeviations = absoluteDeviation(values, medianResult)
+  const medianResult = median(values)
+  const absoluteDeviations = absoluteDeviation(values, medianResult)
 
   return median(absoluteDeviations)
 }
@@ -64,14 +64,14 @@ const mean = (
 }
 
 const standardDeviation = (values) => {
-  let average = mean(values)
+  const average = mean(values)
 
-  let squareDiffs = values.map((value) => {
-    let diff = value - average
-    let sqrDiff = diff * diff
+  const squareDiffs = values.map((value) => {
+    const diff = value - average
+    const sqrDiff = diff * diff
     return sqrDiff
   })
-  let avgSquareDiff = mean(squareDiffs, { sample: 1 })
+  const avgSquareDiff = mean(squareDiffs, { sample: 1 })
   return sqrt(avgSquareDiff)
 }
 
