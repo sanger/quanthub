@@ -147,9 +147,9 @@ export default {
   },
   methods: {
     fetchData() {
-      let json = localStorage.getItem(this.barcode)
+      const json = localStorage.getItem(this.barcode)
       if (json !== null) {
-        let parsedJSON = JSON.parse(json)
+        const parsedJSON = JSON.parse(json)
         this.grid = parsedJSON
         this.lotNumber = parsedJSON.lotNumber
         this.quantType = QuantType(this.grid.quantType)
@@ -165,7 +165,7 @@ export default {
       // array to support them. Still not entirely sold on this
       // approach.
       const cells = this.$children.flatMap((row) => row.json || [])
-      let { json } = Grid(
+      const { json } = Grid(
         {
           quantType: this.grid.quantType,
           lotNumber: this.lotNumber,

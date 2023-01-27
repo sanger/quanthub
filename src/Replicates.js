@@ -167,10 +167,10 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
     }
 
     if (options.outlier.type === 'mad') {
-      let median = Calculations.median(concentrations())
-      let mad = Calculations.mad(concentrations())
+      const median = Calculations.median(concentrations())
+      const mad = Calculations.mad(concentrations())
       activeWells().map((well) => {
-        let zscore = Calculations.modifiedZScores(
+        const zscore = Calculations.modifiedZScores(
           well.concentration,
           median,
           mad

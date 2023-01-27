@@ -95,7 +95,7 @@ export default {
       }-${this.date.getFullYear()}`
     },
     labels() {
-      let self = this
+      const self = this
       return this.barcodes
         .split('\n')
         .filter(Boolean)

@@ -27,9 +27,9 @@ const rowName = (index) => String.fromCharCode(64 + index)
  *                  objects with column names as keys
  */
 const buildRows = (numberOfRows, columns) => {
-  let rows = {}
+  const rows = {}
   for (let i = 1; i <= numberOfRows; i++) {
-    let rowId = rowName(i)
+    const rowId = rowName(i)
     rows[rowId] = buildCells(rowId, columns)
   }
   return rows
