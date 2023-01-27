@@ -1,4 +1,3 @@
-import { evaluate } from 'mathjs'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
 
@@ -15,7 +14,7 @@ const defaults = {
     relax_column_count: true,
   },
   metadata: { rows: 1, idColumn: 'id', delimiter: ',' },
-  conversion: { factors: {}, expression: 1, decimalPlaces: 3 },
+  conversion: { factors: {}, expression: '(ORIGINAL_VALUE)', decimalPlaces: 3 },
   qcResults: {
     key: 'Concentration',
     units: 'ng',
@@ -32,27 +31,27 @@ const defaults = {
 }
 
 /**
- * Given an expression eg. "(factorA*factorB*factorC)"
+ * Given an expression eg. "(ORIGINAL_VALUE * factorA*factorB*factorC)"
  * and factors { factorA: 2, factorB: 3, factorC: 10 }
- * generates and evaluates the calculation (2*3*10)
- * and returns the result (eg. 60)
+ * generates and return the calculation (ORIGINAL_VALUE * 2*3*10)
+ *
+ * Note that it is expected that the factor ORIGINAL_VALUE will exist in the
+ * expression.
  *
  * @param {Object} obj - Usually the value of conversion in quantTypes.json.
  * @param {Object} obj.factors - Key value pair of factors and their values
- * @param {string} obj.expression - The expression to be evaluated.
+ * @param {string} obj.expression - The expression for the conversion.
  * @return {number} The result of the evaluated expression
  */
-const calculateConversionFactor = ({ factors, expression }) =>
-  evaluate(
-    Object.entries(factors).reduce(
-      (calculation, [factor, value]) => calculation.replace(factor, value),
-      expression
-    )
+const insertFactorsForConversion = ({ factors, expression }) =>
+  Object.entries(factors).reduce(
+    (calculation, [factor, value]) => calculation.replaceAll(factor, value),
+    expression
   )
 
 const quantType = (quantType, data = {}) => {
   const config = { ...defaults, ...(quantTypes[quantType] || {}), ...data }
-  const conversionFactor = calculateConversionFactor(config.conversion)
+  const conversionExpression = insertFactorsForConversion(config.conversion)
   const WellFactory = WellFactories[config.wellType]
 
   return {
@@ -60,7 +59,7 @@ const quantType = (quantType, data = {}) => {
     hasMetadata: Object.keys(config.metadata).length > 0,
     hasFileNameSpecs: Object.keys(config.fileNameSpecs).length > 0,
     replicateOptions: {
-      conversionFactor,
+      conversionExpression,
       decimalPlaces: config.conversion.decimalPlaces,
       ...config.qcResults,
     },

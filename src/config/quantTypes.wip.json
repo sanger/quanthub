@@ -170,7 +170,7 @@
       "factors": {
         "averageLibrarySize": 573
       },
-      "expression": "(1515.151*(1/averageLibrarySize))",
+      "expression": "(ORIGINAL_VALUE * 1515.151*(1/averageLibrarySize))",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -215,7 +215,7 @@
       "factors": {
         "averageLibrarySize": 573
       },
-      "expression": "(1515.151*(1/averageLibrarySize))",
+      "expression": "(ORIGINAL_VALUE * 1515.151*(1/averageLibrarySize))",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -424,7 +424,7 @@
         "standardInsertSize": 452,
         "libraryInsertSize": 573
       },
-      "expression": "(((dilution*standardInsertSize)/libraryInsertSize)/1000)",
+      "expression": "(ORIGINAL_VALUE * ((dilution*standardInsertSize)/libraryInsertSize)/1000)",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -474,7 +474,7 @@
         "calibration": 1.786,
         "dilution": 0.5
       },
-      "expression": "(topM*calibration*dilution)",
+      "expression": "(ORIGINAL_VALUE * topM*calibration*dilution)",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -524,7 +524,7 @@
         "calibration": 1,
         "dilution": 0.5
       },
-      "expression": "(topM*calibration*dilution)",
+      "expression": "(ORIGINAL_VALUE * topM*calibration*dilution)",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -577,7 +577,7 @@
       "factors": {
         "dilution": 0.000001424
       },
-      "expression": "(dilution)",
+      "expression": "(ORIGINAL_VALUE * dilution)",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -1015,7 +1015,7 @@
         "libraryInsertSize": 573,
         "adjustmentFactor": 1.5
       },
-      "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "expression": "(ORIGINAL_VALUE * (((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
       "decimalPlaces": 20
     },
     "qcResults": {
@@ -1060,7 +1060,7 @@
         "libraryInsertSize": 573,
         "adjustmentFactor": 1.5
       },
-      "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "expression": "(ORIGINAL_VALUE * (((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
       "decimalPlaces": 20
     },
     "qcResults": {
@@ -1333,7 +1333,7 @@
       "factors": {
         "multiplier": 1.62
       },
-      "expression": "(multiplier)",
+      "expression": "(ORIGINAL_VALUE * multiplier)",
       "decimalPlaces": 3
     },
     "grid": {

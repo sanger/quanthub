@@ -92,12 +92,12 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
 
   /**
    * @return {Float} adjusted average.
-   * The standard mean adjusted using the conversionFactor of the options
+   * The standard mean adjusted using the conversionExpression of the options
    * returned with the number of decimal places as determined by the decimalPlaces of the options
    **/
   const adjustedMean = () => {
     return Calculations.mean(concentrations(), {
-      conversionFactor: options.conversionFactor,
+      conversionExpression: options.conversionExpression,
     }).toDecimalPlaces(options.decimalPlaces)
   }
 
