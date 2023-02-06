@@ -1331,9 +1331,12 @@
     },
     "conversion": {
       "factors": {
-        "multiplier": 1.62
+        "min": 3.786691804,
+        "max": 49.59950332,
+        "n": -3.723772214,
+        "ec_50": 35.52127433
       },
-      "expression": "(ORIGINAL_VALUE * multiplier)",
+      "expression": "(min+(max-min)/(1+10^(n*(log10(ORIGINAL_VALUE)-log10(ec_50)))))",
       "decimalPlaces": 3
     },
     "grid": {

@@ -617,7 +617,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE * 1.62)'
+        '(3.786691804+(49.59950332-3.786691804)/(1+10^(-3.723772214*(log(ORIGINAL_VALUE)-log(35.52127433)))))'
       )
     })
   })
