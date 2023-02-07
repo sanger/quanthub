@@ -197,6 +197,16 @@ describe('Calculations.vue', () => {
       })
     })
 
+    describe('conversionExpression is a sigmoid curve', () => {
+      it('can calculate an adjusted mean', () => {
+        const conversionExpression =
+          '(3.786+(49.599-3.786)/(1+10^(-3.723*(log10(ORIGINAL_VALUE)-log10(35.521)))))'
+        expect(
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+        ).toEqual(3.791)
+      })
+    })
+
     describe('conversionExpression does not contain ORIGINAL_VALUE', () => {
       it('returns NaN for the adjusted mean when conversion expression does not contain ORIGINAL_VALUE', () => {
         const conversionExpression = '(500/25)'
