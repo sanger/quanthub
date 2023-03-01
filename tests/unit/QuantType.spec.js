@@ -621,46 +621,4 @@ describe('quantType', () => {
       )
     })
   })
-
-  describe.skip('heronQPCR', () => {
-    beforeEach(() => {
-      quantType = buildQuantType('heronQPCR')
-    })
-
-    it('has the correct metadata', () => {
-      expect(quantType.metadata).toEqual(quantTypes['heronQPCR'].metadata)
-    })
-
-    it('has the correct parse', () => {
-      expect(quantType.parse).toEqual(quantTypes['heronQPCR'].parse)
-    })
-
-    it('has the correct grid', () => {
-      expect(quantType.grid).toEqual({})
-    })
-
-    it('has correct replicateOptions', () => {
-      expect(quantType.replicateOptions).toEqual({
-        conversionExpression: '(ORIGINAL_VALUE * 0.000001424)',
-        decimalPlaces: 3,
-        ...quantTypes['heronQPCR'].qcResults,
-      })
-    })
-
-    it('has some metadata', () => {
-      expect(quantType.hasMetadata).toBeFalsy()
-    })
-
-    it('must have the correct units', () => {
-      expect(quantType.qcResults.units).toEqual('nM')
-    })
-
-    it('has the correct well type', () => {
-      expect(quantType.wellType).toEqual('QPCR5ul')
-    })
-
-    it('has the correct assay version', () => {
-      expect(quantType.qcResults.assay.version).toEqual('v1.0')
-    })
-  })
 })
