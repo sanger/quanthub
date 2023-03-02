@@ -170,7 +170,7 @@
       "factors": {
         "averageLibrarySize": 573
       },
-      "expression": "(1515.151*(1/averageLibrarySize))",
+      "expression": "(ORIGINAL_VALUE * 1515.151*(1/averageLibrarySize))",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -215,7 +215,7 @@
       "factors": {
         "averageLibrarySize": 573
       },
-      "expression": "(1515.151*(1/averageLibrarySize))",
+      "expression": "(ORIGINAL_VALUE * 1515.151*(1/averageLibrarySize))",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -424,7 +424,7 @@
         "standardInsertSize": 452,
         "libraryInsertSize": 573
       },
-      "expression": "(((dilution*standardInsertSize)/libraryInsertSize)/1000)",
+      "expression": "(ORIGINAL_VALUE * ((dilution*standardInsertSize)/libraryInsertSize)/1000)",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -474,7 +474,7 @@
         "calibration": 1.786,
         "dilution": 0.5
       },
-      "expression": "(topM*calibration*dilution)",
+      "expression": "(ORIGINAL_VALUE * topM*calibration*dilution)",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -524,7 +524,7 @@
         "calibration": 1,
         "dilution": 0.5
       },
-      "expression": "(topM*calibration*dilution)",
+      "expression": "(ORIGINAL_VALUE * topM*calibration*dilution)",
       "decimalPlaces": 3
     },
     "qcResults": {
@@ -962,7 +962,7 @@
         "libraryInsertSize": 573,
         "adjustmentFactor": 1.5
       },
-      "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "expression": "(ORIGINAL_VALUE * (((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
       "decimalPlaces": 20
     },
     "qcResults": {
@@ -1007,7 +1007,7 @@
         "libraryInsertSize": 573,
         "adjustmentFactor": 1.5
       },
-      "expression": "((((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
+      "expression": "(ORIGINAL_VALUE * (((dilution*standardInsertSize)/libraryInsertSize)/1000)*adjustmentFactor)",
       "decimalPlaces": 20
     },
     "qcResults": {
@@ -1254,7 +1254,7 @@
       "units": "nM",
       "assay": {
         "type": "Heron TapeStation Tubes",
-        "version": "v1.0"
+        "version": "v2.0"
       },
       "barcodeSource": "id",
       "outlier": {
@@ -1278,9 +1278,12 @@
     },
     "conversion": {
       "factors": {
-        "multiplier": 1.62
+        "min": 1.811240654,
+        "max": 55.58274833,
+        "n": -3.02450536,
+        "ec_50": 38.00059141
       },
-      "expression": "(multiplier)",
+      "expression": "(min+(max-min)/(1+10^(n*(log10(ORIGINAL_VALUE)-log10(ec_50)))))",
       "decimalPlaces": 3
     },
     "grid": {

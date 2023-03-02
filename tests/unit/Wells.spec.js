@@ -359,7 +359,7 @@ describe('Wells', () => {
     })
 
     it('will create a replicate', () => {
-      let replicate = well.store.qcAssayList
+      const replicate = well.store.qcAssayList
         .find(plateBarcode)
         .replicates.find(well.id)
       expect(replicate).toBeTruthy()

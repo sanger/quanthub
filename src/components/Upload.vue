@@ -139,7 +139,7 @@ export default {
       }
 
       const file = document.getElementById('file-input').files[0]
-      let quantFile = new this.Cmp({
+      const quantFile = new this.Cmp({
         propsData: { quant: this.quantType, filename: this.filenameFiltered },
       })
       quantFile

@@ -38,7 +38,7 @@ describe('Plate.vue', () => {
   })
 
   it('will have have some columns', () => {
-    let columns = plate.$el.querySelector('thead').querySelectorAll('th')
+    const columns = plate.$el.querySelector('thead').querySelectorAll('th')
     expect(columns).toHaveLength(numberOfColumns + 1)
     expect(columns[1].textContent).toEqual(grid.json.columns[0])
     expect(columns[numberOfColumns].textContent).toEqual(
@@ -63,7 +63,7 @@ describe('Plate.vue', () => {
   })
 
   it('will create a new grid for saving', () => {
-    let newGrid = plate.toGrid()
+    const newGrid = plate.toGrid()
     expect(newGrid.quantType).toEqual(quantType)
     expect(newGrid.columns).toEqual(grid.json.columns)
     expect(Object.keys(newGrid.rows)).toHaveLength(
@@ -90,10 +90,10 @@ describe('Plate.vue', () => {
     })
 
     it('will update local storage with updated data', () => {
-      let well = plateReader.wells[0]
+      const well = plateReader.wells[0]
       plate.$el.querySelector('td').click()
       cmp.find('#save').trigger('click')
-      let json = JSON.parse(localStorage.getItem(barcode))
+      const json = JSON.parse(localStorage.getItem(barcode))
       expect(json.lotNumber).toEqual('LOT1234567')
       expect(Object.keys(json.rows)).toHaveLength(numberOfRows)
       expect(json.rows[well.row][well.column].active).toBeFalsy()
@@ -111,7 +111,7 @@ describe('Plate.vue', () => {
     })
 
     it('has some json', () => {
-      let json = plate.json
+      const json = plate.json
       expect(json.lot_number).toEqual('LOT1234567')
       expect(json.qc_results).toHaveLength(plate.replicates.size())
     })

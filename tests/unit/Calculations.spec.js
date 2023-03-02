@@ -173,20 +173,45 @@ describe('Calculations.vue', () => {
       ).toEqual(4.506)
     })
 
-    it('can calculate an adjusted mean', () => {
-      let conversionFactor = 2.59
-      expect(
-        Calculations.mean(values, {
-          conversionFactor: conversionFactor,
-        }).toDecimalPlaces(3)
-      ).toEqual(7.781)
+    describe('conversionExpression contains a linear curve', () => {
+      it('can calculate an adjusted mean', () => {
+        let conversionExpression = '(ORIGINAL_VALUE * 2.59)'
+        expect(
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+        ).toEqual(7.781)
 
-      conversionFactor = (1000000 / 660) * (1 / 585)
-      expect(
-        Calculations.mean(values, {
-          conversionFactor: conversionFactor,
-        }).toDecimalPlaces(3)
-      ).toEqual(7.781)
+        conversionExpression = '(ORIGINAL_VALUE * (1000000/660)*(1/585))'
+        expect(
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+        ).toEqual(7.781)
+      })
+    })
+
+    describe('conversionExpression contains a non-linear curve', () => {
+      it('can calculate an adjusted mean', () => {
+        const conversionExpression =
+          '(ORIGINAL_VALUE ^ 2 - 2 * ORIGINAL_VALUE + 1.5)'
+        expect(
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+        ).toEqual(4.517)
+      })
+    })
+
+    describe('conversionExpression is a sigmoid curve', () => {
+      it('can calculate an adjusted mean', () => {
+        const conversionExpression =
+          '(3.786+(49.599-3.786)/(1+10^(-3.723*(log10(ORIGINAL_VALUE)-log10(35.521)))))'
+        expect(
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+        ).toEqual(3.791)
+      })
+    })
+
+    describe('conversionExpression does not contain ORIGINAL_VALUE', () => {
+      it('returns NaN for the adjusted mean when conversion expression does not contain ORIGINAL_VALUE', () => {
+        const conversionExpression = '(500/25)'
+        expect(Calculations.mean(values, { conversionExpression })).toBeNaN()
+      })
     })
 
     it('when the values are empty', () => {
