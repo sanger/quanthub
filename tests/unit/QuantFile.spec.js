@@ -311,40 +311,6 @@ describe('QuantFile.vue', () => {
     })
   })
 
-  describe.skip('Heron qPCR', () => {
-    beforeEach(async () => {
-      quantFile = new cmp({
-        propsData: {
-          quant: 'heronQPCR',
-          filename: 'HT_132817_2897_2945_2956_HERON_16_2_22_results.csv',
-        },
-      })
-      plate = fs.readFileSync(
-        './tests/e2e/fixtures/HT_132817_2897_2945_2956_HERON_16_2_22_results.csv',
-        'ascii'
-      )
-      file = new File(
-        [plate],
-        'HT_132817_2897_2945_2956_HERON_16_2_22_results.csv',
-        { type: 'text/plain' }
-      )
-    })
-
-    it('will have a filename', () => {
-      expect(quantFile.filename).toEqual(
-        'HT_132817_2897_2945_2956_HERON_16_2_22_results.csv'
-      )
-    })
-
-    it('will have a parsed filename', () => {
-      expect(quantFile.parsedFilename).toEqual('132817')
-    })
-
-    it('will have a barcode from file name', () => {
-      expect(quantFile.barcodeFromFileName).toEqual('HT-132817')
-    })
-  })
-
   describe('Heron TapeStation Tubes', () => {
     beforeEach(async () => {
       plate = fs.readFileSync(
