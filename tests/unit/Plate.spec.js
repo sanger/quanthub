@@ -123,7 +123,11 @@ describe('Plate.vue', () => {
       expect(plate.requestOptions).toEqual({
         url: '/qc_assays',
         method: 'post',
-        headers: { 'Content-Type': 'application/vnd.api+json' },
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'X-Sequencescape-Client-Id':
+            process.env.VUE_APP_SEQUENCESCAPE_API_KEY,
+        },
         baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL,
       })
     })
