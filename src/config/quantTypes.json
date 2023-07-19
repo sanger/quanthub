@@ -1262,7 +1262,7 @@
         "threshold": 15
       },
       "warningThreshold": {
-        "value": 3.08642,
+        "value": 5,
         "shortMessage": "low conc",
         "message": "TapeStation may not be accurate at this low concentration"
       },
