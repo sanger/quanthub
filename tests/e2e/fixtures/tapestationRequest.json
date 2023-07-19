@@ -10,7 +10,7 @@
           "units": "nM",
           "cv": 84.364,
           "assay_type": "Heron TapeStation Tubes",
-          "assay_version": "v2.0"
+          "assay_version": "v3.0"
         },
         {
           "barcode": "NT3",
@@ -19,7 +19,7 @@
           "units": "nM",
           "cv": 4.89,
           "assay_type": "Heron TapeStation Tubes",
-          "assay_version": "v2.0"
+          "assay_version": "v3.0"
         },
         {
           "barcode": "NT5",
@@ -28,7 +28,7 @@
           "units": "nM",
           "cv": 52.094,
           "assay_type": "Heron TapeStation Tubes",
-          "assay_version": "v2.0"
+          "assay_version": "v3.0"
         },
         {
           "barcode": "NT6",
@@ -37,7 +37,7 @@
           "units": "nM",
           "cv": 19.301,
           "assay_type": "Heron TapeStation Tubes",
-          "assay_version": "v2.0"
+          "assay_version": "v3.0"
         },
         {
           "barcode": "NT4",
@@ -46,7 +46,7 @@
           "units": "nM",
           "cv": 17.251,
           "assay_type": "Heron TapeStation Tubes",
-          "assay_version": "v2.0"
+          "assay_version": "v3.0"
         },
         {
           "barcode": "NT2",
@@ -55,7 +55,7 @@
           "units": "nM",
           "cv": 14.279,
           "assay_type": "Heron TapeStation Tubes",
-          "assay_version": "v2.0"
+          "assay_version": "v3.0"
         }
       ]
     }
