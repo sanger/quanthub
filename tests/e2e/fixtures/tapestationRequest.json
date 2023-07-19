@@ -6,7 +6,7 @@
         {
           "barcode": "NT1",
           "key": "molarity",
-          "value": 53.656,
+          "value": 69.667,
           "units": "nM",
           "cv": 84.364,
           "assay_type": "Heron TapeStation Tubes",
@@ -15,7 +15,7 @@
         {
           "barcode": "NT3",
           "key": "molarity",
-          "value": 53.421,
+          "value": 66.967,
           "units": "nM",
           "cv": 4.89,
           "assay_type": "Heron TapeStation Tubes",
@@ -24,7 +24,7 @@
         {
           "barcode": "NT5",
           "key": "molarity",
-          "value": 54.716,
+          "value": 91.35,
           "units": "nM",
           "cv": 52.094,
           "assay_type": "Heron TapeStation Tubes",
@@ -33,7 +33,7 @@
         {
           "barcode": "NT6",
           "key": "molarity",
-          "value": 51.974,
+          "value": 56,
           "units": "nM",
           "cv": 19.301,
           "assay_type": "Heron TapeStation Tubes",
@@ -42,7 +42,7 @@
         {
           "barcode": "NT4",
           "key": "molarity",
-          "value": 52.922,
+          "value": 62.325,
           "units": "nM",
           "cv": 17.251,
           "assay_type": "Heron TapeStation Tubes",
@@ -51,7 +51,7 @@
         {
           "barcode": "NT2",
           "key": "molarity",
-          "value": 51.378,
+          "value": 53.033,
           "units": "nM",
           "cv": 14.279,
           "assay_type": "Heron TapeStation Tubes",

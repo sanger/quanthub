@@ -1276,17 +1276,6 @@
         "assay_version"
       ]
     },
-    "conversion": {
-      "factors": {
-        "mult": 1.62,
-        "min": 1.811240654,
-        "max": 55.58274833,
-        "n": -3.02450536,
-        "ec_50": 38.00059141
-      },
-      "expression": "(min+(max-min)/(1+10^(n*(log10(mult*ORIGINAL_VALUE)-log10(ec_50)))))",
-      "decimalPlaces": 3
-    },
     "grid": {
       "numberOfRows": 8,
       "numberOfColumns": 12
