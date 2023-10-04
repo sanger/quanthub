@@ -24,6 +24,9 @@
     "vue-router": "^3.5.4",
     "vue-simple-spinner": "^1.2.10"
   },
+  "resolutions": {
+    "@achrinza/node-ipc": "10.1.9"
+  },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.19",
     "@vue/cli-plugin-e2e-cypress": "~4.5.19",

@@ -8,6 +8,9 @@ Does what it says on the tin.
 yarn install
 ```
 
+Added @achrinza/node-ipc@10.1.9(which already exists as part of the package dependency tree) to package.json
+resolutions to fix the version incompatibility issue with node.
+
 ### Compiles and hot-reloads for development
 
 ```shell
