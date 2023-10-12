@@ -3,8 +3,8 @@
   "version": "2.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
