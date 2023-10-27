@@ -69,10 +69,10 @@
 // The assumption is made that the data exists in local storage from when it was uploaded.
 // The QuantType is assigned from local storage and a QuantType component is created.
 
-import Row from '@/components/Row'
+import Row from '@/components/Row.vue'
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
-import Alert from '@/components/Alert'
+import Alert from '@/components/Alert.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
@@ -124,9 +124,9 @@ export default {
         headers: {
           'Content-Type': 'application/vnd.api+json',
           'X-Sequencescape-Client-Id':
-            process.env.VUE_APP_SEQUENCESCAPE_API_KEY,
+            import.meta.env.VITE_SEQUENCESCAPE_API_KEY,
         },
-        baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL,
+        baseURL: import.meta.env.VITE_SEQUENCESCAPE_BASE_URL,
       }
     },
     request() {

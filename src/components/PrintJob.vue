@@ -66,7 +66,7 @@
 
 <script>
 import Model from '@/api/PrintMyBarcode'
-import Alert from '@/components/Alert'
+import Alert from '@/components/Alert.vue'
 import PrinterList from '@/config/PrinterList'
 
 export default {
@@ -74,7 +74,7 @@ export default {
   props: {
     labelTemplateId: {
       type: String,
-      default: process.env.VUE_APP_LABEL_TEMPLATE_ID,
+      default: import.meta.env.VITE_LABEL_TEMPLATE_ID,
     },
   },
   data() {

@@ -1,8 +1,9 @@
-import PrintJob from '@/components/PrintJob'
+import PrintJob from '@/components/PrintJob.vue'
 import Model from '@/api/PrintMyBarcode'
 import flushPromises from 'flush-promises'
 import PrinterList from '@/config/PrinterList'
 import { mount, localVue } from './testHelper'
+import { jest } from '@jest/globals';
 
 describe('PrintJob.vue', () => {
   let cmp, printJob, date, attributes

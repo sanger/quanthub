@@ -1,10 +1,11 @@
-import Plate from '@/components/Plate'
+import Plate from '@/components/Plate.vue'
 import Grid from '@/Grid'
 import plateReader from '../data/plate_reader'
 import Store from '@/Store'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
 import { mount, localVue, createContainer } from './testHelper'
+import { jest } from '@jest/globals';
 
 jest.mock('axios')
 
@@ -126,9 +127,9 @@ describe('Plate.vue', () => {
         headers: {
           'Content-Type': 'application/vnd.api+json',
           'X-Sequencescape-Client-Id':
-            process.env.VUE_APP_SEQUENCESCAPE_API_KEY,
+            import.meta.env.VITE_SEQUENCESCAPE_API_KEY,
         },
-        baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL,
+        baseURL: import.meta.env.VITE_SEQUENCESCAPE_BASE_URL,
       })
     })
 

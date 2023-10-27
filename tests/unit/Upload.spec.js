@@ -1,4 +1,4 @@
-import Upload from '@/components/Upload'
+import Upload from '@/components/Upload.vue'
 import { mount, localVue } from './testHelper'
 
 describe('Upload.vue', () => {

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import Upload from '@/components/Upload'
+import Upload from '@/components/Upload.vue'
 
 export default {
   name: 'Plates',

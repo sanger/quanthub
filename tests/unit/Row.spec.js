@@ -1,4 +1,4 @@
-import Row from '@/components/Row'
+import Row from '@/components/Row.vue'
 import Store from '@/Store'
 import { mount } from '@vue/test-utils'
 

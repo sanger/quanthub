@@ -65,9 +65,9 @@
 <script>
 // Uploads a file. Parse options dependent on quantType
 import Vue from 'vue'
-import QuantFile from '@/components/QuantFile'
+import QuantFile from '@/components/QuantFile.vue'
 import quantTypes from '@/config/quantTypes'
-import Alert from '@/components/Alert'
+import Alert from '@/components/Alert.vue'
 
 export default {
   name: 'Upload',

@@ -1,9 +1,9 @@
 //TODO: Upgrade to SprayPaint?
-const { JSORMBase, attr } = require('jsorm/dist/jsorm')
+import { JSORMBase, attr } from 'jsorm/dist/jsorm'
 
 const ApplicationRecord = JSORMBase.extend({
   static: {
-    baseUrl: process.env.VUE_APP_PRINT_MY_BARCODE_BASE_URL,
+    baseUrl: import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL,
     apiNamespace: '/v1',
   },
 })
