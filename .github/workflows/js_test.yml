@@ -31,10 +31,10 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencides
         run: >-
-          yarn install
+          npm ci --legacy-peer-deps
       - name: Run unit tests
         run: >-
-          yarn test:unit
+          npm run test:unit
   cypress:
     name: Run Cypress tests
     runs-on: ubuntu-latest
@@ -61,11 +61,11 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencides
         run: >-
-          yarn install
+          npm ci --legacy-peer-deps
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          start: yarn serve
+          start: npm serve
           wait-on: http://localhost:8080/
           config-file: cypress.json
           spec: 'tests/e2e/**/*'

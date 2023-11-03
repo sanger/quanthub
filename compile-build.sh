@@ -8,7 +8,7 @@
 set -ev
 
 # Building assets
-yarn build --dest $2/public --report
+npm build --dest $2/public --report
 
 # Storing revision hash
 git rev-parse HEAD > $2/REVISION
