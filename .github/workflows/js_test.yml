@@ -65,7 +65,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          start: npm serve
+          start: npm serve --legacy-peer-deps
           wait-on: http://localhost:8080/
           config-file: cypress.json
           spec: 'tests/e2e/**/*'
