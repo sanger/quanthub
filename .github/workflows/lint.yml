@@ -17,8 +17,8 @@ jobs:
         with:
           node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
       - name: Install
-        run: yarn install
-      - name: Run yarn lint
-        run: yarn lint
+        run: npm ci --legacy-peer-deps
+      - name: Run npm lint
+        run: npm run lint
       - name: Check prettier
-        run: yarn prettier-check
+        run: npm run prettier-check

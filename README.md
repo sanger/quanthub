@@ -7,7 +7,7 @@ Does what it says on the tin.
 To install dependencies and to ignore old version dependencies to avoid errors - https://stackoverflow.com/questions/66239691/what-does-npm-install-legacy-peer-deps-do-exactly-when-is-it-recommended-wh
 
 ```shell
-npm install --include-dev --legacy-peer-deps
+npm install --include=dev --legacy-peer-deps
 ```
 
 Added @achrinza/node-ipc@10.1.9(which already exists as part of the package dependency tree) to package.json
@@ -42,13 +42,13 @@ npm run lint -- --fix
 For prettier
 
 ```shell
-npm run pretty
+npm run prettier-check
 ```
 
 To fix the errors
 
 ```shell
-npx prettier --write .
+npm run prettify
 ```
 
 It is also possible to [configure your editor](https://prettier.io/docs/en/editors.html)
