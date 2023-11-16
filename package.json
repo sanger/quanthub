@@ -3,8 +3,8 @@
   "version": "2.1.0",
   "private": true,
   "scripts": {
-    "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
@@ -22,7 +22,8 @@
     "mathjs": "^7.6.0",
     "vue": "^2.7.5",
     "vue-router": "^3.5.4",
-    "vue-simple-spinner": "^1.2.10"
+    "vue-simple-spinner": "^1.2.10",
+    "xvfb": "^0.4.0"
   },
   "resolutions": {
     "@achrinza/node-ipc": "10.1.9"
