@@ -63,7 +63,7 @@ export default {
       // need to find a way to remove it by environment.
       return Object.keys(localStorage).filter(
         (key) =>
-          Object.prototype.hasOwnProperty.call(localStorage, 'key') &&
+          Object.prototype.hasOwnProperty.call(localStorage, key) &&
           key !== 'loglevel:webpack-dev-server'
       )
     },
@@ -73,7 +73,7 @@ export default {
 
       var allStrings = ''
       for (var key in window.localStorage) {
-        if (Object.prototype.hasOwnProperty.call(window.localStorage, 'key')) {
+        if (Object.prototype.hasOwnProperty.call(window.localStorage, key)) {
           allStrings += window.localStorage[key]
         }
       }

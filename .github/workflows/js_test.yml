@@ -67,7 +67,7 @@ jobs:
         with:
           start: npm run serve --legacy-peer-deps
           wait-on: http://localhost:8080/
-          spec: "tests/e2e/**/*"
+          spec: 'tests/e2e/**/*'
           config-file: cypress.config.js
           config: video=false
           install: false
