@@ -63,14 +63,16 @@ jobs:
         run: >-
           npm ci  --legacy-peer-deps
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
           start: npm run serve --legacy-peer-deps
           wait-on: http://localhost:8080/
-          config-file: cypress.json
-          spec: 'tests/e2e/**/*'
-        env:
-          CYPRESS_baseUrl: http://localhost:8080/
+          spec: "tests/e2e/**/*"
+          config-file: cypress.config.js
+          config: video=false
+          install: false
+          timeout-minutes: 5
+          browser: chrome
       # after the test run completes
       # store any screenshots
       # NOTE: screenshots will be generated only if E2E test failed
