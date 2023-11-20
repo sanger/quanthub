@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "npm-run-all -p serve test:cypress:all",
     "test:cypress:all": "cypress run",
@@ -13,7 +13,7 @@
     "lint": "vue-cli-service lint",
     "prettier-check": "prettier --check .",
     "prettify": "prettier --write .",
-    "test": "vue-cli-service test:unit && vue-cli-service test:e2e"
+    "test": "npm-run-all test:unit test:e2e"
   },
   "dependencies": {
     "axios": "^0.21.4",
