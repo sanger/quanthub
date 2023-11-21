@@ -3,14 +3,17 @@
   "version": "2.1.0",
   "private": true,
   "scripts": {
-    "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e": "npm-run-all -p serve test:cypress:all",
+    "test:cypress:all": "cypress run",
+    "test:e2e:one": "npm-run-all -p serve test:cypress:one",
+    "test:cypress:one": "cypress open",
     "lint": "vue-cli-service lint",
     "prettier-check": "prettier --check .",
     "prettify": "prettier --write .",
-    "test": "vue-cli-service test:unit && vue-cli-service test:e2e"
+    "test": "npm-run-all test:unit test:e2e"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -22,7 +25,8 @@
     "mathjs": "^7.6.0",
     "vue": "^2.7.5",
     "vue-router": "^3.5.4",
-    "vue-simple-spinner": "^1.2.10"
+    "vue-simple-spinner": "^1.2.10",
+    "xvfb": "^0.4.0"
   },
   "resolutions": {
     "@achrinza/node-ipc": "10.1.9"
@@ -30,24 +34,25 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.19",
     "@vue/cli-plugin-e2e-cypress": "~4.5.19",
-    "@vue/cli-plugin-eslint": "~4.5.19",
+    "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-plugin-unit-jest": "~4.5.19",
     "@vue/cli-service": "4.5.15",
     "@vue/test-utils": "^1.3.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^23.6.0",
-    "cypress": "8.6.0",
+    "cypress": "^13.5.0",
     "cypress-file-upload": "^5.0.8",
-    "eslint": "^5.16.0",
+    "eslint": "^7.5.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-vue": "^5.2.3",
+    "eslint-plugin-vue": "^9.0.0",
     "flush-promises": "^1.0.2",
     "lint-staged": "^7.3.0",
     "prettier": "^2.8.7",
     "sass": "^1.62.1",
     "sass-loader": "^10.3.1",
-    "vue-template-compiler": "^2.7.5"
+    "vue-template-compiler": "^2.7.5",
+    "npm-run-all": "^4.1.5"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
