@@ -19,11 +19,7 @@
             <option :value="null" selected disabled>
               Please select a quant type ...
             </option>
-            <option
-              v-for="(option, key) in quantTypes"
-              :key="key"
-              :value="key"
-            >
+            <option v-for="(option, key) in quantTypes" :key="key" :value="key">
               {{ option.name }}
             </option>
           </select>

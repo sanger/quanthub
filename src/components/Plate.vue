@@ -128,8 +128,8 @@ export default {
         method: 'post',
         headers: {
           'Content-Type': 'application/vnd.api+json',
-          'X-Sequencescape-Client-Id':
-            import.meta.env.VITE_SEQUENCESCAPE_API_KEY,
+          'X-Sequencescape-Client-Id': import.meta.env
+            .VITE_SEQUENCESCAPE_API_KEY,
         },
         baseURL: import.meta.env.VITE_SEQUENCESCAPE_BASE_URL,
       }

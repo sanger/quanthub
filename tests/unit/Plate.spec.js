@@ -5,7 +5,7 @@ import Store from '@/Store'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
 import { mount, localVue, createContainer } from './testHelper'
-import { jest } from '@jest/globals';
+import { jest } from '@jest/globals'
 
 jest.mock('axios')
 
@@ -126,8 +126,8 @@ describe('Plate.vue', () => {
         method: 'post',
         headers: {
           'Content-Type': 'application/vnd.api+json',
-          'X-Sequencescape-Client-Id':
-            import.meta.env.VITE_SEQUENCESCAPE_API_KEY,
+          'X-Sequencescape-Client-Id': import.meta.env
+            .VITE_SEQUENCESCAPE_API_KEY,
         },
         baseURL: import.meta.env.VITE_SEQUENCESCAPE_BASE_URL,
       })

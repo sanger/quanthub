@@ -1,29 +1,18 @@
 module.exports = {
-  roots: [
-    "src/",
-    "tests/"
-  ],
-  moduleFileExtensions: [
-    "js",
-    "json",
-    "vue"
-  ],
+  roots: ['src/', 'tests/'],
+  moduleFileExtensions: ['js', 'json', 'vue'],
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-    "^@tests/(.*)$": "<rootDir>/tests/$1"
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@tests/(.*)$': '<rootDir>/tests/$1',
   },
-  modulePaths: [
-    "<rootDir>/tests/support/"
-  ],
+  modulePaths: ['<rootDir>/tests/support/'],
   transform: {
-    "\\.[jt]sx?$": "babel-jest",
-    "^.+\\.(vue)$": "@vue/vue2-jest"
+    '\\.[jt]sx?$': 'babel-jest',
+    '^.+\\.(vue)$': '@vue/vue2-jest',
   },
-  transformIgnorePatterns: [
-    "/!node_modules\\/lodash-es/"
-  ],
+  transformIgnorePatterns: ['/!node_modules\\/lodash-es/'],
   testEnvironmentOptions: {
-    "url": "http://localhost/"
+    url: 'http://localhost/',
   },
-  testEnvironment: "jsdom",   
+  testEnvironment: 'jsdom',
 }
