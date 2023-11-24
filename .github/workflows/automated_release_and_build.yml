@@ -53,9 +53,9 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+          node-version-file: '.nvmrc'
       - name: Install
-        run: yarn install
+        run: npm ci --legacy-peer-deps
       - name: Compile build
         run: ./compile-build.sh release.tar.gz dist
       - name: Upload release.gz
