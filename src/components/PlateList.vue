@@ -12,7 +12,7 @@
               id="clear_local_storage_button"
               type="button"
               class="btn btn-success"
-              v-on:click="clearLocalStorage"
+              @click="clearLocalStorage"
             >
               {{ clearLocalStorageTxt }}
             </button>
@@ -24,8 +24,8 @@
         <b-col>
           <router-link
             v-for="plate in plates"
-            :to="`/plate/${plate}`"
             :key="plate"
+            :to="`/plate/${plate}`"
             class="plate"
             tag="div"
           >
@@ -46,6 +46,9 @@ import Upload from '@/components/Upload.vue'
 
 export default {
   name: 'Plates',
+  components: {
+    Upload,
+  },
   props: {},
   data() {
     return {
@@ -63,7 +66,7 @@ export default {
       // need to find a way to remove it by environment.
       return Object.keys(localStorage).filter(
         (key) =>
-          localStorage.hasOwnProperty(key) &&
+          Object.prototype.hasOwnProperty.call(localStorage, key) &&
           key !== 'loglevel:webpack-dev-server'
       )
     },
@@ -73,7 +76,7 @@ export default {
 
       var allStrings = ''
       for (var key in window.localStorage) {
-        if (window.localStorage.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(window.localStorage, key)) {
           allStrings += window.localStorage[key]
         }
       }
@@ -85,9 +88,6 @@ export default {
           : 'Empty (0 KB)'
       }`
     },
-  },
-  components: {
-    Upload,
   },
   methods: {
     clearLocalStorage() {

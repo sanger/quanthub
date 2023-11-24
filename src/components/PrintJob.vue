@@ -1,7 +1,7 @@
 <template>
   <div class="print-job">
     <alert ref="alert"></alert>
-    <form method="post" action="#" v-on:submit.prevent="execute">
+    <form method="post" action="#" @submit.prevent="execute">
       <h4>Print a barcode</h4>
       <div class="form-group">
         <div class="row">
@@ -11,14 +11,14 @@
           <div class="col-md-5">
             <select
               id="printer-list"
+              v-model="printerName"
               class="form-control"
               name="printer-list"
-              v-model="printerName"
             >
               <option
                 v-for="printerName in printerList"
-                v-bind:key="printerName"
-                v-bind:value="printerName"
+                :key="printerName"
+                :value="printerName"
               >
                 {{ printerName }}
               </option>
@@ -34,10 +34,10 @@
           </div>
           <div class="col-md-5">
             <textarea
-              name="barcodes"
               id="barcodes"
-              class="form-control"
               v-model="barcodes"
+              name="barcodes"
+              class="form-control"
               rows="10"
               cols="10"
             />
@@ -50,8 +50,8 @@
           <div class="col-md-3"></div>
           <div class="col-md-5">
             <button
-              name="submit"
               id="print"
+              name="submit"
               class="btn btn-success btn-block"
               type="submit"
             >

@@ -8,7 +8,7 @@
 import WellProperties from '@/mixins/WellProperties'
 
 export default {
-  name: 'blank-well',
+  name: 'BlankWell',
   mixins: [WellProperties],
   props: {
     type: {

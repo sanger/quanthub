@@ -1,5 +1,6 @@
 <script>
-import parse from 'csv-parse/lib/sync'
+import { parse } from 'csv-parse/browser/esm/sync'
+
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
 import WellMap from '@/config/wellMap'
@@ -12,6 +13,7 @@ const corruptLineEndRegExp = /\r\r\n/g
 // A quant type is passed in which determines the upload options e.g. file type.
 export default {
   name: 'QuantFile',
+  components: {},
   props: {
     quant: {
       type: String,
@@ -30,7 +32,6 @@ export default {
       barcodeSuffix: '-' + Math.random().toString(16).substr(2, 6),
     }
   },
-  components: {},
   computed: {
     // takes the raw file and extracts the rows where the metadata is.
     // for each row split it and extract each row of metadata into a JSON object.
@@ -93,6 +94,9 @@ export default {
       return this.filename.split('_')[1].replace(/[_-]QC$/, '')
     },
   },
+  created() {
+    this.quantType = QuantType(this.quant)
+  },
   methods: {
     buildWell(cell) {
       return this.quantType.WellFactory(cell, WellMap[this.quantType.key])
@@ -150,9 +154,6 @@ export default {
         reader.readAsText(file)
       })
     },
-  },
-  created() {
-    this.quantType = QuantType(this.quant)
   },
 }
 </script>

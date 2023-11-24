@@ -2,11 +2,11 @@
   <tr class="plate-row">
     <th>{{ id }}</th>
     <component
-      v-for="(well, key, index) in wells"
       v-bind="well"
       :is="well.type"
-      v-bind:plateBarcode="plateBarcode"
+      v-for="(well, key, index) in wells"
       :key="key.concat(index)"
+      :plate-barcode="plateBarcode"
     ></component>
   </tr>
 </template>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { mount, localVue, createContainer } from './testHelper'
-import Wells from '@/components/wells.vue'
+import Wells from '@/components/wells'
 import Store from '@/Store'
 import { Store as newStore } from '@/Store'
 import Plate from '@/components/Plate.vue'
