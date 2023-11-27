@@ -1,6 +1,4 @@
 // server.js
-// const jsonServer = require('json-server')
-// const bodyParser = require('body-parser')
 import jsonServer from 'json-server'
 import bodyParser from 'body-parser'
 const server = jsonServer.create()
