@@ -12,7 +12,7 @@
               id="clear_local_storage_button"
               type="button"
               class="btn btn-success"
-              v-on:click="clearLocalStorage"
+              @click="clearLocalStorage"
             >
               {{ clearLocalStorageTxt }}
             </button>
@@ -24,8 +24,8 @@
         <b-col>
           <router-link
             v-for="plate in plates"
-            :to="`/plate/${plate}`"
             :key="plate"
+            :to="`/plate/${plate}`"
             class="plate"
             tag="div"
           >
@@ -42,10 +42,13 @@
 </template>
 
 <script>
-import Upload from '@/components/Upload'
+import Upload from '@/components/Upload.vue'
 
 export default {
   name: 'Plates',
+  components: {
+    Upload,
+  },
   props: {},
   data() {
     return {
@@ -85,9 +88,6 @@ export default {
           : 'Empty (0 KB)'
       }`
     },
-  },
-  components: {
-    Upload,
   },
   methods: {
     clearLocalStorage() {

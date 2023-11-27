@@ -1,8 +1,8 @@
 <template>
   <td
     class="well sample"
-    v-bind:class="{ inactive: !active, inspect: outlier }"
-    v-on:click="setActive"
+    :class="{ inactive: !active, inspect: outlier }"
+    @click="setActive"
   >
     {{ id }}
     <br />
@@ -25,7 +25,7 @@ import { NullReplicate } from '@/Replicates'
 import WellProperties from '@/mixins/WellProperties'
 
 export default {
-  name: 'sample-well',
+  name: 'SampleWell',
   mixins: [WellProperties],
   props: {
     row: {
@@ -74,12 +74,6 @@ export default {
       return parseFloat(this.concentration)
     },
   },
-  methods: {
-    setActive() {
-      this.active = !this.active
-      this.replicate.outliers()
-    },
-  },
   mounted() {
     // prevents errors if store is not defined. Is there a better way ...
     if (this.store !== undefined) {
@@ -99,6 +93,12 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    setActive() {
+      this.active = !this.active
+      this.replicate.outliers()
+    },
   },
 }
 </script>

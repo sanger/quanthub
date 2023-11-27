@@ -5,50 +5,46 @@
       enctype="multipart/form-data"
       method="post"
       action="#"
-      v-on:submit.prevent="upload"
+      @submit.prevent="upload"
     >
       <div class="form-group">
         <div class="form-group">
           <label for="quantType">Select a Quant Type:</label>
           <select
             id="quant-type"
+            v-model="quantType"
             class="form-control"
             name="quantType"
-            v-model="quantType"
           >
             <option :value="null" selected disabled>
               Please select a quant type ...
             </option>
-            <option
-              v-for="(option, key) in quantTypes"
-              v-bind:key="key"
-              v-bind:value="key"
-            >
+            <option v-for="(option, key) in quantTypes" :key="key" :value="key">
               {{ option.name }}
             </option>
           </select>
         </div>
         <input
-          type="file"
-          name="file-input"
           id="file-input"
           ref="fileInput"
+          type="file"
+          name="file-input"
           class="file"
-          v-on:change.prevent="addFilenames"
+          @change.prevent="addFilenames"
         />
         <div class="input-group">
           <input
+            ref="browseFiles"
             class="form-control"
             type="text"
             disabled
             placeholder="Upload File..."
-            ref="browseFiles"
           />
           <span class="input-group-btn">
             <button
               class="btn btn-success spacer"
-              v-on:click.prevent="browseFiles"
               type="button"
+              @click.prevent="browseFiles"
             >
               Browse
             </button>
@@ -65,12 +61,15 @@
 <script>
 // Uploads a file. Parse options dependent on quantType
 import Vue from 'vue'
-import QuantFile from '@/components/QuantFile'
+import QuantFile from '@/components/QuantFile.vue'
 import quantTypes from '@/config/quantTypes'
-import Alert from '@/components/Alert'
+import Alert from '@/components/Alert.vue'
 
 export default {
   name: 'Upload',
+  components: {
+    Alert,
+  },
   props: {},
   data() {
     return {
@@ -86,9 +85,6 @@ export default {
     filenameFiltered() {
       return this.filename ? this.filename.replace(/^.*[\\]/, '') : null
     },
-  },
-  components: {
-    Alert,
   },
   methods: {
     validFiletype() {

@@ -8,7 +8,7 @@
 import WellProperties from '@/mixins/WellProperties'
 
 export default {
-  name: 'standard-well',
+  name: 'StandardWell',
   mixins: [WellProperties],
   props: {
     row: {

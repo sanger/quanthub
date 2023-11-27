@@ -45,10 +45,10 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          start: npm run serve --legacy-peer-deps
-          wait-on: http://localhost:8080/
+          start: npm run serve
+          wait-on: http://localhost:3000/
           spec: 'tests/e2e/**/*'
-          config-file: cypress.config.js
+          config-file: cypress.config.cjs
           config: video=false
           install: false
           timeout-minutes: 5

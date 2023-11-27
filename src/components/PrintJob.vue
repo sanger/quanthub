@@ -1,7 +1,7 @@
 <template>
   <div class="print-job">
     <alert ref="alert"></alert>
-    <form method="post" action="#" v-on:submit.prevent="execute">
+    <form method="post" action="#" @submit.prevent="execute">
       <h4>Print a barcode</h4>
       <div class="form-group">
         <div class="row">
@@ -11,16 +11,16 @@
           <div class="col-md-5">
             <select
               id="printer-list"
+              v-model="printerName"
               class="form-control"
               name="printer-list"
-              v-model="printerName"
             >
               <option
-                v-for="printerName in printerList"
-                v-bind:key="printerName"
-                v-bind:value="printerName"
+                v-for="printerNameOption in printerList"
+                :key="printerNameOption"
+                :value="printerNameOption"
               >
-                {{ printerName }}
+                {{ printerNameOption }}
               </option>
             </select>
           </div>
@@ -34,10 +34,10 @@
           </div>
           <div class="col-md-5">
             <textarea
-              name="barcodes"
               id="barcodes"
-              class="form-control"
               v-model="barcodes"
+              name="barcodes"
+              class="form-control"
               rows="10"
               cols="10"
             />
@@ -50,8 +50,8 @@
           <div class="col-md-3"></div>
           <div class="col-md-5">
             <button
-              name="submit"
               id="print"
+              name="submit"
               class="btn btn-success btn-block"
               type="submit"
             >
@@ -66,15 +66,18 @@
 
 <script>
 import Model from '@/api/PrintMyBarcode'
-import Alert from '@/components/Alert'
+import Alert from '@/components/Alert.vue'
 import PrinterList from '@/config/PrinterList'
 
 export default {
   name: 'PrintJob',
+  components: {
+    Alert,
+  },
   props: {
     labelTemplateId: {
       type: String,
-      default: process.env.VUE_APP_LABEL_TEMPLATE_ID,
+      default: import.meta.env.VITE_LABEL_TEMPLATE_ID,
     },
   },
   data() {
@@ -134,9 +137,6 @@ export default {
         'DEC',
       ]
     },
-  },
-  components: {
-    Alert,
   },
   methods: {
     execute() {

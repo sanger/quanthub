@@ -14,14 +14,14 @@
         <h3>{{ msg }}: {{ barcode }}</h3>
         <div class="spacer">
           <label class="spacer" for="lotNumber">Standards Lot Number:</label>
-          <input type="text" v-model="lotNumber" id="lotNumber" />
+          <input id="lotNumber" v-model="lotNumber" type="text" />
         </div>
         <div>
           <button
-            name="save"
             id="save"
+            name="save"
             class="btn btn-success"
-            v-on:click.prevent="save"
+            @click.prevent="save"
           >
             Save
           </button>
@@ -29,11 +29,11 @@
         <div>&nbsp;</div>
         <div>
           <button
-            name="export"
             id="export"
+            name="export"
             class="btn btn-success"
-            v-on:click.prevent="exportToSequencescape"
             :disabled="exporting"
+            @click.prevent="exportToSequencescape"
           >
             Export
           </button>
@@ -44,15 +44,15 @@
       <table class="table table-bordered">
         <thead>
           <th>&nbsp;</th>
-          <th v-for="column in columns" v-bind:key="column">{{ column }}</th>
+          <th v-for="column in columns" :key="column">{{ column }}</th>
         </thead>
         <tbody>
           <row
             v-for="(row, key, index) in rows"
-            v-bind:id="key"
-            v-bind:wells="row"
-            v-bind:plateBarcode="barcode"
-            v-bind:key="key.concat(index)"
+            :id="key"
+            :key="key.concat(index)"
+            :wells="row"
+            :plate-barcode="barcode"
           ></row>
         </tbody>
       </table>
@@ -69,19 +69,25 @@
 // The assumption is made that the data exists in local storage from when it was uploaded.
 // The QuantType is assigned from local storage and a QuantType component is created.
 
-import Row from '@/components/Row'
+import Row from '@/components/Row.vue'
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
-import Alert from '@/components/Alert'
+import Alert from '@/components/Alert.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
 
 export default {
   name: 'Plate',
+  components: {
+    Row,
+    Spinner,
+    Alert,
+  },
   props: {
     barcode: {
       type: String,
+      default: '',
     },
   },
   data() {
@@ -123,20 +129,15 @@ export default {
         method: 'post',
         headers: {
           'Content-Type': 'application/vnd.api+json',
-          'X-Sequencescape-Client-Id':
-            process.env.VUE_APP_SEQUENCESCAPE_API_KEY,
+          'X-Sequencescape-Client-Id': import.meta.env
+            .VITE_SEQUENCESCAPE_API_KEY,
         },
-        baseURL: process.env.VUE_APP_SEQUENCESCAPE_BASE_URL,
+        baseURL: import.meta.env.VITE_SEQUENCESCAPE_BASE_URL,
       }
     },
     request() {
       return Object.assign(this.requestOptions, this.jsonApiData)
     },
-  },
-  components: {
-    Row,
-    Spinner,
-    Alert,
   },
   created() {
     try {

@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Plate from '@/components/Plate'
-import Upload from '@/components/Upload'
-import PrintJob from '@/components/PrintJob'
-import PlateList from '@/components/PlateList'
+import Plate from '@/components/Plate.vue'
+import Upload from '@/components/Upload.vue'
+import PrintJob from '@/components/PrintJob.vue'
+import PlateList from '@/components/PlateList.vue'
 
 Vue.use(Router)
 
