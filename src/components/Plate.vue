@@ -87,6 +87,7 @@ export default {
   props: {
     barcode: {
       type: String,
+      default: '',
     },
   },
   data() {

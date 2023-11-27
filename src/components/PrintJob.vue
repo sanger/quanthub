@@ -16,11 +16,11 @@
               name="printer-list"
             >
               <option
-                v-for="printerName in printerList"
-                :key="printerName"
-                :value="printerName"
+                v-for="printerNameOption in printerList"
+                :key="printerNameOption"
+                :value="printerNameOption"
               >
-                {{ printerName }}
+                {{ printerNameOption }}
               </option>
             </select>
           </div>
@@ -71,6 +71,9 @@ import PrinterList from '@/config/PrinterList'
 
 export default {
   name: 'PrintJob',
+  components: {
+    Alert,
+  },
   props: {
     labelTemplateId: {
       type: String,
@@ -134,9 +137,6 @@ export default {
         'DEC',
       ]
     },
-  },
-  components: {
-    Alert,
   },
   methods: {
     execute() {

@@ -21,6 +21,7 @@ export default {
     },
     filename: {
       type: String,
+      default: '',
     },
   },
   data() {

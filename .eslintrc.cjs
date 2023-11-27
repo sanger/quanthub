@@ -14,5 +14,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'prefer-const': 'error',
     'vue/multi-word-component-names': 'off',
+    'vue/require-prop-types': 0,
   },
 }
