@@ -124,11 +124,6 @@ export default {
       return { data: { data: { attributes: this.json } } }
     },
     requestOptions() {
-      /* eslint-disable no-console */
-      console.log('TESTING---------')
-      console.log(import.meta.env)
-      console.log(import.meta.env.VITE_SEQUENCESCAPE_BASE_URL)
-      /* eslint-enable no-console */
       return {
         url: '/qc_assays',
         method: 'post',
@@ -195,9 +190,6 @@ export default {
     // TODO: can we move this to an ORM
     exportToSequencescape() {
       this.exporting = true
-      /* eslint-disable no-console */
-      console.log(this.request)
-      /* eslint-enable no-console */
       axios(this.request)
         .then(() => {
           this.exporting = false
