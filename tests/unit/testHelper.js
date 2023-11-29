@@ -1,5 +1,6 @@
 import BootstrapVue from 'bootstrap-vue'
 import { mount, createLocalVue } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 
 const localVue = createLocalVue()
 localVue.use(BootstrapVue)

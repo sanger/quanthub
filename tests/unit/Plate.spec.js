@@ -5,9 +5,9 @@ import Store from '@/Store'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
 import { mount, localVue, createContainer } from './testHelper'
-import { jest } from '@jest/globals'
+import { describe, expect, it } from 'vitest'
 
-jest.mock('axios')
+vi.mock('axios')
 
 // TODO: we need to test outputs rather than implementation e.g. checking alert prop
 // rather than element

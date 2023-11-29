@@ -6,6 +6,7 @@ import { Store as newStore } from '@/Store'
 import Plate from '@/components/Plate.vue'
 import WellProperties from '@/mixins/WellProperties'
 import { components } from '@/mixins/WellTypes'
+import { describe, expect, it } from 'vitest'
 
 describe('Wells', () => {
   let cmp, well, data, plateBarcode

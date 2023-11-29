@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import Alert from '@/components/Alert.vue'
 import { mount, localVue } from './testHelper'
 

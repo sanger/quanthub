@@ -3,7 +3,7 @@ import Model from '@/api/PrintMyBarcode'
 import flushPromises from 'flush-promises'
 import PrinterList from '@/config/PrinterList'
 import { mount, localVue } from './testHelper'
-import { jest } from '@jest/globals'
+import { describe, expect, it } from 'vitest'
 
 describe('PrintJob.vue', () => {
   let cmp, printJob, date, attributes
@@ -62,7 +62,7 @@ describe('PrintJob.vue', () => {
 
   describe('it sends a print job', () => {
     it('successfully', async () => {
-      Model.prototype.save = jest.fn(() => Promise.resolve(true))
+      Model.prototype.save = vi.fn(() => Promise.resolve(true))
       printJob.execute()
       await flushPromises()
       expect(printJob.$refs.alert.message).toEqual(
@@ -71,7 +71,7 @@ describe('PrintJob.vue', () => {
     })
 
     it('unsuccessfully', async () => {
-      Model.prototype.save = jest.fn(() => Promise.resolve(false))
+      Model.prototype.save = vi.fn(() => Promise.resolve(false))
       printJob.execute()
       await flushPromises()
       expect(printJob.$refs.alert.message).toEqual('barcode printing failed')
