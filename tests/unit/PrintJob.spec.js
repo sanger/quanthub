@@ -3,7 +3,7 @@ import Model from '@/api/PrintMyBarcode'
 import flushPromises from 'flush-promises'
 import PrinterList from '@/config/PrinterList'
 import { mount, localVue } from './testHelper'
-import { describe, expect, it } from 'vitest'
+import { vi, describe, expect, it, beforeEach } from 'vitest'
 
 describe('PrintJob.vue', () => {
   let cmp, printJob, date, attributes

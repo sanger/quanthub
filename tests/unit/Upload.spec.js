@@ -1,6 +1,6 @@
 import Upload from '@/components/Upload.vue'
 import { mount, localVue } from './testHelper'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, beforeEach } from 'vitest'
 
 describe('Upload.vue', () => {
   let cmp, upload

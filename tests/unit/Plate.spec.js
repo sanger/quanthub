@@ -5,7 +5,7 @@ import Store from '@/Store'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
 import { mount, localVue, createContainer } from './testHelper'
-import { describe, expect, it } from 'vitest'
+import { vi, describe, expect, it, beforeEach, afterEach } from 'vitest'
 
 vi.mock('axios')
 

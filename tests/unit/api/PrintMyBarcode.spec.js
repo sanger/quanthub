@@ -1,4 +1,5 @@
 import PrintJob from '@/api/PrintMyBarcode'
+import { describe, expect, it, beforeEach } from 'vitest'
 
 describe('PrintMyBarcode.js', () => {
   let printJob, date, json
