@@ -3,7 +3,7 @@ import { mount, localVue, createContainer } from './testHelper'
 import Wells from '@/components/wells'
 import Store from '@/Store'
 import { Store as newStore } from '@/Store'
-import Plate from '@/components/Plate'
+import Plate from '@/components/Plate.vue'
 import WellProperties from '@/mixins/WellProperties'
 import { components } from '@/mixins/WellTypes'
 

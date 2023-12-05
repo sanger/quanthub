@@ -8,7 +8,7 @@
 set -ev
 
 # Building assets
-npm run build -- --dest $2/public --report
+npm run build
 
 # Storing revision hash
 git rev-parse HEAD > $2/REVISION

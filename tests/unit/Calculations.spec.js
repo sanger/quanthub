@@ -149,6 +149,7 @@ describe('Calculations.vue', () => {
       expect((5.678945345322).toDecimalPlaces(5)).toEqual(5.67895)
       expect((1.87667834567).toDecimalPlaces(3)).toEqual(1.877)
       expect((934.56).toDecimalPlaces(6)).toEqual(934.56)
+      /*eslint no-loss-of-precision: "off"*/
       expect(-(4.3634597236525723975279).toDecimalPlaces(4)).toEqual(-4.3635)
       expect((9.9999999).toDecimalPlaces(3)).toEqual(10.0)
     })

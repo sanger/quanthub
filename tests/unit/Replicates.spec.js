@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Well from '@/components/wells/Sample'
+import Well from '@/components/wells/Sample.vue'
 import {
   ReplicateList,
   Replicate,
