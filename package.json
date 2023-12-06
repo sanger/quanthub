@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "npm-run-all -p serve:css serve",
     "serve": "vite",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && vite build",
     "test:unit": "jest",
@@ -14,7 +15,8 @@
     "test": "npm-run-all test:unit test:e2e",
     "lint": "eslint . --ext .js,.vue,.cjs",
     "prettier-check": "prettier --check .",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "serve:css": "postcss src/styles/tailwind.css -o src/styles/index.css"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
@@ -33,6 +35,8 @@
     "vue": "^2.7.5",
     "vue-router": "^3.5.4",
     "vue-simple-spinner": "^1.2.10",
+    "tailwindcss": "3.3.5",
+    "@sanger/ui-styling": "^4.1.0",
     "xvfb": "^0.4.0"
   },
   "resolutions": {
@@ -65,6 +69,7 @@
     "node-stdlib-browser": "^1.2.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
     "prettier": "^2.8.7",
     "sass": "^1.69.4",
     "vite-plugin-node-polyfills": "^0.15.0",

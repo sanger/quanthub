@@ -1,7 +1,7 @@
 <!-- A simple NavBar. Ready for expansion. -->
 <template>
   <div class="nav-bar">
-    <b-navbar
+    <quanthub-navbar
       class="navbar-default bg-dark"
       toggleable="md"
       type="dark"
@@ -16,7 +16,7 @@
           <a>Print a barcode</a>
         </router-link>
       </b-navbar-nav>
-    </b-navbar>
+    </quanthub-navbar>
   </div>
 </template>
 

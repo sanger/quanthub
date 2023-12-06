@@ -8,7 +8,7 @@
     <br />
     {{ concentration }}
     <br />
-    <b-badge
+    <quanthub-badge
       v-if="warning.message"
       v-b-tooltip.hover.bottom
       :title="warning.message"
@@ -16,7 +16,7 @@
       data-attribute="warning-message"
     >
       {{ warning.shortMessage }}
-    </b-badge>
+    </quanthub-badge>
   </td>
 </template>
 

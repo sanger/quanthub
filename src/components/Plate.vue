@@ -3,14 +3,14 @@
     <div>
       <alert ref="alert"></alert>
       <div class="container-fluid row">
-        <b-modal
+        <quanthub-modal
           v-model="exporting"
           :hide-footer="true"
           :hide-header="true"
           :no-close-on-backdrop="true"
         >
           <spinner size="huge" message="Exporting..."></spinner>
-        </b-modal>
+        </quanthub-modal>
         <h3>{{ msg }}: {{ barcode }}</h3>
         <div class="spacer">
           <label class="spacer" for="lotNumber">Standards Lot Number:</label>

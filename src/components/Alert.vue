@@ -1,7 +1,7 @@
 <!-- A simple Alert. -->
 <template>
   <div class="alert">
-    <b-alert
+    <quanthub-alert
       :show="dismissCountDown"
       dismissible
       :dismiss-after-seconds="5"
@@ -10,7 +10,7 @@
       @dismiss-count-down="countDownChanged"
     >
       <h4 class="text-center">{{ message }}</h4>
-    </b-alert>
+    </quanthub-alert>
   </div>
 </template>
 

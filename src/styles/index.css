@@ -1,0 +1,42 @@
+/* Import Tailwind's base styles from ui-styling package. Optional if you don't want to use them.**/
+@import '../../node_modules/@sanger/ui-styling/tailwind.css';
+
+/* Define your custom styles */
+.success-message {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 255 244 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(39 103 73 / var(--tw-text-opacity));
+}
+.success-message:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(104 211 145 / var(--tw-bg-opacity));
+}
+.success-icon {
+  --tw-text-opacity: 1;
+  color: rgb(39 103 73 / var(--tw-text-opacity));
+}
+.success-icon:hover {
+  --tw-text-opacity: 1;
+  color: rgb(240 255 244 / var(--tw-text-opacity));
+}
+.failure-message {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 245 245 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(155 44 44 / var(--tw-text-opacity));
+}
+.failure-message:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 129 129 / var(--tw-bg-opacity));
+}
+
+.failure-icon {
+  --tw-text-opacity: 1;
+  color: rgb(155 44 44 / var(--tw-text-opacity));
+}
+
+.failure-icon:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 245 245 / var(--tw-text-opacity));
+}

@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <upload></upload>
     <div class="plates">
-      <b-container fluid>
-        <b-row align-h="start">
-          <b-col cols="1">
+      <quanthub-container fluid>
+        <quanthub-brow align-h="start">
+          <quanthub-bcol cols="1">
             <h3>{{ msg }}</h3>
-          </b-col>
-          <b-col cols="2">
+          </quanthub-bcol>
+          <quanthub-bcol cols="2">
             <button
               id="clear_local_storage_button"
               type="button"
@@ -16,12 +16,12 @@
             >
               {{ clearLocalStorageTxt }}
             </button>
-          </b-col>
-          <b-col cols="3">
+          </quanthub-bcol>
+          <quanthub-bcol cols="3">
             <em>{{ localStorageUsed }}</em>
-          </b-col>
-        </b-row>
-        <b-col>
+          </quanthub-bcol>
+        </quanthub-brow>
+        <quanthub-bcol>
           <router-link
             v-for="plate in plates"
             :key="plate"
@@ -29,14 +29,14 @@
             class="plate"
             tag="div"
           >
-            <b-row>
+            <quanthub-brow>
               <div>
                 <a>{{ plate }}</a>
               </div>
-            </b-row>
+            </quanthub-brow>
           </router-link>
-        </b-col>
-      </b-container>
+        </quanthub-bcol>
+      </quanthub-container>
     </div>
   </div>
 </template>
