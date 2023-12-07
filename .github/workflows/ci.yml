@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Run unit tests using Vue Test Utils
+    name: Run unit tests using Vitest
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

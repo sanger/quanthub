@@ -6,6 +6,7 @@ import {
   NullReplicate,
   defaultOptions,
 } from '@/Replicates'
+import { describe, expect, it, beforeEach } from 'vitest'
 
 describe('Replicates.vue', () => {
   let cmp, well1, well2, well3, well4
