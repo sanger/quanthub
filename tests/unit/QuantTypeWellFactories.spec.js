@@ -1,4 +1,5 @@
 import * as WellFactories from '@/QuantTypeWellFactories'
+import { describe, expect, it } from 'vitest'
 
 describe('QuantTypeWellFactories.js', () => {
   describe('PlateReader Factory', () => {
