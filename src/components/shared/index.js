@@ -1,6 +1,5 @@
 import {
   BModal,
-  BAlert,
   BContainer,
   BRow,
   BCol,
@@ -8,6 +7,9 @@ import {
   BNavbar,
   BNavItem,
 } from 'bootstrap-vue'
+
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
+import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
 
 const registerBootstrapComponents = (vue) => {
   /* eslint-disable vue/component-definition-name-casing */
@@ -18,7 +20,8 @@ const registerBootstrapComponents = (vue) => {
   vue.component('quanthub-bcol', BCol)
   vue.component('quanthub-brow', BRow)
   vue.component('quanthub-badge', BBadge)
-  vue.component('quanthub-alert', BAlert)
+  vue.component('quanthub-close-icon', QuanthubCloseIcon)
+  vue.component('quanthub-alert', QuanthubMessage)
 }
 
 const registerGlobal = (vue) => {

@@ -15,11 +15,10 @@
       </div>
     </div>
 
-    <PageHeading level="1" shadow>{{ pipeline }} {{ page }}</PageHeading>
+    <PageHeading level="1" shadow>{{ page }}</PageHeading>
     <div class="flex flex-col mb-auto px-4 pt-4 pb-10">
       <router-view class="text-center" />
     </div>
-
     <PageFooter></PageFooter>
   </div>
 </template>
@@ -37,6 +36,14 @@ export default {
     PageLink,
     PageHeading,
     // NavBar,
+  },
+  computed: {
+    mergedRoute() {
+      return Object.assign({}, ...this.$route.matched.map(({ meta }) => meta))
+    },
+    page() {
+      return this.mergedRoute.page
+    },
   },
 }
 </script>

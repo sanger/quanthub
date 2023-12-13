@@ -1,12 +1,18 @@
 import { describe, expect, it, beforeEach } from 'vitest'
-import { mount, localVue } from './testHelper'
+import { mount } from './testHelper'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
 
 describe('QuanthubMessage.vue', () => {
   let cmp, alert
 
   beforeEach(() => {
-    cmp = mount(QuanthubMessage, { localVue })
+    cmp = mount(QuanthubMessage, {
+      data() {
+        return {
+          message: 'FooBar',
+        }
+      },
+    })
     alert = cmp.vm
   })
 

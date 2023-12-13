@@ -1,6 +1,6 @@
 <template>
   <div class="print-job">
-    <alert ref="alert"></alert>
+    <QuanthubMessage ref="alert"></QuanthubMessage>
     <form method="post" action="#" @submit.prevent="execute">
       <h4>Print a barcode</h4>
       <div class="form-group">
@@ -66,13 +66,13 @@
 
 <script>
 import Model from '@/api/PrintMyBarcode'
-import Alert from '@/components/Alert.vue'
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import PrinterList from '@/config/PrinterList'
 
 export default {
   name: 'PrintJob',
   components: {
-    Alert,
+    QuanthubMessage,
   },
   props: {
     labelTemplateId: {

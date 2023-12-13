@@ -1,7 +1,7 @@
 <template>
   <div class="plate">
     <div>
-      <alert ref="alert"></alert>
+      <QuanthubMessage ref="alert"></QuanthubMessage>
       <div class="container-fluid row">
         <quanthub-modal
           v-model="exporting"
@@ -72,7 +72,7 @@
 import Row from '@/components/Row.vue'
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
-import Alert from '@/components/Alert.vue'
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
 import axios from 'axios'
 import Spinner from 'vue-simple-spinner'
@@ -82,7 +82,7 @@ export default {
   components: {
     Row,
     Spinner,
-    Alert,
+    QuanthubMessage,
   },
   props: {
     barcode: {

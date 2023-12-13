@@ -6,9 +6,8 @@
    */
    -->
 <template>
-  <div>
+  <div v-show="isDisplayed">
     <div
-      v-if="isDisplayed"
       data-attribute="message"
       :class="[
         'flex flex-row border-b-2 border-gray-200 rounded rounded-md px-5 py-3 space-x-4 mb-4', //border and padding
@@ -77,7 +76,7 @@ export default {
       this.message = message
       this.type = type
       this.isDisplayed = true
-      setTimeout(this.dismiss, 10000)
+      // setTimeout(this.dismiss, 10000)
     },
   },
 }

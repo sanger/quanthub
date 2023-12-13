@@ -1,6 +1,6 @@
 <template>
   <div class="upload container-fluid">
-    <alert ref="alert"></alert>
+    <QuanthubMessage ref="alert"></QuanthubMessage>
     <form
       enctype="multipart/form-data"
       method="post"
@@ -63,12 +63,12 @@
 import Vue from 'vue'
 import QuantFile from '@/components/QuantFile.vue'
 import quantTypes from '@/config/quantTypes'
-import Alert from '@/components/Alert.vue'
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
 
 export default {
   name: 'Upload',
   components: {
-    Alert,
+    QuanthubMessage,
   },
   props: {},
   data() {

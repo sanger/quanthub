@@ -4,39 +4,59 @@
 /* Define your custom styles */
 .success-message {
   --tw-bg-opacity: 1;
-  background-color: rgb(240 255 244 / var(--tw-bg-opacity));
+  background-color: rgb(104 211 145);
   --tw-text-opacity: 1;
-  color: rgb(39 103 73 / var(--tw-text-opacity));
+  color: rgb(39 103 73);
 }
 .success-message:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(104 211 145 / var(--tw-bg-opacity));
+  background-color: rgb(104 211 145);
 }
 .success-icon {
   --tw-text-opacity: 1;
-  color: rgb(39 103 73 / var(--tw-text-opacity));
+  color: rgb(39 103 73);
 }
 .success-icon:hover {
   --tw-text-opacity: 1;
-  color: rgb(240 255 244 / var(--tw-text-opacity));
+  color: rgb(94, 184, 129);
 }
 .failure-message {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 245 245 / var(--tw-bg-opacity));
+  background-color: rgb(235, 89, 89);
   --tw-text-opacity: 1;
-  color: rgb(155 44 44 / var(--tw-text-opacity));
+  color: rgb(155 44 44);
 }
 .failure-message:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(252 129 129 / var(--tw-bg-opacity));
+  background-color: rgb(236, 76, 76);
 }
 
 .failure-icon {
   --tw-text-opacity: 1;
-  color: rgb(155 44 44 / var(--tw-text-opacity));
+  color: rgb(155 44 44);
 }
 
 .failure-icon:hover {
   --tw-text-opacity: 1;
-  color: rgb(255 245 245 / var(--tw-text-opacity));
+  color: rgb(255 245 245);
+}
+.warning-message {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229, 236, 134);
+  --tw-text-opacity: 1;
+  color: rgb(132, 132, 60);
+}
+.warning-message:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(225, 236, 76);
+}
+
+.warning-icon {
+  --tw-text-opacity: 1;
+  color: rgb(132, 132, 60);
+}
+
+.warning-icon:hover {
+  --tw-text-opacity: 1;
+  color: rgb(225, 236, 76);
 }
