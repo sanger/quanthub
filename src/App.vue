@@ -27,7 +27,6 @@
 import PageFooter from '@/components/PageFooter.vue'
 import PageLink from '@/components/PageLink.vue'
 import PageHeading from '@/components/PageHeading.vue'
-// import NavBar from '@/components/NavBar.vue'
 
 export default {
   name: 'App',
@@ -35,7 +34,6 @@ export default {
     PageFooter,
     PageLink,
     PageHeading,
-    // NavBar,
   },
   computed: {
     mergedRoute() {

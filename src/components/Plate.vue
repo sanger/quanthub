@@ -2,15 +2,17 @@
   <div class="plate">
     <div>
       <QuanthubMessage ref="alert"></QuanthubMessage>
+      <QuanthubModal
+        :visible="exporting"
+        size="sm"
+        title="Exporting to Sequencescape..."
+      >
+        <LoadingSpinner
+          v-show="exporting"
+          class="w-1/2 mx-auto items-center justify-center w-32 h-32"
+        ></LoadingSpinner>
+      </QuanthubModal>
       <div class="container-fluid row">
-        <quanthub-modal
-          v-model="exporting"
-          :hide-footer="true"
-          :hide-header="true"
-          :no-close-on-backdrop="true"
-        >
-          <spinner size="huge" message="Exporting..."></spinner>
-        </quanthub-modal>
         <h3>{{ msg }}: {{ barcode }}</h3>
         <div class="spacer">
           <label class="spacer" for="lotNumber">Standards Lot Number:</label>
@@ -73,16 +75,18 @@ import Row from '@/components/Row.vue'
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
+import QuanthubModal from '@/components/shared/QuanthubModal.vue'
+import LoadingSpinner from '@/components/shared/LoadingSpinner.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
 import axios from 'axios'
-import Spinner from 'vue-simple-spinner'
 
 export default {
   name: 'Plate',
   components: {
     Row,
-    Spinner,
+    LoadingSpinner,
     QuanthubMessage,
+    QuanthubModal,
   },
   props: {
     barcode: {
