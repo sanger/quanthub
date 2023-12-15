@@ -1,4 +1,4 @@
-import { BContainer, BRow, BCol, BBadge } from 'bootstrap-vue'
+import { BBadge } from 'bootstrap-vue'
 
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
@@ -6,9 +6,6 @@ import QuanthubModal from '@/components/shared/QuanthubModal.vue'
 
 const registerBootstrapComponents = (vue) => {
   /* eslint-disable vue/component-definition-name-casing */
-  vue.component('quanthub-container', BContainer)
-  vue.component('quanthub-bcol', BCol)
-  vue.component('quanthub-brow', BRow)
   vue.component('quanthub-badge', BBadge)
   vue.component('quanthub-close-icon', QuanthubCloseIcon)
   vue.component('quanthub-alert', QuanthubMessage)

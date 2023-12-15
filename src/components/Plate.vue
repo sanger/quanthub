@@ -1,5 +1,5 @@
 <template>
-  <div class="plate">
+  <div class="plate space-y-2">
     <div>
       <QuanthubMessage ref="alert"></QuanthubMessage>
       <QuanthubModal
@@ -12,11 +12,18 @@
           class="w-1/2 mx-auto items-center justify-center w-32 h-32"
         ></LoadingSpinner>
       </QuanthubModal>
-      <div class="container-fluid row">
-        <h3>{{ msg }}: {{ barcode }}</h3>
+      <PageHeading level="3" show-border>{{ msg }}: {{ barcode }}</PageHeading>
+      <div class="flex flex-row space-x-2 justify-center">
         <div class="spacer">
-          <label class="spacer" for="lotNumber">Standards Lot Number:</label>
-          <input id="lotNumber" v-model="lotNumber" type="text" />
+          <label class="spacer items-center" for="lotNumber"
+            >Standards Lot Number:</label
+          >
+          <input
+            id="lotNumber"
+            v-model="lotNumber"
+            type="text"
+            class="border-inherit"
+          />
         </div>
         <div>
           <button
@@ -28,7 +35,6 @@
             Save
           </button>
         </div>
-        <div>&nbsp;</div>
         <div>
           <button
             id="export"
@@ -44,7 +50,7 @@
     </div>
     <div class="col-md-12">
       <table class="table table-bordered">
-        <thead>
+        <thead class="bg-gray-200">
           <th>&nbsp;</th>
           <th v-for="column in columns" :key="column">{{ column }}</th>
         </thead>
@@ -77,6 +83,7 @@ import QuantType from '@/QuantType'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import QuanthubModal from '@/components/shared/QuanthubModal.vue'
 import LoadingSpinner from '@/components/shared/LoadingSpinner.vue'
+import PageHeading from '@/components/PageHeading.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
 import axios from 'axios'
 
@@ -87,6 +94,7 @@ export default {
     LoadingSpinner,
     QuanthubMessage,
     QuanthubModal,
+    PageHeading,
   },
   props: {
     barcode: {

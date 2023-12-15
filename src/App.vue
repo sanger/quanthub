@@ -72,7 +72,6 @@ nav {
   }
 }
 a {
-  color: black;
   &:hover {
     text-decoration: none;
     color: black;

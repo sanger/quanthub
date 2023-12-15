@@ -55,7 +55,7 @@ describe('Plate.vue', () => {
 
   it('can have a barcode', () => {
     expect(
-      plate.$el.querySelector('.row').querySelector('h3').textContent
+      plate.$el.querySelector('header').querySelector('div').textContent
     ).toEqual('Plate: ' + barcode)
   })
 

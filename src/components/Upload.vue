@@ -32,7 +32,7 @@
           class="file"
           @change.prevent="addFilenames"
         />
-        <div class="input-group">
+        <div class="input-group space-x-2">
           <input
             ref="browseFiles"
             class="form-control"
@@ -40,7 +40,7 @@
             disabled
             placeholder="Upload File..."
           />
-          <span class="input-group-btn">
+          <span class="input-group-btn space-x-2">
             <button
               class="btn btn-success spacer"
               type="button"

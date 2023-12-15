@@ -2,52 +2,42 @@
   <div class="container-fluid">
     <upload></upload>
     <div class="plates">
-      <quanthub-container fluid>
-        <quanthub-brow align-h="start">
-          <quanthub-bcol cols="1">
-            <h3>{{ msg }}</h3>
-          </quanthub-bcol>
-          <quanthub-bcol cols="2">
-            <button
-              id="clear_local_storage_button"
-              type="button"
-              class="btn btn-success"
-              @click="clearLocalStorage"
-            >
-              {{ clearLocalStorageTxt }}
-            </button>
-          </quanthub-bcol>
-          <quanthub-bcol cols="3">
-            <em>{{ localStorageUsed }}</em>
-          </quanthub-bcol>
-        </quanthub-brow>
-        <quanthub-bcol>
-          <router-link
-            v-for="plate in plates"
-            :key="plate"
-            :to="`/plate/${plate}`"
-            class="plate"
-            tag="div"
-          >
-            <quanthub-brow>
-              <div>
-                <a>{{ plate }}</a>
-              </div>
-            </quanthub-brow>
-          </router-link>
-        </quanthub-bcol>
-      </quanthub-container>
+      <div class="space-x-2">
+        <button
+          id="clear_local_storage_button"
+          type="button"
+          class="btn btn-success"
+          @click="clearLocalStorage"
+        >
+          {{ clearLocalStorageTxt }}
+        </button>
+        <em>{{ localStorageUsed }}</em>
+      </div>
+      <PageHeading level="3" show-border>{{ msg }}</PageHeading>
+      <router-link
+        v-for="plate in plates"
+        :key="plate"
+        :to="`/plate/${plate}`"
+        class="plate"
+        tag="div"
+      >
+        <div class="text-left">
+          <a>{{ plate }}</a>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
 import Upload from '@/components/Upload.vue'
+import PageHeading from '@/components/PageHeading.vue'
 
 export default {
   name: 'Plates',
   components: {
     Upload,
+    PageHeading,
   },
   props: {},
   data() {
