@@ -47,7 +47,7 @@
     "babel-plugin-transform-vite-meta-env": "^1.0.3",
     "cypress": "^13.5.0",
     "cypress-file-upload": "^5.0.8",
-    "eslint": "^8.53.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-vue": "^9.18.1",
