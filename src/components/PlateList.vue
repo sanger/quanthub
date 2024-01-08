@@ -1,18 +1,17 @@
 <template>
-  <div class="container-fluid">
+  <div>
     <upload></upload>
-    <div class="plates">
-      <div class="space-x-2">
-        <button
-          id="clear_local_storage_button"
-          type="button"
-          class="btn btn-success"
-          @click="clearLocalStorage"
-        >
-          {{ clearLocalStorageTxt }}
-        </button>
-        <em>{{ localStorageUsed }}</em>
-      </div>
+    <div class="plates space-x-2 pt-2">
+      <custom-button
+        id="clear_local_storage_button"
+        type="button"
+        theme="create"
+        @click="clearLocalStorage"
+      >
+        {{ clearLocalStorageTxt }}
+      </custom-button>
+      <em>{{ localStorageUsed }}</em>
+
       <PageHeading level="3" show-border>{{ msg }}</PageHeading>
       <router-link
         v-for="plate in plates"
@@ -22,7 +21,10 @@
         tag="div"
       >
         <div class="text-left">
-          <a>{{ plate }}</a>
+          <a
+            class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+            >{{ plate }}</a
+          >
         </div>
       </router-link>
     </div>

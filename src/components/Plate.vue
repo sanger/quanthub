@@ -14,7 +14,7 @@
       </QuanthubModal>
       <PageHeading level="3" show-border>{{ msg }}: {{ barcode }}</PageHeading>
       <div class="flex flex-row space-x-2 justify-center">
-        <div class="spacer">
+        <div class="wrapper space-x-2">
           <label class="spacer items-center" for="lotNumber"
             >Standards Lot Number:</label
           >
@@ -22,37 +22,35 @@
             id="lotNumber"
             v-model="lotNumber"
             type="text"
-            class="border-inherit"
+            class="block rounded border p-2"
           />
-        </div>
-        <div>
-          <button
-            id="save"
-            name="save"
-            class="btn btn-success"
-            @click.prevent="save"
-          >
+
+          <custom-button id="save" name="save" theme="create" @click="save">
             Save
-          </button>
-        </div>
-        <div>
-          <button
+          </custom-button>
+          <custom-button
             id="export"
             name="export"
-            class="btn btn-success"
+            theme="create"
             :disabled="exporting"
-            @click.prevent="exportToSequencescape"
+            @click="exportToSequencescape"
           >
             Export
-          </button>
+          </custom-button>
         </div>
       </div>
     </div>
     <div class="col-md-12">
-      <table class="table table-bordered">
-        <thead class="bg-gray-200">
+      <table class="table">
+        <thead>
           <th>&nbsp;</th>
-          <th v-for="column in columns" :key="column">{{ column }}</th>
+          <th
+            v-for="column in columns"
+            :key="column"
+            class="border-solid border-2 border-gray-200"
+          >
+            {{ column }}
+          </th>
         </thead>
         <tbody>
           <row
@@ -61,6 +59,7 @@
             :key="key.concat(index)"
             :wells="row"
             :plate-barcode="barcode"
+            class="border-solid border-2 border-gray-200"
           ></row>
         </tbody>
       </table>

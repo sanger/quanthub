@@ -1,6 +1,6 @@
 <template>
   <tr class="plate-row">
-    <th class="bg-gray-200">{{ id }}</th>
+    <th>{{ id }}</th>
     <component
       v-bind="well"
       :is="well.type"

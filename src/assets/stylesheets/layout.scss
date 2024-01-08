@@ -53,3 +53,14 @@ th {
     }
   }
 }
+
+.wrapper {
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.table td {
+  border: 1px solid #dee2e6;
+}

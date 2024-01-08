@@ -8,15 +8,16 @@
     <br />
     {{ concentration }}
     <br />
-    <quanthub-badge
+    <badge-label
       v-if="warning.message"
-      v-b-tooltip.hover.bottom
-      :title="warning.message"
       class="warning"
       data-attribute="warning-message"
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
     >
       {{ warning.shortMessage }}
-    </quanthub-badge>
+    </badge-label>
+    <span v-if="hover" class="tooltip-text">{{ warning.message }}</span>
   </td>
 </template>
 
@@ -55,6 +56,7 @@ export default {
       },
     },
   },
+  emits: ['mouseover', 'mouseleave'],
   data() {
     return {
       msg: 'Sample Well',
@@ -63,6 +65,7 @@ export default {
       active: true,
       outlier: false,
       warning: {},
+      hover: false,
     }
   },
   computed: {
@@ -129,5 +132,16 @@ export default {
 .warning {
   color: white;
   background-color: $well-purple;
+}
+
+.tooltip-text {
+  position: absolute;
+  z-index: 2;
+  width: 200px;
+  color: white;
+  font-size: 12px;
+  background-color: black;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
 }
 </style>

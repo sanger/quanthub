@@ -16,6 +16,7 @@ describe('PrintJob.vue', () => {
     cmp.setData({
       barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
       printerName: 'ippbc',
+      printerList: PrinterList,
       date: date,
     })
     attributes = {
@@ -55,9 +56,7 @@ describe('PrintJob.vue', () => {
   })
 
   it('will have a list of printers', () => {
-    expect(cmp.find('#printer-list').findAll('option').length).toEqual(
-      PrinterList.length
-    )
+    expect(printJob.printerList.length).toEqual(PrinterList.length)
   })
 
   describe('it sends a print job', () => {
