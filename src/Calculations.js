@@ -49,7 +49,7 @@ const isOutlier = (value, limit = 3.5) => {
 // will return 0 if array is empty
 const mean = (
   values,
-  { sample = 0, conversionExpression = `(${originalValue})` } = {}
+  { sample = 0, conversionExpression = `(${originalValue})` } = {},
 ) => {
   if (conversionExpression.indexOf(originalValue) === -1) {
     return NaN

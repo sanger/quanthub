@@ -103,7 +103,7 @@ export default {
             sFilename
               .substr(
                 sFilename.length - sCurExtension.length,
-                sCurExtension.length
+                sCurExtension.length,
               )
               .toLowerCase() == sCurExtension.toLowerCase()
           ) {
@@ -118,14 +118,14 @@ export default {
       if (!this.quantType) {
         this.$refs.alert.show(
           `Please select a quant type and file before uploading!`,
-          'warning'
+          'warning',
         )
         return false
       }
       if (!this.validFiletype()) {
         this.$refs.alert.show(
           `Please select a csv file before uploading!`,
-          'warning'
+          'warning',
         )
         return false
       }

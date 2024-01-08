@@ -122,7 +122,7 @@ export default {
           'options' in option
         ) {
           const formattedOptions = option.options.map((optionVal) =>
-            this.formatOption(optionVal, option.label)
+            this.formatOption(optionVal, option.label),
           )
           retOptions = [...retOptions, ...formattedOptions]
         } else {

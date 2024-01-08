@@ -19,7 +19,7 @@ describe('Calculations.vue', () => {
 
     it('even unsorted list of big numbers', () => {
       expect(
-        Calculations.median([15074400, 15443900, 15510200, 15916700])
+        Calculations.median([15074400, 15443900, 15510200, 15916700]),
       ).toEqual(15477050)
     })
   })
@@ -35,8 +35,8 @@ describe('Calculations.vue', () => {
       expect(
         Calculations.absoluteDeviation(
           [15074400, 15443900, 15510200, 15916700],
-          15477050
-        )
+          15477050,
+        ),
       ).toEqual([402650, 33150, 33150, 439650])
     })
   })
@@ -48,7 +48,7 @@ describe('Calculations.vue', () => {
 
     it('big numbers', () => {
       expect(
-        Calculations.mad([15074400, 15443900, 15510200, 15916700])
+        Calculations.mad([15074400, 15443900, 15510200, 15916700]),
       ).toEqual(217900)
     })
   })
@@ -67,16 +67,16 @@ describe('Calculations.vue', () => {
         0.8993210126354603,
       ]
       expect(Calculations.modifiedZScores(values[0], median, mad)).toEqual(
-        expected[0]
+        expected[0],
       )
       expect(Calculations.modifiedZScores(values[1], median, mad)).toEqual(
-        expected[1]
+        expected[1],
       )
       expect(Calculations.modifiedZScores(values[2], median, mad)).toEqual(
-        expected[2]
+        expected[2],
       )
       expect(Calculations.modifiedZScores(values[3], median, mad)).toEqual(
-        expected[3]
+        expected[3],
       )
     })
 
@@ -90,16 +90,16 @@ describe('Calculations.vue', () => {
         1.360898863716774,
       ]
       expect(Calculations.modifiedZScores(values[0], median, mad)).toEqual(
-        expected[0]
+        expected[0],
       )
       expect(Calculations.modifiedZScores(values[1], median, mad)).toEqual(
-        expected[1]
+        expected[1],
       )
       expect(Calculations.modifiedZScores(values[2], median, mad)).toEqual(
-        expected[2]
+        expected[2],
       )
       expect(Calculations.modifiedZScores(values[3], median, mad)).toEqual(
-        expected[3]
+        expected[3],
       )
     })
 
@@ -113,16 +113,16 @@ describe('Calculations.vue', () => {
         -0.0034372324081519945,
       ]
       expect(Calculations.modifiedZScores(values[0], median, mad)).toEqual(
-        expected[0]
+        expected[0],
       )
       expect(Calculations.modifiedZScores(values[1], median, mad)).toEqual(
-        expected[1]
+        expected[1],
       )
       expect(Calculations.modifiedZScores(values[2], median, mad)).toEqual(
-        expected[2]
+        expected[2],
       )
       expect(Calculations.modifiedZScores(values[3], median, mad)).toEqual(
-        expected[3]
+        expected[3],
       )
     })
   })
@@ -164,14 +164,14 @@ describe('Calculations.vue', () => {
     it('should calculate the correct result', () => {
       expect(Calculations.mean(values).toDecimalPlaces(3)).toEqual(3.004)
       expect(Calculations.mean([5, 6, 7, 8, 9, 10]).toDecimalPlaces(3)).toEqual(
-        7.5
+        7.5,
       )
     })
 
     // When calculating the mean for standard deviation
     it('can calculate a sample mean', () => {
       expect(
-        Calculations.mean(values, { sample: 1 }).toDecimalPlaces(3)
+        Calculations.mean(values, { sample: 1 }).toDecimalPlaces(3),
       ).toEqual(4.506)
     })
 
@@ -179,12 +179,16 @@ describe('Calculations.vue', () => {
       it('can calculate an adjusted mean', () => {
         let conversionExpression = '(ORIGINAL_VALUE * 2.59)'
         expect(
-          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(
+            3,
+          ),
         ).toEqual(7.781)
 
         conversionExpression = '(ORIGINAL_VALUE * (1000000/660)*(1/585))'
         expect(
-          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(
+            3,
+          ),
         ).toEqual(7.781)
       })
     })
@@ -194,7 +198,9 @@ describe('Calculations.vue', () => {
         const conversionExpression =
           '(ORIGINAL_VALUE ^ 2 - 2 * ORIGINAL_VALUE + 1.5)'
         expect(
-          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(
+            3,
+          ),
         ).toEqual(4.517)
       })
     })
@@ -204,7 +210,9 @@ describe('Calculations.vue', () => {
         const conversionExpression =
           '(3.786+(49.599-3.786)/(1+10^(-3.723*(log10(ORIGINAL_VALUE)-log10(35.521)))))'
         expect(
-          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(3)
+          Calculations.mean(values, { conversionExpression }).toDecimalPlaces(
+            3,
+          ),
         ).toEqual(3.791)
       })
     })
@@ -235,7 +243,7 @@ describe('Calculations.vue', () => {
       // sqrt (0.018) = 0.163714690849661
 
       expect(Calculations.standardDeviation(values).toDecimalPlaces(3)).toEqual(
-        0.164
+        0.164,
       )
     })
 
@@ -251,7 +259,7 @@ describe('Calculations.vue', () => {
       expect(
         Calculations.standardDeviation([
           0.0000142, 0.0000142, 0.0000142,
-        ]).toDecimalPlaces(3)
+        ]).toDecimalPlaces(3),
       ).toEqual(0)
     })
   })
@@ -260,7 +268,7 @@ describe('Calculations.vue', () => {
     it('if there are multiple values', () => {
       // (0.16371418183325878/3.0043333333333333) * 100 = 5.449
       expect(Calculations.cv([3.014, 3.163, 2.836]).toDecimalPlaces(3)).toEqual(
-        5.449
+        5.449,
       )
     })
 
@@ -274,7 +282,7 @@ describe('Calculations.vue', () => {
 
     it('the values are really small', () => {
       expect(
-        Calculations.cv([0.0000142, 0.0000142, 0.0000142]).toDecimalPlaces(3)
+        Calculations.cv([0.0000142, 0.0000142, 0.0000142]).toDecimalPlaces(3),
       ).toEqual(0)
     })
   })
@@ -290,10 +298,10 @@ describe('Calculations.vue', () => {
           Calculations.modifiedZScores(
             values[3],
             Calculations.median(values),
-            Calculations.mad(values)
+            Calculations.mad(values),
           ),
-          3.5
-        )
+          3.5,
+        ),
       ).toBeTruthy()
     })
 
@@ -306,10 +314,10 @@ describe('Calculations.vue', () => {
           Calculations.modifiedZScores(
             values[3],
             Calculations.median(values),
-            Calculations.mad(values)
+            Calculations.mad(values),
           ),
-          3.5
-        )
+          3.5,
+        ),
       ).toBeFalsy()
     })
 
@@ -321,10 +329,10 @@ describe('Calculations.vue', () => {
           Calculations.modifiedZScores(
             values[3],
             Calculations.median(values),
-            Calculations.mad(values)
+            Calculations.mad(values),
           ),
-          3.5
-        )
+          3.5,
+        ),
       ).toBeTruthy()
     })
   })

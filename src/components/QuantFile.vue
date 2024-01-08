@@ -60,7 +60,7 @@ export default {
         const barcodeLine = this.metadata[this.quantType.metadata.idColumn]
         if (barcodeLine.match(/[-_]QC/)) {
           return this.metadata[this.quantType.metadata.idColumn].split(
-            /[-_]QC/
+            /[-_]QC/,
           )[0]
         }
         return this.metadata[this.quantType.metadata.idColumn].split(/,/)[0]
@@ -74,7 +74,7 @@ export default {
     },
     barcodeFromFileName() {
       const fileNameMatch = this.filename.match(
-        this.quantType.fileNameSpecs.pattern
+        this.quantType.fileNameSpecs.pattern,
       )
       if (!fileNameMatch) {
         return null
@@ -83,7 +83,7 @@ export default {
       const groups = fileNameMatch.groups
       const barcode = this.quantType.fileNameSpecs.barcodeFormat.replace(
         /{(.+?)}/g,
-        (_, key) => groups[key]
+        (_, key) => groups[key],
       )
 
       return `${barcode}${
@@ -143,7 +143,7 @@ export default {
                 quantType: this.quant,
                 ...(this.quantType.grid || {}),
               },
-              this.parseRaw()
+              this.parseRaw(),
             )
             this.json = json
           } catch (error) {

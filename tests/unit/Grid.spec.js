@@ -38,7 +38,7 @@ describe('Grid.vue', () => {
       expect(grid.json.columns).toHaveLength(options.numberOfColumns)
       expect(grid.json.columns[0]).toEqual('1')
       expect(grid.json.columns[options.numberOfColumns - 1]).toEqual(
-        String(options.numberOfColumns)
+        String(options.numberOfColumns),
       )
     })
 

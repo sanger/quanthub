@@ -355,7 +355,7 @@ describe('Replicates.vue', () => {
       const firstReplicate = replicateList.find('A1')
       expect(firstReplicate.mean()).toEqual(replicate1.mean())
       expect(firstReplicate.standardDeviation()).toEqual(
-        replicate1.standardDeviation()
+        replicate1.standardDeviation(),
       )
       expect(firstReplicate.cv()).toEqual(replicate1.cv())
     })
@@ -373,7 +373,7 @@ describe('Replicates.vue', () => {
     it('will have the correct number of decimal places', () => {
       expect(replicate2.mean().toString().split('.')[1].length).toEqual(15)
       expect(
-        replicate2.standardDeviation().toString().split('.')[1].length
+        replicate2.standardDeviation().toString().split('.')[1].length,
       ).toEqual(16)
       expect(replicate2.cv().toString().split('.')[1].length).toEqual(15)
     })

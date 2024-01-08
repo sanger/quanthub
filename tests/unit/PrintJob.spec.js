@@ -65,7 +65,7 @@ describe('PrintJob.vue', () => {
       printJob.execute()
       await flushPromises()
       expect(printJob.$refs.alert.message).toEqual(
-        'barcode successfully printed'
+        'barcode successfully printed',
       )
     })
 

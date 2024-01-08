@@ -42,21 +42,21 @@
 }
 .warning-message {
   --tw-bg-opacity: 1;
-  background-color: rgb(229, 236, 134);
+  background-color: #fff3cd;
   --tw-text-opacity: 1;
-  color: rgb(132, 132, 60);
+  color: #856404;
 }
 .warning-message:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(225, 236, 76);
+  background-color: #ffeeba;
 }
 
 .warning-icon {
   --tw-text-opacity: 1;
-  color: rgb(132, 132, 60);
+  color: #856404;
 }
 
 .warning-icon:hover {
   --tw-text-opacity: 1;
-  color: rgb(225, 236, 76);
+  color: #856404;
 }

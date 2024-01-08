@@ -44,13 +44,8 @@
       <table class="table">
         <thead>
           <th>&nbsp;</th>
-          <th
-            v-for="column in columns"
-            :key="column"
-            class="border-solid border-2 border-gray-200"
-          >
-            {{ column }}
-          </th>
+          <!-- prettier-ignore -->
+          <th v-for="column in columns" :key="column" class="border-solid border-2 border-gray-200">{{ column }}</th>
         </thead>
         <tbody>
           <row
@@ -186,7 +181,7 @@ export default {
           quantType: this.grid.quantType,
           lotNumber: this.lotNumber,
         },
-        cells
+        cells,
       )
 
       return json
@@ -206,14 +201,14 @@ export default {
           this.exporting = false
           this.$refs.alert.show(
             'QC Results for plate has been successfully exported to Sequencescape',
-            'success'
+            'success',
           )
         })
         .catch((error) => {
           this.exporting = false
           this.$refs.alert.show(
             'QC Results for plate could not be exported',
-            'danger'
+            'danger',
           )
           /*eslint no-console: ["error", { allow: ["error"] }] */
           console.error(error)

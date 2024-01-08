@@ -43,19 +43,19 @@ describe('Plate.vue', () => {
     expect(columns).toHaveLength(numberOfColumns + 1)
     expect(columns[1].textContent).toEqual(grid.json.columns[0])
     expect(columns[numberOfColumns].textContent).toEqual(
-      grid.json.columns[numberOfColumns - 1]
+      grid.json.columns[numberOfColumns - 1],
     )
   })
 
   it('will have the correct number of rows', () => {
     expect(
-      plate.$el.querySelector('table').querySelectorAll('.plate-row')
+      plate.$el.querySelector('table').querySelectorAll('.plate-row'),
     ).toHaveLength(numberOfRows)
   })
 
   it('can have a barcode', () => {
     expect(
-      plate.$el.querySelector('header').querySelector('div').textContent
+      plate.$el.querySelector('header').querySelector('div').textContent,
     ).toEqual('Plate: ' + barcode)
   })
 
@@ -68,7 +68,7 @@ describe('Plate.vue', () => {
     expect(newGrid.quantType).toEqual(quantType)
     expect(newGrid.columns).toEqual(grid.json.columns)
     expect(Object.keys(newGrid.rows)).toHaveLength(
-      Object.keys(newGrid.rows).length
+      Object.keys(newGrid.rows).length,
     )
   })
 
@@ -138,7 +138,7 @@ describe('Plate.vue', () => {
       cmp.find('#export').trigger('click')
       await flushPromises()
       expect(plate.$refs.alert.message).toEqual(
-        'QC Results for plate has been successfully exported to Sequencescape'
+        'QC Results for plate has been successfully exported to Sequencescape',
       )
       expect(axios).toBeCalledWith(plate.request)
     })
@@ -148,7 +148,7 @@ describe('Plate.vue', () => {
       cmp.find('#export').trigger('click')
       await flushPromises()
       expect(plate.$refs.alert.message).toEqual(
-        'QC Results for plate could not be exported'
+        'QC Results for plate could not be exported',
       )
     })
   })

@@ -59,7 +59,7 @@ export default {
       return Object.keys(localStorage).filter(
         (key) =>
           Object.prototype.hasOwnProperty.call(localStorage, key) &&
-          key !== 'loglevel:webpack-dev-server'
+          key !== 'loglevel:webpack-dev-server',
       )
     },
     localStorageUsed() {

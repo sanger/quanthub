@@ -28,7 +28,8 @@
         ></textarea>
         <div class="error">{{ errors.barcode }}</div>
       </div>
-      <div class="items-center">
+      <div class="grid grid-cols-2 divide-x pb-2 items-center">
+        <div></div>
         <custom-button id="print" name="submit" type="submit" theme="create">
           Print
         </custom-button>
