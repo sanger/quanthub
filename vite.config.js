@@ -8,9 +8,6 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@tests': fileURLToPath(new URL('./tests', import.meta.url)),
-      // '~bootstrap': fileURLToPath(
-      //   new URL('./node_modules/bootstrap', import.meta.url)
-      // ),
     },
   },
   test: {

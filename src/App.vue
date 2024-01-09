@@ -47,9 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-// @import 'src/assets/stylesheets/colors.scss';
 @import 'src/assets/stylesheets/layout.scss';
-// @import '~bootstrap/scss/bootstrap';
 
 #app {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

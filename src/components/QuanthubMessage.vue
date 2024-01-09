@@ -76,7 +76,6 @@ export default {
       this.message = message
       this.type = type
       this.isDisplayed = true
-      // setTimeout(this.dismiss, 10000)
     },
   },
 }
