@@ -75,7 +75,7 @@ const grid = (
     numberOfColumns = 24,
     numberOfRows = 16,
   } = {},
-  cells = []
+  cells = [],
 ) => {
   const columns = Array.from(Array(numberOfColumns), (_v, i) => String(i + 1))
   const rows = buildRows(numberOfRows, columns)

@@ -72,7 +72,7 @@ describe('Wells', () => {
   describe('Well Type mixin', () => {
     it('has the correct number of types', () => {
       expect(Object.keys(components()).length).toEqual(
-        Object.keys(Wells).length
+        Object.keys(Wells).length,
       )
     })
   })

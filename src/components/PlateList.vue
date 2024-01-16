@@ -1,53 +1,45 @@
 <template>
-  <div class="container-fluid">
+  <div>
     <upload></upload>
-    <div class="plates">
-      <b-container fluid>
-        <b-row align-h="start">
-          <b-col cols="1">
-            <h3>{{ msg }}</h3>
-          </b-col>
-          <b-col cols="2">
-            <button
-              id="clear_local_storage_button"
-              type="button"
-              class="btn btn-success"
-              @click="clearLocalStorage"
-            >
-              {{ clearLocalStorageTxt }}
-            </button>
-          </b-col>
-          <b-col cols="3">
-            <em>{{ localStorageUsed }}</em>
-          </b-col>
-        </b-row>
-        <b-col>
-          <router-link
-            v-for="plate in plates"
-            :key="plate"
-            :to="`/plate/${plate}`"
-            class="plate"
-            tag="div"
+    <div class="plates space-x-2 pt-2">
+      <quanthub-button
+        id="clear_local_storage_button"
+        type="button"
+        theme="create"
+        @click="clearLocalStorage"
+      >
+        {{ clearLocalStorageTxt }}
+      </quanthub-button>
+      <em>{{ localStorageUsed }}</em>
+
+      <PageHeading level="3" show-border>{{ msg }}</PageHeading>
+      <router-link
+        v-for="plate in plates"
+        :key="plate"
+        :to="`/plate/${plate}`"
+        class="plate"
+        tag="div"
+      >
+        <div class="text-left">
+          <a
+            class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+            >{{ plate }}</a
           >
-            <b-row>
-              <div>
-                <a>{{ plate }}</a>
-              </div>
-            </b-row>
-          </router-link>
-        </b-col>
-      </b-container>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
 import Upload from '@/components/Upload.vue'
+import PageHeading from '@/components/PageHeading.vue'
 
 export default {
   name: 'Plates',
   components: {
     Upload,
+    PageHeading,
   },
   props: {},
   data() {
@@ -67,7 +59,7 @@ export default {
       return Object.keys(localStorage).filter(
         (key) =>
           Object.prototype.hasOwnProperty.call(localStorage, key) &&
-          key !== 'loglevel:webpack-dev-server'
+          key !== 'loglevel:webpack-dev-server',
       )
     },
     localStorageUsed() {

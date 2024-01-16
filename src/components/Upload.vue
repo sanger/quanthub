@@ -1,57 +1,49 @@
 <template>
-  <div class="upload container-fluid">
-    <alert ref="alert"></alert>
+  <div>
+    <QuanthubMessage ref="alert"></QuanthubMessage>
     <form
       enctype="multipart/form-data"
       method="post"
       action="#"
       @submit.prevent="upload"
     >
-      <div class="form-group">
-        <div class="form-group">
-          <label for="quantType">Select a Quant Type:</label>
-          <select
+      <div class="wrapper">
+        <label for="quantType">Select a Quant Type: </label>
+        <div class="w-full pb-2">
+          <quanthub-select
             id="quant-type"
-            v-model="quantType"
-            class="form-control"
-            name="quantType"
+            :model-value="quantType"
+            :options="quantTypeSelectOptions"
+            placeholder="Please select a quant type ..."
+            :data-attribute="quantType"
+            @update:modelValue="updateSelected"
           >
-            <option :value="null" selected disabled>
-              Please select a quant type ...
-            </option>
-            <option v-for="(option, key) in quantTypes" :key="key" :value="key">
-              {{ option.name }}
-            </option>
-          </select>
+          </quanthub-select>
         </div>
-        <input
-          id="file-input"
-          ref="fileInput"
-          type="file"
-          name="file-input"
-          class="file"
-          @change.prevent="addFilenames"
-        />
-        <div class="input-group">
+        <div class="wrapper">
+          <input
+            id="file-input"
+            ref="fileInput"
+            type="file"
+            name="file-input"
+            style="display: none"
+            @change.prevent="addFilenames"
+          />
           <input
             ref="browseFiles"
-            class="form-control"
             type="text"
             disabled
+            class="block rounded border file:border-0 p-2 w-4/5"
             placeholder="Upload File..."
           />
-          <span class="input-group-btn">
-            <button
-              class="btn btn-success spacer"
-              type="button"
-              @click.prevent="browseFiles"
-            >
+          <div class="space-x-2 flex flex-row px-4">
+            <quanthub-button type="button" theme="create" @click="browseFiles">
               Browse
-            </button>
-            <button name="submit" class="btn btn-success" type="submit">
+            </quanthub-button>
+            <quanthub-button theme="create" name="submit" type="submit">
               Upload
-            </button>
-          </span>
+            </quanthub-button>
+          </div>
         </div>
       </div>
     </form>
@@ -63,12 +55,16 @@
 import Vue from 'vue'
 import QuantFile from '@/components/QuantFile.vue'
 import quantTypes from '@/config/quantTypes'
-import Alert from '@/components/Alert.vue'
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
+import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 
 export default {
   name: 'Upload',
   components: {
-    Alert,
+    QuanthubMessage,
+    QuanthubSelect,
+    QuanthubButton,
   },
   props: {},
   data() {
@@ -85,8 +81,19 @@ export default {
     filenameFiltered() {
       return this.filename ? this.filename.replace(/^.*[\\]/, '') : null
     },
+    quantTypeSelectOptions() {
+      return Object.entries(this.quantTypes).map(([key, option]) => {
+        return {
+          value: key,
+          text: option.name,
+        }
+      })
+    },
   },
   methods: {
+    updateSelected(value) {
+      this.quantType = value
+    },
     validFiletype() {
       var typeValid = false
       var sFilename = this.filenameFiltered
@@ -97,7 +104,7 @@ export default {
             sFilename
               .substr(
                 sFilename.length - sCurExtension.length,
-                sCurExtension.length
+                sCurExtension.length,
               )
               .toLowerCase() == sCurExtension.toLowerCase()
           ) {
@@ -112,14 +119,14 @@ export default {
       if (!this.quantType) {
         this.$refs.alert.show(
           `Please select a quant type and file before uploading!`,
-          'warning'
+          'warning',
         )
         return false
       }
       if (!this.validFiletype()) {
         this.$refs.alert.show(
           `Please select a csv file before uploading!`,
-          'warning'
+          'warning',
         )
         return false
       }
