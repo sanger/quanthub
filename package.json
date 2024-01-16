@@ -46,7 +46,7 @@
     "@babel/core": "7.18.5",
     "@babel/eslint-parser": "7.18.2",
     "@babel/preset-env": "^7.18.2",
-    "@vue/test-utils": "^1.0.3",
+    "@vue/test-utils": "^2.4.3",
     "autoprefixer": "^10.4.16",
     "babel-core": "^7.0.0-bridge.0",
     "babel-plugin-transform-vite-meta-env": "^1.0.3",
