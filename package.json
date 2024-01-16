@@ -8,7 +8,7 @@
     "serve": "vite",
     "build": "npm-run-all build:css build:js",
     "build:js": "vite build",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run --silent",
     "test:e2e": "npm-run-all -p serve test:cypress:all",
     "test:cypress:all": "cypress run",
     "test:e2e:one": "npm-run-all -p serve test:cypress:one",
