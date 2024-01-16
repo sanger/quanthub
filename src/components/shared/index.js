@@ -1,22 +1,18 @@
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
 import QuanthubModal from '@/components/shared/QuanthubModal.vue'
-import BadgeLabel from '@/components/shared/BadgeLabel.vue'
-import CustomButton from '@/components/shared/CustomButton.vue'
-import CustomSelect from '@/components/shared/CustomSelect.vue'
+import QuanthubLabel from '@/components/shared/QuanthubLabel.vue'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 
-const registerBootstrapComponents = (vue) => {
+const registerGlobal = (vue) => {
   /* eslint-disable vue/component-definition-name-casing */
   vue.component('quanthub-close-icon', QuanthubCloseIcon)
   vue.component('quanthub-alert', QuanthubMessage)
   vue.component('quanthub-modal', QuanthubModal)
-  vue.component('badge-label', BadgeLabel)
-  vue.component('custom-button', CustomButton)
-  vue.component('custom-select', CustomSelect)
-}
-
-const registerGlobal = (vue) => {
-  registerBootstrapComponents(vue)
+  vue.component('quanthub-label', QuanthubLabel)
+  vue.component('quanthub-button', QuanthubButton)
+  vue.component('quanthub-select', QuanthubSelect)
 }
 
 export { registerGlobal }

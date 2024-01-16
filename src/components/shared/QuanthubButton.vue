@@ -67,7 +67,7 @@ const within =
     options.includes(value)
 
 export default {
-  name: 'CustomButton',
+  name: 'QuanthubButton',
   props: {
     theme: {
       type: String,

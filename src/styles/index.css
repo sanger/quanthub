@@ -60,3 +60,149 @@
   --tw-text-opacity: 1;
   color: #856404;
 }
+
+#app {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav {
+  margin-bottom: 5px;
+}
+
+#nav {
+  margin-bottom: 5px;
+}
+
+#nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+
+#nav a.router-link-exact-active {
+      color: #42b983;
+    }
+
+#nav a.router-link-active {
+      color: #42b983;
+    }
+
+a:hover {
+    text-decoration: none;
+    color: black;
+  }
+
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
+.text-center {
+  text-align: center;
+}
+
+label {
+  font-size: 20px;
+}
+
+nav {
+  height: 30px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+nav a {
+    color: white;
+  }
+
+nav a:hover,
+    nav a:visited {
+      color: white;
+    }
+
+th {
+  background-color: #ddd1c3;
+}
+
+.alert {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white !important;
+}
+
+.wrapper {
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
+.table td {
+  border: 1px solid #dee2e6;
+}
+
+.table td,
+  .table th {
+    min-height: 50px;
+    font-size: 12px;
+  }
+
+.control {
+  color: white;
+  background-color: #006600;
+}
+
+.blank {
+  color: white;
+}
+
+.standard {
+  color: white;
+  background-color: #000066;
+}
+
+.empty {
+  color: white;
+}
+
+.inactive {
+  color: white;
+  background-color: gray;
+}
+
+.inspect {
+  color: white;
+  background-color: #a5191e;
+}
+
+.warning {
+  color: white;
+  background-color: #65009c;
+}
+
+.tooltip-text {
+  position: absolute;
+  z-index: 2;
+  width: 200px;
+  color: white;
+  font-size: 12px;
+  background-color: black;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+}
+
+/* .printer-form {
+  width: 80%;
+  margin: 10% auto;
+} */
+
+.printer-error {
+  color: red;
+}

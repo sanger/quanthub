@@ -1,11 +1,11 @@
 import { mount } from './testHelper'
 
-import LoadingSpinner from '@/components/shared/LoadingSpinner.vue'
+import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { describe, expect, it } from 'vitest'
 
-describe('LoadingSpinner.vue', () => {
+describe('QuanthubSpinner.vue', () => {
   const buildWrapper = (propsData = {}) => {
-    return mount(LoadingSpinner, {
+    return mount(QuanthubSpinner, {
       propsData,
     })
   }

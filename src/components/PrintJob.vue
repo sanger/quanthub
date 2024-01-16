@@ -1,10 +1,10 @@
 <template>
-  <div class="w-4/5 mt-4 w-100 space-x-4">
+  <div class="w-4/5 mt-4 space-x-4">
     <QuanthubMessage ref="alert"></QuanthubMessage>
-    <form class="m-0" method="post" action="#" @submit.prevent="execute">
-      <div class="grid grid-cols-2 divide-x pb-2">
+    <form method="post" action="#" @submit.prevent="execute">
+      <div class="grid grid-cols-2 pb-2">
         <label for="printer">Select a Printer</label>
-        <custom-select
+        <quanthub-select
           id="printer-list"
           :model-value="printerName"
           name="printer-list"
@@ -12,11 +12,11 @@
           :data-attribute="printerName"
           @update:modelValue="printerSelected"
         >
-        </custom-select>
+        </quanthub-select>
 
-        <div class="error">{{ errors.printerName }}</div>
+        <div class="printer-error">{{ errors.printerName }}</div>
       </div>
-      <div class="grid grid-cols-2 divide-x pb-2">
+      <div class="grid grid-cols-2 pb-2">
         <label for="barcode">Scan your plate barcode</label>
         <textarea
           id="barcodes"
@@ -26,13 +26,13 @@
           cols="10"
           class="block rounded border file:border-0 p-2"
         ></textarea>
-        <div class="error">{{ errors.barcode }}</div>
+        <div class="printer-error">{{ errors.barcode }}</div>
       </div>
-      <div class="grid grid-cols-2 divide-x pb-2 items-center">
+      <div class="grid grid-cols-2 pb-2 items-center">
         <div></div>
-        <custom-button id="print" name="submit" type="submit" theme="create">
+        <quanthub-button id="print" name="submit" type="submit" theme="create">
           Print
-        </custom-button>
+        </quanthub-button>
       </div>
     </form>
   </div>
@@ -42,13 +42,15 @@
 import Model from '@/api/PrintMyBarcode'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import PrinterList from '@/config/PrinterList'
-import CustomButton from './shared/CustomButton.vue'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 
 export default {
   name: 'PrintJob',
   components: {
     QuanthubMessage,
-    CustomButton,
+    QuanthubButton,
+    QuanthubSelect,
   },
   props: {
     labelTemplateId: {
@@ -147,12 +149,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-form {
-  width: 80%;
-  margin: 10% auto;
-}
-.error {
-  color: red;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -10,7 +10,7 @@
       <div class="wrapper">
         <label for="quantType">Select a Quant Type: </label>
         <div class="w-full pb-2">
-          <custom-select
+          <quanthub-select
             id="quant-type"
             :model-value="quantType"
             :options="quantTypeSelectOptions"
@@ -18,7 +18,7 @@
             :data-attribute="quantType"
             @update:modelValue="updateSelected"
           >
-          </custom-select>
+          </quanthub-select>
         </div>
         <div class="wrapper">
           <input
@@ -26,6 +26,7 @@
             ref="fileInput"
             type="file"
             name="file-input"
+            style="display: none"
             @change.prevent="addFilenames"
           />
           <input
@@ -36,12 +37,12 @@
             placeholder="Upload File..."
           />
           <div class="space-x-2 flex flex-row px-4">
-            <custom-button type="button" theme="create" @click="browseFiles">
+            <quanthub-button type="button" theme="create" @click="browseFiles">
               Browse
-            </custom-button>
-            <custom-button theme="create" name="submit" type="submit">
+            </quanthub-button>
+            <quanthub-button theme="create" name="submit" type="submit">
               Upload
-            </custom-button>
+            </quanthub-button>
           </div>
         </div>
       </div>
@@ -55,15 +56,15 @@ import Vue from 'vue'
 import QuantFile from '@/components/QuantFile.vue'
 import quantTypes from '@/config/quantTypes'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
-import CustomSelect from '@/components/shared/CustomSelect.vue'
-import CustomButton from '@/components/shared/CustomButton.vue'
+import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 
 export default {
   name: 'Upload',
   components: {
     QuanthubMessage,
-    CustomSelect,
-    CustomButton,
+    QuanthubSelect,
+    QuanthubButton,
   },
   props: {},
   data() {
@@ -197,8 +198,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-input[type='file'] {
-  display: none;
-}
-</style>
+<style scoped></style>

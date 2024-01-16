@@ -7,28 +7,25 @@
         size="sm"
         title="Exporting to Sequencescape..."
       >
-        <LoadingSpinner
+        <QuanthubSpinner
           v-show="exporting"
           class="w-1/2 mx-auto items-center justify-center w-32 h-32"
-        ></LoadingSpinner>
+        ></QuanthubSpinner>
       </QuanthubModal>
-      <PageHeading level="3" show-border>{{ msg }}: {{ barcode }}</PageHeading>
-      <div class="flex flex-row space-x-2 justify-center">
-        <div class="wrapper space-x-2">
-          <label class="spacer items-center" for="lotNumber"
-            >Standards Lot Number:</label
-          >
-          <input
-            id="lotNumber"
-            v-model="lotNumber"
-            type="text"
-            class="block rounded border p-2"
-          />
-
-          <custom-button id="save" name="save" theme="create" @click="save">
+      <div class="grid grid-cols-4 w-3/4">
+        <h3 class="text-2xl">{{ msg }}: {{ barcode }}</h3>
+        <label for="lotNumber">Standards Lot Number:</label>
+        <input
+          id="lotNumber"
+          v-model="lotNumber"
+          type="text"
+          class="border-solid border-2"
+        />
+        <div class="text-left space-x-2 pl-2">
+          <quanthub-button id="save" name="save" theme="create" @click="save">
             Save
-          </custom-button>
-          <custom-button
+          </quanthub-button>
+          <quanthub-button
             id="export"
             name="export"
             theme="create"
@@ -36,12 +33,12 @@
             @click="exportToSequencescape"
           >
             Export
-          </custom-button>
+          </quanthub-button>
         </div>
       </div>
     </div>
     <div class="col-md-12">
-      <table class="table">
+      <table class="table w-full">
         <thead>
           <th>&nbsp;</th>
           <!-- prettier-ignore -->
@@ -76,8 +73,8 @@ import Grid from '@/Grid'
 import QuantType from '@/QuantType'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import QuanthubModal from '@/components/shared/QuanthubModal.vue'
-import LoadingSpinner from '@/components/shared/LoadingSpinner.vue'
-import PageHeading from '@/components/PageHeading.vue'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
 import axios from 'axios'
 
@@ -85,10 +82,10 @@ export default {
   name: 'Plate',
   components: {
     Row,
-    LoadingSpinner,
+    QuanthubSpinner,
+    QuanthubButton,
     QuanthubMessage,
     QuanthubModal,
-    PageHeading,
   },
   props: {
     barcode: {

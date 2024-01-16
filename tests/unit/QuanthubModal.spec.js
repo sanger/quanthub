@@ -2,7 +2,7 @@ import { mount } from './testHelper'
 
 import QuanthubModal from '@/components/shared/QuanthubModal.vue'
 
-import LoadingSpinner from '@/components/shared/LoadingSpinner.vue'
+import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { describe, expect, it, beforeEach } from 'vitest'
 
 /**
@@ -49,7 +49,7 @@ describe('QuanthubModal.vue', () => {
     const buildModalWrapper = (propsData = {}) => {
       return mount(QuanthubModal, {
         propsData: { ...propsData, visible: true },
-        components: { 'loading-spinner': LoadingSpinner },
+        components: { 'quanthub-spinner': QuanthubSpinner },
         slots: {
           'modal-header': '<div data-testid="header-div">Heading</div>',
         },

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm-run-all -p serve:css serve",
     "serve": "vite",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vite build",
+    "build": "npm-run-all build:css build:js",
+    "build:js": "vite build",
     "test:unit": "vitest run",
     "test:e2e": "npm-run-all -p serve test:cypress:all",
     "test:cypress:all": "cypress run",
@@ -16,7 +17,8 @@
     "lint": "eslint . --ext .js,.vue,.cjs",
     "prettier-check": "prettier --check .",
     "prettify": "prettier --write .",
-    "serve:css": "postcss src/styles/tailwind.css -o src/styles/index.css"
+    "serve:css": "postcss src/styles/tailwind.css -o src/styles/index.css",
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/index.css --env production"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

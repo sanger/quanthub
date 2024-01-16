@@ -52,7 +52,7 @@ const within =
 
 export default {
   /**
-   * # BadgeLabel
+   * # QuanthubLabel
    *
    * Tailwind component to display a coloured badge with text.
    *
@@ -66,13 +66,13 @@ export default {
    * @example
    * <template>
    *   <div>
-   *      <badge-label>
+   *      <quanthub-label>
    *        Badge Text
-   *      </badge-label>
+   *      </quanthub-label>
    *   </div>
    * </template>
    */
-  name: 'BadgeLabel',
+  name: 'QuanthubLabel',
   props: {
     colour: {
       type: String,

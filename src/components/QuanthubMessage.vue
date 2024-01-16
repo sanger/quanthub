@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
+
 const colorStyles = {
   success: {
     message: 'success-message',
@@ -45,6 +47,9 @@ const colorStyles = {
 
 export default {
   name: 'QuanthubMessage',
+  components: {
+    QuanthubCloseIcon,
+  },
   data() {
     return {
       isDisplayed: false,

@@ -54,9 +54,9 @@ describe('Plate.vue', () => {
   })
 
   it('can have a barcode', () => {
-    expect(
-      plate.$el.querySelector('header').querySelector('div').textContent,
-    ).toEqual('Plate: ' + barcode)
+    expect(plate.$el.querySelector('h3').textContent).toEqual(
+      'Plate: ' + barcode,
+    )
   })
 
   it('will create a sequencescape plate in the store', () => {

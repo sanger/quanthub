@@ -7,7 +7,7 @@
           class="flex justify-between items-center py-4 md:justify-start md:space-x-10"
         >
           <div class="flex flex-row gap-x-2">
-            <div class="text-white text-2xl">Quanthub</div>
+            <a href="/"><div class="text-white text-2xl">Quanthub</div></a>
             <PageLink name="Upload a new plate" link="/" view-type="2" />
             <PageLink name="Print a barcode" link="/print_job" view-type="2" />
           </div>
@@ -46,34 +46,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import 'src/assets/stylesheets/layout.scss';
-
-#app {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
-}
-nav {
-  margin-bottom: 5px;
-}
-#nav {
-  margin-bottom: 5px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-    &.router-link-active {
-      color: #42b983;
-    }
-  }
-}
-a {
-  &:hover {
-    text-decoration: none;
-    color: black;
-  }
-}
-</style>
+<style lang="scss"></style>

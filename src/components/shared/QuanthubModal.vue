@@ -65,8 +65,13 @@
   </div>
 </template>
 <script>
+import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
+
 export default {
   name: 'QuanthubModal',
+  components: {
+    QuanthubCloseIcon,
+  },
   inheritAttrs: false,
   props: {
     /**Prop to make the dialog visible or not */

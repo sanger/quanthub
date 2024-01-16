@@ -1,6 +1,6 @@
 <template>
   <svg
-    id="loading-spinner"
+    id="quanthub-spinner"
     :class="['animate-spin text-sdb', classAtributes]"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -29,7 +29,7 @@
  *
  */
 export default {
-  name: 'LoadingSpinner',
+  name: 'QuanthubSpinner',
   props: {
     classes: {
       type: String,

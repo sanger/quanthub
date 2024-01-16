@@ -8,7 +8,7 @@
     <br />
     {{ concentration }}
     <br />
-    <badge-label
+    <quanthub-label
       v-if="warning.message"
       class="warning"
       data-attribute="warning-message"
@@ -16,7 +16,7 @@
       @mouseleave="hover = false"
     >
       {{ warning.shortMessage }}
-    </badge-label>
+    </quanthub-label>
     <span v-if="hover" class="tooltip-text">{{ warning.message }}</span>
   </td>
 </template>
@@ -24,9 +24,13 @@
 <script>
 import { NullReplicate } from '@/Replicates'
 import WellProperties from '@/mixins/WellProperties'
+import QuanthubLabel from '@/components/shared/QuanthubLabel.vue'
 
 export default {
   name: 'SampleWell',
+  components: {
+    QuanthubLabel,
+  },
   mixins: [WellProperties],
   props: {
     row: {
@@ -107,41 +111,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-@import 'src/assets/stylesheets/colors.scss';
-
-.table {
-  td,
-  th {
-    min-width: 75px;
-    min-height: 50px;
-    font-size: 12px;
-  }
-}
-
-.inactive {
-  color: white;
-  background-color: gray;
-}
-
-.inspect {
-  color: white;
-  background-color: $well-red;
-}
-
-.warning {
-  color: white;
-  background-color: $well-purple;
-}
-
-.tooltip-text {
-  position: absolute;
-  z-index: 2;
-  width: 200px;
-  color: white;
-  font-size: 12px;
-  background-color: black;
-  border-radius: 10px;
-  padding: 10px 15px 10px 15px;
-}
-</style>
+<style scoped></style>

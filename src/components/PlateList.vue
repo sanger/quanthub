@@ -2,14 +2,14 @@
   <div>
     <upload></upload>
     <div class="plates space-x-2 pt-2">
-      <custom-button
+      <quanthub-button
         id="clear_local_storage_button"
         type="button"
         theme="create"
         @click="clearLocalStorage"
       >
         {{ clearLocalStorageTxt }}
-      </custom-button>
+      </quanthub-button>
       <em>{{ localStorageUsed }}</em>
 
       <PageHeading level="3" show-border>{{ msg }}</PageHeading>
