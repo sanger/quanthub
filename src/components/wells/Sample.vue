@@ -8,24 +8,29 @@
     <br />
     {{ concentration }}
     <br />
-    <b-badge
+    <quanthub-label
       v-if="warning.message"
-      v-b-tooltip.hover.bottom
-      :title="warning.message"
       class="warning"
       data-attribute="warning-message"
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
     >
       {{ warning.shortMessage }}
-    </b-badge>
+    </quanthub-label>
+    <span v-if="hover" class="tooltip-text">{{ warning.message }}</span>
   </td>
 </template>
 
 <script>
 import { NullReplicate } from '@/Replicates'
 import WellProperties from '@/mixins/WellProperties'
+import QuanthubLabel from '@/components/shared/QuanthubLabel.vue'
 
 export default {
   name: 'SampleWell',
+  components: {
+    QuanthubLabel,
+  },
   mixins: [WellProperties],
   props: {
     row: {
@@ -55,6 +60,7 @@ export default {
       },
     },
   },
+  emits: ['mouseover', 'mouseleave'],
   data() {
     return {
       msg: 'Sample Well',
@@ -63,6 +69,7 @@ export default {
       active: true,
       outlier: false,
       warning: {},
+      hover: false,
     }
   },
   computed: {
@@ -104,30 +111,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-@import 'src/assets/stylesheets/colors.scss';
-
-.table {
-  td,
-  th {
-    min-width: 75px;
-    min-height: 50px;
-    font-size: 12px;
-  }
-}
-
-.inactive {
-  color: white;
-  background-color: gray;
-}
-
-.inspect {
-  color: white;
-  background-color: $well-red;
-}
-
-.warning {
-  color: white;
-  background-color: $well-purple;
-}
-</style>
+<style scoped></style>

@@ -3,6 +3,7 @@
 describe('My First Test', () => {
   it('Visits the app root url', () => {
     cy.visit('/')
-    cy.contains('a', 'QuantHub')
+    cy.contains('Upload a new plate')
+    cy.contains('Print a barcode')
   })
 })

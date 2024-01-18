@@ -26,7 +26,7 @@ describe('quantType', () => {
 
     it('provides a conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE * (500*452)/573)'
+        '(ORIGINAL_VALUE * (500*452)/573)',
       )
     })
 
@@ -74,7 +74,7 @@ describe('quantType', () => {
 
     it('provides a conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE * (500*500)/500)'
+        '(ORIGINAL_VALUE * (500*500)/500)',
       )
     })
   })
@@ -90,7 +90,7 @@ describe('quantType', () => {
 
     it('has the correct metadata', () => {
       expect(quantType.metadata).toEqual(
-        quantTypes['libraryPlateReader'].metadata
+        quantTypes['libraryPlateReader'].metadata,
       )
     })
 
@@ -142,7 +142,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -158,7 +158,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -174,7 +174,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -262,13 +262,13 @@ describe('quantType', () => {
 
     it('has the correct metadata', () => {
       expect(quantType.metadata).toEqual(
-        quantTypes['libraryQPCR5ulQuadruplicate'].metadata
+        quantTypes['libraryQPCR5ulQuadruplicate'].metadata,
       )
     })
 
     it('has the correct parse', () => {
       expect(quantType.parse).toEqual(
-        quantTypes['libraryQPCR5ulQuadruplicate'].parse
+        quantTypes['libraryQPCR5ulQuadruplicate'].parse,
       )
     })
 
@@ -331,7 +331,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -347,7 +347,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -363,7 +363,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -379,7 +379,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -395,7 +395,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -411,7 +411,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -427,7 +427,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
 
@@ -485,7 +485,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -501,7 +501,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })
@@ -522,7 +522,7 @@ describe('quantType', () => {
     it('libraryPlateReader - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('libraryPlateReaderV2')
       expect(quantType.name).toEqual(
-        'Library - Plate Reader - greiner assay plate'
+        'Library - Plate Reader - greiner assay plate',
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
@@ -530,7 +530,7 @@ describe('quantType', () => {
     it('stockPlateReader - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('stockPlateReaderV2')
       expect(quantType.name).toEqual(
-        'Stock - Plate Reader - greiner assay plate'
+        'Stock - Plate Reader - greiner assay plate',
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
@@ -538,7 +538,7 @@ describe('quantType', () => {
     it('workingDilutionPlateReader - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('workingDilutionPlateReaderV2')
       expect(quantType.name).toEqual(
-        'Working Dilution - Plate Reader - greiner assay plate'
+        'Working Dilution - Plate Reader - greiner assay plate',
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
@@ -564,7 +564,7 @@ describe('quantType', () => {
     it('chromiumSingleCellcDNA - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('chromiumSingleCellcDNAV2')
       expect(quantType.name).toEqual(
-        'Chromium Single Cell - cDNA - greiner assay plate'
+        'Chromium Single Cell - cDNA - greiner assay plate',
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
@@ -572,7 +572,7 @@ describe('quantType', () => {
     it('chromiumSingleCellLibrary - V2 - greiner assay plate', () => {
       const quantType = buildQuantType('chromiumSingleCellLibraryV2')
       expect(quantType.name).toEqual(
-        'Chromium Single Cell - Library - greiner assay plate'
+        'Chromium Single Cell - Library - greiner assay plate',
       )
       expect(quantType.qcResults.assay.version).toEqual('v2.0')
     })
@@ -618,7 +618,7 @@ describe('quantType', () => {
 
     it('must have the correct conversion expression', () => {
       expect(quantType.replicateOptions.conversionExpression).toEqual(
-        '(ORIGINAL_VALUE)'
+        '(ORIGINAL_VALUE)',
       )
     })
   })

@@ -1,64 +1,38 @@
 <template>
-  <div class="print-job">
-    <alert ref="alert"></alert>
+  <div class="w-4/5 mt-4 space-x-4">
+    <QuanthubMessage ref="alert"></QuanthubMessage>
     <form method="post" action="#" @submit.prevent="execute">
-      <h4>Print a barcode</h4>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-3">
-            <label for="printer">Select a Printer</label>
-          </div>
-          <div class="col-md-5">
-            <select
-              id="printer-list"
-              v-model="printerName"
-              class="form-control"
-              name="printer-list"
-            >
-              <option
-                v-for="printerNameOption in printerList"
-                :key="printerNameOption"
-                :value="printerNameOption"
-              >
-                {{ printerNameOption }}
-              </option>
-            </select>
-          </div>
-          <div class="error">{{ errors.printerName }}</div>
-        </div>
+      <div class="grid grid-cols-2 pb-2">
+        <label for="printer">Select a Printer</label>
+        <quanthub-select
+          id="printer-list"
+          :model-value="printerName"
+          name="printer-list"
+          :options="printerList"
+          :data-attribute="printerName"
+          @update:modelValue="printerSelected"
+        >
+        </quanthub-select>
+
+        <div class="printer-error">{{ errors.printerName }}</div>
       </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-3">
-            <label for="barcode">Scan your plate barcode</label>
-          </div>
-          <div class="col-md-5">
-            <textarea
-              id="barcodes"
-              v-model="barcodes"
-              name="barcodes"
-              class="form-control"
-              rows="10"
-              cols="10"
-            />
-          </div>
-          <div class="error">{{ errors.barcode }}</div>
-        </div>
+      <div class="grid grid-cols-2 pb-2">
+        <label for="barcode">Scan your plate barcode</label>
+        <textarea
+          id="barcodes"
+          v-model="barcodes"
+          name="barcodes"
+          rows="10"
+          cols="10"
+          class="block rounded border file:border-0 p-2"
+        ></textarea>
+        <div class="printer-error">{{ errors.barcode }}</div>
       </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-5">
-            <button
-              id="print"
-              name="submit"
-              class="btn btn-success btn-block"
-              type="submit"
-            >
-              Print
-            </button>
-          </div>
-        </div>
+      <div class="grid grid-cols-2 pb-2 items-center">
+        <div></div>
+        <quanthub-button id="print" name="submit" type="submit" theme="create">
+          Print
+        </quanthub-button>
       </div>
     </form>
   </div>
@@ -66,13 +40,17 @@
 
 <script>
 import Model from '@/api/PrintMyBarcode'
-import Alert from '@/components/Alert.vue'
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import PrinterList from '@/config/PrinterList'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 
 export default {
   name: 'PrintJob',
   components: {
-    Alert,
+    QuanthubMessage,
+    QuanthubButton,
+    QuanthubSelect,
   },
   props: {
     labelTemplateId: {
@@ -139,6 +117,9 @@ export default {
     },
   },
   methods: {
+    printerSelected(value) {
+      this.printerName = value
+    },
     execute() {
       if (this.valid()) {
         this.model = new Model(this.attributes)
@@ -168,12 +149,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-form {
-  width: 80%;
-  margin: 10% auto;
-}
-.error {
-  color: red;
-}
-</style>
+<style lang="scss" scoped></style>

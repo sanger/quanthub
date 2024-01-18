@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "npm-run-all -p serve:css serve",
     "serve": "vite",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vite build",
-    "test:unit": "vitest run",
+    "build": "npm-run-all build:css build:js",
+    "build:js": "vite build",
+    "test:unit": "vitest run --silent",
     "test:e2e": "npm-run-all -p serve test:cypress:all",
     "test:cypress:all": "cypress run",
     "test:e2e:one": "npm-run-all -p serve test:cypress:one",
@@ -14,12 +16,13 @@
     "test": "npm-run-all test:unit test:e2e",
     "lint": "eslint . --ext .js,.vue,.cjs",
     "prettier-check": "prettier --check .",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "serve:css": "postcss src/styles/tailwind.css -o src/styles/index.css",
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/index.css --env production"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
     "axios": "^0.21.4",
-    "bootstrap-vue": "^2.23.1",
     "buffer": "^6.0.3",
     "csv-parse": "^5.5.2",
     "isomorphic-fetch": "^2.2.1",
@@ -31,7 +34,9 @@
     "vite-plugin-vue2": "^2.0.1",
     "vue": "^2.7.5",
     "vue-router": "^3.5.4",
-    "vue-simple-spinner": "^1.2.10",
+    "tailwindcss": "3.3.5",
+    "postcss": "^8.4.31",
+    "@sanger/ui-styling": "^4.1.0",
     "xvfb": "^0.4.0"
   },
   "resolutions": {
@@ -56,8 +61,8 @@
     "lint-staged": "^7.3.0",
     "node-stdlib-browser": "^1.2.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.31",
-    "prettier": "^2.8.7",
+    "postcss-cli": "^10.1.0",
+    "prettier": "^3.1.0",
     "sass": "^1.69.4",
     "vite-plugin-node-polyfills": "^0.15.0",
     "vitest": "^0.34.6",

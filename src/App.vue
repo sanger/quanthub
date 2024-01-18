@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <nav-bar></nav-bar>
-    <router-view />
+  <div class="flex flex-col min-h-screen">
+    <!-- TODO: move this into a header component -->
+    <div class="relative bg-gradient-to-tr from-sdb to-sdb-400">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div
+          class="flex justify-between items-center py-4 md:justify-start md:space-x-10"
+        >
+          <div class="flex flex-row gap-x-2">
+            <a href="/"><div class="text-white text-2xl">Quanthub</div></a>
+            <PageLink name="Upload a new plate" link="/" view-type="2" />
+            <PageLink name="Print a barcode" link="/print_job" view-type="2" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <PageHeading level="1" shadow>{{ page }}</PageHeading>
+    <div class="flex flex-col mb-auto px-4 pt-4 pb-10">
+      <router-view class="text-center" />
+    </div>
+    <PageFooter></PageFooter>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
+import PageFooter from '@/components/PageFooter.vue'
+import PageLink from '@/components/PageLink.vue'
+import PageHeading from '@/components/PageHeading.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar,
+    PageFooter,
+    PageLink,
+    PageHeading,
+  },
+  computed: {
+    mergedRoute() {
+      return Object.assign({}, ...this.$route.matched.map(({ meta }) => meta))
+    },
+    page() {
+      return this.mergedRoute.page
+    },
   },
 }
 </script>
 
-<style lang="scss">
-@import 'src/assets/stylesheets/colors.scss';
-@import '~bootstrap/scss/bootstrap';
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-</style>
+<style lang="scss"></style>

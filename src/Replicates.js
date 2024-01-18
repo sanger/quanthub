@@ -107,7 +107,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
    **/
   const standardDeviation = () => {
     return Calculations.standardDeviation(concentrations()).toDecimalPlaces(
-      options.decimalPlaces
+      options.decimalPlaces,
     )
   }
 
@@ -116,7 +116,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
    **/
   const cv = () => {
     return Calculations.cv(concentrations()).toDecimalPlaces(
-      options.decimalPlaces
+      options.decimalPlaces,
     )
   }
 
@@ -173,7 +173,7 @@ const Replicate = ({ wells, options } = { wells: [], options: {} }) => {
         const zscore = Calculations.modifiedZScores(
           well.concentration,
           median,
-          mad
+          mad,
         )
         if (Calculations.isOutlier(zscore, options.outlier.threshold)) {
           Vue.set(well, 'outlier', true)

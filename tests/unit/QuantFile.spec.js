@@ -22,7 +22,7 @@ describe('QuantFile.vue', () => {
       it('resolves', async () => {
         expect.assertions(1)
         await expect(quantFile.upload(file)).resolves.toEqual(
-          'File successfully uploaded'
+          'File successfully uploaded',
         )
       })
 
@@ -42,7 +42,7 @@ describe('QuantFile.vue', () => {
 
         it('transforms wells into correct format', () => {
           let row = rows[quantFile.quantType.parse.from].split(
-            quantFile.quantType.parse.delimiter
+            quantFile.quantType.parse.delimiter,
           )
           let well = quantFile.json.rows[row[0]][row[1]]
 
@@ -53,7 +53,7 @@ describe('QuantFile.vue', () => {
           expect(well.concentration).toBeDefined()
 
           row = rows[rows.length - (quantFile.quantType.parse.from - 1)].split(
-            quantFile.quantType.parse.delimiter
+            quantFile.quantType.parse.delimiter,
           )
           well = quantFile.json.rows[row[0]][row[1]]
           expect(well.row).toBeDefined()
@@ -65,13 +65,13 @@ describe('QuantFile.vue', () => {
         it('produces some json', () => {
           const json = quantFile.json['rows']
           let row = rows[quantFile.quantType.parse.from].split(
-            quantFile.quantType.parse.delimiter
+            quantFile.quantType.parse.delimiter,
           )
           expect(json[row[0]][row[1]].row).toEqual(row[0])
           expect(json[row[0]][row[1]].column).toEqual(row[1])
 
           row = rows[rows.length - (quantFile.quantType.parse.from - 1)].split(
-            quantFile.quantType.parse.delimiter
+            quantFile.quantType.parse.delimiter,
           )
           expect(json[row[0]][row[1]].row).toEqual(row[0])
           expect(json[row[0]][row[1]].column).toEqual(row[1])
@@ -99,7 +99,7 @@ describe('QuantFile.vue', () => {
         quantFile = new cmp({ propsData: { quant: 'libraryPlateReader' } })
         plate = fs.readFileSync(
           './tests/data/plate_reader_underscore.csv',
-          'ascii'
+          'ascii',
         )
         file = new File([plate], 'plate1_underscore.csv', { type: 'text/csv' })
       })
@@ -107,7 +107,7 @@ describe('QuantFile.vue', () => {
       it('resolves', async () => {
         expect.assertions(1)
         await expect(quantFile.upload(file)).resolves.toEqual(
-          'File successfully uploaded'
+          'File successfully uploaded',
         )
       })
 
@@ -140,7 +140,7 @@ describe('QuantFile.vue', () => {
       it('resolves', async () => {
         expect.assertions(1)
         await expect(quantFile.upload(file)).resolves.toEqual(
-          'File successfully uploaded'
+          'File successfully uploaded',
         )
       })
 
@@ -169,7 +169,7 @@ describe('QuantFile.vue', () => {
         it('resolves', async () => {
           expect.assertions(1)
           await expect(quantFile.upload(file)).resolves.toEqual(
-            'File successfully uploaded'
+            'File successfully uploaded',
           )
         })
       })
@@ -179,7 +179,7 @@ describe('QuantFile.vue', () => {
         beforeEach(() => {
           plate = fs.readFileSync(
             './tests/data/qPCR_extra_columns.txt',
-            'ascii'
+            'ascii',
           )
           file = new File([plate], 'plate3.txt', { type: 'text/plain' })
         })
@@ -187,7 +187,7 @@ describe('QuantFile.vue', () => {
         it('resolves', async () => {
           expect.assertions(1)
           await expect(quantFile.upload(file)).resolves.toEqual(
-            'File successfully uploaded'
+            'File successfully uploaded',
           )
         })
       })
@@ -225,7 +225,7 @@ describe('QuantFile.vue', () => {
       it('resolves', async () => {
         expect.assertions(1)
         await expect(quantFile.upload(file)).resolves.toEqual(
-          'File successfully uploaded'
+          'File successfully uploaded',
         )
       })
 
@@ -249,7 +249,7 @@ describe('QuantFile.vue', () => {
           expect(quantFile.json.rows['P']['23'].type === 'Empty').toBeTruthy()
         })
       })
-    }
+    },
   )
 
   describe('qPCR 5ul quadruplicate', () => {
@@ -262,18 +262,18 @@ describe('QuantFile.vue', () => {
       })
       plate = fs.readFileSync(
         './tests/data/DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
-        'ascii'
+        'ascii',
       )
       file = new File(
         [plate],
         'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
-        { type: 'text/plain' }
+        { type: 'text/plain' },
       )
     })
 
     it('will have a filename', () => {
       expect(quantFile.filename).toEqual(
-        'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv'
+        'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
       )
     })
 
@@ -284,7 +284,7 @@ describe('QuantFile.vue', () => {
     it('resolves', async () => {
       expect.assertions(1)
       await expect(quantFile.upload(file)).resolves.toEqual(
-        'File successfully uploaded'
+        'File successfully uploaded',
       )
     })
 
@@ -316,7 +316,7 @@ describe('QuantFile.vue', () => {
     beforeEach(async () => {
       plate = fs.readFileSync(
         './tests/data/DN000000  - 2021-08-25 - 10-54-08-D5000_compactRegionTable - DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
-        'ascii'
+        'ascii',
       )
     })
 
@@ -333,13 +333,13 @@ describe('QuantFile.vue', () => {
 
       it('will have a filename', () => {
         expect(quantFile.filename).toEqual(
-          'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv'
+          'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
         )
       })
 
       it('will have a barcode from file name', () => {
         expect(quantFile.barcodeFromFileName).toMatch(
-          /210825-105408-[0-9a-f]{6}/
+          /210825-105408-[0-9a-f]{6}/,
         )
       })
 
@@ -348,7 +348,7 @@ describe('QuantFile.vue', () => {
           file = new File(
             [plate],
             'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
-            { type: 'text/plain' }
+            { type: 'text/plain' },
           )
 
           quantFile.upload(file)
@@ -404,7 +404,7 @@ describe('QuantFile.vue', () => {
 
         it('rejects the file', () => {
           expect(uploadError).toEqual(
-            'Filename must contain date/time, similar to "2021-02-26 - 13-45-00"'
+            'Filename must contain date/time, similar to "2021-02-26 - 13-45-00"',
           )
         })
       })

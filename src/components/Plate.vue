@@ -1,50 +1,48 @@
 <template>
-  <div class="plate">
+  <div class="plate space-y-2">
     <div>
-      <alert ref="alert"></alert>
-      <div class="container-fluid row">
-        <b-modal
-          v-model="exporting"
-          :hide-footer="true"
-          :hide-header="true"
-          :no-close-on-backdrop="true"
-        >
-          <spinner size="huge" message="Exporting..."></spinner>
-        </b-modal>
-        <h3>{{ msg }}: {{ barcode }}</h3>
-        <div class="spacer">
-          <label class="spacer" for="lotNumber">Standards Lot Number:</label>
-          <input id="lotNumber" v-model="lotNumber" type="text" />
-        </div>
-        <div>
-          <button
-            id="save"
-            name="save"
-            class="btn btn-success"
-            @click.prevent="save"
-          >
+      <QuanthubMessage ref="alert"></QuanthubMessage>
+      <QuanthubModal
+        :visible="exporting"
+        size="sm"
+        title="Exporting to Sequencescape..."
+      >
+        <QuanthubSpinner
+          v-show="exporting"
+          class="w-1/2 mx-auto items-center justify-center w-32 h-32"
+        ></QuanthubSpinner>
+      </QuanthubModal>
+      <div class="grid grid-cols-4 w-3/4">
+        <h3 class="text-2xl">{{ msg }}: {{ barcode }}</h3>
+        <label for="lotNumber">Standards Lot Number:</label>
+        <input
+          id="lotNumber"
+          v-model="lotNumber"
+          type="text"
+          class="border-solid border-2"
+        />
+        <div class="text-left space-x-2 pl-2">
+          <quanthub-button id="save" name="save" theme="create" @click="save">
             Save
-          </button>
-        </div>
-        <div>&nbsp;</div>
-        <div>
-          <button
+          </quanthub-button>
+          <quanthub-button
             id="export"
             name="export"
-            class="btn btn-success"
+            theme="create"
             :disabled="exporting"
-            @click.prevent="exportToSequencescape"
+            @click="exportToSequencescape"
           >
             Export
-          </button>
+          </quanthub-button>
         </div>
       </div>
     </div>
     <div class="col-md-12">
-      <table class="table table-bordered">
+      <table class="table w-full">
         <thead>
           <th>&nbsp;</th>
-          <th v-for="column in columns" :key="column">{{ column }}</th>
+          <!-- prettier-ignore -->
+          <th v-for="column in columns" :key="column" class="border-solid border-2 border-gray-200">{{ column }}</th>
         </thead>
         <tbody>
           <row
@@ -53,6 +51,7 @@
             :key="key.concat(index)"
             :wells="row"
             :plate-barcode="barcode"
+            class="border-solid border-2 border-gray-200"
           ></row>
         </tbody>
       </table>
@@ -72,17 +71,21 @@
 import Row from '@/components/Row.vue'
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
-import Alert from '@/components/Alert.vue'
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
+import QuanthubModal from '@/components/shared/QuanthubModal.vue'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
 import axios from 'axios'
-import Spinner from 'vue-simple-spinner'
 
 export default {
   name: 'Plate',
   components: {
     Row,
-    Spinner,
-    Alert,
+    QuanthubSpinner,
+    QuanthubButton,
+    QuanthubMessage,
+    QuanthubModal,
   },
   props: {
     barcode: {
@@ -175,7 +178,7 @@ export default {
           quantType: this.grid.quantType,
           lotNumber: this.lotNumber,
         },
-        cells
+        cells,
       )
 
       return json
@@ -195,14 +198,14 @@ export default {
           this.exporting = false
           this.$refs.alert.show(
             'QC Results for plate has been successfully exported to Sequencescape',
-            'success'
+            'success',
           )
         })
         .catch((error) => {
           this.exporting = false
           this.$refs.alert.show(
             'QC Results for plate could not be exported',
-            'danger'
+            'danger',
           )
           /*eslint no-console: ["error", { allow: ["error"] }] */
           console.error(error)
