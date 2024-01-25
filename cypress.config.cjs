@@ -9,7 +9,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {},
     specPattern: 'tests/e2e/specs/**/*.{js,jsx,ts,tsx}',
     supportFile: 'tests/e2e/support/index.js',
-    baseUrl: 'http://localhost:5173/',
+    baseUrl: 'http://localhost:3000/',
     experimentalRunAllSpecs: true,
   },
 })
