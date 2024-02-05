@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import Well from '@/components/wells/Sample.vue'
 import {
   ReplicateList,
@@ -12,9 +11,9 @@ describe('Replicates.vue', () => {
   let cmp, well1, well2, well3, well4
 
   beforeEach(() => {
-    cmp = Vue.extend(Well)
+    cmp = Well
     well1 = new cmp({
-      propsData: {
+      props: {
         row: 'A',
         column: '1',
         content: 'Sample X1',
@@ -24,7 +23,7 @@ describe('Replicates.vue', () => {
       },
     })
     well2 = new cmp({
-      propsData: {
+      props: {
         row: 'A',
         column: '2',
         content: 'Sample X1',
@@ -34,7 +33,7 @@ describe('Replicates.vue', () => {
       },
     })
     well3 = new cmp({
-      propsData: {
+      props: {
         row: 'B',
         column: '1',
         content: 'Sample X1',
@@ -212,7 +211,7 @@ describe('Replicates.vue', () => {
 
       beforeEach(() => {
         well4 = new cmp({
-          propsData: {
+          props: {
             row: 'A',
             column: '1',
             content: 'Sample X1',
@@ -221,7 +220,7 @@ describe('Replicates.vue', () => {
           },
         })
         well5 = new cmp({
-          propsData: {
+          props: {
             row: 'A',
             column: '2',
             content: 'Sample X1',
@@ -230,7 +229,7 @@ describe('Replicates.vue', () => {
           },
         })
         well6 = new cmp({
-          propsData: {
+          props: {
             row: 'A',
             column: '3',
             content: 'Sample X1',
@@ -254,7 +253,7 @@ describe('Replicates.vue', () => {
 
       it('will indicate whether replicate needs to be inspected at the threshold', () => {
         well5 = new cmp({
-          propsData: {
+          props: {
             row: 'A',
             column: '2',
             content: 'Sample X1',
@@ -305,7 +304,7 @@ describe('Replicates.vue', () => {
       replicate1 = Replicate({ wells: [well1, well2, well3], options })
 
       well4 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '3',
           content: 'Sample X9',
@@ -314,7 +313,7 @@ describe('Replicates.vue', () => {
         },
       })
       well5 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '4',
           content: 'Sample X9',
@@ -323,7 +322,7 @@ describe('Replicates.vue', () => {
         },
       })
       well6 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '5',
           content: 'Sample X9',
@@ -396,7 +395,7 @@ describe('Replicates.vue', () => {
     it('cv', () => {
       // well2 is an outlier
       well1 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '1',
           content: 'Sample X1',
@@ -405,7 +404,7 @@ describe('Replicates.vue', () => {
         },
       })
       well2 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '2',
           content: 'Sample X1',
@@ -414,7 +413,7 @@ describe('Replicates.vue', () => {
         },
       })
       well3 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '3',
           content: 'Sample X1',
@@ -440,7 +439,7 @@ describe('Replicates.vue', () => {
       // well3 is an outlier
       options.outlier = { type: 'mad', threshold: 3.5 }
       well1 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '1',
           content: 'Sample X1',
@@ -449,7 +448,7 @@ describe('Replicates.vue', () => {
         },
       })
       well2 = new cmp({
-        propsData: {
+        props: {
           row: 'A',
           column: '2',
           content: 'Sample X1',
@@ -458,7 +457,7 @@ describe('Replicates.vue', () => {
         },
       })
       well3 = new cmp({
-        propsData: {
+        props: {
           row: 'B',
           column: '1',
           content: 'Sample X1',
@@ -467,7 +466,7 @@ describe('Replicates.vue', () => {
         },
       })
       well4 = new cmp({
-        propsData: {
+        props: {
           row: 'B',
           column: '2',
           content: 'Sample X1',

@@ -172,7 +172,7 @@ export default {
       // Some children are *not* rows, so we fall back to an empty
       // array to support them. Still not entirely sold on this
       // approach.
-      const cells = this.$children.flatMap((row) => row.json || [])
+      const cells = this.$refs.alert.flatMap((row) => row.json || [])
       const { json } = Grid(
         {
           quantType: this.grid.quantType,

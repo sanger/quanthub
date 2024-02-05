@@ -52,7 +52,6 @@
 
 <script>
 // Uploads a file. Parse options dependent on quantType
-import Vue from 'vue'
 import QuantFile from '@/components/QuantFile.vue'
 import quantTypes from '@/config/quantTypes'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
@@ -70,7 +69,7 @@ export default {
   data() {
     return {
       msg: 'Upload',
-      Cmp: Vue.extend(QuantFile),
+      Cmp: QuantFile,
       quantType: null,
       quantTypes: quantTypes,
       filename: null,
@@ -143,7 +142,7 @@ export default {
 
       const file = document.getElementById('file-input').files[0]
       const quantFile = new this.Cmp({
-        propsData: { quant: this.quantType, filename: this.filenameFiltered },
+        props: { quant: this.quantType, filename: this.filenameFiltered },
       })
       quantFile
         .upload(file)

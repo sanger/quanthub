@@ -12,7 +12,7 @@ describe('PrintJob.vue', () => {
     date = new Date('February 1, 2018')
     // TODO: we still have to stub b-alert even though it is now part of the child component
     // how can we abstract this problem away, far away?
-    cmp = mount(PrintJob, { propsData: { labelTemplateId: '1' }, localVue })
+    cmp = mount(PrintJob, { props: { labelTemplateId: '1' }, localVue })
     cmp.setData({
       barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
       printerName: 'ippbc',

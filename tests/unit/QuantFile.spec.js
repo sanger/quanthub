@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import QuantFile from '@/components/QuantFile.vue'
 import flushPromises from 'flush-promises'
 import fs from 'fs'
@@ -8,7 +7,7 @@ describe('QuantFile.vue', () => {
   let cmp, quantFile, plate, file
 
   beforeEach(() => {
-    cmp = Vue.extend(QuantFile)
+    cmp = QuantFile
   })
 
   describe('upload', () => {

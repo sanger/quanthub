@@ -12,9 +12,9 @@ import { describe, expect, it, beforeEach } from 'vitest'
  */
 
 describe('QuanthubModal.vue', () => {
-  const buildWrapper = (propsData = {}) => {
+  const buildWrapper = (props = {}) => {
     return mount(QuanthubModal, {
-      propsData,
+      props,
       slots: {
         default: 'Modal Content',
       },
@@ -46,9 +46,9 @@ describe('QuanthubModal.vue', () => {
   })
 
   it(' displays header component using modal-header slot', () => {
-    const buildModalWrapper = (propsData = {}) => {
+    const buildModalWrapper = (props = {}) => {
       return mount(QuanthubModal, {
-        propsData: { ...propsData, visible: true },
+        props: { ...props, visible: true },
         components: { 'quanthub-spinner': QuanthubSpinner },
         slots: {
           'modal-header': '<div data-testid="header-div">Heading</div>',
@@ -61,9 +61,9 @@ describe('QuanthubModal.vue', () => {
   })
 
   it(' displays title component using "modal-title" slot', () => {
-    const buildModalWrapper = (propsData = {}) => {
+    const buildModalWrapper = (props = {}) => {
       return mount(QuanthubModal, {
-        propsData: { ...propsData, visible: true },
+        props: { ...props, visible: true },
         slots: {
           'modal-title': '<div data-testid="title-div"/>',
         },
@@ -74,9 +74,9 @@ describe('QuanthubModal.vue', () => {
   })
 
   it(' displays footer component using "modal-footer" slot', () => {
-    const buildModalWrapper = (propsData = {}) => {
+    const buildModalWrapper = (props = {}) => {
       return mount(QuanthubModal, {
-        propsData: { ...propsData, visible: true },
+        props: { ...props, visible: true },
         slots: {
           'modal-footer': '<div data-testid="footer-div"/>',
         },
@@ -88,9 +88,9 @@ describe('QuanthubModal.vue', () => {
 
   describe('Ok, cancel buttons in footer', () => {
     let wrapper
-    const buildModalWrapper = (propsData = {}) => {
+    const buildModalWrapper = (props = {}) => {
       return mount(QuanthubModal, {
-        propsData: { ...propsData, visible: true },
+        props: { ...props, visible: true },
         slots: {
           'modal-footer': `<div data-testid="footer-div"> 
             <button data-testid="ok-btn"> OK </button>

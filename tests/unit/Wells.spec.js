@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { mount, localVue, createContainer } from './testHelper'
 import Wells from '@/components/wells'
 import Store from '@/Store'
@@ -29,7 +28,7 @@ describe('Wells', () => {
         },
         extraFields: { type: 'type' },
       }
-      cmp = Vue.extend({ mixins: [WellProperties] })
+      cmp = { mixins: [WellProperties] }
       well = new cmp({ propsData: data })
     })
 
@@ -86,7 +85,7 @@ describe('Wells', () => {
         plateBarcode: plateBarcode,
       }
       cmp = mount(Wells.Blank, {
-        propsData: data,
+        props: data,
         attachTo: createContainer(),
         localVue,
       })
@@ -115,7 +114,7 @@ describe('Wells', () => {
         plateBarcode: plateBarcode,
       }
       cmp = mount(Wells.Empty, {
-        propsData: data,
+        props: data,
         attachTo: createContainer(),
         localVue,
       })
@@ -144,7 +143,7 @@ describe('Wells', () => {
         plateBarcode: plateBarcode,
       }
       cmp = mount(Wells.Control, {
-        propsData: data,
+        props: data,
         attachTo: createContainer(),
         localVue,
       })
@@ -177,7 +176,7 @@ describe('Wells', () => {
         plateBarcode: plateBarcode,
       }
       cmp = mount(Wells.Standard, {
-        propsData: data,
+        props: data,
         attachTo: createContainer(),
         localVue,
       })
@@ -205,7 +204,7 @@ describe('Wells', () => {
     let $Store, plate, cmpPlate
 
     beforeEach(() => {
-      cmpPlate = Vue.extend(Plate)
+      cmpPlate = Plate
       plate = new cmpPlate({
         mocks: { $Store },
         propsData: { barcode: plateBarcode },
@@ -223,7 +222,7 @@ describe('Wells', () => {
       }
       cmp = mount(Wells.Sample, {
         mocks: { $Store },
-        propsData: data,
+        props: data,
         attachTo: createContainer(),
         localVue,
       })
@@ -261,7 +260,7 @@ describe('Wells', () => {
         }
         cmp = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: data,
+          props: data,
           attachTo: createContainer(),
           localVue,
         })
@@ -278,7 +277,7 @@ describe('Wells', () => {
         }
         cmp = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: data,
+          props: data,
           attachTo: createContainer(),
           localVue,
         })
@@ -295,7 +294,7 @@ describe('Wells', () => {
         }
         cmp = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: data,
+          props: data,
           attachTo: createContainer(),
           localVue,
         })
@@ -312,7 +311,7 @@ describe('Wells', () => {
         }
         cmp = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: data,
+          props: data,
           attachTo: createContainer(),
           localVue,
         })
@@ -375,7 +374,7 @@ describe('Wells', () => {
         $Store.qcAssayList.add(plate)
         well1 = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: {
+          props: {
             row: 'A',
             column: '13',
             id: 'A7',
@@ -388,7 +387,7 @@ describe('Wells', () => {
         })
         well2 = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: {
+          props: {
             row: 'A',
             column: '14',
             id: 'A7',
@@ -401,7 +400,7 @@ describe('Wells', () => {
         })
         well3 = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: {
+          props: {
             row: 'B',
             column: '13',
             id: 'A7',
@@ -455,7 +454,7 @@ describe('Wells', () => {
 
         cmp = mount(Wells.Sample, {
           mocks: { $Store },
-          propsData: data,
+          props: data,
           attachTo: createContainer(),
           localVue,
         })

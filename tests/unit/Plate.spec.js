@@ -26,7 +26,7 @@ describe('Plate.vue', () => {
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(barcode, JSON.stringify(grid.json))
     cmp = mount(Plate, {
-      propsData: { barcode: barcode },
+      props: { barcode: barcode },
       mocks: { $Store },
       localVue,
       attachTo: createContainer(),

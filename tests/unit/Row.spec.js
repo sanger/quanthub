@@ -36,7 +36,7 @@ describe('Row.vue', () => {
     }
     cmp = mount(Row, {
       mocks: { $Store },
-      propsData: { id: 'A', plateBarcode: 'DN1234567', wells: wells },
+      props: { id: 'A', plateBarcode: 'DN1234567', wells: wells },
     })
     row = cmp.vm
   })
