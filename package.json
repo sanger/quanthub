@@ -35,7 +35,7 @@
     "vue": "^2.7.16",
     "vue-router": "^3.5.4",
     "tailwindcss": "3.3.5",
-    "postcss": "^8.4.33",
+    "postcss": "^8.4.34",
     "@sanger/ui-styling": "^4.1.0",
     "xvfb": "^0.4.0"
   },
