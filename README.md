@@ -13,13 +13,14 @@ npm install --include=dev --legacy-peer-deps
 Added @achrinza/node-ipc@10.1.9(which already exists as part of the package dependency tree) to package.json
 resolutions to fix the version incompatibility issue with node.
 
-### Compiles and hot-reloads for development
+## Running
 
-```shell
-npm run serve
-```
+In the project directory, you can run:
 
-Added --openssl-legacy-provide to NODE_OPTIONS on build script in package.json to resolve the error:0308010C:digital envelope routines::unsupported discussed here https://github.com/vuejs/vue-cli/issues/6770. This can be removed later when the issue is resolved.
+    npm run start
+
+To run the app and have hot-reloads for development:
+*This internally run serve and serve:css commands*
 
 ### Compiles and minifies for production
 
