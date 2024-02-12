@@ -42,9 +42,9 @@
     "@achrinza/node-ipc": "10.1.9"
   },
   "devDependencies": {
-    "@babel/core": "7.23.7",
+    "@babel/core": "7.23.9",
     "@babel/eslint-parser": "7.23.3",
-    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-env": "^7.23.9",
     "@vue/test-utils": "^2.4.0",
     "autoprefixer": "^10.4.16",
     "babel-core": "^7.0.0-bridge.0",
