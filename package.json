@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.23.7",
-    "@babel/eslint-parser": "7.23.3",
+    "@babel/eslint-parser": "7.23.10",
     "@babel/preset-env": "^7.18.2",
     "@vue/test-utils": "^2.4.0",
     "autoprefixer": "^10.4.16",
