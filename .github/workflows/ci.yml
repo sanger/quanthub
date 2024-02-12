@@ -46,7 +46,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           start: npm start
-          wait-on: http://localhost:3000/
+          wait-on: http://localhost:5173/
           spec: 'tests/e2e/**/*'
           config-file: cypress.config.cjs
           config: video=false

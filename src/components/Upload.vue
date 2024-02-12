@@ -1,6 +1,10 @@
 <template>
   <div>
-    <QuantFile ref="quantFileRef" :quant=quantType :filename=filenameFiltered></QuantFile>
+    <QuantFile
+      ref="quantFileRef"
+      :quant="quantType"
+      :filename="filenameFiltered"
+    ></QuantFile>
     <QuanthubMessage ref="alert"></QuanthubMessage>
     <form
       enctype="multipart/form-data"
@@ -65,7 +69,7 @@ export default {
     QuanthubMessage,
     QuanthubSelect,
     QuanthubButton,
-    QuantFile
+    QuantFile,
   },
   props: {},
   data() {
@@ -142,9 +146,9 @@ export default {
       }
 
       const file = document.getElementById('file-input').files[0]
-      const quantFile = this.$refs.quantFileRef;
-      quantFile.
-      upload(file)
+      const quantFile = this.$refs.quantFileRef
+      quantFile
+        .upload(file)
         .then(() => {
           localStorage.setItem(quantFile.id, JSON.stringify(quantFile.json))
           this.$router.push({ path: `/plate/${quantFile.id}` })

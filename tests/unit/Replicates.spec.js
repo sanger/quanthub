@@ -181,11 +181,11 @@ describe('Replicates.vue', () => {
         expect(replicate.activeWells().length).toEqual(2)
       })
 
-      it('will only include wells which have a valid concentration', async() => {
-        await wrapper.setProps({ concentration: 'n.a' });
+      it('will only include wells which have a valid concentration', async () => {
+        await wrapper.setProps({ concentration: 'n.a' })
         expect(replicate.activeWells().length).toEqual(2)
 
-        await wrapper.setProps({ concentration: '' });
+        await wrapper.setProps({ concentration: '' })
         expect(replicate.activeWells().length).toEqual(2)
       })
     })

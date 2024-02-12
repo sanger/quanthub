@@ -1,5 +1,5 @@
 import Upload from '@/components/Upload.vue'
-import { mount} from './testHelper'
+import { mount } from './testHelper'
 import { describe, expect, it, beforeEach } from 'vitest'
 
 describe('Upload.vue', () => {

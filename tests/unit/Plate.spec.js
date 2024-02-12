@@ -28,7 +28,7 @@ describe('Plate.vue', () => {
     cmp = mount(Plate, {
       props: { barcode: barcode },
       global: {
-        mocks: { $Store }
+        mocks: { $Store },
       },
       attachTo: createContainer(),
     })

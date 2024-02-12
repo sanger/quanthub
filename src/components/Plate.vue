@@ -105,7 +105,7 @@ export default {
       replicates: {},
       exporting: false,
       lotNumber: '',
-      rowRefs: []
+      rowRefs: [],
     }
   },
   computed: {

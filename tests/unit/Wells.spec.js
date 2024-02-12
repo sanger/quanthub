@@ -219,7 +219,7 @@ describe('Wells', () => {
         plateBarcode: plateBarcode,
       }
       cmp = mount(Wells.Sample, {
-        global:{mocks: { $Store }},
+        global: { mocks: { $Store } },
         props: data,
         attachTo: createContainer(),
       })
@@ -256,7 +256,7 @@ describe('Wells', () => {
           plateBarcode: plateBarcode,
         }
         cmp = mount(Wells.Sample, {
-          global:{mocks: { $Store }},
+          global: { mocks: { $Store } },
           props: data,
           attachTo: createContainer(),
         })
@@ -272,7 +272,7 @@ describe('Wells', () => {
           plateBarcode: plateBarcode,
         }
         cmp = mount(Wells.Sample, {
-          global:{mocks: { $Store }},
+          global: { mocks: { $Store } },
           props: data,
           attachTo: createContainer(),
         })
@@ -288,7 +288,7 @@ describe('Wells', () => {
           plateBarcode: plateBarcode,
         }
         cmp = mount(Wells.Sample, {
-          global:{mocks: { $Store }},
+          global: { mocks: { $Store } },
           props: data,
           attachTo: createContainer(),
         })
@@ -305,8 +305,8 @@ describe('Wells', () => {
         }
         cmp = mount(Wells.Sample, {
           global: {
-          mocks: { $Store }
-        },
+            mocks: { $Store },
+          },
           props: data,
           attachTo: createContainer(),
         })
@@ -367,8 +367,8 @@ describe('Wells', () => {
       beforeEach(() => {
         $Store = new newStore()
         $Store.qcAssayList.add(plate)
-        well1 = mount(Wells.Sample, { 
-          global:{mocks: { $Store }},
+        well1 = mount(Wells.Sample, {
+          global: { mocks: { $Store } },
           props: {
             row: 'A',
             column: '13',
@@ -380,7 +380,7 @@ describe('Wells', () => {
           attachTo: createContainer(),
         })
         well2 = mount(Wells.Sample, {
-          global:{mocks: { $Store }},
+          global: { mocks: { $Store } },
           props: {
             row: 'A',
             column: '14',
@@ -392,7 +392,7 @@ describe('Wells', () => {
           attachTo: createContainer(),
         })
         well3 = mount(Wells.Sample, {
-          global:{mocks: { $Store }},
+          global: { mocks: { $Store } },
           props: {
             row: 'B',
             column: '13',
@@ -445,7 +445,7 @@ describe('Wells', () => {
         }
 
         cmp = mount(Wells.Sample, {
-          global:{mocks: { $Store }},
+          global: { mocks: { $Store } },
           props: data,
           attachTo: createContainer(),
         })

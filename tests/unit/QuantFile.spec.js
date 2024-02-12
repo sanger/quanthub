@@ -12,8 +12,9 @@ describe('QuantFile.vue', () => {
       beforeEach(async () => {
         cmp = mount(QuantFile, {
           props: {
-            quant: 'libraryPlateReader'
-          }})
+            quant: 'libraryPlateReader',
+          },
+        })
         quantFile = cmp.vm
         plate = fs.readFileSync('./tests/data/plate_reader.csv', 'ascii')
         file = new File([plate], 'plate1.csv', { type: 'text/csv' })
@@ -98,10 +99,11 @@ describe('QuantFile.vue', () => {
       beforeEach(async () => {
         cmp = mount(QuantFile, {
           props: {
-            quant: 'libraryPlateReader'
-          }})
+            quant: 'libraryPlateReader',
+          },
+        })
         quantFile = cmp.vm
-        
+
         plate = fs.readFileSync(
           './tests/data/plate_reader_underscore.csv',
           'ascii',
@@ -139,8 +141,8 @@ describe('QuantFile.vue', () => {
       beforeEach(async () => {
         cmp = mount(QuantFile, {
           props: {
-            quant: 'libraryQPCR10ul'
-          }
+            quant: 'libraryQPCR10ul',
+          },
         })
         quantFile = cmp.vm
         plate = fs.readFileSync('./tests/data/qPCR.txt', 'ascii')
@@ -216,7 +218,7 @@ describe('QuantFile.vue', () => {
           props: {
             quant: 'libraryQPCR5ul',
             filename: filename,
-          }
+          },
         })
         quantFile = cmp.vm
         plate = fs.readFileSync(`./tests/data/${filename}`, 'ascii')
@@ -269,7 +271,7 @@ describe('QuantFile.vue', () => {
         props: {
           quant: 'libraryQPCR5ulQuadruplicate',
           filename: 'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
-        }
+        },
       })
       quantFile = cmp.vm
       plate = fs.readFileSync(
@@ -337,8 +339,9 @@ describe('QuantFile.vue', () => {
         cmp = mount(QuantFile, {
           props: {
             quant: 'heronTubeTapeStation',
-            filename: 'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
-          }
+            filename:
+              'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
+          },
         })
         quantFile = cmp.vm
       })
@@ -387,7 +390,7 @@ describe('QuantFile.vue', () => {
           props: {
             quant: 'heronTubeTapeStation',
             filename: 'DN000000 - no_date_here.csv',
-          }
+          },
         })
         quantFile = cmp.vm
       })
