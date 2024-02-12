@@ -2,7 +2,7 @@ import Store from '@/Store'
 
 export default {
   Store,
-  install(Vue) {
-    Vue.prototype.$Store = Store
+  install: (app) => {
+    app.config.globalProperties.$Store = Store
   },
 }

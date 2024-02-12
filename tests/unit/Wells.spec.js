@@ -1,4 +1,4 @@
-import { mount, localVue, createContainer } from './testHelper'
+import { mount, createContainer } from './testHelper'
 import Wells from '@/components/wells'
 import Store from '@/Store'
 import { Store as newStore } from '@/Store'
@@ -28,8 +28,11 @@ describe('Wells', () => {
         },
         extraFields: { type: 'type' },
       }
-      cmp = { mixins: [WellProperties] }
-      well = new cmp({ propsData: data })
+      cmp = mount(Wells, {
+        mixins: [WellProperties],
+        props: data,
+      })
+      well = cmp.vm
     })
 
     it('has a row', () => {
@@ -87,13 +90,12 @@ describe('Wells', () => {
       cmp = mount(Wells.Blank, {
         props: data,
         attachTo: createContainer(),
-        localVue,
       })
       well = cmp.vm
     })
 
     afterEach(() => {
-      cmp.destroy()
+      cmp.unmount()
     })
 
     it('has a type', () => {
@@ -116,13 +118,12 @@ describe('Wells', () => {
       cmp = mount(Wells.Empty, {
         props: data,
         attachTo: createContainer(),
-        localVue,
       })
       well = cmp.vm
     })
 
     afterEach(() => {
-      cmp.destroy()
+      cmp.unmount()
     })
 
     it('has a type', () => {
@@ -145,13 +146,12 @@ describe('Wells', () => {
       cmp = mount(Wells.Control, {
         props: data,
         attachTo: createContainer(),
-        localVue,
       })
       well = cmp.vm
     })
 
     afterEach(() => {
-      cmp.destroy()
+      cmp.unmount()
     })
 
     it('outputs concentration', () => {
@@ -178,13 +178,12 @@ describe('Wells', () => {
       cmp = mount(Wells.Standard, {
         props: data,
         attachTo: createContainer(),
-        localVue,
       })
       well = cmp.vm
     })
 
     afterEach(() => {
-      cmp.destroy()
+      cmp.unmount()
     })
 
     it('outputs concentration', () => {
@@ -204,12 +203,11 @@ describe('Wells', () => {
     let $Store, plate, cmpPlate
 
     beforeEach(() => {
-      cmpPlate = Plate
-      plate = new cmpPlate({
+      cmpPlate = mount(Plate, {
         mocks: { $Store },
-        propsData: { barcode: plateBarcode },
+        props: { barcode: plateBarcode },
       })
-
+      plate = cmpPlate.vm
       $Store = Store
       $Store.qcAssayList.add(plate)
 
@@ -221,16 +219,15 @@ describe('Wells', () => {
         plateBarcode: plateBarcode,
       }
       cmp = mount(Wells.Sample, {
-        mocks: { $Store },
+        global:{mocks: { $Store }},
         props: data,
         attachTo: createContainer(),
-        localVue,
       })
       well = cmp.vm
     })
 
     afterEach(() => {
-      cmp.destroy()
+      cmp.unmount()
     })
 
     it('has an id', () => {
@@ -259,10 +256,9 @@ describe('Wells', () => {
           plateBarcode: plateBarcode,
         }
         cmp = mount(Wells.Sample, {
-          mocks: { $Store },
+          global:{mocks: { $Store }},
           props: data,
           attachTo: createContainer(),
-          localVue,
         })
         expect(cmp.vm.parsedConcentration).toEqual(26.101)
       })
@@ -276,10 +272,9 @@ describe('Wells', () => {
           plateBarcode: plateBarcode,
         }
         cmp = mount(Wells.Sample, {
-          mocks: { $Store },
+          global:{mocks: { $Store }},
           props: data,
           attachTo: createContainer(),
-          localVue,
         })
         expect(cmp.vm.parsedConcentration).toEqual(1000)
       })
@@ -293,10 +288,9 @@ describe('Wells', () => {
           plateBarcode: plateBarcode,
         }
         cmp = mount(Wells.Sample, {
-          mocks: { $Store },
+          global:{mocks: { $Store }},
           props: data,
           attachTo: createContainer(),
-          localVue,
         })
         expect(cmp.vm.parsedConcentration).toBe(NaN)
       })
@@ -310,10 +304,11 @@ describe('Wells', () => {
           plateBarcode: plateBarcode,
         }
         cmp = mount(Wells.Sample, {
-          mocks: { $Store },
+          global: {
+          mocks: { $Store }
+        },
           props: data,
           attachTo: createContainer(),
-          localVue,
         })
         expect(cmp.vm.parsedConcentration).toBe(NaN)
       })
@@ -372,8 +367,8 @@ describe('Wells', () => {
       beforeEach(() => {
         $Store = new newStore()
         $Store.qcAssayList.add(plate)
-        well1 = mount(Wells.Sample, {
-          mocks: { $Store },
+        well1 = mount(Wells.Sample, { 
+          global:{mocks: { $Store }},
           props: {
             row: 'A',
             column: '13',
@@ -383,10 +378,9 @@ describe('Wells', () => {
             plateBarcode: plateBarcode,
           },
           attachTo: createContainer(),
-          localVue,
         })
         well2 = mount(Wells.Sample, {
-          mocks: { $Store },
+          global:{mocks: { $Store }},
           props: {
             row: 'A',
             column: '14',
@@ -396,10 +390,9 @@ describe('Wells', () => {
             plateBarcode: plateBarcode,
           },
           attachTo: createContainer(),
-          localVue,
         })
         well3 = mount(Wells.Sample, {
-          mocks: { $Store },
+          global:{mocks: { $Store }},
           props: {
             row: 'B',
             column: '13',
@@ -409,7 +402,6 @@ describe('Wells', () => {
             plateBarcode: plateBarcode,
           },
           attachTo: createContainer(),
-          localVue,
         })
         // TODO: transparency is key. This is not it.
         well1.vm.replicate.options.cvThreshold = 15
@@ -418,7 +410,7 @@ describe('Wells', () => {
       })
 
       afterEach(() => {
-        cmp.destroy()
+        cmp.unmount()
       })
 
       // this would be better to check class but this is brittle
@@ -453,16 +445,15 @@ describe('Wells', () => {
         }
 
         cmp = mount(Wells.Sample, {
-          mocks: { $Store },
+          global:{mocks: { $Store }},
           props: data,
           attachTo: createContainer(),
-          localVue,
         })
         well = cmp.vm
       })
 
       afterEach(() => {
-        cmp.destroy()
+        cmp.unmount()
       })
 
       it('sets the correct values when the concentration is under the threshold', () => {

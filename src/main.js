@@ -5,7 +5,6 @@ import router from './router'
 import storePlugin from './storePlugin'
 import { registerGlobal } from '@/components/shared'
 
-// Vue.config.productionTip = false
 const app = createApp(App)
 registerGlobal(app)
 app.use(storePlugin)

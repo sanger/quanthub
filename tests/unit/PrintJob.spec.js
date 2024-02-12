@@ -2,7 +2,7 @@ import PrintJob from '@/components/PrintJob.vue'
 import Model from '@/api/PrintMyBarcode'
 import flushPromises from 'flush-promises'
 import PrinterList from '@/config/PrinterList'
-import { mount, localVue } from './testHelper'
+import { mount} from './testHelper'
 import { vi, describe, expect, it, beforeEach } from 'vitest'
 
 describe('PrintJob.vue', () => {
@@ -12,7 +12,7 @@ describe('PrintJob.vue', () => {
     date = new Date('February 1, 2018')
     // TODO: we still have to stub b-alert even though it is now part of the child component
     // how can we abstract this problem away, far away?
-    cmp = mount(PrintJob, { props: { labelTemplateId: '1' }, localVue })
+    cmp = mount(PrintJob, { props: { labelTemplateId: '1' }})
     cmp.setData({
       barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
       printerName: 'ippbc',

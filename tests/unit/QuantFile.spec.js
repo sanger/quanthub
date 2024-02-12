@@ -2,18 +2,19 @@ import QuantFile from '@/components/QuantFile.vue'
 import flushPromises from 'flush-promises'
 import fs from 'fs'
 import { describe, expect, it, beforeEach } from 'vitest'
+import { mount } from '@vue/test-utils'
 
 describe('QuantFile.vue', () => {
   let cmp, quantFile, plate, file
 
-  beforeEach(() => {
-    cmp = QuantFile
-  })
-
   describe('upload', () => {
     describe('csv', () => {
       beforeEach(async () => {
-        quantFile = new cmp({ propsData: { quant: 'libraryPlateReader' } })
+        cmp = mount(QuantFile, {
+          props: {
+            quant: 'libraryPlateReader'
+          }})
+        quantFile = cmp.vm
         plate = fs.readFileSync('./tests/data/plate_reader.csv', 'ascii')
         file = new File([plate], 'plate1.csv', { type: 'text/csv' })
       })
@@ -95,7 +96,12 @@ describe('QuantFile.vue', () => {
 
     describe('csv_with_underscore_id', () => {
       beforeEach(async () => {
-        quantFile = new cmp({ propsData: { quant: 'libraryPlateReader' } })
+        cmp = mount(QuantFile, {
+          props: {
+            quant: 'libraryPlateReader'
+          }})
+        quantFile = cmp.vm
+        
         plate = fs.readFileSync(
           './tests/data/plate_reader_underscore.csv',
           'ascii',
@@ -131,7 +137,12 @@ describe('QuantFile.vue', () => {
 
     describe('text tab delimited', () => {
       beforeEach(async () => {
-        quantFile = new cmp({ propsData: { quant: 'libraryQPCR10ul' } })
+        cmp = mount(QuantFile, {
+          props: {
+            quant: 'libraryQPCR10ul'
+          }
+        })
+        quantFile = cmp.vm
         plate = fs.readFileSync('./tests/data/qPCR.txt', 'ascii')
         file = new File([plate], 'plate2.txt', { type: 'text/plain' })
       })
@@ -201,12 +212,13 @@ describe('QuantFile.vue', () => {
     'csv with filename and no metadata with barcode %s',
     (barcode, filename) => {
       beforeEach(async () => {
-        quantFile = new cmp({
-          propsData: {
+        cmp = mount(QuantFile, {
+          props: {
             quant: 'libraryQPCR5ul',
             filename: filename,
-          },
+          }
         })
+        quantFile = cmp.vm
         plate = fs.readFileSync(`./tests/data/${filename}`, 'ascii')
         file = new File([plate], filename, {
           type: 'text/plain',
@@ -253,12 +265,13 @@ describe('QuantFile.vue', () => {
 
   describe('qPCR 5ul quadruplicate', () => {
     beforeEach(async () => {
-      quantFile = new cmp({
-        propsData: {
+      cmp = mount(QuantFile, {
+        props: {
           quant: 'libraryQPCR5ulQuadruplicate',
           filename: 'DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
-        },
+        }
       })
+      quantFile = cmp.vm
       plate = fs.readFileSync(
         './tests/data/DN601493J_DN601493J-QC_n_4_M4_B5__results.csv',
         'ascii',
@@ -321,13 +334,13 @@ describe('QuantFile.vue', () => {
 
     describe('with a valid filename', () => {
       beforeEach(async () => {
-        quantFile = new cmp({
-          propsData: {
+        cmp = mount(QuantFile, {
+          props: {
             quant: 'heronTubeTapeStation',
-            filename:
-              'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
-          },
+            filename: 'DN000000 - 2021-08-25 - 10-54-08-D5000_compactRegionTable.csv',
+          }
         })
+        quantFile = cmp.vm
       })
 
       it('will have a filename', () => {
@@ -370,12 +383,13 @@ describe('QuantFile.vue', () => {
 
     describe('with an invalid filename', () => {
       beforeEach(async () => {
-        quantFile = new cmp({
-          propsData: {
+        cmp = mount(QuantFile, {
+          props: {
             quant: 'heronTubeTapeStation',
             filename: 'DN000000 - no_date_here.csv',
-          },
+          }
         })
+        quantFile = cmp.vm
       })
 
       it('will have a filename', () => {
