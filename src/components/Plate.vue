@@ -49,6 +49,7 @@
             v-for="(row, key, index) in rows"
             :id="key"
             :key="key.concat(index)"
+            :ref="setRowRef"
             :wells="row"
             :plate-barcode="barcode"
             class="border-solid border-2 border-gray-200"
@@ -104,6 +105,7 @@ export default {
       replicates: {},
       exporting: false,
       lotNumber: '',
+      rowRefs: [],
     }
   },
   computed: {
@@ -154,6 +156,11 @@ export default {
     }
   },
   methods: {
+    setRowRef(el) {
+      if (el) {
+        this.rowRefs.push(el)
+      }
+    },
     fetchData() {
       const json = localStorage.getItem(this.barcode)
       if (json !== null) {
@@ -172,7 +179,7 @@ export default {
       // Some children are *not* rows, so we fall back to an empty
       // array to support them. Still not entirely sold on this
       // approach.
-      const cells = this.$children.flatMap((row) => row.json || [])
+      const cells = this.rowRefs.flatMap((row) => row.json || [])
       const { json } = Grid(
         {
           quantType: this.grid.quantType,
@@ -214,6 +221,3 @@ export default {
   },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped></style>

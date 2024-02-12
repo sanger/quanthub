@@ -1,5 +1,10 @@
 <template>
   <div>
+    <QuantFile
+      ref="quantFileRef"
+      :quant="quantType"
+      :filename="filenameFiltered"
+    ></QuantFile>
     <QuanthubMessage ref="alert"></QuanthubMessage>
     <form
       enctype="multipart/form-data"
@@ -52,7 +57,6 @@
 
 <script>
 // Uploads a file. Parse options dependent on quantType
-import Vue from 'vue'
 import QuantFile from '@/components/QuantFile.vue'
 import quantTypes from '@/config/quantTypes'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
@@ -65,12 +69,12 @@ export default {
     QuanthubMessage,
     QuanthubSelect,
     QuanthubButton,
+    QuantFile,
   },
   props: {},
   data() {
     return {
       msg: 'Upload',
-      Cmp: Vue.extend(QuantFile),
       quantType: null,
       quantTypes: quantTypes,
       filename: null,
@@ -142,9 +146,7 @@ export default {
       }
 
       const file = document.getElementById('file-input').files[0]
-      const quantFile = new this.Cmp({
-        propsData: { quant: this.quantType, filename: this.filenameFiltered },
-      })
+      const quantFile = this.$refs.quantFileRef
       quantFile
         .upload(file)
         .then(() => {
@@ -196,6 +198,3 @@ export default {
   },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>

@@ -1,3 +1,4 @@
+<template><div></div></template>
 <script>
 import { parse } from 'csv-parse/browser/esm/sync'
 
@@ -127,6 +128,7 @@ export default {
       // The file is parsed by the quant type options and
       // a factory is used to ensure standardisation of the data
       // for when it is added to the grid.
+      this.quantType = QuantType(this.quant)
       return new Promise((resolve, reject) => {
         const { valid, message } = this.validateFileName()
         if (!valid) {

@@ -4,7 +4,7 @@ import plateReader from '../data/plate_reader'
 import Store from '@/Store'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
-import { mount, localVue, createContainer } from './testHelper'
+import { mount, createContainer } from './testHelper'
 import { vi, describe, expect, it, beforeEach, afterEach } from 'vitest'
 
 vi.mock('axios')
@@ -26,16 +26,17 @@ describe('Plate.vue', () => {
     grid.addAll(Object.values(plateReader.wells))
     localStorage.setItem(barcode, JSON.stringify(grid.json))
     cmp = mount(Plate, {
-      propsData: { barcode: barcode },
-      mocks: { $Store },
-      localVue,
+      props: { barcode: barcode },
+      global: {
+        mocks: { $Store },
+      },
       attachTo: createContainer(),
     })
     plate = cmp.vm
   })
 
   afterEach(() => {
-    cmp.destroy()
+    cmp.unmount()
   })
 
   it('will have have some columns', () => {

@@ -4,9 +4,9 @@ import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { describe, expect, it } from 'vitest'
 
 describe('QuanthubSpinner.vue', () => {
-  const buildWrapper = (propsData = {}) => {
+  const buildWrapper = (props = {}) => {
     return mount(QuanthubSpinner, {
-      propsData,
+      props,
     })
   }
 
