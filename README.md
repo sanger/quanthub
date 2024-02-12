@@ -19,8 +19,7 @@ In the project directory, you can run:
 
     npm run start
 
-To run the app and have hot-reloads for development:
-*This internally run serve and serve:css commands*
+To run the app and have hot-reloads for development, this internally run serve and serve:css commands
 
 ### Compiles and minifies for production
 
