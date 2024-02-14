@@ -35,20 +35,11 @@
     "vue-router": "^4.2.5",
     "tailwindcss": "3.3.5",
     "postcss": "^8.4.33",
-    "@sanger/ui-styling": "^4.1.0",
-    "xvfb": "^0.4.0"
-  },
-  "resolutions": {
-    "@achrinza/node-ipc": "10.1.9"
+    "@sanger/ui-styling": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.7",
-    "@babel/eslint-parser": "7.23.3",
-    "@babel/preset-env": "^7.18.2",
     "@vue/test-utils": "^2.4.0",
     "autoprefixer": "^10.4.16",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-plugin-transform-vite-meta-env": "^1.0.3",
     "cypress": "^13.6.2",
     "cypress-file-upload": "^5.0.8",
     "eslint": "^8.56.0",
@@ -63,7 +54,6 @@
     "postcss-cli": "^10.1.0",
     "prettier": "^3.1.0",
     "sass": "^1.69.5",
-    "vite-plugin-node-polyfills": "^0.15.0",
     "vitest": "^0.34.6",
     "vue-template-compiler": "^2.7.5"
   }
