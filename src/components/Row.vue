@@ -6,6 +6,7 @@
       :is="well.type"
       v-for="(well, key, index) in wells"
       :key="key.concat(index)"
+      ref="row"
       :plate-barcode="plateBarcode"
     ></component>
   </tr>
@@ -40,12 +41,9 @@ export default {
   },
   computed: {
     json() {
-      return this.$children.map((well) => well.json)
+      return this.$refs.row.map((well) => well.json)
     },
   },
   methods: {},
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>

@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import Well from '@/components/wells/Sample.vue'
 import {
   ReplicateList,
@@ -7,14 +6,14 @@ import {
   defaultOptions,
 } from '@/Replicates'
 import { describe, expect, it, beforeEach } from 'vitest'
+import { mount } from '@vue/test-utils'
 
 describe('Replicates.vue', () => {
-  let cmp, well1, well2, well3, well4
+  let wrapper, well1, well2, well3, well4
 
   beforeEach(() => {
-    cmp = Vue.extend(Well)
-    well1 = new cmp({
-      propsData: {
+    wrapper = mount(Well, {
+      props: {
         row: 'A',
         column: '1',
         content: 'Sample X1',
@@ -23,8 +22,9 @@ describe('Replicates.vue', () => {
         plateBarcode: 'DN1234567',
       },
     })
-    well2 = new cmp({
-      propsData: {
+    well1 = wrapper.vm
+    well2 = mount(Well, {
+      props: {
         row: 'A',
         column: '2',
         content: 'Sample X1',
@@ -32,9 +32,9 @@ describe('Replicates.vue', () => {
         concentration: '3.163',
         plateBarcode: 'DN1234567',
       },
-    })
-    well3 = new cmp({
-      propsData: {
+    }).vm
+    well3 = mount(Well, {
+      props: {
         row: 'B',
         column: '1',
         content: 'Sample X1',
@@ -42,7 +42,7 @@ describe('Replicates.vue', () => {
         concentration: '2.836',
         plateBarcode: 'DN1234567',
       },
-    })
+    }).vm
   })
 
   describe('Replicate', () => {
@@ -181,11 +181,11 @@ describe('Replicates.vue', () => {
         expect(replicate.activeWells().length).toEqual(2)
       })
 
-      it('will only include wells which have a valid concentration', () => {
-        well1.concentration = 'n.a'
+      it('will only include wells which have a valid concentration', async () => {
+        await wrapper.setProps({ concentration: 'n.a' })
         expect(replicate.activeWells().length).toEqual(2)
 
-        well1.concentration = ''
+        await wrapper.setProps({ concentration: '' })
         expect(replicate.activeWells().length).toEqual(2)
       })
     })
@@ -211,33 +211,33 @@ describe('Replicates.vue', () => {
       let well4, well5, well6
 
       beforeEach(() => {
-        well4 = new cmp({
-          propsData: {
+        well4 = mount(Well, {
+          props: {
             row: 'A',
             column: '1',
             content: 'Sample X1',
             id: 'A1',
             concentration: '0.685',
           },
-        })
-        well5 = new cmp({
-          propsData: {
+        }).vm
+        well5 = mount(Well, {
+          props: {
             row: 'A',
             column: '2',
             content: 'Sample X1',
             id: 'A1',
             concentration: '0.960',
           },
-        })
-        well6 = new cmp({
-          propsData: {
+        }).vm
+        well6 = mount(Well, {
+          props: {
             row: 'A',
             column: '3',
             content: 'Sample X1',
             id: 'A1',
             concentration: '0.660',
           },
-        })
+        }).vm
         replicate = Replicate({
           wells: [well4, well5, well6],
           options: { cvThreshold: 20 },
@@ -253,15 +253,15 @@ describe('Replicates.vue', () => {
       })
 
       it('will indicate whether replicate needs to be inspected at the threshold', () => {
-        well5 = new cmp({
-          propsData: {
+        well5 = mount(Well, {
+          props: {
             row: 'A',
             column: '2',
             content: 'Sample X1',
             id: 'A1',
             concentration: '0.935',
           },
-        })
+        }).vm
         replicate = Replicate({ wells: [well4, well5, well6] })
         expect(replicate.needsInspection()).toBeTruthy()
       })
@@ -304,33 +304,33 @@ describe('Replicates.vue', () => {
       }
       replicate1 = Replicate({ wells: [well1, well2, well3], options })
 
-      well4 = new cmp({
-        propsData: {
+      well4 = mount(Well, {
+        props: {
           row: 'A',
           column: '3',
           content: 'Sample X9',
           id: 'A2',
           concentration: '5.6167645657484545',
         },
-      })
-      well5 = new cmp({
-        propsData: {
+      }).vm
+      well5 = mount(Well, {
+        props: {
           row: 'A',
           column: '4',
           content: 'Sample X9',
           id: 'A2',
           concentration: '5.34143756346534856',
         },
-      })
-      well6 = new cmp({
-        propsData: {
+      }).vm
+      well6 = mount(Well, {
+        props: {
           row: 'A',
           column: '5',
           content: 'Sample X9',
           id: 'A2',
           concentration: '5.05425432343423423',
         },
-      })
+      }).vm
 
       replicate2 = Replicate({ wells: [well4, well5, well6], options })
 
@@ -395,33 +395,33 @@ describe('Replicates.vue', () => {
 
     it('cv', () => {
       // well2 is an outlier
-      well1 = new cmp({
-        propsData: {
+      well1 = mount(Well, {
+        props: {
           row: 'A',
           column: '1',
           content: 'Sample X1',
           id: 'A1',
           concentration: '0.685',
         },
-      })
-      well2 = new cmp({
-        propsData: {
+      }).vm
+      well2 = mount(Well, {
+        props: {
           row: 'A',
           column: '2',
           content: 'Sample X1',
           id: 'A1',
           concentration: '0.960',
         },
-      })
-      well3 = new cmp({
-        propsData: {
+      }).vm
+      well3 = mount(Well, {
+        props: {
           row: 'A',
           column: '3',
           content: 'Sample X1',
           id: 'A1',
           concentration: '0.660',
         },
-      })
+      }).vm
       replicate = Replicate({ wells: [well1, well2, well3], options })
 
       replicate.outliers()
@@ -439,42 +439,42 @@ describe('Replicates.vue', () => {
     it('mad', () => {
       // well3 is an outlier
       options.outlier = { type: 'mad', threshold: 3.5 }
-      well1 = new cmp({
-        propsData: {
+      well1 = mount(Well, {
+        props: {
           row: 'A',
           column: '1',
           content: 'Sample X1',
           id: 'A1',
           concentration: '12241500',
         },
-      })
-      well2 = new cmp({
-        propsData: {
+      }).vm
+      well2 = mount(Well, {
+        props: {
           row: 'A',
           column: '2',
           content: 'Sample X1',
           id: 'A1',
           concentration: '12495300',
         },
-      })
-      well3 = new cmp({
-        propsData: {
+      }).vm
+      well3 = mount(Well, {
+        props: {
           row: 'B',
           column: '1',
           content: 'Sample X1',
           id: 'A1',
           concentration: '11008300',
         },
-      })
-      well4 = new cmp({
-        propsData: {
+      }).vm
+      well4 = mount(Well, {
+        props: {
           row: 'B',
           column: '2',
           content: 'Sample X1',
           id: 'A1',
           concentration: '12240200',
         },
-      })
+      }).vm
       replicate = Replicate({ wells: [well1, well2, well3, well4], options })
 
       replicate.outliers()

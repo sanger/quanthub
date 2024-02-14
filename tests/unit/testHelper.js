@@ -1,6 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils'
-
-const localVue = createLocalVue()
+import { mount } from '@vue/test-utils'
 
 // this is needed for the tooltip in Sample.vue to be able to find its target element to attach to
 const createContainer = (tag = 'div') => {
@@ -10,4 +8,4 @@ const createContainer = (tag = 'div') => {
   return container
 }
 
-export { mount, localVue, createContainer }
+export { mount, createContainer }

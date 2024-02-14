@@ -1,13 +1,11 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Plate from '@/components/Plate.vue'
 import Upload from '@/components/Upload.vue'
 import PrintJob from '@/components/PrintJob.vue'
 import PlateList from '@/components/PlateList.vue'
 
-Vue.use(Router)
-
-export default new Router({
+const router = createRouter({
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
@@ -38,3 +36,5 @@ export default new Router({
     },
   ],
 })
+
+export default router
