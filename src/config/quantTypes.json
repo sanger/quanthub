@@ -1280,5 +1280,65 @@
       "numberOfRows": 8,
       "numberOfColumns": 12
     }
+  },
+  "scRnaTubeTapeStation": {
+    "key": "heronTubeTapeStation",
+    "name": "scRNA TapeStation Tubes",
+    "wellType": "TubeTapeStation",
+    "fileNameSpecs": {
+      "pattern": "20(?<yy>\\d{2})-(?<mm>\\d{2})-(?<dd>\\d{2})\\s*-\\s*(?<HH>\\d{2})-(?<MM>\\d{2})-(?<SS>\\d{2})",
+      "barcodeFormat": "{yy}{mm}{dd}-{HH}{MM}{SS}",
+      "errorDescription": "Filename must contain date/time, similar to \"2021-02-26 - 13-45-00\"",
+      "barcodeSuffix": true
+    },
+    "parse": {
+      "delimiter": ",",
+      "rowDelimiter": ["\r\n", "\r", "\n", "\r\r\n"],
+      "from": 2,
+      "columns": [
+        "fileName",
+        "wellId",
+        "sampleDescription",
+        "from",
+        "to",
+        "averageSize",
+        "conc",
+        "regionMolarity",
+        "percentageOfTotal",
+        "regionComment"
+      ]
+    },
+    "metadata": {},
+    "qcResults": {
+      "key": "molarity",
+      "units": "nM",
+      "assay": {
+        "type": "scRNA TapeStation Tubes",
+        "version": "v3.0"
+      },
+      "barcodeSource": "id",
+      "outlier": {
+        "type": "cv",
+        "threshold": 15
+      },
+      "warningThreshold": {
+        "value": 5,
+        "shortMessage": "low conc",
+        "message": "TapeStation may not be accurate at this low concentration"
+      },
+      "fields": [
+        "barcode",
+        "key",
+        "value",
+        "units",
+        "cv",
+        "assay_type",
+        "assay_version"
+      ]
+    },
+    "grid": {
+      "numberOfRows": 8,
+      "numberOfColumns": 12
+    }
   }
 }
