@@ -1282,7 +1282,7 @@
     }
   },
   "scRnaTubeTapeStation": {
-    "key": "heronTubeTapeStation",
+    "key": "scRnaTubeTapeStation",
     "name": "scRNA TapeStation Tubes",
     "wellType": "TubeTapeStation",
     "fileNameSpecs": {
