@@ -31,6 +31,15 @@ const splitWellName = (name) =>
   name.match(/(?<row>[a-zA-Z]+)(?<column>\d+)/).groups
 
 /**
+ * Extracts the plate barcode from the file name
+ * @param {string} fileName - The name of the file
+ * @returns {string} The plate barcode
+ */
+const splitPlateBarcode = (fileName) =>
+  fileName.match(/^([a-zA-Z0-9-]+)_/)[1]
+
+
+/**
  * Collects the information extracted for a well
  *
  * @typedef {Object} Well
@@ -125,4 +134,19 @@ const TubeTapeStation = ({
   }
 }
 
-export { PlateReader, QPCR10ul, QPCR5ul, TubeTapeStation }
+const ScRNATubeTapeStation = ({
+  wellId,
+  sampleDescription: id,
+  regionMolarity: concentration,
+  fileName: fileName
+}) => {
+  return {
+    ...splitWellName(wellId),
+    type: SAMPLE_TYPE,
+    id,
+    concentration,
+    qcPlateBarcode: splitPlateBarcode(fileName)
+  }
+}
+
+export { PlateReader, QPCR10ul, QPCR5ul, TubeTapeStation, ScRNATubeTapeStation }
