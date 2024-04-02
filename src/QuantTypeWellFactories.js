@@ -35,7 +35,7 @@ const splitWellName = (name) =>
  * @param {string} fileName - The name of the file
  * @returns {string} The plate barcode
  */
-const splitPlateBarcode = (fileName) =>
+const splitQcPlateBarcode = (fileName) =>
   fileName.match(/^[A-Z]{4}-\d+-[A-Z]*/)[0]
 
 /**
@@ -144,7 +144,7 @@ const ScRNATubeTapeStation = ({
     type: SAMPLE_TYPE,
     id,
     concentration,
-    qcPlateBarcode: splitPlateBarcode(fileNameValue),
+    qcPlateBarcode: splitQcPlateBarcode(fileNameValue),
   }
 }
 
