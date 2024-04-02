@@ -183,4 +183,32 @@ describe('QuantTypeWellFactories.js', () => {
       })
     })
   })
+
+  describe('ScRNATubeStation Factory', () => {
+    // fileName attribute here in particular is the FileName column's value for each replicate
+    const options = {
+      fileName:
+        'SQPU-82080-H_GEX_Final_Libs.D5000',
+      wellId: 'A1',
+      sampleDescription: 'A1',
+      from: '100',
+      to: '1000',
+      averageSize: '456',
+      conc: '128',
+      regionMolarity: '502',
+      percentageOfTotal: '1.345',
+      regionComment: '',
+    }
+
+    it('produces some json', () => {
+      expect(WellFactories.ScRNATubeTapeStation(options)).toEqual({
+        row: 'A',
+        column: '1',
+        id: "A1",
+        qcPlateBarcode: "SQPU-82080-H",
+        type: 'Sample',
+        concentration: '502',
+      })
+    })
+  })
 })

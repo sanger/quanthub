@@ -136,14 +136,14 @@ const ScRNATubeTapeStation = ({
   wellId,
   sampleDescription: id,
   regionMolarity: concentration,
-  fileName: fileName,
+  fileName: fileNameValue,
 }) => {
   return {
     ...splitWellName(wellId),
     type: SAMPLE_TYPE,
     id,
     concentration,
-    qcPlateBarcode: splitPlateBarcode(fileName),
+    qcPlateBarcode: splitPlateBarcode(fileNameValue),
   }
 }
 
