@@ -34,9 +34,7 @@ describe('tapestation', () => {
     cy.visit('/')
     cy.get('input[type="file"]')
       .as('fileInput')
-      .attachFile(
-        '10X_UAT_quantHub_TS_test_2024-03-26 - 13-35-00.csv',
-      )
+      .attachFile('10X_UAT_quantHub_TS_test_2024-03-26 - 13-35-00.csv')
     cy.get('select[id="quant-type"]').select('scRNA TapeStation Tubes')
     cy.contains('button', 'Upload').click()
     cy.contains('240326-133500-')
