@@ -35,7 +35,8 @@ const splitWellName = (name) =>
  * @param {string} fileName - The name of the file
  * @returns {string} The plate barcode
  */
-const splitPlateBarcode = (fileName) => fileName.match(/^([a-zA-Z0-9-]+)_/)[1]
+const splitPlateBarcode = (fileName) =>
+  fileName.match(/^[A-Z]{4}-\d+-[A-Z]*/)[0]
 
 /**
  * Collects the information extracted for a well
