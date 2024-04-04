@@ -184,7 +184,7 @@ describe('QuantTypeWellFactories.js', () => {
     })
   })
 
-  describe('ScRNATubeStation Factory', () => {
+  describe('ScRNAPlateStation Factory', () => {
     // fileName attribute here in particular is the FileName column's value for each replicate
     const options = {
       fileName: 'SQPU-82080-H_GEX_Final_Libs.D5000',
@@ -200,7 +200,7 @@ describe('QuantTypeWellFactories.js', () => {
     }
 
     it('produces some json', () => {
-      expect(WellFactories.ScRNATubeTapeStation(options)).toEqual({
+      expect(WellFactories.ScRNAPlateTapeStation(options)).toEqual({
         row: 'A',
         column: '1',
         id: 'A1',

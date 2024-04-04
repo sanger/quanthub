@@ -133,7 +133,7 @@ const TubeTapeStation = ({
   }
 }
 
-const ScRNATubeTapeStation = ({
+const ScRNAPlateTapeStation = ({
   wellId,
   sampleDescription: id,
   regionMolarity: concentration,
@@ -148,4 +148,4 @@ const ScRNATubeTapeStation = ({
   }
 }
 
-export { PlateReader, QPCR10ul, QPCR5ul, TubeTapeStation, ScRNATubeTapeStation }
+export { PlateReader, QPCR10ul, QPCR5ul, TubeTapeStation, ScRNAPlateTapeStation }
