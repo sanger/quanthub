@@ -148,4 +148,10 @@ const ScRNAPlateTapeStation = ({
   }
 }
 
-export { PlateReader, QPCR10ul, QPCR5ul, TubeTapeStation, ScRNAPlateTapeStation }
+export {
+  PlateReader,
+  QPCR10ul,
+  QPCR5ul,
+  TubeTapeStation,
+  ScRNAPlateTapeStation,
+}
