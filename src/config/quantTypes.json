@@ -1284,7 +1284,7 @@
   "scRnaTubeTapeStation": {
     "key": "scRnaTubeTapeStation",
     "name": "scRNA TapeStation Tubes",
-    "wellType": "TubeTapeStation",
+    "wellType": "ScRNAPlateTapeStation",
     "fileNameSpecs": {
       "pattern": "20(?<yy>\\d{2})-(?<mm>\\d{2})-(?<dd>\\d{2})\\s*-\\s*(?<HH>\\d{2})-(?<MM>\\d{2})-(?<SS>\\d{2})",
       "barcodeFormat": "{yy}{mm}{dd}-{HH}{MM}{SS}",
@@ -1316,7 +1316,7 @@
         "type": "scRNA TapeStation Tubes",
         "version": "v3.0"
       },
-      "barcodeSource": "id",
+      "barcodeSource": "qcPlateBarcode",
       "outlier": {
         "type": "cv",
         "threshold": 15
@@ -1333,7 +1333,8 @@
         "units",
         "cv",
         "assay_type",
-        "assay_version"
+        "assay_version",
+        "well_location"
       ]
     },
     "grid": {

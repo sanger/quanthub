@@ -51,6 +51,9 @@ export default {
     plateBarcode: {
       default: '',
     },
+    qcPlateBarcode: {
+      default: '',
+    },
     extraFields: {
       default() {
         return {
