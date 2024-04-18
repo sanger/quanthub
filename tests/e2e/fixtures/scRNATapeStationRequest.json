@@ -1,0 +1,769 @@
+{
+  "data": {
+    "attributes": {
+      "lot_number": "",
+      "qc_results": [
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 244,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B1"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 261,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 321,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 375,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 395,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 39.5,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 244,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 261,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 321,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 375,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "B10"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 246,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C1"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 323,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 342,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 330,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 333,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 42.5,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 246,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 323,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 342,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 330,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "C10"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 325,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D1"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 250,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 312,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 352,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 326,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 28.4,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 325,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 250,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 312,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 352,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "D10"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 287,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E1"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 305,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 327,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 323,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 283,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 32.2,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 287,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 305,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 327,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "E9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 323,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A1 "
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 346,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F1"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 218,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 228,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 337,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 331,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 42.7,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 346,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 218,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 228,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "F9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 364,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G1"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 309,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 260,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 408,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 385,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 70.2,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 364,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 309,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 260,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "G9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 364,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H1"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 306,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 330,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 343,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 329,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 11.9,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 364,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 306,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 330,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "H9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 361,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A2"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 342,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A3"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 326,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A4"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 412,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A5"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 7.67,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A6"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 68.6,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A7"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 361,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A8"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 342,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A9"
+        },
+        {
+          "barcode": "SQPU-82080-H",
+          "key": "molarity",
+          "value": 326,
+          "units": "nM",
+          "cv": 0,
+          "assay_type": "scRNA TapeStation Tubes",
+          "assay_version": "v3.0",
+          "well_location": "A10"
+        }
+      ]
+    }
+  }
+}
