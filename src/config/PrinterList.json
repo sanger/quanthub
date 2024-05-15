@@ -1,1 +1,26 @@
-["f225bc", "h106bc", "g214bc", "g216abc", "AA312bc", "AA312bc2"]
+[
+  {
+    "name": "f225bc",
+    "type": "toshiba"
+  },
+  {
+    "name": "h106bc",
+    "type": "toshiba"
+  },
+  {
+    "name": "g214bc",
+    "type": "toshiba"
+  },
+  {
+    "name": "g216abc",
+    "type": "toshiba"
+  },
+  {
+    "name": "AA312bc",
+    "type": "squix"
+  },
+  {
+    "name": "AA312bc2",
+    "type": "squix"
+  }
+]
