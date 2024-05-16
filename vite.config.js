@@ -14,6 +14,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     coverage: {
+      include: ['src/**'],
       reporter: ['text', 'json'],
     },
   },
