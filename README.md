@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/sanger/quanthub/graph/badge.svg?token=kdVGmZMeUr)](https://codecov.io/gh/sanger/quanthub)
+
 # QuantHub
 
 Does what it says on the tin.
