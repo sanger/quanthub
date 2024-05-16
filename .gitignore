@@ -2,8 +2,10 @@
 node_modules
 dist
 
+# test files
 tests/e2e/reports/
 selenium-debug.log
+coverage/
 
 # local asset build
 release.tar.gz
