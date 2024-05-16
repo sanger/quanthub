@@ -1,4 +1,4 @@
-# QuantHub
+# ![QuantHub Logo](src/assets/logo-32x32.png) QuantHub
 
 Does what it says on the tin.
 
@@ -65,3 +65,7 @@ npm run test:unit
 ```shell
 npm run test:e2e
 ```
+
+### Attributions
+
+![Abacus Logo](https://github.com/twitter/twemoji/blob/master/assets/svg/1f9ee.svg) sourced from [Twemoji](https://github.com/twitter/twemoji) licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and converted to favicon using [favicon.io](https://favicon.io/emoji-favicons/abacus/)
