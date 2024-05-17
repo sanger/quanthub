@@ -23,8 +23,8 @@ const createLabels = ({ printer, barcodes }) => {
       return {
         main_label: {
           top_left: date_string,
-          bottom_left: barcode.concat('-QC'),
-          barcode: barcode.concat('-QC'),
+          bottom_left: barcode,
+          barcode,
         },
       }
     })
@@ -36,6 +36,10 @@ const createLabels = ({ printer, barcodes }) => {
 }
 
 const createPrintJob = async ({ printer, barcodes }) => {
+  if (!printer || !barcodes) {
+    // Return an error here once we figure out the error handling
+    return false
+  }
   const labels = createLabels({ printer, barcodes })
   const response = await fetch(
     `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2`,

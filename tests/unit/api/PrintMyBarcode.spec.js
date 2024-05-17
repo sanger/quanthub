@@ -1,38 +1,27 @@
-import PrintJob from '@/api/PrintMyBarcode'
+import createPrintJob from '@/api/PrintMyBarcode'
+import PrinterList from '@/config/PrinterList'
 import { describe, expect, it, beforeEach } from 'vitest'
 
 describe('PrintMyBarcode.js', () => {
-  let printJob, date, json
+  let barcodes, printer
 
   beforeEach(() => {
-    date = new Date()
-    json = {
-      labelTemplateId: '175',
-      printerName: 'f225bc',
-      labels: {
-        body: [
-          {
-            main_label: {
-              top_left: date.getDate(),
-              bottom_left: 'DN1234567',
-              barcode: 'DN1234567',
-            },
-          },
-        ],
-      },
-    }
-    printJob = new PrintJob(json)
+    barcodes = ['DN1234567','nDN2345678','nDN3456789']
+    printer = PrinterList[0]
   })
 
-  it('has a label template id', () => {
-    expect(printJob.labelTemplateId).toEqual(json.labelTemplateId)
-  })
+  describe('createPrintJob', () => {
+    it('returns false if printer or barcodes are not provided', async () => {
+      expect(await createPrintJob({ printer: null, barcodes })).toEqual(false)
+      expect(await createPrintJob({ printer, barcodes: null })).toEqual(false)
+    })
 
-  it('has a printer name', () => {
-    expect(printJob.printerName).toEqual(json.printerName)
-  })
+    // describe('when the printer is toshiba', () => {
+    //   // expect fetch to be called with the correct labels
+    // })
 
-  it('has some labels', () => {
-    expect(printJob.labels).toEqual(json.labels)
+    // describe('when the printer is squix', () => {
+    //   // expect fetch to be called with the correct labels
+    // })
   })
 })

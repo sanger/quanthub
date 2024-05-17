@@ -91,12 +91,6 @@ export default {
     }
   },
   computed: {
-    fomatted_barcodes() {
-      return this.barcodes
-        .split('\n')
-        .filter(Boolean)
-        .map((barcode) => barcode.concat('-QC'))
-    },
     printerOptions() {
       return PrinterList.map((printer) => ({
         text: printer.name,
@@ -108,24 +102,29 @@ export default {
     },
   },
   methods: {
+    formattedBarcodes() {
+      return this.barcodes
+        .split('\n')
+        .filter(Boolean)
+        .map((barcode) => barcode.concat('-QC'))
+    },
     execute() {
       if (this.valid()) {
         createPrintJob({
           printer: this.printer,
-          barcodes: this.formatted_barcodes,
+          barcodes: this.formattedBarcodes(),
         }).then((success) => {
           if (success) {
             this.$refs.alert.show('barcode successfully printed', 'success')
           } else {
-            /*eslint no-console: ["error", { allow: ["error"] }] */
-            console.error(this.model.errors)
+            // Need to return the error message from the API
             this.$refs.alert.show('barcode printing failed', 'danger')
           }
         })
       }
     },
     valid() {
-      this.barcodeError = !this.barcodeError
+      this.barcodeError = !this.barcodes
         ? 'There must be at least one barcode'
         : ''
       this.printerError = !this.printerName ? 'Please select a printer' : ''
