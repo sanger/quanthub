@@ -145,12 +145,23 @@ describe('Plate.vue', () => {
     })
 
     it('failure', async () => {
+      const consoleErrorMock = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => undefined)
       axios.mockRejectedValue({ data: { status: 422 } })
+
       cmp.find('#export').trigger('click')
       await flushPromises()
+
       expect(plate.$refs.alert.message).toEqual(
         'QC Results for plate could not be exported',
       )
+      expect(consoleErrorMock).toHaveBeenCalledOnce()
+      expect(consoleErrorMock).toHaveBeenLastCalledWith({
+        data: { status: 422 },
+      })
+
+      consoleErrorMock.mockReset()
     })
   })
 })
