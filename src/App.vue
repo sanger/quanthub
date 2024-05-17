@@ -7,6 +7,12 @@
           class="flex justify-between items-center py-4 md:justify-start md:space-x-10"
         >
           <div class="flex flex-row gap-x-2">
+            <a href="/"
+              ><img
+                src="@/assets/logo-32x32.png"
+                alt="Quanthub Logo"
+                class="h-8 w-auto"
+            /></a>
             <a href="/"><div class="text-white text-2xl">Quanthub</div></a>
             <PageLink name="Upload a new plate" link="/" view-type="2" />
             <PageLink name="Print a barcode" link="/print_job" view-type="2" />
