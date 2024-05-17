@@ -6,7 +6,7 @@ describe('PrintMyBarcode.js', () => {
   let barcodes, printer
 
   beforeEach(() => {
-    barcodes = ['DN1234567','nDN2345678','nDN3456789']
+    barcodes = ['DN1234567', 'nDN2345678', 'nDN3456789']
     printer = PrinterList[0]
   })
 

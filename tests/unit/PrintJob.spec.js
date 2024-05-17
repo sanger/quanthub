@@ -18,14 +18,19 @@ describe('PrintJob.vue', () => {
       barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
       printerName: 'ippbc',
       barcodeError: '',
-      printerError: ''
+      printerError: '',
     })
     printJob = cmp.vm
   })
 
   describe('printerOptions', () => {
     it('will return a list of printerOptions based on the PrinterList config', () => {
-      expect(printJob.printerOptions).toEqual(PrinterList.map((printer) => ({ text: printer.name, value: printer.name })))
+      expect(printJob.printerOptions).toEqual(
+        PrinterList.map((printer) => ({
+          text: printer.name,
+          value: printer.name,
+        })),
+      )
     })
   })
 
@@ -72,7 +77,9 @@ describe('PrintJob.vue', () => {
       cmp.setData({ barcodes: '' })
       const valid = printJob.valid()
       expect(valid).toEqual(false)
-      expect(printJob.barcodeError).toEqual('There must be at least one barcode')
+      expect(printJob.barcodeError).toEqual(
+        'There must be at least one barcode',
+      )
     })
 
     it('is not valid if the barcode is blank', () => {
@@ -94,7 +101,12 @@ describe('PrintJob.vue', () => {
 
   describe('reset', () => {
     it('resets the component data', () => {
-      cmp.setData({ printerName: 'ippbc', barcodes: 'DN1234567\nDN2345678\nDN3456789\n', barcodeError: 'error', printerError: 'error'})
+      cmp.setData({
+        printerName: 'ippbc',
+        barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
+        barcodeError: 'error',
+        printerError: 'error',
+      })
       printJob.reset()
       expect(printJob.printerName).toEqual(PrinterList[0].name)
       expect(printJob.barcodes).toEqual('')
