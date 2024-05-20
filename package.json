@@ -8,7 +8,7 @@
     "serve": "vite",
     "build": "npm-run-all build:css build:js",
     "build:js": "vite build",
-    "test:unit": "vitest run --silent",
+    "test:unit": "vitest run --silent --coverage",
     "test:e2e": "npm-run-all -p start test:cypress:all",
     "test:cypress:all": "cypress run",
     "test:e2e:one": "npm-run-all -p start test:cypress:one",
@@ -38,6 +38,7 @@
     "@sanger/ui-styling": "^4.1.0"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.0",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.19",
     "cypress": "^13.7.1",

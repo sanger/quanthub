@@ -13,6 +13,10 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    coverage: {
+      include: ['src/**'],
+      reporter: ['text', 'json'],
+    },
   },
   build: {
     outDir: 'dist/public',
