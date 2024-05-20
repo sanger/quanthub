@@ -31,6 +31,9 @@ describe('Wells', () => {
       cmp = mount(Wells, {
         mixins: [WellProperties],
         props: data,
+        render() {
+          return null
+        },
       })
       well = cmp.vm
     })
