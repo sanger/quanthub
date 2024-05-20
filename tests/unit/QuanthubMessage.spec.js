@@ -1,6 +1,7 @@
-import { describe, expect, it, beforeEach } from 'vitest'
-import { mount } from './testHelper'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
+import { beforeEach, describe, expect, it } from 'vitest'
+
+import { mount } from './testHelper'
 
 describe('QuanthubMessage.vue', () => {
   let cmp, alert

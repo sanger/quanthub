@@ -31,8 +31,8 @@
 
 <script>
 import PageFooter from '@/components/PageFooter.vue'
-import PageLink from '@/components/PageLink.vue'
 import PageHeading from '@/components/PageHeading.vue'
+import PageLink from '@/components/PageLink.vue'
 
 export default {
   name: 'App',

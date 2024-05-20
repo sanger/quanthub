@@ -1,10 +1,9 @@
 <template><div></div></template>
 <script>
-import { parse } from 'csv-parse/browser/esm/sync'
-
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
 import WellMap from '@/config/wellMap'
+import { parse } from 'csv-parse/browser/esm/sync'
 
 // \r\r\n is a non standard windows line ending which causes all sorts of problems.
 // It appears to arise when the exchange server modifies attached files

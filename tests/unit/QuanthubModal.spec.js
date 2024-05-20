@@ -1,9 +1,9 @@
-import { mount } from './testHelper'
-
 import QuanthubModal from '@/components/shared/QuanthubModal.vue'
-import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
 import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
-import { describe, expect, it, beforeEach } from 'vitest'
+import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
+import { beforeEach, describe, expect, it } from 'vitest'
+
+import { mount } from './testHelper'
 
 /**
  * Note:- Modal dialog is a teleported Vue component, which doesn't appear in the actual DOM, so testing

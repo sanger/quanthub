@@ -1,5 +1,5 @@
-import { describe, expect, it, beforeEach } from 'vitest'
 import * as Calculations from '@/Calculations'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('Calculations.vue', () => {
   let values

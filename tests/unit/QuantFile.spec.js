@@ -1,8 +1,8 @@
 import QuantFile from '@/components/QuantFile.vue'
+import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 import fs from 'fs'
-import { describe, expect, it, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('QuantFile.vue', () => {
   let cmp, quantFile, plate, file

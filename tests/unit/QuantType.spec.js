@@ -1,7 +1,7 @@
 import buildQuantType from '@/QuantType'
 import * as WellFactories from '@/QuantTypeWellFactories'
 import quantTypes from '@/config/quantTypes'
-import { describe, expect, it, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('quantType', () => {
   let quantType
