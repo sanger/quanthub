@@ -70,4 +70,4 @@ npm run test:e2e
 
 ### Attributions
 
-![Abacus Logo](https://github.com/twitter/twemoji/blob/master/assets/svg/1f9ee.svg) sourced from [Twemoji](https://github.com/twitter/twemoji) licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and converted to favicon using [favicon.io](https://favicon.io/emoji-favicons/abacus/)
+Abacus Logo sourced from [Twemoji](https://github.com/twitter/twemoji) licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and converted to favicon using [favicon.io](https://favicon.io/emoji-favicons/abacus/)
