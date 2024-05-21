@@ -70,10 +70,19 @@ describe('PrintJob.vue', () => {
     })
 
     it('unsuccessfully', async () => {
+      const consoleErrorMock = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => undefined)
+
       Model.prototype.save = vi.fn(() => Promise.resolve(false))
       printJob.execute()
       await flushPromises()
+
       expect(printJob.$refs.alert.message).toEqual('barcode printing failed')
+      expect(consoleErrorMock).toHaveBeenCalledOnce()
+      expect(consoleErrorMock).toHaveBeenLastCalledWith({})
+
+      consoleErrorMock.mockReset()
     })
   })
 

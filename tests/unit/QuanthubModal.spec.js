@@ -1,7 +1,7 @@
 import { mount } from './testHelper'
 
 import QuanthubModal from '@/components/shared/QuanthubModal.vue'
-
+import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
 import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { describe, expect, it, beforeEach } from 'vitest'
 
@@ -49,7 +49,10 @@ describe('QuanthubModal.vue', () => {
     const buildModalWrapper = (props = {}) => {
       return mount(QuanthubModal, {
         props: { ...props, visible: true },
-        components: { 'quanthub-spinner': QuanthubSpinner },
+        components: {
+          'quanthub-spinner': QuanthubSpinner,
+          'quanthub-close-icon': QuanthubCloseIcon,
+        },
         slots: {
           'modal-header': '<div data-testid="header-div">Heading</div>',
         },
@@ -92,7 +95,7 @@ describe('QuanthubModal.vue', () => {
       return mount(QuanthubModal, {
         props: { ...props, visible: true },
         slots: {
-          'modal-footer': `<div data-testid="footer-div"> 
+          'modal-footer': `<div data-testid="footer-div">
             <button data-testid="ok-btn"> OK </button>
             <button data-testid="cancel-btn"> Cancel </button>
             </div>`,
