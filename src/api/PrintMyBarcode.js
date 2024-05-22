@@ -1,28 +1,19 @@
 const createLabels = ({ printer, barcodes }) => {
   const date = new Date()
-  const months = [
-    'JAN',
-    'FEB',
-    'MAR',
-    'APR',
-    'MAY',
-    'JUN',
-    'JUL',
-    'AUG',
-    'SEP',
-    'OCT',
-    'NOV',
-    'DEC',
-  ]
-  const date_string = `${date.getDate().toString().padStart(2, '0')}-${
-    months[date.getMonth()]
-  }-${date.getFullYear()}`
+  const dateString = date
+    .toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    })
+    .replace(/ /g, '-')
+    .toUpperCase()
 
   if (printer.name === 'toshiba') {
     barcodes.map((barcode) => {
       return {
         main_label: {
-          top_left: date_string,
+          top_left: dateString,
           bottom_left: barcode,
           barcode,
         },
