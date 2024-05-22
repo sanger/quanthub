@@ -10,25 +10,29 @@ const createLabels = ({ printer, barcodes }) => {
     .toUpperCase()
 
   if (printer.name === 'toshiba') {
-    barcodes.map((barcode) => {
-      return {
-        main_label: {
-          top_left: dateString,
-          bottom_left: barcode,
-          barcode,
-        },
-      }
-    })
+    return barcodes.map((barcode) => ({
+      main_label: {
+        top_left: dateString,
+        bottom_left: barcode,
+        barcode,
+      },
+    }))
   } else if (printer.name === 'squix') {
+    const barcode = 'TEST'
     return {
       // TODO
+      main_label: {
+        top_left: dateString,
+        bottom_left: barcode,
+        barcode,
+      },
     }
   } else return []
 }
 
 const createPrintJob = async ({ printer, barcodes }) => {
   if (!printer || !barcodes) {
-    // Return an error here once we figure out the error handling
+    // TODO: Return an error here once we figure out the error handling
     return false
   }
   const labels = createLabels({ printer, barcodes })
@@ -54,4 +58,4 @@ const createPrintJob = async ({ printer, barcodes }) => {
   console.log(response)
 }
 
-export default createPrintJob
+export { createPrintJob, createLabels }
