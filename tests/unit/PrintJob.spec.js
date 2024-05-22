@@ -1,4 +1,3 @@
-import Model from '@/api/PrintMyBarcode'
 import PrintJob from '@/components/PrintJob.vue'
 import PrinterList from '@/config/PrinterList'
 import flushPromises from 'flush-promises'
