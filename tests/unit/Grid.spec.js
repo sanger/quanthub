@@ -1,5 +1,5 @@
-import { describe, expect, it, beforeEach } from 'vitest'
 import Grid from '@/Grid'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('Grid.vue', () => {
   let grid

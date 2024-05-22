@@ -71,9 +71,9 @@
 <script>
 import createPrintJob from '@/api/PrintMyBarcode'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
-import PrinterList from '@/config/PrinterList'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
+import PrinterList from '@/config/PrinterList'
 
 export default {
   name: 'PrintJob',

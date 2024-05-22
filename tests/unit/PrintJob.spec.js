@@ -1,8 +1,10 @@
+import Model from '@/api/PrintMyBarcode'
 import PrintJob from '@/components/PrintJob.vue'
-import flushPromises from 'flush-promises'
 import PrinterList from '@/config/PrinterList'
+import flushPromises from 'flush-promises'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { mount } from './testHelper'
-import { vi, describe, expect, it, beforeEach } from 'vitest'
 
 let createPrintJob = Promise.resolve(true)
 vi.mock('@/api/PrintMyBarcode', () => ({
@@ -60,6 +62,7 @@ describe('PrintJob.vue', () => {
       createPrintJob = Promise.resolve(false)
       printJob.execute()
       await flushPromises()
+
       expect(printJob.$refs.alert.message).toEqual('barcode printing failed')
     })
   })

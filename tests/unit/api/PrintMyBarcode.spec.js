@@ -1,6 +1,7 @@
 import createPrintJob from '@/api/PrintMyBarcode'
+import PrintJob from '@/api/PrintMyBarcode'
 import PrinterList from '@/config/PrinterList'
-import { describe, expect, it, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('PrintMyBarcode.js', () => {
   let barcodes, printer

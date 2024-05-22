@@ -8,7 +8,7 @@
     "serve": "vite",
     "build": "npm-run-all build:css build:js",
     "build:js": "vite build",
-    "test:unit": "vitest run --silent",
+    "test:unit": "vitest run --coverage",
     "test:e2e": "npm-run-all -p start test:cypress:all",
     "test:cypress:all": "cypress run",
     "test:e2e:one": "npm-run-all -p start test:cypress:one",
@@ -21,6 +21,7 @@
     "build:css": "postcss src/styles/tailwind.css -o src/styles/index.css --env production"
   },
   "dependencies": {
+    "@sanger/ui-styling": "^4.1.0",
     "@vitejs/plugin-vue": "^5.0.3",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
@@ -30,21 +31,22 @@
     "json-server": "^0.17.4",
     "jsorm": "^1.3.22",
     "mathjs": "^12.4.1",
-    "vite": "^5.1.6",
+    "postcss": "^8.4.38",
+    "tailwindcss": "3.4.3",
+    "vite": "^5.2.11",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
-    "tailwindcss": "3.3.5",
-    "postcss": "^8.4.37",
-    "@sanger/ui-styling": "^4.1.0"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@vue/test-utils": "^2.4.5",
-    "autoprefixer": "^10.4.18",
-    "cypress": "^13.7.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.19",
+    "cypress": "^13.9.0",
     "cypress-file-upload": "^5.0.8",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-cypress": "^3.2.0",
     "eslint-plugin-vue": "^9.24.0",
     "esm": "^3.2.25",
     "flush-promises": "^1.0.2",
@@ -53,7 +55,7 @@
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^10.1.0",
     "prettier": "^3.1.0",
-    "sass": "^1.72.0",
+    "sass": "^1.77.1",
     "vitest": "^1.4.0",
     "vue-template-compiler": "^2.7.5"
   }

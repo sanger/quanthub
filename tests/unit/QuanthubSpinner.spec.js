@@ -1,7 +1,7 @@
-import { mount } from './testHelper'
-
 import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { describe, expect, it } from 'vitest'
+
+import { mount } from './testHelper'
 
 describe('QuanthubSpinner.vue', () => {
   const buildWrapper = (props = {}) => {
