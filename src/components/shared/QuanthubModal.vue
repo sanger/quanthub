@@ -1,15 +1,16 @@
-<!--/**
-   * # QuanthubModal
-   * Tailwind component to display an html modal dialog. The overall design of this component, in particular, the scoped slot design, 
-     data structures, and event handling is based on how a bootstrap modal is working so as to make this compatible with b-modal 
-     through 'enable_custom_modal' feature flag
-   * The modal dialog includes  header, body and  footer
-        header - displayed using 'modal-header' scoped slot, or if only requires title can either use 'title' prop or 'modal-title'
-        body -   default slot is displyed as modal body
-        footer - displayed using 'modal-footer' scoped slot 
-        close button - dispalyed always in header,which closes the dialog on click
-   */
-   -->
+<!--
+  # QuanthubModal
+
+  This is a Tailwind component to display an HTML modal dialog. The overall design of this component,
+  particularly the scoped slot design, data structures, and event handling, is based on how a Bootstrap
+  modal works. This is to make it compatible with b-modal through the 'enable_custom_modal' feature flag.
+
+  The modal dialog includes a header, body, and footer:
+    - Header: Displayed using the 'modal-header' scoped slot. If only a title is required, use the 'title' prop or 'modal-title'.
+    - Body: The default slot is displayed as the modal body.
+    - Footer: Displayed using the 'modal-footer' scoped slot.
+    - Close Button: Always displayed in the header, which closes the dialog on click.
+-->
 
 <template>
   <div class="contents">

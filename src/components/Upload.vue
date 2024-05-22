@@ -58,10 +58,10 @@
 <script>
 // Uploads a file. Parse options dependent on quantType
 import QuantFile from '@/components/QuantFile.vue'
-import quantTypes from '@/config/quantTypes'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
-import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
+import quantTypes from '@/config/quantTypes'
 
 export default {
   name: 'Upload',

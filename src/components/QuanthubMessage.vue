@@ -1,10 +1,10 @@
-<!--/**
-   * # QuanthubMessage
-   * Tailwind component to display an alert message. This component uses  html component (based on tailwind styles) 
-   * The alert message includes message and a close button 
-   * 
-   */
-   -->
+<!--
+  # QuanthubMessage
+
+  Tailwind component displays an alert message to the user.
+  It includes a close icon (QuanthubCloseIcon) that allows the user to dismiss the message.
+-->
+
 <template>
   <div v-show="isDisplayed">
     <div

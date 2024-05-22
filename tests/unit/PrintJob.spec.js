@@ -1,9 +1,10 @@
-import PrintJob from '@/components/PrintJob.vue'
 import Model from '@/api/PrintMyBarcode'
-import flushPromises from 'flush-promises'
+import PrintJob from '@/components/PrintJob.vue'
 import PrinterList from '@/config/PrinterList'
+import flushPromises from 'flush-promises'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { mount } from './testHelper'
-import { vi, describe, expect, it, beforeEach } from 'vitest'
 
 describe('PrintJob.vue', () => {
   let cmp, printJob, date, attributes

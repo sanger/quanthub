@@ -1,7 +1,7 @@
-import Row from '@/components/Row.vue'
 import Store from '@/Store'
+import Row from '@/components/Row.vue'
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('Row.vue', () => {
   let cmp, wells, row, $Store
