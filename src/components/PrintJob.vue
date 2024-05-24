@@ -7,7 +7,7 @@
           <div
             class="max-w-7xl mx-auto py-2 text-black text-left text-xl font-bold tracking-tight leading-relaxed border-b-2 border-sp"
           >
-            <label>Select a Printer</label>
+            <label for="printer-list">Select a Printer</label>
           </div>
           <div class="py-2">
             <quanthub-select
@@ -27,7 +27,7 @@
           <div
             class="max-w-7xl mx-auto py-2 text-black text-left text-xl font-bold tracking-tight leading-relaxed border-b-2 border-sp"
           >
-            <label for="barcode">Scan your barcode</label>
+            <label for="barcodes">Scan your barcode</label>
           </div>
           <div class="py-2">
             <textarea
