@@ -48,8 +48,8 @@ const createPrintJob = async ({ printer, barcodes }) => {
         print_job: {
           printer_name: printer.name,
           // Template name is needed for squix and template id is needed for toshiba
-          label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME,
-          label_template_id: import.meta.env.VITE_LABEL_TEMPLATE_ID,
+          label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME_SQUIX,
+          label_template_id: import.meta.env.VITE_LABEL_TEMPLATE_ID_TOSHIBA,
           labels,
         },
       },
