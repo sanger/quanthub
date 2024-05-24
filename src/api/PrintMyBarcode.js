@@ -31,10 +31,24 @@ const createLabels = ({ printer, barcodes }) => {
 }
 
 const createPrintJob = async ({ printer, barcodes }) => {
-  if (!printer || !barcodes) {
-    // TODO: Return an error here once we figure out the error handling
-    return false
+  // return an error that can be consumed by a vue component for display to the user
+  const errorMessages = []
+  const toSentence = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() + '.'
   }
+
+  if (!printer) {
+    errorMessages.push('the printer must be provided')
+  }
+
+  if (!barcodes) {
+    errorMessages.push('there must be at least one barcode')
+  }
+
+  if (errorMessages.length > 0) {
+    throw new Error(toSentence(errorMessages.join(', ')))
+  }
+
   const labels = createLabels({ printer, barcodes })
   const response = await fetch(
     `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2`,

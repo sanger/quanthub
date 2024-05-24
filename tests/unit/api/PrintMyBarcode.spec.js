@@ -84,9 +84,18 @@ describe('PrintMyBarcode.js', () => {
       fetchMock.mockRestore()
     })
 
-    it('returns false if printer or barcodes are not provided', async () => {
-      expect(await createPrintJob({ printer: null, barcodes })).toEqual(false)
-      expect(await createPrintJob({ printer, barcodes: null })).toEqual(false)
+    it('throws errors if printer or barcodes are not provided', async () => {
+      await expect(
+        createPrintJob({ printer: null, barcodes: null }),
+      ).rejects.toThrow(
+        'The printer must be provided, there must be at least one barcode.',
+      )
+      await expect(createPrintJob({ printer: null, barcodes })).rejects.toThrow(
+        'The printer must be provided',
+      )
+      await expect(createPrintJob({ printer, barcodes: null })).rejects.toThrow(
+        'There must be at least one barcode',
+      )
     })
 
     describe('when the printer is toshiba', () => {
