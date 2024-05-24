@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import createPrintJob from '@/api/PrintMyBarcode'
+import { createPrintJob } from '@/api/PrintMyBarcode'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
