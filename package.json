@@ -17,8 +17,8 @@
     "lint": "eslint . --ext .js,.vue,.cjs",
     "prettier-check": "prettier --check .",
     "prettify": "prettier --write .",
-    "serve:css": "postcss src/styles/tailwind.css -o src/styles/index.css",
-    "build:css": "postcss src/styles/tailwind.css -o src/styles/index.css --env production"
+    "serve:css": "postcss src/styles/tailwind.css --output build/app.css",
+    "build:css": "postcss src/styles/tailwind.css --output build/app.css --env production"
   },
   "dependencies": {
     "@sanger/ui-styling": "^4.1.0",

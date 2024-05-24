@@ -1,5 +1,5 @@
 /* Import Tailwind's base styles from ui-styling package. Optional if you don't want to use them.**/
-@import '../../node_modules/@sanger/ui-styling/tailwind.css';
+@import '../node_modules/@sanger/ui-styling/tailwind.css';
 
 /* Define your custom styles */
 .success-message {
