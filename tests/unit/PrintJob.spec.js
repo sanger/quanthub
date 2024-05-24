@@ -26,9 +26,12 @@ describe('PrintJob.vue', () => {
 
   describe('printerOptions', () => {
     it('will return a list of printerOptions based on the PrinterList config', () => {
+      const toTitleCase = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+      }
       expect(printJob.printerOptions).toEqual(
         PrinterList.map((printer) => ({
-          text: printer.name,
+          text: `${printer.name} : ${toTitleCase(printer.type)}`,
           value: printer.name,
         })),
       )
