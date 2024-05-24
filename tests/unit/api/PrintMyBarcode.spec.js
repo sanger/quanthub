@@ -70,17 +70,75 @@ describe('PrintMyBarcode.js', () => {
   })
 
   describe('createPrintJob', () => {
+    let fetchMock
+
+    beforeEach(() => {
+      fetchMock = vi.spyOn(window, 'fetch')
+      fetchMock.mockResolvedValue({
+        if_you_can_see_this:
+          'tests should be added to check the response is used and correct',
+      })
+    })
+
+    afterEach(() => {
+      fetchMock.mockRestore()
+    })
+
     it('returns false if printer or barcodes are not provided', async () => {
       expect(await createPrintJob({ printer: null, barcodes })).toEqual(false)
       expect(await createPrintJob({ printer, barcodes: null })).toEqual(false)
     })
 
-    // describe('when the printer is toshiba', () => {
-    //   // expect fetch to be called with the correct labels
-    // })
+    describe('when the printer is toshiba', () => {
+      it('calls the printer service with the correct parameters', async () => {
+        await createPrintJob({ printer, barcodes })
+        expect(fetchMock).toBeCalledTimes(1)
+        expect(fetchMock).toBeCalledWith(
+          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/vnd.api+json',
+              Accept: 'application/vnd.api+json',
+            },
+            body: {
+              print_job: {
+                printer_name: printer.name,
+                label_template_id: import.meta.env
+                  .VITE_LABEL_TEMPLATE_ID_TOSHIBA,
+                label_template_name: 'sqsc_96plate_label_template_code128',
+                labels: createLabels({ printer, barcodes }),
+              },
+            },
+          },
+        )
+      })
+    })
 
-    // describe('when the printer is squix', () => {
-    //   // expect fetch to be called with the correct labels
-    // })
+    describe('when the printer is squix', () => {
+      it('calls the printer service with the correct parameters', async () => {
+        printer = PrinterList[1]
+        await createPrintJob({ printer, barcodes })
+        expect(fetchMock).toBeCalledTimes(1)
+        expect(fetchMock).toBeCalledWith(
+          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/vnd.api+json',
+              Accept: 'application/vnd.api+json',
+            },
+            body: {
+              print_job: {
+                printer_name: printer.name,
+                label_template_name: import.meta.env
+                  .VITE_LABEL_TEMPLATE_NAME_SQUIX,
+                labels: createLabels({ printer, barcodes }),
+              },
+            },
+          },
+        )
+      })
+    })
   })
 })
