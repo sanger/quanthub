@@ -30,8 +30,16 @@ const createLabels = ({ printer, barcodes }) => {
   } else return []
 }
 
+/**
+ * Creates a print job with the provided printer and barcodes.
+ *
+ * @param {Object} options - The options for the print job.
+ * @param {Object} options.printer - The printer to use for the print job.
+ * @param {Array} options.barcodes - The barcodes to print.
+ * @throws {Error} Will throw an error if the printer or barcodes are not provided.
+ * @returns {Promise} A promise that resolves with the response from the print job API.
+ */
 const createPrintJob = async ({ printer, barcodes }) => {
-  // return an error that can be consumed by a vue component for display to the user
   const errorMessages = []
   const toSentence = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() + '.'
@@ -50,26 +58,26 @@ const createPrintJob = async ({ printer, barcodes }) => {
   }
 
   const labels = createLabels({ printer, barcodes })
-  const response = await fetch(
-    `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2`,
+  const data = {
+    print_job: {
+      printer_name: printer.name,
+      // Template name is needed for squix and template id is needed for toshiba
+      label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME_SQUIX,
+      label_template_id: import.meta.env.VITE_LABEL_TEMPLATE_ID_TOSHIBA,
+      labels,
+    },
+  }
+  return fetch(
+    `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2/print_jobs`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/vnd.api+json',
         Accept: 'application/vnd.api+json',
       },
-      body: {
-        print_job: {
-          printer_name: printer.name,
-          // Template name is needed for squix and template id is needed for toshiba
-          label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME_SQUIX,
-          label_template_id: import.meta.env.VITE_LABEL_TEMPLATE_ID_TOSHIBA,
-          labels,
-        },
-      },
+      body: JSON.stringify(data),
     },
   )
-  console.log(response)
 }
 
 export { createPrintJob, createLabels }

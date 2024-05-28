@@ -54,23 +54,38 @@ describe('PrintJob.vue', () => {
     })
 
     it('will generate an alert message on success', async () => {
-      printMyBarcode.createPrintJob = vi.fn().mockResolvedValue(true)
+      printMyBarcode.createPrintJob = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          message: 'success',
+        }),
+      })
+
+      printJob.execute()
+      await flushPromises()
+
+      expect(printJob.$refs.alert.message).toEqual('Barcode printing succeeded')
+    })
+
+    it('will generate an alert message on failure', async () => {
+      printMyBarcode.createPrintJob = vi.fn().mockResolvedValue({
+        ok: false,
+        json: async () => ({
+          errors: [
+            {
+              source: { pointer: '/data/attributes/label_template' },
+              detail: "can't be blank",
+            },
+          ],
+        }),
+      })
 
       printJob.execute()
       await flushPromises()
 
       expect(printJob.$refs.alert.message).toEqual(
-        'barcode successfully printed',
+        "Barcode printing failed: /data/attributes/label_template can't be blank",
       )
-    })
-
-    it('will generate an alert message on failure', async () => {
-      printMyBarcode.createPrintJob = vi.fn().mockResolvedValue(false)
-
-      printJob.execute()
-      await flushPromises()
-
-      expect(printJob.$refs.alert.message).toEqual('barcode printing failed')
     })
   })
 

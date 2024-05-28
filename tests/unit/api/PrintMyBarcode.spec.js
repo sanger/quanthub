@@ -103,14 +103,14 @@ describe('PrintMyBarcode.js', () => {
         await createPrintJob({ printer, barcodes })
         expect(fetchMock).toBeCalledTimes(1)
         expect(fetchMock).toBeCalledWith(
-          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2`,
+          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2/print_jobs`,
           {
             method: 'POST',
             headers: {
               'Content-Type': 'application/vnd.api+json',
               Accept: 'application/vnd.api+json',
             },
-            body: {
+            body: JSON.stringify({
               print_job: {
                 printer_name: printer.name,
                 label_template_id: import.meta.env
@@ -118,7 +118,7 @@ describe('PrintMyBarcode.js', () => {
                 label_template_name: 'sqsc_96plate_label_template_code128',
                 labels: createLabels({ printer, barcodes }),
               },
-            },
+            }),
           },
         )
       })
@@ -130,21 +130,21 @@ describe('PrintMyBarcode.js', () => {
         await createPrintJob({ printer, barcodes })
         expect(fetchMock).toBeCalledTimes(1)
         expect(fetchMock).toBeCalledWith(
-          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2`,
+          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2/print_jobs`,
           {
             method: 'POST',
             headers: {
               'Content-Type': 'application/vnd.api+json',
               Accept: 'application/vnd.api+json',
             },
-            body: {
+            body: JSON.stringify({
               print_job: {
                 printer_name: printer.name,
                 label_template_name: import.meta.env
                   .VITE_LABEL_TEMPLATE_NAME_SQUIX,
                 labels: createLabels({ printer, barcodes }),
               },
-            },
+            }),
           },
         )
       })
