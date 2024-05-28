@@ -1,14 +1,9 @@
 import PrintJob from '@/components/PrintJob.vue'
 import PrinterList from '@/config/PrinterList'
 import flushPromises from 'flush-promises'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mount } from './testHelper'
-
-let createPrintJob = Promise.resolve(true)
-vi.mock('@/api/PrintMyBarcode', () => ({
-  default: vi.fn(() => createPrintJob),
-}))
 
 describe('PrintJob.vue', () => {
   let cmp, printJob
@@ -51,17 +46,27 @@ describe('PrintJob.vue', () => {
   })
 
   describe('execute', () => {
-    it('successfully', async () => {
-      createPrintJob = Promise.resolve(true)
+    let printMyBarcode
+    beforeEach(async () => {
+      // Mock the createPrintJob function to return a resolved promise
+      vi.mock('@/api/PrintMyBarcode')
+      printMyBarcode = await import('@/api/PrintMyBarcode')
+    })
+
+    it('will generate an alert message on success', async () => {
+      printMyBarcode.createPrintJob = vi.fn().mockResolvedValue(true)
+
       printJob.execute()
       await flushPromises()
+
       expect(printJob.$refs.alert.message).toEqual(
         'barcode successfully printed',
       )
     })
 
-    it('unsuccessfully', async () => {
-      createPrintJob = Promise.resolve(false)
+    it('will generate an alert message on failure', async () => {
+      printMyBarcode.createPrintJob = vi.fn().mockResolvedValue(false)
+
       printJob.execute()
       await flushPromises()
 
