@@ -1,7 +1,7 @@
 import PrintJob from '@/components/PrintJob.vue'
 import PrinterList from '@/config/PrinterList'
 import flushPromises from 'flush-promises'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mount } from './testHelper'
 
