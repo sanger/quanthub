@@ -68,6 +68,19 @@ npm run test:unit
 npm run test:e2e
 ```
 
-### Attributions
+## Notes
+
+A predefined list of printers is used for the printer selection dropdown. This list is defined in the file `src/config/printers.json`.
+
+Each printer has a `name` and a `brand`. The `name` is used to identify the printer in Print My Barcode. The `brand` is used to create the correct format and content for the barcode.
+
+There are currently two brands of printers: `Toshiba` and `Squix`.
+
+These are handled differently by the print job API in Print My Barcode:
+
+- Toshiba printers require a `label_template_id` to determine the layout of the label.
+- Squix printers require a `label_template_name` to determine the layout of the label.
+
+## Attributions
 
 Abacus Logo sourced from [Twemoji](https://github.com/twitter/twemoji) licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and converted to favicon using [favicon.io](https://favicon.io/emoji-favicons/abacus/)
