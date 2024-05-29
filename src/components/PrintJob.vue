@@ -18,7 +18,7 @@
               :data-attribute="printerName"
             >
             </quanthub-select>
-            <div class="printer-error text-left text-sm text-failure">
+            <div class="text-left text-sm text-failure">
               {{ printerError }}
             </div>
           </div>
@@ -39,7 +39,7 @@
               cols="10"
               class="rounded border w-full p-2"
             ></textarea>
-            <div class="barcode-error text-left text-sm text-failure">
+            <div class="text-left text-sm text-failure">
               {{ barcodeError }}
             </div>
           </div>
