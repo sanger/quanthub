@@ -25,13 +25,13 @@ describe('PrintMyBarcode.js', () => {
     })
 
     it('returns an empty array if the printer is not toshiba or squix', () => {
-      expect(createLabels({ printer: { name: 'invalid' }, barcodes })).toEqual(
+      expect(createLabels({ printer: { type: 'invalid' }, barcodes })).toEqual(
         [],
       )
     })
 
     it('returns the correct labels if the printer is toshiba', () => {
-      const labels = createLabels({ printer: { name: 'toshiba' }, barcodes })
+      const labels = createLabels({ printer: { type: 'toshiba' }, barcodes })
       expect(labels).toEqual([
         {
           main_label: {
@@ -58,14 +58,30 @@ describe('PrintMyBarcode.js', () => {
     })
 
     it('returns the correct labels if the printer is squix', () => {
-      const labels = createLabels({ printer: { name: 'squix' }, barcodes })
-      expect(labels).toEqual({
-        main_label: {
-          top_left: '23-JUN-2021',
-          bottom_left: 'TEST',
-          barcode: 'TEST',
+      const labels = createLabels({ printer: { type: 'squix' }, barcodes })
+      expect(labels).toEqual([
+        {
+          main_label: {
+            top_left: '23-JUN-2021',
+            bottom_left: 'DN1234567',
+            barcode: 'DN1234567',
+          },
         },
-      })
+        {
+          main_label: {
+            top_left: '23-JUN-2021',
+            bottom_left: 'DN2345678',
+            barcode: 'DN2345678',
+          },
+        },
+        {
+          main_label: {
+            top_left: '23-JUN-2021',
+            bottom_left: 'DN3456789',
+            barcode: 'DN3456789',
+          },
+        },
+      ])
     })
   })
 
