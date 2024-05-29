@@ -1,26 +1,26 @@
 [
   {
     "name": "f225bc",
-    "type": "toshiba"
+    "brand": "toshiba"
   },
   {
     "name": "h106bc",
-    "type": "toshiba"
+    "brand": "toshiba"
   },
   {
     "name": "g214bc",
-    "type": "toshiba"
+    "brand": "toshiba"
   },
   {
     "name": "g216abc",
-    "type": "toshiba"
+    "brand": "toshiba"
   },
   {
     "name": "AA312bc",
-    "type": "squix"
+    "brand": "squix"
   },
   {
     "name": "AA312bc2",
-    "type": "squix"
+    "brand": "squix"
   }
 ]

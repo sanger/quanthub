@@ -26,7 +26,7 @@ describe('PrintJob.vue', () => {
       }
       expect(printJob.printerOptions).toEqual(
         PrinterList.map((printer) => ({
-          text: `${printer.name} : ${toTitleCase(printer.type)}`,
+          text: `${printer.name} : ${toTitleCase(printer.brand)}`,
           value: printer.name,
         })),
       )

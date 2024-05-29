@@ -93,7 +93,7 @@ export default {
   computed: {
     printerOptions() {
       return PrinterList.map((printer) => ({
-        text: `${printer.name} : ${this.titleCase(printer.type)}`,
+        text: `${printer.name} : ${this.titleCase(printer.brand)}`,
         value: printer.name,
       }))
     },

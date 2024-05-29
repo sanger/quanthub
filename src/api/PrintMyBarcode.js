@@ -9,7 +9,7 @@ const createLabels = ({ printer, barcodes }) => {
     .replace(/ /g, '-')
     .toUpperCase()
 
-  if (printer.type === 'toshiba') {
+  if (printer.brand === 'toshiba') {
     return barcodes.map((barcode) => ({
       main_label: {
         top_left: dateString,
@@ -17,7 +17,7 @@ const createLabels = ({ printer, barcodes }) => {
         barcode,
       },
     }))
-  } else if (printer.type === 'squix') {
+  } else if (printer.brand === 'squix') {
     return barcodes.map((barcode) => ({
       main_label: {
         top_left: dateString,

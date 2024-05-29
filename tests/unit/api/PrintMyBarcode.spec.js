@@ -25,13 +25,13 @@ describe('PrintMyBarcode.js', () => {
     })
 
     it('returns an empty array if the printer is not toshiba or squix', () => {
-      expect(createLabels({ printer: { type: 'invalid' }, barcodes })).toEqual(
+      expect(createLabels({ printer: { brand: 'invalid' }, barcodes })).toEqual(
         [],
       )
     })
 
     it('returns the correct labels if the printer is toshiba', () => {
-      const labels = createLabels({ printer: { type: 'toshiba' }, barcodes })
+      const labels = createLabels({ printer: { brand: 'toshiba' }, barcodes })
       expect(labels).toEqual([
         {
           main_label: {
@@ -58,7 +58,7 @@ describe('PrintMyBarcode.js', () => {
     })
 
     it('returns the correct labels if the printer is squix', () => {
-      const labels = createLabels({ printer: { type: 'squix' }, barcodes })
+      const labels = createLabels({ printer: { brand: 'squix' }, barcodes })
       expect(labels).toEqual([
         {
           main_label: {
