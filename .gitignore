@@ -9,6 +9,7 @@ tests/e2e/screenshots/
 
 # local asset build
 build
+dist
 release.tar.gz
 
 # local env files
