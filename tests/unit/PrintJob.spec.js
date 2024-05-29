@@ -21,13 +21,10 @@ describe('PrintJob.vue', () => {
 
   describe('printerOptions', () => {
     it('will return a list of printerOptions based on the PrinterList config', () => {
-      const toTitleCase = (str) => {
-        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-      }
       expect(printJob.printerOptions).toEqual(
         PrinterList.map((printer) => ({
-          text: `${printer.name} : ${toTitleCase(printer.brand)}`,
-          value: printer.name,
+          text: printer,
+          value: printer,
         })),
       )
     })
@@ -35,7 +32,7 @@ describe('PrintJob.vue', () => {
 
   describe('printer', () => {
     it('will return the full printer when the printerName exists and is valid', () => {
-      cmp.setData({ printerName: PrinterList[0].name })
+      cmp.setData({ printerName: PrinterList[0] })
       expect(printJob.printer).toEqual(PrinterList[0])
     })
 
@@ -91,7 +88,7 @@ describe('PrintJob.vue', () => {
 
   describe('valid', () => {
     it('is valid if the printerName and barcodes are not blank', () => {
-      cmp.setData({ printerName: PrinterList[0].name, barcodes: 'DN1234567' })
+      cmp.setData({ printerName: PrinterList[0], barcodes: 'DN1234567' })
       const valid = printJob.valid()
       expect(valid).toEqual(true)
       expect(printJob.printerError).toEqual('')
@@ -133,7 +130,7 @@ describe('PrintJob.vue', () => {
         printerError: 'error',
       })
       printJob.reset()
-      expect(printJob.printerName).toEqual(PrinterList[0].name)
+      expect(printJob.printerName).toEqual(PrinterList[0])
       expect(printJob.barcodes).toEqual('')
       expect(printJob.barcodeError).toEqual('')
       expect(printJob.printerError).toEqual('')

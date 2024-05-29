@@ -24,62 +24,26 @@ describe('PrintMyBarcode.js', () => {
       vi.useRealTimers()
     })
 
-    it('returns an empty array if the printer is not toshiba or squix', () => {
-      expect(createLabels({ printer: { brand: 'invalid' }, barcodes })).toEqual(
-        [],
-      )
-    })
-
-    it('returns the correct labels if the printer is toshiba', () => {
-      const labels = createLabels({ printer: { brand: 'toshiba' }, barcodes })
+    it('returns the correct labels', () => {
+      const labels = createLabels(barcodes)
       expect(labels).toEqual([
         {
-          main_label: {
-            top_left: '23-JUN-2021',
-            bottom_left: 'DN1234567',
-            barcode: 'DN1234567',
-          },
+          label_name: 'main_label',
+          top_left: '23-JUN-2021',
+          bottom_left: 'DN1234567',
+          barcode: 'DN1234567',
         },
         {
-          main_label: {
-            top_left: '23-JUN-2021',
-            bottom_left: 'DN2345678',
-            barcode: 'DN2345678',
-          },
+          label_name: 'main_label',
+          top_left: '23-JUN-2021',
+          bottom_left: 'DN2345678',
+          barcode: 'DN2345678',
         },
         {
-          main_label: {
-            top_left: '23-JUN-2021',
-            bottom_left: 'DN3456789',
-            barcode: 'DN3456789',
-          },
-        },
-      ])
-    })
-
-    it('returns the correct labels if the printer is squix', () => {
-      const labels = createLabels({ printer: { brand: 'squix' }, barcodes })
-      expect(labels).toEqual([
-        {
-          main_label: {
-            top_left: '23-JUN-2021',
-            bottom_left: 'DN1234567',
-            barcode: 'DN1234567',
-          },
-        },
-        {
-          main_label: {
-            top_left: '23-JUN-2021',
-            bottom_left: 'DN2345678',
-            barcode: 'DN2345678',
-          },
-        },
-        {
-          main_label: {
-            top_left: '23-JUN-2021',
-            bottom_left: 'DN3456789',
-            barcode: 'DN3456789',
-          },
+          label_name: 'main_label',
+          top_left: '23-JUN-2021',
+          bottom_left: 'DN3456789',
+          barcode: 'DN3456789',
         },
       ])
     })
@@ -114,56 +78,26 @@ describe('PrintMyBarcode.js', () => {
       )
     })
 
-    describe('when the printer is toshiba', () => {
-      it('calls the printer service with the correct parameters', async () => {
-        await createPrintJob({ printer, barcodes })
-        expect(fetchMock).toBeCalledTimes(1)
-        expect(fetchMock).toBeCalledWith(
-          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2/print_jobs`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/vnd.api+json',
-              Accept: 'application/vnd.api+json',
-            },
-            body: JSON.stringify({
-              print_job: {
-                printer_name: printer.name,
-                label_template_id: import.meta.env
-                  .VITE_LABEL_TEMPLATE_ID_TOSHIBA,
-                label_template_name: 'sqsc_96plate_label_template_code128',
-                labels: createLabels({ printer, barcodes }),
-              },
-            }),
+    it('calls the printer service with the correct parameters', async () => {
+      await createPrintJob({ printer, barcodes })
+      expect(fetchMock).toBeCalledTimes(1)
+      expect(fetchMock).toBeCalledWith(
+        `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2/print_jobs`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/vnd.api+json',
+            Accept: 'application/vnd.api+json',
           },
-        )
-      })
-    })
-
-    describe('when the printer is squix', () => {
-      it('calls the printer service with the correct parameters', async () => {
-        printer = PrinterList[1]
-        await createPrintJob({ printer, barcodes })
-        expect(fetchMock).toBeCalledTimes(1)
-        expect(fetchMock).toBeCalledWith(
-          `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2/print_jobs`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/vnd.api+json',
-              Accept: 'application/vnd.api+json',
+          body: JSON.stringify({
+            print_job: {
+              printer_name: printer,
+              label_template_name: 'sqsc_96plate_label_template_code128',
+              labels: createLabels(barcodes),
             },
-            body: JSON.stringify({
-              print_job: {
-                printer_name: printer.name,
-                label_template_name: import.meta.env
-                  .VITE_LABEL_TEMPLATE_NAME_SQUIX,
-                labels: createLabels({ printer, barcodes }),
-              },
-            }),
-          },
-        )
-      })
+          }),
+        },
+      )
     })
   })
 })

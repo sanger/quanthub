@@ -1,4 +1,4 @@
-const createLabels = ({ printer, barcodes }) => {
+const createLabels = (barcodes) => {
   const date = new Date()
   const dateString = date
     .toLocaleDateString('en-GB', {
@@ -9,23 +9,26 @@ const createLabels = ({ printer, barcodes }) => {
     .replace(/ /g, '-')
     .toUpperCase()
 
-  if (printer.brand === 'toshiba') {
-    return barcodes.map((barcode) => ({
-      main_label: {
-        top_left: dateString,
-        bottom_left: barcode,
-        barcode,
-      },
-    }))
-  } else if (printer.brand === 'squix') {
-    return barcodes.map((barcode) => ({
-      main_label: {
-        top_left: dateString,
-        bottom_left: barcode,
-        barcode,
-      },
-    }))
-  } else return []
+  // {
+  //   "print_job": {
+  //     "printer_name": "stub",
+  //     "label_template_name": "traction_tube_label_template",
+  //     "labels": [{
+  //       "barcode": "TRAC-2-4-N1",
+  //       "first_line": "15-Sep-22",
+  //       "second_line": "TRAC-2-4-N1",
+  //       "third_line": "",
+  //       "label_name": "main_label"
+  //     }],
+  //     "copies": "1"
+  //   }
+  // }
+  return barcodes.map((barcode) => ({
+    top_left: dateString,
+    bottom_left: barcode,
+    barcode: barcode,
+    label_name: 'main_label',
+  }))
 }
 
 /**
@@ -55,13 +58,11 @@ const createPrintJob = async ({ printer, barcodes }) => {
     throw new Error(toSentence(errorMessages.join(', ')))
   }
 
-  const labels = createLabels({ printer, barcodes })
+  const labels = createLabels(barcodes)
   const data = {
     print_job: {
-      printer_name: printer.name,
-      // Template name is needed for squix and template id is needed for toshiba
-      label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME_SQUIX,
-      label_template_id: import.meta.env.VITE_LABEL_TEMPLATE_ID_TOSHIBA,
+      printer_name: printer,
+      label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME,
       labels,
     },
   }

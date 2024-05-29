@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       barcodes: '',
-      printerName: PrinterList[0].name,
+      printerName: PrinterList[0],
       barcodeError: '',
       printerError: '',
     }
@@ -93,22 +93,15 @@ export default {
   computed: {
     printerOptions() {
       return PrinterList.map((printer) => ({
-        text: `${printer.name} : ${this.titleCase(printer.brand)}`,
-        value: printer.name,
+        text: printer,
+        value: printer,
       }))
     },
     printer() {
-      return PrinterList.find((printer) => printer.name === this.printerName)
+      return PrinterList.find((printer) => printer === this.printerName)
     },
   },
   methods: {
-    titleCase(str) {
-      return str
-        .toLowerCase()
-        .split(' ')
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ')
-    },
     formattedBarcodes() {
       return this.barcodes
         .split('\n')
@@ -148,7 +141,7 @@ export default {
     },
     reset() {
       this.barcodes = ''
-      this.printerName = PrinterList[0].name
+      this.printerName = PrinterList[0]
       this.barcodeError = ''
       this.printerError = ''
     },
