@@ -61,7 +61,7 @@ describe('PrintJob.vue', () => {
       printJob.execute()
       await flushPromises()
 
-      expect(printJob.$refs.alert.message).toEqual('Barcode printing succeeded')
+      expect(printJob.$refs.alert.message).toEqual('Printing command sent')
     })
 
     it('will generate an alert message on failure', async () => {
@@ -81,7 +81,7 @@ describe('PrintJob.vue', () => {
       await flushPromises()
 
       expect(printJob.$refs.alert.message).toEqual(
-        "Barcode printing failed: /data/attributes/label_template can't be blank",
+        "Printing command failed: /data/attributes/label_template can't be blank",
       )
     })
   })

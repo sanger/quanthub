@@ -124,15 +124,15 @@ export default {
               const message = data.errors
                 .map((error) => `${error.source.pointer} ${error.detail}`)
                 .join(', ')
-              this.showAlert('Barcode printing failed: ' + message, 'danger')
+              this.showAlert('Printing command failed: ' + message, 'danger')
             })
           } else {
-            this.showAlert('Barcode printing succeeded', 'success')
+            this.showAlert('Printing command sent', 'success')
           }
           return response
         })
         .catch((error) => {
-          this.showAlert('Barcode printing failed: ' + error.message, 'danger')
+          this.showAlert('Printing command failed: ' + error.message, 'danger')
         })
     },
     valid() {
