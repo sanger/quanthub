@@ -75,6 +75,19 @@ import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 import PrinterList from '@/config/PrinterList'
 
+const filterPrintersByEnvironment = (environment) => {
+  return PrinterList.printers
+    .filter(
+      (printer) =>
+        !printer.hideInProduction ||
+        (printer.hideInProduction && environment !== 'production'),
+    )
+    .map((printer) => printer.name)
+}
+
+const environment = process.env.NODE_ENV
+const printers = filterPrintersByEnvironment(environment)
+
 export default {
   name: 'PrintJob',
   components: {
@@ -85,23 +98,26 @@ export default {
   data() {
     return {
       barcodes: '',
-      printerName: PrinterList[0],
+      printerName: printers[0],
       barcodeError: '',
       printerError: '',
     }
   },
   computed: {
     printerOptions() {
-      return PrinterList.map((printer) => ({
+      return printers.map((printer) => ({
         text: printer,
         value: printer,
       }))
     },
     printer() {
-      return PrinterList.find((printer) => printer === this.printerName)
+      return printers.find((printer) => printer === this.printerName)
     },
   },
   methods: {
+    _filterPrintersByEnvironment(environment) {
+      return filterPrintersByEnvironment(environment)
+    },
     formattedBarcodes() {
       return this.barcodes
         .split('\n')
@@ -145,7 +161,7 @@ export default {
     },
     reset() {
       this.barcodes = ''
-      this.printerName = PrinterList[0]
+      this.printerName = printers[0]
       this.barcodeError = ''
       this.printerError = ''
     },

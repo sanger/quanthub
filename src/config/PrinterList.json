@@ -1,11 +1,34 @@
-[
-  "f225bc",
-  "h106bc",
-  "g214bc",
-  "g216abc",
-  "AA312bc",
-  "AA312bc2",
-  "stub",
-  "morgan-plate-barcode",
-  "morgan-tube-barcode"
-]
+{
+  "printers": [
+    {
+      "name": "stub",
+      "hideInProduction": true
+    },
+    {
+      "name": "morgan-plate-barcode",
+      "hideInProduction": true
+    },
+    {
+      "name": "morgan-tube-barcode",
+      "hideInProduction": true
+    },
+    {
+      "name": "f225bc"
+    },
+    {
+      "name": "h106bc"
+    },
+    {
+      "name": "g214bc"
+    },
+    {
+      "name": "g216abc"
+    },
+    {
+      "name": "AA312bc"
+    },
+    {
+      "name": "AA312bc2"
+    }
+  ]
+}

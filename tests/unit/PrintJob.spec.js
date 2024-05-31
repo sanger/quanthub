@@ -19,12 +19,43 @@ describe('PrintJob.vue', () => {
     printJob = cmp.vm
   })
 
+  describe('printers', () => {
+    describe('when the environment is development', () => {
+      it('will return the full list of printers', () => {
+        expect(printJob._filterPrintersByEnvironment('development')).toEqual([
+          'stub',
+          'morgan-plate-barcode',
+          'morgan-tube-barcode',
+          'f225bc',
+          'h106bc',
+          'g214bc',
+          'g216abc',
+          'AA312bc',
+          'AA312bc2',
+        ])
+      })
+    })
+
+    describe('when the environment is production', () => {
+      it('will return only the production printers', () => {
+        expect(printJob._filterPrintersByEnvironment('production')).toEqual([
+          'f225bc',
+          'h106bc',
+          'g214bc',
+          'g216abc',
+          'AA312bc',
+          'AA312bc2',
+        ])
+      })
+    })
+  })
+
   describe('printerOptions', () => {
     it('will return a list of printerOptions based on the PrinterList config', () => {
       expect(printJob.printerOptions).toEqual(
-        PrinterList.map((printer) => ({
-          text: printer,
-          value: printer,
+        PrinterList.printers.map((printer) => ({
+          text: printer.name,
+          value: printer.name,
         })),
       )
     })
@@ -88,7 +119,10 @@ describe('PrintJob.vue', () => {
 
   describe('valid', () => {
     it('is valid if the printerName and barcodes are not blank', () => {
-      cmp.setData({ printerName: PrinterList[0], barcodes: 'DN1234567' })
+      cmp.setData({
+        printerName: PrinterList.printers[0].name,
+        barcodes: 'DN1234567',
+      })
       const valid = printJob.valid()
       expect(valid).toEqual(true)
       expect(printJob.printerError).toEqual('')
@@ -124,13 +158,13 @@ describe('PrintJob.vue', () => {
   describe('reset', () => {
     it('resets the component data', () => {
       cmp.setData({
-        printerName: 'ippbc',
+        printerName: 'stub',
         barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
         barcodeError: 'error',
         printerError: 'error',
       })
       printJob.reset()
-      expect(printJob.printerName).toEqual(PrinterList[0])
+      expect(printJob.printerName).toEqual(PrinterList.printers[0].name)
       expect(printJob.barcodes).toEqual('')
       expect(printJob.barcodeError).toEqual('')
       expect(printJob.printerError).toEqual('')

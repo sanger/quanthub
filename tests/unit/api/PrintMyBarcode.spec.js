@@ -7,7 +7,7 @@ describe('PrintMyBarcode.js', () => {
 
   beforeEach(() => {
     barcodes = ['DN1234567', 'DN2345678', 'DN3456789']
-    printer = PrinterList[0]
+    printer = PrinterList.printers[0].name
   })
 
   describe('createLabels', () => {
