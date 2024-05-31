@@ -9,25 +9,11 @@ const createLabels = (barcodes) => {
     .replace(/ /g, '-')
     .toUpperCase()
 
-  // {
-  //   "print_job": {
-  //     "printer_name": "stub",
-  //     "label_template_name": "traction_tube_label_template",
-  //     "labels": [{
-  //       "barcode": "TRAC-2-4-N1",
-  //       "first_line": "15-Sep-22",
-  //       "second_line": "TRAC-2-4-N1",
-  //       "third_line": "",
-  //       "label_name": "main_label"
-  //     }],
-  //     "copies": "1"
-  //   }
-  // }
   return barcodes.map((barcode) => ({
+    label_name: 'main_label',
     top_left: dateString,
     bottom_left: barcode,
     barcode: barcode,
-    label_name: 'main_label',
   }))
 }
 
@@ -60,11 +46,10 @@ const createPrintJob = async ({ printer, barcodes }) => {
 
   const labels = createLabels(barcodes)
   const data = {
-    print_job: {
-      printer_name: printer,
-      label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME,
-      labels,
-    },
+    printer_name: printer,
+    label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME,
+    labels,
+    copies: '1',
   }
   return fetch(
     `${import.meta.env.VITE_PRINT_MY_BARCODE_BASE_URL}/v2/print_jobs`,

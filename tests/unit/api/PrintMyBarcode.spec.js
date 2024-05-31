@@ -90,11 +90,10 @@ describe('PrintMyBarcode.js', () => {
             Accept: 'application/vnd.api+json',
           },
           body: JSON.stringify({
-            print_job: {
-              printer_name: printer,
-              label_template_name: 'sqsc_96plate_label_template_code128',
-              labels: createLabels(barcodes),
-            },
+            printer_name: printer,
+            label_template_name: 'sqsc_96plate_label_template_code128',
+            labels: createLabels(barcodes),
+            copies: '1',
           }),
         },
       )

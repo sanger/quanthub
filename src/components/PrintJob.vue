@@ -117,19 +117,23 @@ export default {
       createPrintJob({
         printer: this.printer,
         barcodes: this.formattedBarcodes(),
-      }).then((response) => {
-        if (!response.ok) {
-          response.json().then((data) => {
-            const message = data.errors
-              .map((error) => `${error.source.pointer} ${error.detail}`)
-              .join(', ')
-            this.showAlert('Barcode printing failed: ' + message, 'danger')
-          })
-        } else {
-          this.showAlert('Barcode printing succeeded', 'success')
-        }
-        return response
       })
+        .then((response) => {
+          if (!response.ok) {
+            response.json().then((data) => {
+              const message = data.errors
+                .map((error) => `${error.source.pointer} ${error.detail}`)
+                .join(', ')
+              this.showAlert('Barcode printing failed: ' + message, 'danger')
+            })
+          } else {
+            this.showAlert('Barcode printing succeeded', 'success')
+          }
+          return response
+        })
+        .catch((error) => {
+          this.showAlert('Barcode printing failed: ' + error.message, 'danger')
+        })
     },
     valid() {
       this.barcodeError = !this.barcodes
