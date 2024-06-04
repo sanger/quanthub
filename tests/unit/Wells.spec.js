@@ -17,6 +17,9 @@ describe('Wells', () => {
 
   describe('Well mixin', () => {
     beforeEach(() => {
+      const mockWell = {
+        render() {},
+      }
       data = {
         row: 'B',
         column: '8',
@@ -29,12 +32,9 @@ describe('Wells', () => {
         },
         extraFields: { type: 'type' },
       }
-      cmp = mount(Wells, {
+      cmp = mount(mockWell, {
         mixins: [WellProperties],
         props: data,
-        render() {
-          return null
-        },
       })
       well = cmp.vm
     })
