@@ -20,33 +20,17 @@ describe('PrintJob.vue', () => {
   })
 
   describe('printers', () => {
-    describe('when the environment is development', () => {
-      it('will return the full list of printers', () => {
-        expect(printJob._filterPrintersByEnvironment('development')).toEqual([
-          'stub',
-          'morgan-plate-barcode',
-          'morgan-tube-barcode',
-          'f225bc',
-          'h106bc',
-          'g214bc',
-          'g216abc',
-          'AA312bc',
-          'AA312bc2',
-        ])
-      })
-    })
-
-    describe('when the environment is production', () => {
-      it('will return only the production printers', () => {
-        expect(printJob._filterPrintersByEnvironment('production')).toEqual([
-          'f225bc',
-          'h106bc',
-          'g214bc',
-          'g216abc',
-          'AA312bc',
-          'AA312bc2',
-        ])
-      })
+    it('will return the a list of printers', () => {
+      expect(printJob.printers).toEqual([
+        'stub',
+        'morgan-plate-barcode',
+        'f225bc',
+        'h106bc',
+        'g214bc',
+        'g216abc',
+        'AA312bc',
+        'AA312bc2',
+      ])
     })
   })
 

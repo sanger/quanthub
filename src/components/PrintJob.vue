@@ -15,7 +15,7 @@
               v-model="printerName"
               name="printer-list"
               :options="printerOptions"
-              :data-attribute="printerName"
+              data-attribute="printer-select"
             >
             </quanthub-select>
             <div class="text-left text-sm text-failure">
@@ -38,6 +38,7 @@
               rows="10"
               cols="10"
               class="rounded border w-full p-2"
+              data-attribute="barcode-input"
             ></textarea>
             <div class="text-left text-sm text-failure">
               {{ barcodeError }}
@@ -59,6 +60,7 @@
             type="submit"
             theme="create"
             :full-width="true"
+            data-attribute="print-button"
           >
             Print
           </quanthub-button>
@@ -74,19 +76,7 @@ import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 import PrinterList from '@/config/PrinterList'
-
-const filterPrintersByEnvironment = (environment) => {
-  return PrinterList.printers
-    .filter(
-      (printer) =>
-        !printer.hideInProduction ||
-        (printer.hideInProduction && environment !== 'production'),
-    )
-    .map((printer) => printer.name)
-}
-
-const environment = process.env.NODE_ENV
-const printers = filterPrintersByEnvironment(environment)
+import { filterPrintersByEnvironment } from '@/lib/PrinterHelpers'
 
 export default {
   name: 'PrintJob',
@@ -96,8 +86,15 @@ export default {
     QuanthubSelect,
   },
   data() {
+    const environment = process.env.NODE_ENV
+    const printers = filterPrintersByEnvironment({
+      printers: PrinterList.printers,
+      environment,
+    })
+
     return {
       barcodes: '',
+      printers,
       printerName: printers[0],
       barcodeError: '',
       printerError: '',
@@ -105,19 +102,16 @@ export default {
   },
   computed: {
     printerOptions() {
-      return printers.map((printer) => ({
+      return this.printers.map((printer) => ({
         text: printer,
         value: printer,
       }))
     },
     printer() {
-      return printers.find((printer) => printer === this.printerName)
+      return this.printers.find((printer) => printer === this.printerName)
     },
   },
   methods: {
-    _filterPrintersByEnvironment(environment) {
-      return filterPrintersByEnvironment(environment)
-    },
     formattedBarcodes() {
       return this.barcodes
         .split('\n')
@@ -161,7 +155,7 @@ export default {
     },
     reset() {
       this.barcodes = ''
-      this.printerName = printers[0]
+      this.printerName = this.printers[0]
       this.barcodeError = ''
       this.printerError = ''
     },
