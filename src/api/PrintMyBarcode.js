@@ -47,7 +47,7 @@ const createPrintJob = async ({ printer, barcodes }) => {
   const labels = createLabels(barcodes)
   const data = {
     printer_name: printer,
-    label_template_name: import.meta.env.VITE_LABEL_TEMPLATE_NAME,
+    label_template_name: 'sqsc_96plate_label_template_code128',
     labels,
     copies: '1',
   }
