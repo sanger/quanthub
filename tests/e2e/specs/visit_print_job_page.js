@@ -16,7 +16,7 @@ describe('Print Job page', () => {
   })
 
   it('PMB request is successful', () => {
-    cy.get('[data-attribute=printer-select]').select('AA312bc')
+    cy.get('[data-attribute=printer-select]').select('aa312bc')
     cy.get('[data-attribute=barcode-input]').type('aBarcode')
 
     cy.intercept('/v2/print_jobs', {
@@ -30,7 +30,7 @@ describe('Print Job page', () => {
   })
 
   it('PMB request is unsuccessful, failed response', () => {
-    cy.get('[data-attribute=printer-select]').select('AA312bc')
+    cy.get('[data-attribute=printer-select]').select('aa312bc')
     cy.get('[data-attribute=barcode-input]').type('aBarcode')
     cy.intercept('/v2/print_jobs', {
       statusCode: 422,

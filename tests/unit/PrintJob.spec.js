@@ -28,8 +28,8 @@ describe('PrintJob.vue', () => {
         'h106bc',
         'g214bc',
         'g216abc',
-        'AA312bc',
-        'AA312bc2',
+        'aa312bc',
+        'aa312bc2',
       ])
     })
   })
