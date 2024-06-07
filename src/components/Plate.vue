@@ -76,7 +76,6 @@ import Row from '@/components/Row.vue'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 import QuanthubModal from '@/components/shared/QuanthubModal.vue'
 import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
-import axios from 'axios'
 
 export default {
   name: 'Plate',
@@ -123,24 +122,6 @@ export default {
           .values()
           .map((replicate) => replicate.json()),
       }
-    },
-    jsonApiData() {
-      return { data: { data: { attributes: this.json } } }
-    },
-    requestOptions() {
-      return {
-        url: '/qc_assays',
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/vnd.api+json',
-          'X-Sequencescape-Client-Id': import.meta.env
-            .VITE_SEQUENCESCAPE_API_KEY,
-        },
-        baseURL: import.meta.env.VITE_SEQUENCESCAPE_BASE_URL,
-      }
-    },
-    request() {
-      return Object.assign(this.requestOptions, this.jsonApiData)
     },
   },
   created() {
@@ -199,7 +180,15 @@ export default {
     // TODO: can we move this to an ORM
     exportToSequencescape() {
       this.exporting = true
-      axios(this.request)
+      fetch(`${import.meta.env.VITE_SEQUENCESCAPE_BASE_URL}/qc_assays`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'X-Sequencescape-Client-Id': import.meta.env
+            .VITE_SEQUENCESCAPE_API_KEY,
+        },
+        body: JSON.stringify({ data: { attributes: this.json } }),
+      })
         .then(() => {
           this.exporting = false
           this.$refs.alert.show(

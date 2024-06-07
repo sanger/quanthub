@@ -1,14 +1,11 @@
 import Grid from '@/Grid'
 import Store from '@/Store'
 import Plate from '@/components/Plate.vue'
-import axios from 'axios'
 import flushPromises from 'flush-promises'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import plateReader from '../data/plate_reader'
 import { createContainer, mount } from './testHelper'
-
-vi.mock('axios')
 
 // TODO: we need to test outputs rather than implementation e.g. checking alert prop
 // rather than element
@@ -119,37 +116,34 @@ describe('Plate.vue', () => {
       expect(json.qc_results).toHaveLength(plate.replicates.size())
     })
 
-    it('returns some request options for export', () => {
-      expect(plate.jsonApiData).toEqual({
-        data: { data: { attributes: plate.json } },
-      })
-      expect(plate.requestOptions).toEqual({
-        url: '/qc_assays',
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/vnd.api+json',
-          'X-Sequencescape-Client-Id': import.meta.env
-            .VITE_SEQUENCESCAPE_API_KEY,
-        },
-        baseURL: import.meta.env.VITE_SEQUENCESCAPE_BASE_URL,
-      })
-    })
-
     it('success', async () => {
-      axios.mockResolvedValue({ data: { status: 201 } })
+      global.fetch = vi.fn().mockResolvedValue({ ok: true })
       cmp.find('#export').trigger('click')
       await flushPromises()
       expect(plate.$refs.alert.message).toEqual(
         'QC Results for plate has been successfully exported to Sequencescape',
       )
-      expect(axios).toBeCalledWith(plate.request)
+      expect(global.fetch).toBeCalledWith(
+        `${import.meta.env.VITE_SEQUENCESCAPE_BASE_URL}/qc_assays`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/vnd.api+json',
+            'X-Sequencescape-Client-Id': import.meta.env
+              .VITE_SEQUENCESCAPE_API_KEY,
+          },
+          body: JSON.stringify({
+            data: { attributes: plate.json },
+          }),
+        },
+      )
     })
 
     it('failure', async () => {
       const consoleErrorMock = vi
         .spyOn(console, 'error')
         .mockImplementation(() => undefined)
-      axios.mockRejectedValue({ data: { status: 422 } })
+      global.fetch = vi.fn().mockRejectedValue({ ok: false })
 
       cmp.find('#export').trigger('click')
       await flushPromises()
@@ -159,7 +153,7 @@ describe('Plate.vue', () => {
       )
       expect(consoleErrorMock).toHaveBeenCalledOnce()
       expect(consoleErrorMock).toHaveBeenLastCalledWith({
-        data: { status: 422 },
+        ok: false,
       })
 
       consoleErrorMock.mockReset()
