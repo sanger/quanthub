@@ -177,7 +177,6 @@ export default {
     },
     // build a request based on the replicate data.
     // A post request is the sent to sequencescape to populate the qc_results table.
-    // TODO: can we move this to an ORM
     exportToSequencescape() {
       this.exporting = true
       fetch(`${import.meta.env.VITE_SEQUENCESCAPE_BASE_URL}/qc_assays`, {
@@ -189,20 +188,30 @@ export default {
         },
         body: JSON.stringify({ data: { attributes: this.json } }),
       })
-        .then(() => {
-          this.exporting = false
-          this.$refs.alert.show(
-            'QC Results for plate has been successfully exported to Sequencescape',
-            'success',
-          )
+        .then(async (response) => {
+          // Handles sequencescape errors
+          if (!response.ok) {
+            this.exporting = false
+            this.$refs.alert.show(
+              'QC Results for plate could not be exported',
+              'danger',
+            )
+            console.error(await response.json())
+          } else {
+            this.exporting = false
+            this.$refs.alert.show(
+              'QC Results for plate has been successfully exported to Sequencescape',
+              'success',
+            )
+          }
         })
+        // Handles network error
         .catch((error) => {
           this.exporting = false
           this.$refs.alert.show(
-            'QC Results for plate could not be exported',
+            'Error connecting to Sequencescape. Please try again.',
             'danger',
           )
-          /*eslint no-console: ["error", { allow: ["error"] }] */
           console.error(error)
         })
     },

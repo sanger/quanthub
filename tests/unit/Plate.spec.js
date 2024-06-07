@@ -139,7 +139,7 @@ describe('Plate.vue', () => {
       )
     })
 
-    it('failure', async () => {
+    it('failure by connection error', async () => {
       const consoleErrorMock = vi
         .spyOn(console, 'error')
         .mockImplementation(() => undefined)
@@ -149,11 +149,34 @@ describe('Plate.vue', () => {
       await flushPromises()
 
       expect(plate.$refs.alert.message).toEqual(
-        'QC Results for plate could not be exported',
+        'Error connecting to Sequencescape. Please try again.',
       )
       expect(consoleErrorMock).toHaveBeenCalledOnce()
       expect(consoleErrorMock).toHaveBeenLastCalledWith({
         ok: false,
+      })
+
+      consoleErrorMock.mockReset()
+    })
+
+    it('failure by sequencescape error', async () => {
+      const consoleErrorMock = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => undefined)
+      global.fetch = global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        json: () => ({ errors: 'some error' }),
+      })
+
+      cmp.find('#export').trigger('click')
+      await flushPromises()
+
+      expect(plate.$refs.alert.message).toEqual(
+        'QC Results for plate could not be exported',
+      )
+      expect(consoleErrorMock).toHaveBeenCalledOnce()
+      expect(consoleErrorMock).toHaveBeenLastCalledWith({
+        errors: 'some error',
       })
 
       consoleErrorMock.mockReset()
