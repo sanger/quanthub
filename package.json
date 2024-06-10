@@ -8,7 +8,7 @@
     "serve": "vite",
     "build": "npm-run-all build:css build:js",
     "build:js": "vite build",
-    "test:unit": "vitest run --coverage",
+    "test:unit": "vitest run",
     "test:e2e": "npm-run-all -p start test:cypress:all",
     "test:cypress:all": "cypress run",
     "test:e2e:one": "npm-run-all -p start test:cypress:one",
@@ -17,8 +17,8 @@
     "lint": "eslint . --ext .js,.vue,.cjs",
     "prettier-check": "prettier --check .",
     "prettify": "prettier --write .",
-    "serve:css": "postcss src/styles/tailwind.css -o src/styles/index.css",
-    "build:css": "postcss src/styles/tailwind.css -o src/styles/index.css --env production"
+    "serve:css": "postcss src/styles/tailwind.css --output build/app.css",
+    "build:css": "postcss src/styles/tailwind.css --output build/app.css --env production"
   },
   "dependencies": {
     "@sanger/ui-styling": "^4.1.0",
@@ -26,7 +26,7 @@
     "buffer": "^6.0.3",
     "csv-parse": "^5.5.6",
     "jsdom": "^24.0.0",
-    "jsorm": "^1.3.22",
+    "lodash-es": "^4.17.21",
     "mathjs": "^12.4.2",
     "postcss": "^8.4.38",
     "tailwindcss": "3.4.3",
@@ -52,7 +52,7 @@
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^10.1.0",
     "prettier": "^3.1.0",
-    "sass": "^1.77.1",
+    "sass": "^1.77.4",
     "vitest": "^1.4.0",
     "vue-template-compiler": "^2.7.5"
   }

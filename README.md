@@ -68,6 +68,10 @@ npm run test:unit
 npm run test:e2e
 ```
 
-### Attributions
+## Notes
+
+A predefined list of printers is used for the printer selection dropdown. This list is defined in the file `src/config/printers.json`.
+
+## Attributions
 
 Abacus Logo sourced from [Twemoji](https://github.com/twitter/twemoji) licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and converted to favicon using [favicon.io](https://favicon.io/emoji-favicons/abacus/)
