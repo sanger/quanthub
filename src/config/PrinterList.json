@@ -1,1 +1,30 @@
-["f225bc", "h106bc", "g214bc", "g216abc"]
+{
+  "printers": [
+    {
+      "name": "stub",
+      "hideInProduction": true
+    },
+    {
+      "name": "morgan-plate-barcode",
+      "hideInProduction": true
+    },
+    {
+      "name": "f225bc"
+    },
+    {
+      "name": "h106bc"
+    },
+    {
+      "name": "g214bc"
+    },
+    {
+      "name": "g216abc"
+    },
+    {
+      "name": "aa312bc"
+    },
+    {
+      "name": "aa312bc2"
+    }
+  ]
+}
