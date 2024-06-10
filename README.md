@@ -1,4 +1,6 @@
-# QuantHub
+[![codecov](https://codecov.io/gh/sanger/quanthub/graph/badge.svg?token=kdVGmZMeUr)](https://codecov.io/gh/sanger/quanthub)
+
+# ![QuantHub Logo](src/assets/logo-32x32.png) QuantHub
 
 Does what it says on the tin.
 
@@ -65,3 +67,11 @@ npm run test:unit
 ```shell
 npm run test:e2e
 ```
+
+## Notes
+
+A predefined list of printers is used for the printer selection dropdown. This list is defined in the file `src/config/printers.json`.
+
+## Attributions
+
+Abacus Logo sourced from [Twemoji](https://github.com/twitter/twemoji) licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and converted to favicon using [favicon.io](https://favicon.io/emoji-favicons/abacus/)

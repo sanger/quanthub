@@ -1,12 +1,12 @@
-import Well from '@/components/wells/Sample.vue'
 import {
-  ReplicateList,
-  Replicate,
   NullReplicate,
+  Replicate,
+  ReplicateList,
   defaultOptions,
 } from '@/Replicates'
-import { describe, expect, it, beforeEach } from 'vitest'
+import Well from '@/components/wells/Sample.vue'
 import { mount } from '@vue/test-utils'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('Replicates.vue', () => {
   let wrapper, well1, well2, well3, well4

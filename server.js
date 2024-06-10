@@ -1,6 +1,7 @@
 // server.js
-import jsonServer from 'json-server'
 import bodyParser from 'body-parser'
+import jsonServer from 'json-server'
+
 const server = jsonServer.create()
 const router = jsonServer.router()
 const middlewares = jsonServer.defaults()

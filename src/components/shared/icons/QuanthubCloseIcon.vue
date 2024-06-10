@@ -1,7 +1,8 @@
 <!--
-  CloseIcon
+  # QuanthubCloseIcon
 
-  Component to render a cross(/fail) icon
+  Tailwind component that renders a cross icon.
+  This component serves multiple purposes, including indicating failure, dismissing messages, and closing windows."
 -->
 <template>
   <svg

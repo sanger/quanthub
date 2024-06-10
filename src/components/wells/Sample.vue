@@ -23,8 +23,8 @@
 
 <script>
 import { NullReplicate } from '@/Replicates'
-import WellProperties from '@/mixins/WellProperties'
 import QuanthubLabel from '@/components/shared/QuanthubLabel.vue'
+import WellProperties from '@/mixins/WellProperties'
 
 export default {
   name: 'SampleWell',

@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'w-full inline-flex justify-center rounded-md ',
+      'w-full inline-flex justify-center rounded-md',
       'py-2 font-medium',
       'sm:mt-0 sm:text-sm disabled:cursor-not-allowed disabled:opacity-50',
       themeStyle,
@@ -51,7 +51,7 @@ const themes = {
   // Currently same as default
   edit: 'text-white bg-sdb-400 hover:bg-sdb active:bg-sdb-600',
   reset: 'text-white bg-sdb-400 hover:bg-sdb active:bg-sdb-600',
-  resetWhite: 'text-black bg-white hover:bg-gray-400 active:bg-gray-500 grow',
+  resetWhite: 'text-black bg-white hover:bg-gray-400 active:bg-gray-500',
   cancel: 'text-white bg-sdb-400 hover:bg-sdb active:bg-sdb-600',
   paginationDefault: 'bg-white text-black  border-gray-300 hover:bg-gray-400',
   paginationSelect:

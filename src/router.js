@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import Plate from '@/components/Plate.vue'
-import Upload from '@/components/Upload.vue'
-import PrintJob from '@/components/PrintJob.vue'
 import PlateList from '@/components/PlateList.vue'
+import PrintJob from '@/components/PrintJob.vue'
+import Upload from '@/components/Upload.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(),

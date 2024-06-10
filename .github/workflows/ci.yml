@@ -24,7 +24,12 @@ jobs:
           npm ci --legacy-peer-deps
       - name: Run unit tests
         run: >-
-          npm run test:unit
+          npm run test:unit -- --coverage
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true # build should fail if Codecov runs into an error during upload
   cypress:
     name: Run Cypress tests
     runs-on: ubuntu-latest

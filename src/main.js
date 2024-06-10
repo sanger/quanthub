@@ -1,9 +1,10 @@
-import './styles/index.css'
+import { registerGlobal } from '@/components/shared'
 import { createApp } from 'vue'
+
+import '../build/app.css'
 import App from './App.vue'
 import router from './router'
 import storePlugin from './storePlugin'
-import { registerGlobal } from '@/components/shared'
 
 const app = createApp(App)
 registerGlobal(app)

@@ -1,11 +1,12 @@
-import { mount, createContainer } from './testHelper'
-import Wells from '@/components/wells'
 import Store from '@/Store'
 import { Store as newStore } from '@/Store'
 import Plate from '@/components/Plate.vue'
+import Wells from '@/components/wells'
 import WellProperties from '@/mixins/WellProperties'
 import { components } from '@/mixins/WellTypes'
-import { describe, expect, it, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+
+import { createContainer, mount } from './testHelper'
 
 describe('Wells', () => {
   let cmp, well, data, plateBarcode
@@ -16,6 +17,9 @@ describe('Wells', () => {
 
   describe('Well mixin', () => {
     beforeEach(() => {
+      const mockWell = {
+        render() {},
+      }
       data = {
         row: 'B',
         column: '8',
@@ -28,7 +32,7 @@ describe('Wells', () => {
         },
         extraFields: { type: 'type' },
       }
-      cmp = mount(Wells, {
+      cmp = mount(mockWell, {
         mixins: [WellProperties],
         props: data,
       })

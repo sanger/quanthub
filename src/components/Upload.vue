@@ -13,7 +13,7 @@
       @submit.prevent="upload"
     >
       <div class="wrapper">
-        <label for="quantType">Select a Quant Type: </label>
+        <label for="quant-type">Select a Quant Type: </label>
         <div class="w-full pb-2">
           <quanthub-select
             id="quant-type"
@@ -35,6 +35,7 @@
             @change.prevent="addFilenames"
           />
           <input
+            id="browse-files"
             ref="browseFiles"
             type="text"
             disabled
@@ -58,10 +59,10 @@
 <script>
 // Uploads a file. Parse options dependent on quantType
 import QuantFile from '@/components/QuantFile.vue'
-import quantTypes from '@/config/quantTypes'
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
-import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
+import quantTypes from '@/config/quantTypes'
 
 export default {
   name: 'Upload',

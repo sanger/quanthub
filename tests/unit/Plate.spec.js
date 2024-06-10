@@ -1,11 +1,12 @@
-import Plate from '@/components/Plate.vue'
 import Grid from '@/Grid'
-import plateReader from '../data/plate_reader'
 import Store from '@/Store'
+import Plate from '@/components/Plate.vue'
 import axios from 'axios'
 import flushPromises from 'flush-promises'
-import { mount, createContainer } from './testHelper'
-import { vi, describe, expect, it, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
+import plateReader from '../data/plate_reader'
+import { createContainer, mount } from './testHelper'
 
 vi.mock('axios')
 
@@ -145,12 +146,23 @@ describe('Plate.vue', () => {
     })
 
     it('failure', async () => {
+      const consoleErrorMock = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => undefined)
       axios.mockRejectedValue({ data: { status: 422 } })
+
       cmp.find('#export').trigger('click')
       await flushPromises()
+
       expect(plate.$refs.alert.message).toEqual(
         'QC Results for plate could not be exported',
       )
+      expect(consoleErrorMock).toHaveBeenCalledOnce()
+      expect(consoleErrorMock).toHaveBeenLastCalledWith({
+        data: { status: 422 },
+      })
+
+      consoleErrorMock.mockReset()
     })
   })
 })

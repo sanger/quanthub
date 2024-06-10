@@ -68,15 +68,14 @@
 // Once the plate is received from local storage a set of replicates is created. The plate id is cascaded down so that the well can add a replicate
 // The assumption is made that the data exists in local storage from when it was uploaded.
 // The QuantType is assigned from local storage and a QuantType component is created.
-
-import Row from '@/components/Row.vue'
 import Grid from '@/Grid'
 import QuantType from '@/QuantType'
-import QuanthubMessage from '@/components/QuanthubMessage.vue'
-import QuanthubModal from '@/components/shared/QuanthubModal.vue'
-import QuanthubButton from '@/components/shared/QuanthubButton.vue'
-import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import { ReplicateList as Replicates } from '@/Replicates'
+import QuanthubMessage from '@/components/QuanthubMessage.vue'
+import Row from '@/components/Row.vue'
+import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubModal from '@/components/shared/QuanthubModal.vue'
+import QuanthubSpinner from '@/components/shared/QuanthubSpinner.vue'
 import axios from 'axios'
 
 export default {

@@ -1,9 +1,9 @@
 import QuanthubMessage from '@/components/QuanthubMessage.vue'
-import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
-import QuanthubModal from '@/components/shared/QuanthubModal.vue'
-import QuanthubLabel from '@/components/shared/QuanthubLabel.vue'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
+import QuanthubLabel from '@/components/shared/QuanthubLabel.vue'
+import QuanthubModal from '@/components/shared/QuanthubModal.vue'
 import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
+import QuanthubCloseIcon from '@/components/shared/icons/QuanthubCloseIcon.vue'
 
 const registerGlobal = (vue) => {
   /* eslint-disable vue/component-definition-name-casing */

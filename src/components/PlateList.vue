@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import Upload from '@/components/Upload.vue'
 import PageHeading from '@/components/PageHeading.vue'
+import Upload from '@/components/Upload.vue'
 
 export default {
   name: 'Plates',
