@@ -72,6 +72,8 @@ npm run test:e2e
 
 A predefined list of printers is used for the printer selection dropdown. This list is defined in the file `src/config/printers.json`.
 
+Some printers, such as `stub`, are only used for development and testing purposes and should not be used in production. These printers are marked by setting the `nonProductionPrinter` property to `true`. To hide these printers from the printer selection dropdown, set the environment variable `VITE_HIDE_NON_PRODUCTION_PRINTERS` to `true`.
+
 ## Attributions
 
 Abacus Logo sourced from [Twemoji](https://github.com/twitter/twemoji) licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and converted to favicon using [favicon.io](https://favicon.io/emoji-favicons/abacus/)
