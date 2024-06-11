@@ -86,10 +86,12 @@ export default {
     QuanthubSelect,
   },
   data() {
-    const environment = process.env.NODE_ENV
+    const hideNonProductionPrinters =
+      import.meta.env.VITE_HIDE_NON_PRODUCTION_PRINTERS?.toLowerCase?.() ===
+      'true' // note: Boolean("false") === true
     const printers = filterPrintersByEnvironment({
       printers: PrinterList.printers,
-      environment,
+      hideNonProductionPrinters,
     })
 
     return {

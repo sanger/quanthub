@@ -2,11 +2,11 @@
   "printers": [
     {
       "name": "stub",
-      "hideInProduction": true
+      "nonProductionPrinter": true
     },
     {
       "name": "morgan-plate-barcode",
-      "hideInProduction": true
+      "nonProductionPrinter": true
     },
     {
       "name": "f225bc"
