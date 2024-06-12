@@ -1,7 +1,7 @@
 import PrintJob from '@/components/PrintJob.vue'
 import PrinterList from '@/config/PrinterList'
 import flushPromises from 'flush-promises'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mount } from './testHelper'
 
@@ -9,10 +9,11 @@ describe('PrintJob.vue', () => {
   let cmp, printJob
 
   beforeEach(() => {
+    vi.stubEnv('VITE_CUSTOM_PRINTERS', 'stub')
     cmp = mount(PrintJob)
     cmp.setData({
       barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
-      printerName: 'ippbc',
+      printerName: 'stub',
       barcodeError: '',
       printerError: '',
     })
@@ -22,6 +23,7 @@ describe('PrintJob.vue', () => {
   describe('printers', () => {
     it('will return the a list of printers', () => {
       expect(printJob.printers).toEqual([
+        'stub',
         'f225bc',
         'h106bc',
         'g214bc',
@@ -35,7 +37,7 @@ describe('PrintJob.vue', () => {
   describe('printerOptions', () => {
     it('will return a list of printerOptions based on the PrinterList config', () => {
       expect(printJob.printerOptions).toEqual(
-        PrinterList.printers.map((printer) => ({
+        printJob.printers.map((printer) => ({
           text: printer,
           value: printer,
         })),
@@ -146,7 +148,7 @@ describe('PrintJob.vue', () => {
         printerError: 'error',
       })
       printJob.reset()
-      expect(printJob.printerName).toEqual(PrinterList.printers[0])
+      expect(printJob.printerName).toEqual(printJob.printers[0])
       expect(printJob.barcodes).toEqual('')
       expect(printJob.barcodeError).toEqual('')
       expect(printJob.printerError).toEqual('')
