@@ -1,7 +1,7 @@
 import PrintJob from '@/components/PrintJob.vue'
 import PrinterList from '@/config/PrinterList'
 import flushPromises from 'flush-promises'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mount } from './testHelper'
 
@@ -22,8 +22,6 @@ describe('PrintJob.vue', () => {
   describe('printers', () => {
     it('will return the a list of printers', () => {
       expect(printJob.printers).toEqual([
-        'stub',
-        'morgan-plate-barcode',
         'f225bc',
         'h106bc',
         'g214bc',
@@ -38,8 +36,8 @@ describe('PrintJob.vue', () => {
     it('will return a list of printerOptions based on the PrinterList config', () => {
       expect(printJob.printerOptions).toEqual(
         PrinterList.printers.map((printer) => ({
-          text: printer.name,
-          value: printer.name,
+          text: printer,
+          value: printer,
         })),
       )
     })
@@ -104,7 +102,7 @@ describe('PrintJob.vue', () => {
   describe('valid', () => {
     it('is valid if the printerName and barcodes are not blank', () => {
       cmp.setData({
-        printerName: PrinterList.printers[0].name,
+        printerName: PrinterList.printers[0],
         barcodes: 'DN1234567',
       })
       const valid = printJob.valid()
@@ -148,7 +146,7 @@ describe('PrintJob.vue', () => {
         printerError: 'error',
       })
       printJob.reset()
-      expect(printJob.printerName).toEqual(PrinterList.printers[0].name)
+      expect(printJob.printerName).toEqual(PrinterList.printers[0])
       expect(printJob.barcodes).toEqual('')
       expect(printJob.barcodeError).toEqual('')
       expect(printJob.printerError).toEqual('')
