@@ -70,7 +70,7 @@ npm run test:e2e
 
 ## Notes
 
-A predefined list of printers is used for the printer selection dropdown. This list is defined in the file `src/config/printers.json`.
+A predefined list of printers is used for the printer selection dropdown. This list is defined in the file `src/config/printers.json`. Additional printers, such as the logging printer `stub`, can be added to this list by setting the environment variable `VITE_CUSTOM_PRINTERS` to a comma-separated list of printer names, e.g. `VITE_CUSTOM_PRINTERS=stub,printer1,printer2`.
 
 ## Attributions
 
