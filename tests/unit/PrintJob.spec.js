@@ -9,10 +9,11 @@ describe('PrintJob.vue', () => {
   let cmp, printJob
 
   beforeEach(() => {
+    vi.stubEnv('VITE_CUSTOM_PRINTERS', 'stub')
     cmp = mount(PrintJob)
     cmp.setData({
       barcodes: 'DN1234567\nDN2345678\nDN3456789\n',
-      printerName: 'ippbc',
+      printerName: 'stub',
       barcodeError: '',
       printerError: '',
     })
@@ -23,7 +24,6 @@ describe('PrintJob.vue', () => {
     it('will return the a list of printers', () => {
       expect(printJob.printers).toEqual([
         'stub',
-        'morgan-plate-barcode',
         'f225bc',
         'h106bc',
         'g214bc',
@@ -37,9 +37,9 @@ describe('PrintJob.vue', () => {
   describe('printerOptions', () => {
     it('will return a list of printerOptions based on the PrinterList config', () => {
       expect(printJob.printerOptions).toEqual(
-        PrinterList.printers.map((printer) => ({
-          text: printer.name,
-          value: printer.name,
+        printJob.printers.map((printer) => ({
+          text: printer,
+          value: printer,
         })),
       )
     })
@@ -104,7 +104,7 @@ describe('PrintJob.vue', () => {
   describe('valid', () => {
     it('is valid if the printerName and barcodes are not blank', () => {
       cmp.setData({
-        printerName: PrinterList.printers[0].name,
+        printerName: PrinterList.printers[0],
         barcodes: 'DN1234567',
       })
       const valid = printJob.valid()
@@ -148,7 +148,7 @@ describe('PrintJob.vue', () => {
         printerError: 'error',
       })
       printJob.reset()
-      expect(printJob.printerName).toEqual(PrinterList.printers[0].name)
+      expect(printJob.printerName).toEqual(printJob.printers[0])
       expect(printJob.barcodes).toEqual('')
       expect(printJob.barcodeError).toEqual('')
       expect(printJob.printerError).toEqual('')

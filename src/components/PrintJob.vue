@@ -76,7 +76,7 @@ import QuanthubMessage from '@/components/QuanthubMessage.vue'
 import QuanthubButton from '@/components/shared/QuanthubButton.vue'
 import QuanthubSelect from '@/components/shared/QuanthubSelect.vue'
 import PrinterList from '@/config/PrinterList'
-import { filterPrintersByEnvironment } from '@/lib/PrinterHelpers'
+import { parseCustomPrinters } from '@/lib/PrinterHelpers'
 
 export default {
   name: 'PrintJob',
@@ -86,11 +86,10 @@ export default {
     QuanthubSelect,
   },
   data() {
-    const environment = process.env.NODE_ENV
-    const printers = filterPrintersByEnvironment({
-      printers: PrinterList.printers,
-      environment,
-    })
+    const customPrinters = parseCustomPrinters(
+      import.meta.env.VITE_CUSTOM_PRINTERS,
+    )
+    const printers = customPrinters.concat(PrinterList.printers)
 
     return {
       barcodes: '',
