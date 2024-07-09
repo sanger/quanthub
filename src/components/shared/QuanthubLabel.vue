@@ -81,6 +81,7 @@ export default {
       validator: within(...Object.keys(flatColourClasses)),
     },
   },
+  emits: ['mouseleave', 'mouseover'],
   computed: {
     colourStyle: ({ colour }) => flatColourClasses[colour],
   },
