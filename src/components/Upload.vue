@@ -21,7 +21,7 @@
             :options="quantTypeSelectOptions"
             placeholder="Please select a quant type ..."
             :data-attribute="quantType"
-            @update:modelValue="updateSelected"
+            @update:model-value="updateSelected"
           >
           </quanthub-select>
         </div>
@@ -162,7 +162,6 @@ export default {
       this.$refs.fileInput.click()
     },
     addFilenames() {
-      /*eslint no-console: */
       this.filename = this.$refs.fileInput.value
       this.$refs.browseFiles.value = this.filenameFiltered
     },
@@ -180,7 +179,6 @@ export default {
           msg += `Unrecognised error type: ${error}`
       }
       this.$refs.alert.show(msg, 'danger')
-      /*eslint no-console: ["error", { allow: ["error"] }] */
       console.error('file upload rejected:', error)
     },
     handleObjectError(error, msg) {

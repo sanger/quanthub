@@ -131,7 +131,6 @@ export default {
         this.store.qcAssayList.add(this)
       }
     } catch (error) {
-      /*eslint no-console: ["error", { allow: ["error"] }] */
       console.error(error)
     }
   },
