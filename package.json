@@ -4,8 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start:host": "npm-run-all -p serve:css serve:host",
     "start": "npm-run-all -p serve:css serve",
     "serve": "vite",
+    "serve:host": "vite --host",
     "build": "npm-run-all build:css build:js",
     "build:js": "vite build",
     "test:unit": "vitest run",
@@ -17,8 +19,8 @@
     "lint": "eslint .",
     "prettier-check": "prettier --check .",
     "prettify": "prettier --write .",
-    "serve:css": "postcss src/styles/tailwind.css --output build/app.css",
-    "build:css": "postcss src/styles/tailwind.css --output build/app.css --env production"
+    "serve:css": "postcss src/styles/tailwind.css -o src/styles/index.css",
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/index.css --env production"
   },
   "dependencies": {
     "@sanger/ui-styling": "^4.1.0",

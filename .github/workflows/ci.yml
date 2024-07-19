@@ -9,16 +9,12 @@ jobs:
     name: Run unit tests using Vitest
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Export node version
-        id: node_version
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+      - uses: actions/checkout@v4
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Node Information
-        run: node --version
+          cache: 'npm'
       - name: Install dependencides
         run: >-
           npm ci --legacy-peer-deps
@@ -33,31 +29,28 @@ jobs:
   cypress:
     name: Run Cypress tests
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node-20.10.0-chrome-121.0.6167.85-1-ff-118.0.2-edge-118.0.2088.46-1
+      options: --user 1001
     steps:
-      - uses: actions/checkout@v2
-      - name: Export node version
-        id: node_version
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+      - uses: actions/checkout@v4
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - name: Node Information
-        run: node --version
+          cache: 'npm'
       - name: Install dependencides
         run: >-
-          npm ci  --legacy-peer-deps
+          npm ci --legacy-peer-deps
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
-          start: npm start
-          #https://github.com/cypress-io/github-action/blob/master/README.md#wait-on-with-nodejs-18
-          wait-on: http://[::1]:5173/
+          start: npm run start:host
+          wait-on: http://localhost:5173/
           spec: 'tests/e2e/**/*'
-          config-file: cypress.config.cjs
+          config-file: cypress.config.js
           config: video=false
           install: false
-          timeout-minutes: 5
           browser: chrome
       # after the test run completes
       # store any screenshots
@@ -65,7 +58,7 @@ jobs:
       # thus we store screenshots only on failures
       # Alternative: create and commit an empty cypress/screenshots folder
       # to always have something to upload
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots

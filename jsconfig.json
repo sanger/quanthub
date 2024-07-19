@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*", "tailwind.config.js"],
+  "include": ["src/**/*", "tailwind.config.js", "cypress.config.js"],
   "exclude": ["node_modules", "build", "dist"],
   "vueCompilerOptions": { "target": 3.3 },
   "compilerOptions": {
