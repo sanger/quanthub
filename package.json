@@ -47,7 +47,7 @@
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^4.1.0",
-    "eslint-plugin-vue": "^9.31.0",
+    "eslint-plugin-vue": "^9.32.0",
     "esm": "^3.2.25",
     "flush-promises": "^1.0.2",
     "lint-staged": "^15.3.0",
