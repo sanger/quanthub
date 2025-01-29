@@ -40,9 +40,16 @@
     <div class="col-md-12">
       <table class="table w-full">
         <thead>
-          <th>&nbsp;</th>
-          <!-- prettier-ignore -->
-          <th v-for="column in columns" :key="column" class="border-solid border-2 border-gray-200">{{ column }}</th>
+          <tr>
+            <th>&nbsp;</th>
+            <th
+              v-for="column in columns"
+              :key="column"
+              class="border-solid border-2 border-gray-200"
+            >
+              {{ column }}
+            </th>
+          </tr>
         </thead>
         <tbody>
           <row
