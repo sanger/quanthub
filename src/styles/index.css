@@ -2,34 +2,34 @@
 @import '../../node_modules/@sanger/ui-styling/tailwind.css';
 
 /* Define your custom styles */
-.success-message {
+.success-message{
   --tw-bg-opacity: 1;
-  background-color: rgb(72 187 120 / var(--tw-bg-opacity));
+  background-color: rgb(72 187 120 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
-.success-icon {
+.success-icon{
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
-.success-icon:hover {
+.success-icon:hover{
   --tw-text-opacity: 1;
-  color: rgb(34 84 61 / var(--tw-text-opacity));
+  color: rgb(34 84 61 / var(--tw-text-opacity, 1));
 }
 
-.failure-message {
+.failure-message{
   --tw-bg-opacity: 1;
-  background-color: rgb(245 101 101 / var(--tw-bg-opacity));
+  background-color: rgb(245 101 101 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
-.failure-icon {
+.failure-icon{
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
-.failure-icon:hover {
+.failure-icon:hover{
   --tw-text-opacity: 1;
-  color: rgb(116 42 42 / var(--tw-text-opacity));
+  color: rgb(116 42 42 / var(--tw-text-opacity, 1));
 }
 
 .warning-message {
@@ -55,24 +55,23 @@ nav {
 
 #nav {
   margin-bottom: 5px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+    &.router-link-active {
+      color: #42b983;
+    }
+  }
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-#nav a.router-link-active {
-  color: #42b983;
-}
-
-a:hover {
-  text-decoration: none;
-  color: black;
+a {
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
 }
 
 .file {
@@ -92,15 +91,15 @@ nav {
   height: 30px;
   width: 100%;
   margin-bottom: 10px;
-}
 
-nav a {
-  color: white;
-}
+  a {
+    color: white;
 
-nav a:hover,
-nav a:visited {
-  color: white;
+    &:hover,
+    &:visited {
+      color: white;
+    }
+  }
 }
 
 th {
@@ -122,7 +121,7 @@ th {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
 }
 
@@ -130,10 +129,12 @@ th {
   border: 1px solid #dee2e6;
 }
 
-.table td,
-.table th {
-  min-height: 50px;
-  font-size: 12px;
+.table {
+  td,
+  th {
+    min-height: 50px;
+    font-size: 12px;
+  }
 }
 
 .control {
