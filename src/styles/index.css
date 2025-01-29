@@ -55,25 +55,24 @@ nav {
 
 #nav {
   margin-bottom: 5px;
-}
-
-#nav a {
+  a {
     font-weight: bold;
     color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+    &.router-link-active {
+      color: #42b983;
+    }
   }
+}
 
-#nav a.router-link-exact-active {
-      color: #42b983;
-    }
-
-#nav a.router-link-active {
-      color: #42b983;
-    }
-
-a:hover {
+a {
+  &:hover {
     text-decoration: none;
     color: black;
   }
+}
 
 .file {
   visibility: hidden;
@@ -92,16 +91,16 @@ nav {
   height: 30px;
   width: 100%;
   margin-bottom: 10px;
-}
 
-nav a {
+  a {
     color: white;
-  }
 
-nav a:hover,
-    nav a:visited {
+    &:hover,
+    &:visited {
       color: white;
     }
+  }
+}
 
 th {
   background-color: #ddd1c3;
@@ -130,11 +129,13 @@ th {
   border: 1px solid #dee2e6;
 }
 
-.table td,
-  .table th {
+.table {
+  td,
+  th {
     min-height: 50px;
     font-size: 12px;
   }
+}
 
 .control {
   color: white;
