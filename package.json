@@ -46,7 +46,7 @@
     "cypress-file-upload": "^5.0.8",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",
-    "eslint-plugin-cypress": "^4.1.0",
+    "eslint-plugin-cypress": "^4.2.0",
     "eslint-plugin-vue": "^9.32.0",
     "esm": "^3.2.25",
     "flush-promises": "^1.0.2",
