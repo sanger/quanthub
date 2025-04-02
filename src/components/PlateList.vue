@@ -18,7 +18,6 @@
         :key="plate"
         :to="`/plate/${plate}`"
         class="plate"
-        tag="div"
       >
         <div class="text-left">
           <a

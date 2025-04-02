@@ -8,6 +8,9 @@ selenium-debug.log
 # local asset build
 release.tar.gz
 
+# Postcss managed files
+src/styles/index.css
+
 # local env files
 .env.local
 .env.*.local
