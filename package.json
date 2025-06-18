@@ -31,7 +31,7 @@
     "globals": "^16.2.0",
     "jsdom": "^26.1.0",
     "lodash-es": "^4.17.21",
-    "mathjs": "^14.5.0",
+    "mathjs": "^14.5.2",
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.4",
     "vite": "^6.3.5",
