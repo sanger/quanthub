@@ -33,7 +33,7 @@
     "lodash-es": "^4.17.21",
     "mathjs": "^14.6.0",
     "postcss": "^8.5.4",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^4.1.13",
     "vite": "^7.1.5",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
