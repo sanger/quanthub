@@ -57,7 +57,7 @@
     "postcss-cli": "^11.0.1",
     "prettier": "^3.7.4",
     "sass": "^1.97.2",
-    "vitest": "^4.0.15",
+    "vitest": "^4.0.17",
     "vue-template-compiler": "^2.7.5"
   }
 }
