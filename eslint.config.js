@@ -1,5 +1,6 @@
 import js from '@eslint/js'
 import eslintConfigPrettier from 'eslint-config-prettier'
+import pluginCypress from 'eslint-plugin-cypress'
 import pluginVue from 'eslint-plugin-vue'
 import globals from 'globals'
 
@@ -7,6 +8,7 @@ export default [
   ...pluginVue.configs['flat/recommended'],
   js.configs.recommended,
   eslintConfigPrettier,
+  pluginCypress.configs.recommended,
   {
     rules: {
       'no-console': 'off', // It may be worth re-enabling this is we add proper error logging
@@ -20,6 +22,7 @@ export default [
       'vue/no-v-model-argument': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/require-prop-types': 'off',
+      'cypress/no-unnecessary-waiting': 'off',
     },
   },
   {
@@ -33,10 +36,6 @@ export default [
         ...globals.node,
         ...globals.jest,
         ...globals.browser,
-        // Global vitest and Cypress variables so they don't violate no-undef
-        vi: 'readonly',
-        cy: 'readonly',
-        Cypress: 'readonly',
       },
     },
   },
