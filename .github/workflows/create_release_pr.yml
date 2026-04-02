@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - develop
-      - sh51/add-release-pr # For testing purposes - delete once merged
 
 jobs:
   pull_request:
