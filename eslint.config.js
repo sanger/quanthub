@@ -32,6 +32,7 @@ export default [
       globals: {
         ...globals.node,
         ...globals.jest,
+        ...globals.browser,
         // Global vitest and Cypress variables so they don't violate no-undef
         vi: 'readonly',
         cy: 'readonly',
