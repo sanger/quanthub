@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@sanger/ui-styling": "^4.3.0",
-    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.4",
     "@vitejs/plugin-vue": "^6.0.6",
     "buffer": "^6.0.3",
     "csv-parse": "^6.2.1",
