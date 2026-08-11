@@ -1,6 +1,5 @@
 import QuantFile from '@/components/QuantFile.vue'
 import { mount } from '@vue/test-utils'
-import flushPromises from 'flush-promises'
 import fs from 'fs'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -31,10 +30,8 @@ describe('QuantFile.vue', () => {
         let rows
 
         beforeEach(async () => {
-          quantFile.upload(file)
+          await quantFile.upload(file)
           rows = plate.split('\n')
-          await flushPromises()
-          await flushPromises()
         })
 
         it('will have some csv', () => {
@@ -120,9 +117,7 @@ describe('QuantFile.vue', () => {
 
       describe('successful', () => {
         beforeEach(async () => {
-          quantFile.upload(file)
-          await flushPromises()
-          await flushPromises()
+          await quantFile.upload(file)
         })
 
         it('creates some metadata', () => {
@@ -158,9 +153,7 @@ describe('QuantFile.vue', () => {
 
       describe('successful', () => {
         beforeEach(async () => {
-          quantFile.upload(file)
-          await flushPromises()
-          await flushPromises()
+          await quantFile.upload(file)
         })
 
         it('will have some text', () => {
@@ -244,9 +237,7 @@ describe('QuantFile.vue', () => {
 
       describe('successful', () => {
         beforeEach(async () => {
-          quantFile.upload(file)
-          await flushPromises()
-          await flushPromises()
+          await quantFile.upload(file)
         })
 
         it('will have some text', () => {
@@ -304,9 +295,7 @@ describe('QuantFile.vue', () => {
 
     describe('successful', () => {
       beforeEach(async () => {
-        quantFile.upload(file)
-        await flushPromises()
-        await flushPromises()
+        await quantFile.upload(file)
       })
 
       it('will have some text', () => {
@@ -366,9 +355,7 @@ describe('QuantFile.vue', () => {
             { type: 'text/plain' },
           )
 
-          quantFile.upload(file)
-          await flushPromises()
-          await flushPromises()
+          await quantFile.upload(file)
         })
 
         it('generates an id equal to the barcode from file name', () => {
@@ -411,11 +398,9 @@ describe('QuantFile.vue', () => {
             type: 'text/plain',
           })
 
-          quantFile.upload(file).catch((error) => {
+          await quantFile.upload(file).catch((error) => {
             uploadError = error
           })
-          await flushPromises()
-          await flushPromises()
         })
 
         it('rejects the file', () => {
