@@ -1,29 +1,32 @@
-import js from '@eslint/js'
-import eslintConfigPrettier from 'eslint-config-prettier'
 import pluginVue from 'eslint-plugin-vue'
+import pluginCypress from 'eslint-plugin-cypress'
+import js from '@eslint/js'
 import globals from 'globals'
+import eslintConfigPrettier from 'eslint-config-prettier'
+import { defineConfig } from 'eslint/config'
 
-export default [
+export default defineConfig([
   ...pluginVue.configs['flat/recommended'],
   js.configs.recommended,
   eslintConfigPrettier,
   {
     rules: {
-      'no-console': 'off', // It may be worth re-enabling this is we add proper error logging
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
       'prefer-const': [
         'error',
         {
           destructuring: 'all',
         },
       ],
-      'vue/no-v-model-argument': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/require-prop-types': 'off',
     },
   },
   {
-    ignores: ['dist/**/*.js'],
+    files: ['tests/e2e/**/*.js'],
+    extends: [pluginCypress.configs.recommended],
+  },
+  {
+    ignores: ['dist/**/*.js', 'docs/**/*.js', 'documentation/**/*.js'],
   },
   {
     languageOptions: {
@@ -31,13 +34,11 @@ export default [
       sourceType: 'module',
       globals: {
         ...globals.node,
-        ...globals.jest,
+        // e.g. it, expect, describe
+        ...globals.vitest,
+        // e.g. document, alert, window
         ...globals.browser,
-        // Global vitest and Cypress variables so they don't violate no-undef
-        vi: 'readonly',
-        cy: 'readonly',
-        Cypress: 'readonly',
       },
     },
   },
-]
+])
