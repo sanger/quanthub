@@ -1,9 +1,9 @@
-import pluginVue from 'eslint-plugin-vue'
-import pluginCypress from 'eslint-plugin-cypress'
 import js from '@eslint/js'
-import globals from 'globals'
 import eslintConfigPrettier from 'eslint-config-prettier'
+import pluginCypress from 'eslint-plugin-cypress'
+import pluginVue from 'eslint-plugin-vue'
 import { defineConfig } from 'eslint/config'
+import globals from 'globals'
 
 export default defineConfig([
   ...pluginVue.configs['flat/recommended'],
