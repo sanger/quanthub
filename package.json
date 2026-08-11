@@ -28,7 +28,7 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "buffer": "^6.0.3",
     "csv-parse": "^6.2.1",
-    "globals": "^17.6.0",
+    "globals": "^17.9.0",
     "jsdom": "^30.0.1",
     "lodash-es": "^4.18.1",
     "mathjs": "^15.2.0",
