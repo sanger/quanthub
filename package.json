@@ -44,7 +44,7 @@
     "@vitest/coverage-v8": "^4.1.10",
     "@vue/test-utils": "^2.4.11",
     "autoprefixer": "^10.5.4",
-    "cypress": "^15.15.0",
+    "cypress": "^15.19.0",
     "cypress-file-upload": "^5.0.8",
     "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
