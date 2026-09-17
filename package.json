@@ -27,7 +27,7 @@
     "@tailwindcss/postcss": "^4.3.0",
     "@vitejs/plugin-vue": "^6.0.8",
     "buffer": "^6.0.3",
-    "csv-parse": "^6.2.1",
+    "csv-parse": "^7.0.2",
     "globals": "^17.12.0",
     "jsdom": "^30.0.1",
     "lodash-es": "^4.18.1",
