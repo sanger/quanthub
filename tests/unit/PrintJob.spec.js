@@ -5,6 +5,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mount } from './testHelper'
 
+// Mock the createPrintJob function to return a resolved promise
+vi.mock('@/api/PrintMyBarcode')
+const printMyBarcode = await import('@/api/PrintMyBarcode')
+
 describe('PrintJob.vue', () => {
   let cmp, printJob
 
@@ -58,13 +62,6 @@ describe('PrintJob.vue', () => {
   })
 
   describe('execute', () => {
-    let printMyBarcode
-    beforeEach(async () => {
-      // Mock the createPrintJob function to return a resolved promise
-      vi.mock('@/api/PrintMyBarcode')
-      printMyBarcode = await import('@/api/PrintMyBarcode')
-    })
-
     it('will generate an alert message on success', async () => {
       printMyBarcode.createPrintJob = vi.fn().mockResolvedValue({
         ok: true,
