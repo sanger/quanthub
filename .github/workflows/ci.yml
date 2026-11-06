@@ -40,7 +40,10 @@ jobs:
       - name: Start server
         run: npm run start:host > server.log 2>&1 &
       - name: Check server
-        run: sleep 10 && cat server.log && curl -sI http://127.0.0.1:5173/
+        run: |
+          sleep 10
+          cat server.log
+          node -e "fetch('http://127.0.0.1:5173/').then(r => console.log('status', r.status)).catch(e => { console.error('fetch failed', e); process.exit(1) })"
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
