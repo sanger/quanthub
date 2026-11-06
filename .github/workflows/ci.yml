@@ -37,8 +37,10 @@ jobs:
       - name: Install dependencides
         run: >-
           npm ci --legacy-peer-deps
-      - name: Debug server start
-        run: timeout 20 npm run start:host || true
+      - name: Start server
+        run: npm run start:host > server.log 2>&1 &
+      - name: Check server
+        run: sleep 10 && cat server.log && curl -sI http://127.0.0.1:5173/
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
