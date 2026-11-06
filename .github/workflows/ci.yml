@@ -34,21 +34,17 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
-      - name: Install dependencides
+      - name: Install dependencies
         run: >-
           npm ci --legacy-peer-deps
       - name: Start server
         run: npm run start:host > server.log 2>&1 &
-      - name: Check server
-        run: |
-          sleep 10
-          cat server.log
-          node -e "fetch('http://127.0.0.1:5173/').then(r => console.log('status', r.status)).catch(e => { console.error('fetch failed', e); process.exit(1) })"
+      - name: Wait for server
+        run: npx wait-on http://127.0.0.1:5173/ --timeout 60000 || (cat server.log; exit 1)
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: npm run start:host
-          wait-on: http://127.0.0.1:5173/
+          # Removed use of 'start' and 'wait on' because it failed - starting the server in previous step instead.
           spec: 'tests/e2e/**/*'
           config-file: cypress.config.js
           config: video=false
