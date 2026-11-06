@@ -25,7 +25,7 @@ jobs:
     name: Run Cypress tests
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-20.10.0-chrome-121.0.6167.85-1-ff-118.0.2-edge-118.0.2088.46-1
+      image: cypress/browsers:node-24.22.1-chrome-156.0.8078.73-1-ff-159.0-edge-156.0.4314.50-1
       options: --user 1001
     steps:
       - uses: actions/checkout@v4
@@ -37,11 +37,18 @@ jobs:
       - name: Install dependencides
         run: >-
           npm ci --legacy-peer-deps
+      - name: Start server
+        run: npm run start:host > server.log 2>&1 &
+      - name: Check server
+        run: |
+          sleep 10
+          cat server.log
+          node -e "fetch('http://127.0.0.1:5173/').then(r => console.log('status', r.status)).catch(e => { console.error('fetch failed', e); process.exit(1) })"
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           start: npm run start:host
-          wait-on: http://localhost:5173/
+          wait-on: http://127.0.0.1:5173/
           spec: 'tests/e2e/**/*'
           config-file: cypress.config.js
           config: video=false
