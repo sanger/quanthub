@@ -37,11 +37,13 @@ jobs:
       - name: Install dependencides
         run: >-
           npm ci --legacy-peer-deps
+      - name: Debug server start
+        run: timeout 20 npm run start:host || true
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           start: npm run start:host
-          wait-on: http://localhost:5173/
+          wait-on: http://127.0.0.1:5173/
           spec: 'tests/e2e/**/*'
           config-file: cypress.config.js
           config: video=false
