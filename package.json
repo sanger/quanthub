@@ -43,7 +43,7 @@
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@vitest/coverage-v8": "^5.1.0",
     "@vue/test-utils": "^2.6.0",
-    "autoprefixer": "^10.6.2",
+    "autoprefixer": "^10.7.0",
     "cypress": "^15.21.1",
     "cypress-file-upload": "^5.0.8",
     "eslint": "^10.14.0",
