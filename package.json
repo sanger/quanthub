@@ -60,6 +60,7 @@
     "sass": "^1.108.2",
     "vitest": "^5.1.0",
     "vue-eslint-parser": "^10.4.2",
-    "vue-template-compiler": "^2.7.5"
+    "vue-template-compiler": "^2.7.5",
+    "wait-on": "^9.5.1"
   }
 }
